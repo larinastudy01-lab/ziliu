@@ -1,7 +1,7 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
-import vm from 'node:vm';
+import { readCatalog, upsertSection, writeCatalog } from './catalog.mjs';
 
 const inputPath = process.argv[2];
 if (!inputPath) throw Error('Usage: node scripts/import-la-11.mjs <review.md>');
@@ -58,16 +58,9 @@ const summary = part(8).replace(/^##[^\n]*\n/, '').split('\n本稿不保存')[0]
 blocks.push({ id: full('B34'), type: 'summary', title: '考前摘要與常見錯誤', markdown: summary });
 blocks.push({ id: full('B35'), type: 'assessment', assessmentId: full('AS01') });
 const section = { id: sectionId, title: '1-1 矩陣及矩陣運算', reviewStatus: 'draft', contentVersion: '0.1', notice: '第一階段審閱稿：前置基礎已標為補充；原教材前段尚待補齊，不能視為完整覆蓋原教材。', knowledgePointIds: knowledgePoints.map(point => point.id), blocks, assessment: { id: full('AS01'), scope: 'section', title: '1-1 小節測驗', questionIds: questions.map(question => question.id), totalPoints: 30 } };
-const context = { window: {} }; vm.runInNewContext(readFileSync('docs/content.js', 'utf8'), context);
-const catalog = context.window.ZILIU_CONTENT;
-catalog.version = 3;
+const catalog = readCatalog();
 catalog.subjects[0].sourceSubjectId = 'LA';
-catalog.subjects[0].chapters = [{ id: chapterId, title: '第 1 章', titleStatus: '待確認正式章名', curriculumComplete: false, sections: [section] }];
-catalog.questions = questions;
-catalog.examples = examples;
-catalog.knowledgePoints = knowledgePoints;
-catalog.answers = answers;
-catalog.solutions = solutionMap;
-catalog.sourceReview = { filename: path.basename(inputPath), sha256: createHash('sha256').update(manuscript).digest('hex'), contentVersion: '0.1', status: 'draft', scope: sectionId, pendingExamCount: 15, pendingExamImported: false, note: '考古題摘要缺完整題幹與來源核對，未納入正式題庫。未建立 1-2 或大章綜合測驗。' };
-writeFileSync('docs/content.js', '// 課程內容取自使用者提供審閱稿；個人筆跡、作答與進度不放入此檔。\nwindow.ZILIU_CONTENT = ' + JSON.stringify(catalog, null, 2) + ';\n');
+const sourceReview = { filename: path.basename(inputPath), sha256: createHash('sha256').update(manuscript).digest('hex'), contentVersion: '0.1', status: 'draft', scope: sectionId, pendingExamCount: 15, pendingExamImported: false, note: '考古題摘要缺完整題幹與來源核對，未納入正式題庫。未建立 1-2 或大章綜合測驗。' };
+upsertSection(catalog, { section, questions, examples, knowledgePoints, answers, solutions: solutionMap, sourceReview });
+writeCatalog(catalog);
 console.log(`Imported ${knowledgePoints.length} knowledge points, ${examples.length} examples, ${blocks.length} blocks and ${questions.length} section-assessment questions. Unverified exam summaries excluded.`);

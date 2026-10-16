@@ -19,13 +19,16 @@ function courseMarkdown(markdown) {
       const headers = row(line); index += 2; const rows = [];
       while (index < lines.length && lines[index].trim().startsWith('|')) rows.push(row(lines[index++]));
       output.push('<div class="table-scroll"><table><thead><tr>' + headers.map(cell => '<th>' + inline(cell) + '</th>').join('') + '</tr></thead><tbody>' + rows.map(cells => '<tr>' + cells.map(cell => '<td>' + inline(cell) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>');
+    } else if (/^#{1,4} /.test(line)) {
+      const heading = line.match(/^(#{1,4}) (.+)$/), level = Math.max(3, heading[1].length);
+      output.push(`<h${level}>${inline(heading[2])}</h${level}>`); index++;
     } else if (/^(?:[-*] |\d+\. )/.test(line)) {
       const ordered = /^\d+\. /.test(line), items = [];
       while (index < lines.length && (ordered ? /^\d+\. / : /^[-*] /).test(lines[index].trim())) items.push(lines[index++].trim().replace(ordered ? /^\d+\. / : /^[-*] /, ''));
       const tag = ordered ? 'ol' : 'ul'; output.push('<' + tag + '>' + items.map(item => '<li>' + inline(item) + '</li>').join('') + '</' + tag + '>');
     } else {
       const paragraph = [line]; index++;
-      while (index < lines.length && lines[index].trim() && !lines[index].trim().startsWith('|') && !/^(?:[-*] |\d+\. )/.test(lines[index].trim())) paragraph.push(lines[index++].trim());
+      while (index < lines.length && lines[index].trim() && !lines[index].trim().startsWith('|') && !/^(?:#{1,4} |[-*] |\d+\. )/.test(lines[index].trim())) paragraph.push(lines[index++].trim());
       output.push('<div class="course-paragraph">' + paragraph.map(inline).join('<br>') + '</div>');
     }
   }
