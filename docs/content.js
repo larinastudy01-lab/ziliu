@@ -1776,6 +1776,307 @@ window.ZILIU_CONTENT = {
                 "totalPoints": null,
                 "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。"
               }
+            },
+            {
+              "id": "LA-CH01-S07",
+              "title": "1-7 基本行運算",
+              "reviewStatus": "draft",
+              "contentVersion": "0.1.0-review",
+              "sourceSectionId": "la-ch01-s07",
+              "notice": "第一階段審閱稿：未取得三張原教材圖片，原教材「行」代表 row 或 column 仍待確認。本節一律用 row（橫排）與 column（直行）區分操作方向。例題均為自編模擬，原例題與教材歸屬待核對；前文更正及補充延伸另行標示。",
+              "knowledgePointIds": [
+                "LA-CH01-S07-K01",
+                "LA-CH01-S07-K02",
+                "LA-CH01-S07-K03",
+                "LA-CH01-S07-K04",
+                "LA-CH01-S07-K05",
+                "LA-CH01-S07-K06",
+                "LA-CH01-S07-K07",
+                "LA-CH01-S07-K08"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH01-S07-B-INTRO",
+                  "type": "summary",
+                  "title": "用語約定與前文更正",
+                  "provenance": "編輯更正",
+                  "knowledgePointIds": [],
+                  "markdown": "本節明確採 row（橫排，R）與 column（直行，C）；原教材「行」的用語仍待原圖確認。左乘做 row 操作，右乘做 column 操作。\n\n1. 全為 1 的矩陣 $J$ 只做 row 運算，不能化為 $\\operatorname{diag}(1,0,0)$：row 運算保留 row space，前者由 $(1,1,1)$ 生成，後者由 $(1,0,0)$ 生成，兩者不同。若允許 row 與 column 運算，才可做到。\n2. 前文所列下三角矩陣的 $(1,3)$ 元素為 1，不是下三角矩陣；不沿用為教材答案。\n3. 不因小節名稱而猜測原教材的左右乘方向。row 操作用左乘，column 操作用右乘；兩種慣例明確分開。\n4. 「$Ax=0$ 只有零解」直接表示 columns 線性獨立；對方陣也等價於 rows 線性獨立，但後者需透過滿秩說明。"
+                },
+                {
+                  "id": "LA-CH01-S07-B001",
+                  "type": "concept",
+                  "title": "三種基本運算",
+                  "provenance": "數學整理 · 原教材歸屬待核對",
+                  "markdown": "矩陣 $A$ 的第 $i$ 個 row 記為 $R_i$，第 $j$ 個 column 記為 $C_j$。元素 $a_{ij}$ 的第一下標 $i$ 是 row 位置、第二下標 $j$ 是 column 位置。\n\n|類型|row 操作|column 操作|條件與反向操作|\n|---|---|---|---|\n|交換|$R_i \\leftrightarrow  R_j$|$C_i \\leftrightarrow  C_j$|$i\\ne j$；再交換一次還原|\n|倍乘|$R_i \\leftarrow  kR_i$|$C_i \\leftarrow  kC_i$|$k\\ne 0$；乘 $1/k$ 還原|\n|倍加|$R_j \\leftarrow  R_j+kR_i$|$C_j \\leftarrow  C_j+kC_i$|$i\\ne j$；改加 $-k$ 倍還原|\n\n倍加只改目標，來源不變。倍乘 0 會消去資訊，不能逆轉。$k=0$ 的倍加、$k=1$ 的倍乘是恆等操作；是否將恆等矩陣也稱基本矩陣，依教材慣例確認。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX01",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B003",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "layout": "inline",
+                  "height": 230,
+                  "prompt": "選一個 $2\\times 2$ 矩陣，為三類操作各寫一次正向及反向過程。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B004",
+                  "type": "concept",
+                  "title": "基本矩陣（elementary matrix）",
+                  "provenance": "數學整理 · 原教材歸屬待核對",
+                  "markdown": "對單位矩陣 $I_n$ 做一次基本操作所得的矩陣，稱基本矩陣。$I_n$ 對角線為 1，其餘為 0。交換矩陣記為 $P_{ij}$；第 $i$ 個座標倍乘 $k$ 的矩陣記為 $D_i(k)$。\n\n為避免教材下標慣例衝突，本稿倍加採\n\n$$T_{ji}(k)=I_n+k e_j e_i^T.$$\n\n其中 $e_i$ 是第 $i$ 個標準基底向量（僅第 $i$ 個座標為 1），$T$ 表示轉置；$e_j e_i^T$ 僅在位置 $(j,i)$ 為 1。例如 $T_{21}(5)$=$\\begin{bmatrix}1&0\\\\5&1\\end{bmatrix}$，左乘時對應 $R_2\\leftarrow R_2+5R_1$。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B005",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX02",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B006",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "layout": "split",
+                  "height": 230,
+                  "prompt": "對照左側定義，構造例題 02 的基本矩陣與反矩陣，標出來源與目標的下標。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B007",
+                  "type": "concept",
+                  "title": "乘法方向與維度",
+                  "provenance": "數學整理 · 原教材歸屬待核對",
+                  "markdown": "若 $A$ 為 $m\\times n$，row 操作矩陣 $E$ 為 $m\\times m$，column 操作矩陣 $F$ 為 $n\\times n$：\n\n$$EA=\\text{row 操作後的矩陣},\\qquad AF=\\text{column 操作後的矩陣}.$$\n\n左乘時，($EA$) 的第 $j$ 個 row 是 $E$ 第 $j$ 個 row 所指定的 $A$ 各 rows 的線性組合。\n\n右乘時，($AF$) 的第 $j$ 個 column 是 $F$ 第 $j$ 個 column 所指定的 $A$ 各 columns 的線性組合。因此\n\n$$R_j\\leftarrow R_j+kR_i:\\ E=I_m+ke_je_i^T,$$\n$$C_j\\leftarrow C_j+kC_i:\\ F=I_n+ke_ie_j^T.$$\n\n同一倍加矩陣放兩側，來源與目標方向不同，不能只背下標。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B008",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX03",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B009",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "layout": "inline",
+                  "height": 230,
+                  "prompt": "計算例題 03 的 $EA$ 與 $AE$，分別標出被改變的 row 或 column，檢查兩側矩陣的尺寸。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B010",
+                  "type": "concept",
+                  "title": "操作順序與逆矩陣",
+                  "provenance": "數學整理 · 原教材歸屬待核對",
+                  "markdown": "先 row 操作 $E_1$，再 $E_2$：$B=E_2E_1A$；先 column 操作 $F_1$，再 $F_2$：$B=AF_1F_2$。最先作用的因子最靠近 $A$。\n\n$$P_{ij}^{-1}=P_{ij},\\quad D_i(k)^{-1}=D_i(1/k),\\quad T_{ji}(k)^{-1}=T_{ji}(-k).$$\n\n倍加反矩陣證明：令 $N=e_je_i^T$，因 $i\\ne j$，$e_i^Te_j=0$，故 $N^{2}=0$；$(I+kN)(I-kN)=I-k^{2}N^{2}=I$。\n\n若 $B=E_r\\cdots E_1A$，則 $A=E_1^{-1}\\cdots E_r^{-1}B$。逆向還原先撤銷最後一步。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B011",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX04",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B012",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "layout": "inline",
+                  "height": 230,
+                  "prompt": "用例題 04 依時間順序寫出每一步，再分別寫出左乘因子的順序與逆向還原順序。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B013",
+                  "type": "concept",
+                  "title": "等價關係與不變量",
+                  "provenance": "數學整理 · 原教材歸屬待核對",
+                  "markdown": "row equivalent：有限次 row 操作互得，等價於 $B=PA$，其中 $P$ 為可逆 $m\\times m$ 矩陣。column equivalent：$B=AQ$，其中 $Q$ 為可逆 $n\\times n$ 矩陣。兩者各具反身性（零次操作）、對稱性（反向操作）、傳遞性（接續操作）。\n\n|性質|可逆左乘 $PA$|可逆右乘 $AQ$|\n|---|---|---|\n|rank（秩）|不變|不變|\n|row space|相同|一般不同|\n|column space|一般不同；變為 $P \\operatorname{col}(A)$|相同|\n|null space（核空間）|相同|變為 $Q^{-1} \\operatorname{ker}(A)$|\n|方陣行列式數值|不一定相同|不一定相同|\n|方陣可逆性|保留|保留|\n\n例如 $PAx=0 \\iff  Ax=P^{-1}0=0$，故核相同。$AQx=0 \\iff  Qx\\in \\operatorname{ker}(A)$，故 $x\\in Q^{-1}\\operatorname{ker}(A)$。rank 不變，因可逆變換不改變線性獨立資訊的維數。\n\n補充：交換使行列式變號，倍乘 $k$ 使其乘 $k$，倍加使其不變。等價不代表相等，也不代表相似；特徵值不一定保留。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B014",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX05",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B015",
+                  "type": "summary",
+                  "title": "等價性質對照",
+                  "markdown": "|性質|可逆左乘 $PA$|可逆右乘 $AQ$|\n|---|---|---|\n|rank（秩）|不變|不變|\n|row space|相同|一般不同|\n|column space|一般不同；變為 $P \\operatorname{col}(A)$|相同|\n|null space（核空間）|相同|變為 $Q^{-1} \\operatorname{ker}(A)$|\n|方陣行列式數值|不一定相同|不一定相同|\n|方陣可逆性|保留|保留|",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B016",
+                  "type": "concept",
+                  "title": "方程組與反矩陣",
+                  "provenance": "數學整理 · 原教材歸屬待核對",
+                  "markdown": "$Ax=b$ 做 row 操作時，必須連同常數欄一起處理：\n\n$$[A\\mid b]\\longrightarrow[EA\\mid Eb].$$\n\n因 $E$ 可逆，$Ax=b \\iff  EAx=Eb$，解集合相同。column 操作不能直接當成保留未知數 $x$ 的方程等價：若 $x=Qy$，則 $Ax=b$ 變成 $AQy=b$，需要追蹤座標變換。\n\n方陣求逆：若 $E_r\\cdots E_1A=I$，則 $E_r\\cdots E_1=A^{-1}$。因此 $[A\\mid I]$ 以 row 操作化為 $[I\\mid A^{-1}]$；若左半無法化為 $I$，$A$ 不可逆。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B017",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX06",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B018",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "layout": "inline",
+                  "height": 230,
+                  "prompt": "自行以 $[A\\mid I]$ 完成例題 06 的求逆過程；右半同步操作，再代回 $Ax=b$ 驗算。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B019",
+                  "type": "concept",
+                  "title": "可逆方陣的等價條件",
+                  "provenance": "數學整理 · 原教材歸屬待核對",
+                  "markdown": "令 $A\\in F^{n\\times n}$，$F$ 為實數、複數或一般域。下列等價：$A$ 可逆；$\\operatorname{ker}(A)=\\{0\\}$；columns 線性獨立；rows 線性獨立；$\\operatorname{rank}(A)=n$；$\\operatorname{RREF}(A)=I_n$；可由 row 操作化為 $I_n$；每個 $b\\in F^n$，$Ax=b$ 恰有一解；每個 $b\\in F^n$，$Ax=b$ 至少有一解；$\\operatorname{det}(A)\\ne 0$。\n\n證明主線：可逆 ⇒ $x=A^{-1}b$ 存在且唯一 ⇒ 取 $b=0$ 得只有零解 ⇒ 無自由變數、每個 column 有主元 ⇒ 方陣每個 row 也有主元 ⇒ RREF 為 $I$ ⇒ 消去操作乘積就是反矩陣。每個 $b$ 都有解 ⇒ column space=$F^n$ ⇒ $\\operatorname{rank}=n$，接回主線。\n\n非方陣 $A\\in F^{m\\times n}$：只有零解等價於滿 column rank $n$；每個 $b$ 都有解等價於滿 row rank $m$，不能直接互推。某個 $b$ 有解、某個非零 $b$ 有解，都不足以推出方陣可逆。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B020",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX07",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B021",
+                  "type": "summary",
+                  "title": "先確認方陣與量詞",
+                  "markdown": "非方陣 $A\\in F^{m\\times n}$：只有零解等價於滿 column rank $n$；每個 $b$ 都有解等價於滿 row rank $m$，不能直接互推。某個 $b$ 有解、某個非零 $b$ 有解，都不足以推出方陣可逆。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B022",
+                  "type": "concept",
+                  "title": "補充：雙邊等價與秩標準形",
+                  "provenance": "補充延伸",
+                  "markdown": "允許 row、column 兩種操作時，可找到可逆 $P$、$Q$，使\n\n$$PAQ=\\begin{bmatrix}I_r&0\\\\0&0\\end{bmatrix},\\qquad r=\\operatorname{rank}(A).$$\n\n這稱矩陣等價的秩標準形，不是相似對角化。全 1 矩陣 $J$：先 $R_2\\leftarrow R_2-R_1$、$R_3\\leftarrow R_3-R_1$，剩第一 row 為 $(1,1,1)$；再 $C_2\\leftarrow C_2-C_1$、$C_3\\leftarrow C_3-C_1$，才得到 $\\operatorname{diag}(1,0,0)$。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B023",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S07-EX08",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B024",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "layout": "inline",
+                  "height": 230,
+                  "prompt": "用例題 08 逐步記錄 row 與 column 操作，並說明只做 row 運算為何不夠。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S07-B025",
+                  "type": "summary",
+                  "title": "考前摘要",
+                  "markdown": "- 左乘改 rows；右乘改 columns。先檢查維度，再判斷來源與目標。\n- 基本矩陣從單位矩陣做一次操作構造，皆可逆。\n- 左乘連續操作反序寫；右乘連續操作依序寫；還原先撤銷最後一步。\n- row 等價保留 row space、ker、rank；column 等價保留 column space、rank。\n- 增廣矩陣同步處理常數欄。column 操作必須追蹤未知數的換元。\n- 可逆定理先確認方陣與「每個 $b$」；某個 $b$ 有解不夠。\n- $\\operatorname{diag}(I_r,0)$ 一般需要雙邊操作，不是只做 row 消去。"
+                },
+                {
+                  "id": "LA-CH01-S07-B026",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH01-S07-ASSESSMENT01"
+                },
+                {
+                  "id": "LA-CH01-S07-B027",
+                  "type": "note",
+                  "title": "錯題訂正與重點回想",
+                  "layout": "inline",
+                  "height": 260,
+                  "prompt": "記錄錯題 ID、錯誤位置與原因（觀念／符號／計算／條件），再用自己的話寫下正確判斷提示及重做結果。原作答與訂正請分開保留。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S07-K01",
+                    "LA-CH01-S07-K02",
+                    "LA-CH01-S07-K03",
+                    "LA-CH01-S07-K04",
+                    "LA-CH01-S07-K05",
+                    "LA-CH01-S07-K06",
+                    "LA-CH01-S07-K07",
+                    "LA-CH01-S07-K08"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH01-S07-ASSESSMENT01",
+                "scope": "section",
+                "title": "1-7 小節測驗",
+                "questionIds": [
+                  "LA-CH01-S07-Q01",
+                  "LA-CH01-S07-Q02",
+                  "LA-CH01-S07-Q03",
+                  "LA-CH01-S07-Q04",
+                  "LA-CH01-S07-Q05",
+                  "LA-CH01-S07-Q06",
+                  "LA-CH01-S07-Q07"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。"
+              }
             }
           ]
         }
@@ -2754,6 +3055,187 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 自編模擬題"
       }
+    },
+    {
+      "id": "LA-CH01-S07-Q01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S07",
+      "title": "1-7 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "哪一項一定不是可逆的基本 row 操作？",
+      "options": [
+        "交換兩 rows。",
+        "某 row 乘 −2。",
+        "某 row 乘 0。",
+        "將一 row 的 3 倍加到另一 row。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K01"
+      ],
+      "tags": [
+        "三種基本運算"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-Q02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S07",
+      "title": "1-7 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "$A$ 為 $2\\times 3$，$E$ 為 $2\\times 2$ 且對應 $R_2\\leftarrow R_2+3R_1$。哪個式子表示此操作？",
+      "options": [
+        "$EA$。",
+        "$AE$。",
+        "$E+A$。",
+        "$A E^T$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K03"
+      ],
+      "tags": [
+        "乘法方向與維度"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-Q03",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S07",
+      "title": "1-7 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "先做 $E_1$ 的 row 操作、再做 $E_2$，結果為 $B$。正確還原公式是？",
+      "options": [
+        "$A=E_2E_1B$。",
+        "$A=E_2^{-1}E_1^{-1}B$。",
+        "$A=E_1E_2B$。",
+        "$A=E_1^{-1}E_2^{-1}B$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K04"
+      ],
+      "tags": [
+        "操作順序與逆矩陣"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-Q04",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S07",
+      "title": "1-7 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$A$ 為 $m\\times n$，$P$ 為任意可逆 $m\\times m$。下列何者一定成立？",
+      "options": [
+        "$\\operatorname{col}(PA)=\\operatorname{col}(A)$。",
+        "$\\operatorname{ker}(PA)=\\operatorname{ker}(A)$。",
+        "若 $A$ 為方陣，$\\operatorname{det}(PA)=\\operatorname{det}(A)$。",
+        "若 $A$ 為方陣，$PA$ 與 $A$ 有相同特徵值。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K05"
+      ],
+      "tags": [
+        "等價關係與不變量"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-Q05",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S07",
+      "title": "1-7 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "$A$ 為 $n\\times n$。哪個條件足以推出 $A$ 可逆？",
+      "options": [
+        "$Ax=b$ 對至少一個 $b$ 有解。",
+        "$Ax=0$ 有零解。",
+        "$Ax=b$ 對每個 $b\\in F^n$ 都有解。",
+        "$A$ 至少一個 row 非零。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K07"
+      ],
+      "tags": [
+        "可逆方陣的等價條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-Q06",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S07",
+      "title": "1-7 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "$A=\\begin{bmatrix}2&1\\\\4&3\\end{bmatrix}$，先 $R_2\\leftarrow R_2-2R_1$，再 $R_1\\leftarrow (1/2)R_1$。求 $E_1$、$E_2$、$B$；驗證 $B=E_2E_1A$，寫出從 $B$ 還原 $A$ 的操作。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K02",
+        "LA-CH01-S07-K04"
+      ],
+      "tags": [
+        "基本矩陣（elementary matrix）",
+        "操作順序與逆矩陣"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-Q07",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S07",
+      "title": "1-7 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "令 $A\\in F^{n\\times n}$。證明若某個 $b$ 使 $Ax=b$ 無解，則 $\\operatorname{nullity}(A)>0$。再說明非方陣 $A\\in F^{m\\times n}$ 時結論是否仍成立，給出反例。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K05",
+        "LA-CH01-S07-K07"
+      ],
+      "tags": [
+        "等價關係與不變量",
+        "可逆方陣的等價條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
     }
   ],
   "examples": [
@@ -3445,6 +3927,110 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "自編示範"
       }
+    },
+    {
+      "id": "LA-CH01-S07-EX01",
+      "title": "例題 01",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K01"
+      ],
+      "type": "手寫計算題",
+      "text": "$A=\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$，做 $R_2\\leftarrow R_2-3R_1$。求結果及逆操作。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-EX02",
+      "title": "例題 02",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K02"
+      ],
+      "type": "手寫計算題",
+      "text": "構造 $R_3\\leftarrow R_3+2R_1$ 的 $3\\times 3$ 基本矩陣，求其反矩陣。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-EX03",
+      "title": "例題 03",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K03"
+      ],
+      "type": "手寫計算題",
+      "text": "$A=\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$，$E=\\begin{bmatrix}1&0\\\\5&1\\end{bmatrix}$。計算 $EA$、$AE$ 並解釋。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-EX04",
+      "title": "例題 04",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K04"
+      ],
+      "type": "手寫計算題",
+      "text": "$A=\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$，先交換兩 rows，再 $R_2\\leftarrow R_2-R_1$。寫 $E_1$、$E_2$、$B$ 及還原公式。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-EX05",
+      "title": "例題 05",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K05"
+      ],
+      "type": "證明題",
+      "text": "$A=\\begin{bmatrix}1&1\\\\0&0\\end{bmatrix}$，$B=\\begin{bmatrix}1&0\\\\0&0\\end{bmatrix}$。兩者是否 row equivalent？是否 column equivalent？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-EX06",
+      "title": "例題 06",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K06"
+      ],
+      "type": "手寫計算題",
+      "text": "用增廣矩陣求 $A=\\begin{bmatrix}1&2\\\\3&5\\end{bmatrix}$ 的反矩陣，並解 Ax=$(1,2)^T$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-EX07",
+      "title": "例題 07",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K07"
+      ],
+      "type": "證明題",
+      "text": "$A_t=\\begin{bmatrix}1&2\\\\2&t\\end{bmatrix}$。何時對每個 $b$ 唯一可解？$t=4$ 時分別討論 $b=(1,2)^T$ 與 $(1,3)^T$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
+    },
+    {
+      "id": "LA-CH01-S07-EX08",
+      "title": "例題 08",
+      "knowledgePointIds": [
+        "LA-CH01-S07-K08"
+      ],
+      "type": "證明題",
+      "text": "以 row 與 column 操作將 $3\\times 3$ 全 1 矩陣化為秩標準形，解釋為何只用 row 不行。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
+      }
     }
   ],
   "knowledgePoints": [
@@ -3815,6 +4401,62 @@ window.ZILIU_CONTENT = {
       "difficulty": 5,
       "provenance": "補充延伸",
       "markdown": "### 唯一性\n\n若 $A$ 可逆且 $A=L_1U_1=L_2U_2$，兩個 $L$ 都是單位下三角，則\n\n$$L_2^{-1}L_1=U_2U_1^{-1}.$$\n\n左側為單位下三角，右側為上三角；相同矩陣必同時上下三角，因此為對角矩陣，再由左側對角全為 1 得為 $I$。故兩組分解相同。未規範 $L$ 的對角，或 $A$ 奇異時，不能照搬這個唯一性結論。\n\n### 行列式\n\n$A=LU$ 時 $\\det(A)=\\prod_i u_{ii}$，因為 $\\det(L)=1$。$PA=LU$ 時 $\\det(A)=\\det(P)\\prod_i u_{ii}$，每交換一次兩列會改變一次符號。\n\n### 塊狀消去與 Schur complement\n\n令 $M=\\begin{bmatrix}B&C\\\\D&E\\end{bmatrix}$，假設方陣 $B$ 可逆，令 $S=E-DB^{-1}C$，則\n\n$$M=\\begin{bmatrix}I&0\\\\DB^{-1}&I\\end{bmatrix}\\begin{bmatrix}B&C\\\\0&S\\end{bmatrix}.$$\n\n相乘的左下為 $D$，右下為 $DB^{-1}C+S=E$，所以等式成立；故 $\\det(M)=\\det(B)\\det(S)$。乘法順序不可交換，也不能省略 $B$ 可逆的條件。\n\n正定矩陣延伸：實對稱正定矩陣順序主子式皆正，可不換列 LU；亦有 Cholesky 分解，但不作本節原教材已完整涵蓋的主張。"
+    },
+    {
+      "id": "LA-CH01-S07-K01",
+      "title": "三種基本運算",
+      "difficulty": 1,
+      "provenance": "數學整理 · 原教材歸屬待核對",
+      "markdown": "矩陣 $A$ 的第 $i$ 個 row 記為 $R_i$，第 $j$ 個 column 記為 $C_j$。元素 $a_{ij}$ 的第一下標 $i$ 是 row 位置、第二下標 $j$ 是 column 位置。\n\n|類型|row 操作|column 操作|條件與反向操作|\n|---|---|---|---|\n|交換|$R_i \\leftrightarrow  R_j$|$C_i \\leftrightarrow  C_j$|$i\\ne j$；再交換一次還原|\n|倍乘|$R_i \\leftarrow  kR_i$|$C_i \\leftarrow  kC_i$|$k\\ne 0$；乘 $1/k$ 還原|\n|倍加|$R_j \\leftarrow  R_j+kR_i$|$C_j \\leftarrow  C_j+kC_i$|$i\\ne j$；改加 $-k$ 倍還原|\n\n倍加只改目標，來源不變。倍乘 0 會消去資訊，不能逆轉。$k=0$ 的倍加、$k=1$ 的倍乘是恆等操作；是否將恆等矩陣也稱基本矩陣，依教材慣例確認。"
+    },
+    {
+      "id": "LA-CH01-S07-K02",
+      "title": "基本矩陣（elementary matrix）",
+      "difficulty": 1,
+      "provenance": "數學整理 · 原教材歸屬待核對",
+      "markdown": "對單位矩陣 $I_n$ 做一次基本操作所得的矩陣，稱基本矩陣。$I_n$ 對角線為 1，其餘為 0。交換矩陣記為 $P_{ij}$；第 $i$ 個座標倍乘 $k$ 的矩陣記為 $D_i(k)$。\n\n為避免教材下標慣例衝突，本稿倍加採\n\n$$T_{ji}(k)=I_n+k e_j e_i^T.$$\n\n其中 $e_i$ 是第 $i$ 個標準基底向量（僅第 $i$ 個座標為 1），$T$ 表示轉置；$e_j e_i^T$ 僅在位置 $(j,i)$ 為 1。例如 $T_{21}(5)$=$\\begin{bmatrix}1&0\\\\5&1\\end{bmatrix}$，左乘時對應 $R_2\\leftarrow R_2+5R_1$。"
+    },
+    {
+      "id": "LA-CH01-S07-K03",
+      "title": "乘法方向與維度",
+      "difficulty": 3,
+      "provenance": "數學整理 · 原教材歸屬待核對",
+      "markdown": "若 $A$ 為 $m\\times n$，row 操作矩陣 $E$ 為 $m\\times m$，column 操作矩陣 $F$ 為 $n\\times n$：\n\n$$EA=\\text{row 操作後的矩陣},\\qquad AF=\\text{column 操作後的矩陣}.$$\n\n左乘時，($EA$) 的第 $j$ 個 row 是 $E$ 第 $j$ 個 row 所指定的 $A$ 各 rows 的線性組合。\n\n右乘時，($AF$) 的第 $j$ 個 column 是 $F$ 第 $j$ 個 column 所指定的 $A$ 各 columns 的線性組合。因此\n\n$$R_j\\leftarrow R_j+kR_i:\\ E=I_m+ke_je_i^T,$$\n$$C_j\\leftarrow C_j+kC_i:\\ F=I_n+ke_ie_j^T.$$\n\n同一倍加矩陣放兩側，來源與目標方向不同，不能只背下標。"
+    },
+    {
+      "id": "LA-CH01-S07-K04",
+      "title": "操作順序與逆矩陣",
+      "difficulty": 3,
+      "provenance": "數學整理 · 原教材歸屬待核對",
+      "markdown": "先 row 操作 $E_1$，再 $E_2$：$B=E_2E_1A$；先 column 操作 $F_1$，再 $F_2$：$B=AF_1F_2$。最先作用的因子最靠近 $A$。\n\n$$P_{ij}^{-1}=P_{ij},\\quad D_i(k)^{-1}=D_i(1/k),\\quad T_{ji}(k)^{-1}=T_{ji}(-k).$$\n\n倍加反矩陣證明：令 $N=e_je_i^T$，因 $i\\ne j$，$e_i^Te_j=0$，故 $N^{2}=0$；$(I+kN)(I-kN)=I-k^{2}N^{2}=I$。\n\n若 $B=E_r\\cdots E_1A$，則 $A=E_1^{-1}\\cdots E_r^{-1}B$。逆向還原先撤銷最後一步。"
+    },
+    {
+      "id": "LA-CH01-S07-K05",
+      "title": "等價關係與不變量",
+      "difficulty": 3,
+      "provenance": "數學整理 · 原教材歸屬待核對",
+      "markdown": "row equivalent：有限次 row 操作互得，等價於 $B=PA$，其中 $P$ 為可逆 $m\\times m$ 矩陣。column equivalent：$B=AQ$，其中 $Q$ 為可逆 $n\\times n$ 矩陣。兩者各具反身性（零次操作）、對稱性（反向操作）、傳遞性（接續操作）。\n\n|性質|可逆左乘 $PA$|可逆右乘 $AQ$|\n|---|---|---|\n|rank（秩）|不變|不變|\n|row space|相同|一般不同|\n|column space|一般不同；變為 $P \\operatorname{col}(A)$|相同|\n|null space（核空間）|相同|變為 $Q^{-1} \\operatorname{ker}(A)$|\n|方陣行列式數值|不一定相同|不一定相同|\n|方陣可逆性|保留|保留|\n\n例如 $PAx=0 \\iff  Ax=P^{-1}0=0$，故核相同。$AQx=0 \\iff  Qx\\in \\operatorname{ker}(A)$，故 $x\\in Q^{-1}\\operatorname{ker}(A)$。rank 不變，因可逆變換不改變線性獨立資訊的維數。\n\n補充：交換使行列式變號，倍乘 $k$ 使其乘 $k$，倍加使其不變。等價不代表相等，也不代表相似；特徵值不一定保留。"
+    },
+    {
+      "id": "LA-CH01-S07-K06",
+      "title": "方程組與反矩陣",
+      "difficulty": 3,
+      "provenance": "數學整理 · 原教材歸屬待核對",
+      "markdown": "$Ax=b$ 做 row 操作時，必須連同常數欄一起處理：\n\n$$[A\\mid b]\\longrightarrow[EA\\mid Eb].$$\n\n因 $E$ 可逆，$Ax=b \\iff  EAx=Eb$，解集合相同。column 操作不能直接當成保留未知數 $x$ 的方程等價：若 $x=Qy$，則 $Ax=b$ 變成 $AQy=b$，需要追蹤座標變換。\n\n方陣求逆：若 $E_r\\cdots E_1A=I$，則 $E_r\\cdots E_1=A^{-1}$。因此 $[A\\mid I]$ 以 row 操作化為 $[I\\mid A^{-1}]$；若左半無法化為 $I$，$A$ 不可逆。"
+    },
+    {
+      "id": "LA-CH01-S07-K07",
+      "title": "可逆方陣的等價條件",
+      "difficulty": 3,
+      "provenance": "數學整理 · 原教材歸屬待核對",
+      "markdown": "令 $A\\in F^{n\\times n}$，$F$ 為實數、複數或一般域。下列等價：$A$ 可逆；$\\operatorname{ker}(A)=\\{0\\}$；columns 線性獨立；rows 線性獨立；$\\operatorname{rank}(A)=n$；$\\operatorname{RREF}(A)=I_n$；可由 row 操作化為 $I_n$；每個 $b\\in F^n$，$Ax=b$ 恰有一解；每個 $b\\in F^n$，$Ax=b$ 至少有一解；$\\operatorname{det}(A)\\ne 0$。\n\n證明主線：可逆 ⇒ $x=A^{-1}b$ 存在且唯一 ⇒ 取 $b=0$ 得只有零解 ⇒ 無自由變數、每個 column 有主元 ⇒ 方陣每個 row 也有主元 ⇒ RREF 為 $I$ ⇒ 消去操作乘積就是反矩陣。每個 $b$ 都有解 ⇒ column space=$F^n$ ⇒ $\\operatorname{rank}=n$，接回主線。\n\n非方陣 $A\\in F^{m\\times n}$：只有零解等價於滿 column rank $n$；每個 $b$ 都有解等價於滿 row rank $m$，不能直接互推。某個 $b$ 有解、某個非零 $b$ 有解，都不足以推出方陣可逆。"
+    },
+    {
+      "id": "LA-CH01-S07-K08",
+      "title": "補充：雙邊等價與秩標準形",
+      "difficulty": 5,
+      "provenance": "補充延伸",
+      "markdown": "允許 row、column 兩種操作時，可找到可逆 $P$、$Q$，使\n\n$$PAQ=\\begin{bmatrix}I_r&0\\\\0&0\\end{bmatrix},\\qquad r=\\operatorname{rank}(A).$$\n\n這稱矩陣等價的秩標準形，不是相似對角化。全 1 矩陣 $J$：先 $R_2\\leftarrow R_2-R_1$、$R_3\\leftarrow R_3-R_1$，剩第一 row 為 $(1,1,1)$；再 $C_2\\leftarrow C_2-C_1$、$C_3\\leftarrow C_3-C_1$，才得到 $\\operatorname{diag}(1,0,0)$。"
     }
   ],
   "answers": {
@@ -3892,6 +4534,21 @@ window.ZILIU_CONTENT = {
     },
     "LA-CH01-S06-Q05": {
       "correctOption": 1
+    },
+    "LA-CH01-S07-Q01": {
+      "correctOption": 2
+    },
+    "LA-CH01-S07-Q02": {
+      "correctOption": 0
+    },
+    "LA-CH01-S07-Q03": {
+      "correctOption": 3
+    },
+    "LA-CH01-S07-Q04": {
+      "correctOption": 1
+    },
+    "LA-CH01-S07-Q05": {
+      "correctOption": 2
     }
   },
   "solutions": {
@@ -4308,6 +4965,81 @@ window.ZILIU_CONTENT = {
     },
     "LA-CH01-S06-Q07": {
       "markdown": "提示：分開檢查行列式與首主元。\n\n(a) $\\det A=t-1$，故 $t\\ne1$ 時可逆。\n\n(b) $t\\ne0$ 時：\n\n$$L=\\begin{bmatrix}1&0\\\\1/t&1\\end{bmatrix},\\quad U=\\begin{bmatrix}t&1\\\\0&1-1/t\\end{bmatrix}.$$\n\n$t=0$ 時比較乘積首行首項及第二列首項即得矛盾，故無此 LU。\n\n(c) $P=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$，$L=I$，$U=\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$。\n\n(d) $t=1$ 時奇異，仍有 (b) 的分解，其中 $U$ 最後對角為 0；所以奇異不排除 LU。相對地 $t=0$ 可逆，卻需要換列。\n\n評分：(a) 2 分；(b) 分解 3 分與零主元證明 1 分；(c) 2 分；(d) 2 分。部分正確：能求分解但混淆條件；不會：只用可逆性判斷 LU。"
+    },
+    "LA-CH01-S07-EX01": {
+      "markdown": "**辨識與方法：** 出現指定 row 操作，逐元素更新目標 row。\n\n$R_2$ 新值=$(3,4)-3(1,2)=(0,-2)$，所以結果 $\\begin{bmatrix}1&2\\\\0&-2\\end{bmatrix}$。逆操作 $R_2\\leftarrow R_2+3R_1$。常見錯誤：連來源 row 也改掉。"
+    },
+    "LA-CH01-S07-EX02": {
+      "markdown": "**辨識與方法：** 從 $I_3$ 做同一次操作，反向改加 −2 倍。\n\n$E=\\begin{bmatrix}1&0&0\\\\0&1&0\\\\2&0&1\\end{bmatrix}$；$E^{-1}=\\begin{bmatrix}1&0&0\\\\0&1&0\\\\-2&0&1\\end{bmatrix}$。由左乘第 3 row=$(2,0,1)$ 可知它取 $2R_1+R_3$。常見錯誤：把 2 放在 $(1,3)$。"
+    },
+    "LA-CH01-S07-EX03": {
+      "markdown": "**辨識與方法：** 同一 $E$ 放兩側，直接乘法核對 row／column。\n\n$EA=\\begin{bmatrix}1&2\\\\8&14\\end{bmatrix}$，是 $R_2\\leftarrow R_2+5R_1$；$AE=\\begin{bmatrix}11&2\\\\23&4\\end{bmatrix}$，是 $C_1\\leftarrow C_1+5C_2$。常見錯誤：右乘仍宣稱改 $R_2$。"
+    },
+    "LA-CH01-S07-EX04": {
+      "markdown": "**辨識與方法：** 連續左乘，要反序排列因子。\n\n$E_1=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$；$E_2=\\begin{bmatrix}1&0\\\\-1&1\\end{bmatrix}$。先得 $\\begin{bmatrix}3&4\\\\1&2\\end{bmatrix}$，再得 $B=\\begin{bmatrix}3&4\\\\-2&-2\\end{bmatrix}$。$B=E_2E_1A$；$A=E_1^{-1}E_2^{-1}B$。還原時先 $R_2\\leftarrow R_2+R_1$，再交換。常見錯誤：按書寫時間排列左乘因子。"
+    },
+    "LA-CH01-S07-EX05": {
+      "markdown": "**辨識與方法：** 比較 row space，再嘗試 column 倍加。\n\n不 row equivalent，因 row spaces 分別為 $\\operatorname{span}\\{(1,1)\\}$ 與 $\\operatorname{span}\\{(1,0)\\}$，兩者不同；column equivalent，做 $C_2\\leftarrow C_2-C_1$ 即得 $B$。常見錯誤：秩相同就宣稱 row equivalent；秩相同只保證雙邊等價。"
+    },
+    "LA-CH01-S07-EX06": {
+      "markdown": "**辨識與方法：** 求逆與多常數解，可共用消去結果。\n\n$[A\\mid I]$ 的第二 row 減第一 row 的 3 倍，得 $\\left[\\begin{array}{cc|cc}1&2&1&0\\\\0&-1&-3&1\\end{array}\\right]$；第二 row 乘 −1，得 $\\left[\\begin{array}{cc|cc}1&2&1&0\\\\0&1&3&-1\\end{array}\\right]$；第一 row 減第二 row 的 2 倍，得 $\\left[I\\mid\\begin{matrix}-5&2\\\\3&-1\\end{matrix}\\right]$。所以 $A^{-1}=\\begin{bmatrix}-5&2\\\\3&-1\\end{bmatrix}$，$x=A^{-1}(1,2)^T=(-1,1)^T$。代回得 $(1,2)^T$。常見錯誤：右半單位矩陣沒同步操作。"
+    },
+    "LA-CH01-S07-EX07": {
+      "markdown": "**辨識與方法：** 參數使主元消失，需分相容與不相容。\n\n$R_2\\leftarrow R_2-2R_1$ 得第二主元 $t-4$，所以 $t\\ne 4$ 時唯一可解。$t=4$ 時 $b=(1,2)^T$ 相容，解 $(x_1,x_2)=(1-2s,s)$，$s\\in F$；$b=(1,3)^T$ 產生 $0=1$，因此無解。常見錯誤：奇異就判斷所有 $b$ 都無解。"
+    },
+    "LA-CH01-S07-EX08": {
+      "markdown": "**辨識與方法：** 辨識雙邊等價，先消 rows 再消 columns。\n\n兩次 row 倍加後 $\\begin{bmatrix}1&1&1\\\\0&0&0\\\\0&0&0\\end{bmatrix}$；再兩次 column 倍加後 $\\operatorname{diag}(1,0,0)$。row space 不同，故只用 row 不可能。常見錯誤：混用等價與相似、誤認保留特徵值。"
+    },
+    "LA-CH01-S07-Q01": {
+      "markdown": "**提示：** 操作後能否還原任意原矩陣？\n\n$A$ 再交換可還原；$B$ 乘 −1/2 可還原；$C$ 清除資訊，不能還原任意原 row；$D$ 加 −3 倍可還原。",
+      "optionExplanations": [
+        "再交換一次可還原。",
+        "乘 −1/2 可還原。",
+        "清除原 row 的資訊，無法還原任意原矩陣。",
+        "加 −3 倍可還原。"
+      ]
+    },
+    "LA-CH01-S07-Q02": {
+      "markdown": "**提示：** 先核對乘積維度。\n\n$A$ 維度 ($2\\times 2$)($2\\times 3$) 合法且做 rows；$B$ 的內維度 3、2 不合；$C$ 尺寸不同不能相加，也不是操作表示法；$D$ 的內維度同樣不合。",
+      "optionExplanations": [
+        "$EA$ 的維度為 ($2\\times 2$)($2\\times 3$)，合法且做 row 操作。",
+        "$AE$ 的內維度 3、2 不合。",
+        "$E+A$ 尺寸不同，不能相加，也不是操作表示法。",
+        "$A E^T$ 的內維度同樣不合。"
+      ]
+    },
+    "LA-CH01-S07-Q03": {
+      "markdown": "**提示：** 先撤銷最後操作。\n\n由 $B=E_2E_1A$，先左乘 $E_2^{-1}$，再左乘 $E_1^{-1}$ 得 $D$。$A$、$C$ 未使用反向操作；$B$ 的反向順序錯誤，一般無法交換。",
+      "optionExplanations": [
+        "未使用反向操作，一般無法還原。",
+        "反向操作順序錯誤，$E_1^{-1}$ 與 $E_2^{-1}$ 一般不能交換。",
+        "未使用反向操作，一般無法還原。",
+        "由 $B=E_2E_1A$，先左乘 $E_2^{-1}$，再左乘 $E_1^{-1}$，得 $A=E_1^{-1}E_2^{-1}B$。"
+      ]
+    },
+    "LA-CH01-S07-Q04": {
+      "markdown": "**提示：** 把 $PAx=0$ 兩側左乘 $P^{-1}$。\n\n$B$ 由 $P$ 可逆直接推出。$A$ 反例：$A=(1,0)^T$，$P$ 交換兩座標，column space 從水平軸變垂直軸。$C$ 取 $A=I$、$P=2I$，行列式會改變。$D$ 同一反例中特徵值從 1 變 2。",
+      "optionExplanations": [
+        "反例：$A=(1,0)^T$，$P$ 交換兩座標，column space 從水平軸變成垂直軸。",
+        "$P$ 可逆，所以 $PAx=0 \\iff  Ax=P^{-1}0=0$，核空間相同。",
+        "取 $A=I$、$P=2I$，行列式改變。",
+        "同樣取 $A=I$、$P=2I$，特徵值從 1 變成 2。"
+      ]
+    },
+    "LA-CH01-S07-Q05": {
+      "markdown": "**提示：** 注意「至少一個」與「每個」的量詞。\n\n$C$ 表示滿射，方陣因此滿秩、可逆。$A$ 零矩陣對 $b=0$ 也有解；$B$ 任何矩陣都有零解；$D$ 例如 $\\operatorname{diag}(1,0)$ 仍奇異。",
+      "optionExplanations": [
+        "零矩陣對 $b=0$ 也有解，不能推出可逆。",
+        "任何矩陣的齊次方程都有零解。",
+        "對每個 $b$ 都有解表示滿射；方陣因此滿秩、可逆。",
+        "$\\operatorname{diag}(1,0)$ 有非零 row，仍是奇異矩陣。"
+      ]
+    },
+    "LA-CH01-S07-Q06": {
+      "markdown": "**提示：** 每次基本矩陣都由 $I_2$ 單獨構造。\n\n$E_1=\\begin{bmatrix}1&0\\\\-2&1\\end{bmatrix}$，$E_2=\\begin{bmatrix}1/2&0\\\\0&1\\end{bmatrix}$。$E_1A=\\begin{bmatrix}2&1\\\\0&1\\end{bmatrix}$，$B=\\begin{bmatrix}1&1/2\\\\0&1\\end{bmatrix}$；$E_2E_1=\\begin{bmatrix}1/2&0\\\\-2&1\\end{bmatrix}$，乘 $A$ 得 $B$。還原先 $R_1\\leftarrow 2R_1$，再 $R_2\\leftarrow R_2+2R_1$；$A=E_1^{-1}E_2^{-1}B$。\n\n評分：$E_1$、$E_2$ 各 2 分；$B$ 2 分；驗算 2 分；還原順序 2 分。自評：10 分答對；觀念正確但計算或順序有錯為部分正確；無法構造矩陣為不會。"
+    },
+    "LA-CH01-S07-Q07": {
+      "markdown": "**提示：** 先用 column space，再用 rank-nullity（秩與零度定理）。\n\n$Ax=b$ 無解表示 $b\\notin \\operatorname{col}(A)$，故 $\\operatorname{col}(A)\\ne F^n$，$\\operatorname{rank}(A)<n$。由 $\\operatorname{nullity}(A)=n-\\operatorname{rank}(A)$，得 $\\operatorname{nullity}(A)>0$。非方陣不成立：$A=(1,0)^T$ 是 $2\\times 1$，$b=(0,1)^T$ 無解，但 $Ax=0$ 只有 $x=0$，所以 $\\operatorname{nullity}=0$。\n\n評分：連到 column space 2 分；$\\operatorname{rank}<n$ 2 分；rank-nullity 推論 2 分；非方陣反例與驗證 4 分。自評：證明與反例完整為答對；僅完成方陣證明為部分正確；把無解直接當非零齊次解而無推論為不會。"
     }
   },
   "sourceReview": {
@@ -4370,6 +5102,16 @@ window.ZILIU_CONTENT = {
       "pendingExamCount": 15,
       "pendingExamImported": false,
       "note": "原圖未重讀；教材例 38、39 依先前轉錄，仍待原圖確認，其他缺漏例題未補造。15 筆未核實考古候選不進正式題庫，未製作大章綜合測驗。"
+    },
+    {
+      "filename": "1-7_基本行運算_第一階段審閱稿.md",
+      "sha256": "2aba2439f8d0736c79a449feb074483064692c18946c36b90d22f46575bf7372",
+      "contentVersion": "0.1.0-review",
+      "status": "draft",
+      "scope": "LA-CH01-S07",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "三張原圖未提供；原教材用語、題幹及教材歸屬待核對。編寫例題與模擬題清楚標示，前文更正保留。15 筆未核實考古候選不進正式題庫，未製作大章綜合測驗。"
     }
   ]
 };
