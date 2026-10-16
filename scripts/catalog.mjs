@@ -9,7 +9,7 @@ export function upsertSection(catalog, payload) {
   let chapter = subject.chapters.find(item => item.id === chapterId);
   if (!chapter) { chapter = { id: chapterId, title: '第 1 章', titleStatus: '待確認正式章名', ...payload.chapter, curriculumComplete: false, sections: [] }; subject.chapters.push(chapter); }
   chapter.curriculumComplete = false;
-  chapter.sections = [...chapter.sections.filter(item => item.id !== section.id), section].sort((a, b) => Number(a.title.match(/^1-(\d+)/)?.[1]) - Number(b.title.match(/^1-(\d+)/)?.[1]));
+  chapter.sections = [...chapter.sections.filter(item => item.id !== section.id), section].sort((a, b) => Number(a.title.match(/^\d+-(\d+)/)?.[1] || 0) - Number(b.title.match(/^\d+-(\d+)/)?.[1] || 0));
   const belongs = id => id.startsWith(section.id + '-');
   for (const [key, items] of Object.entries({ questions, examples, knowledgePoints })) catalog[key] = [...(catalog[key] || []).filter(item => !belongs(item.id)), ...items];
   for (const [key, records] of Object.entries({ answers, solutions })) catalog[key] = { ...Object.fromEntries(Object.entries(catalog[key] || {}).filter(([id]) => !belongs(id))), ...records };

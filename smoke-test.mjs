@@ -80,12 +80,12 @@ live.click({ action: 'start-first-lesson' });
 check(live.run('activeSectionId') === sectionId, 'home entry opens exact 1-1 section');
 live.run("state.notes['height-test']={height:345,text:'',strokes:[]}");
 check(live.run("inkPad('height-test',230).includes('height:345px')"), 'saved canvas height restored');
-check(live.run('allSections().length') === 15, 'all fifteen supplied sections are imported across two subjects');
+check(live.run('allSections().length') === 19, 'all nineteen supplied sections are imported across two subjects');
 check(live.run("courses.filter(subject=>!['linear-algebra','data-structures'].includes(subject.id)).every(subject=>subject.chapters.length===0)"), 'other four subjects stay empty');
 check(live.run('catalog.knowledgePoints.filter(item=>item.id.startsWith("LA-CH01-S01-")).length') === 12, 'original twelve knowledge points retained');
 check(live.run('catalog.examples.filter(item=>item.id.startsWith("LA-CH01-S01-")).length') === 12, 'original twelve examples retained');
 check(live.run('allSections()[0].blocks.length') === 35, 'thirty-five planned blocks');
-check(live.run('bank.length') === 105, 'one hundred five supplied assessment questions');
+check(live.run('bank.length') === 133, 'one hundred thirty-three supplied assessment questions');
 check(live.run('bank.every(question=>question.source.kind==="simulation")'), 'simulation provenance explicit');
 check(live.run('catalog.sourceReview.pendingExamImported') === false, 'unverified exam summaries excluded');
 check(live.run('courses[0].chapters[0].quiz===undefined'), 'no fabricated whole-chapter quiz');
@@ -135,7 +135,7 @@ live.click({ action: 'submit-assessment' });
 check(live.run(`state.records['${questionId(1)}'].attempts.length`) === 2, 'second attempt stored separately');
 check(live.run(`state.records['${questionId(1)}'].attempts[0].status`) === '已答對', 'first attempt unchanged after wrong retry');
 live.location.hash = '#questions';
-check(live.get('#app').innerHTML.includes('共 105 題'), 'question bank displays supplied simulations only');
+check(live.get('#app').innerHTML.includes('共 133 題'), 'question bank displays supplied simulations only');
 live.click({ question: questionId(7) });
 check(live.get('#app').innerHTML.includes('(a)') && live.get('#app').innerHTML.includes('(b)'), 'proof question preserves shared stem and subparts');
 live.click({ bankRate: '已答對' });
@@ -164,8 +164,8 @@ console.log(`PASS: ${checks} total checks, including the imported 1-1 workflow, 
 
 const multiple = launch({}, false), originalNote = '舊有 1-1 筆記';
 multiple.run(`state.notes['lesson-LA-CH01-S01']={text:'${originalNote}',strokes:[],title:'1-1'};state.completedSections=['LA-CH01-S01'];persist()`);
-check(multiple.run('allSections().filter(section=>section.subject.id==="linear-algebra").map(section=>section.id).join(",")') === 'LA-CH01-S01,LA-CH01-S03,LA-CH01-S04,LA-CH01-S05,LA-CH01-S06,LA-CH01-S07', 'linear algebra section order follows source numbering and does not invent 1-2');
-check(multiple.run('subjectProgress(courses[0]).percent') === 17, 'provided-section progress correctly expands to six sections');
+check(multiple.run('allSections().filter(section=>section.chapter.id==="LA-CH01").map(section=>section.id).join(",")') === 'LA-CH01-S01,LA-CH01-S03,LA-CH01-S04,LA-CH01-S05,LA-CH01-S06,LA-CH01-S07', 'linear algebra first chapter follows source numbering and does not invent 1-2');
+check(multiple.run('subjectProgress(courses[0]).percent') === 10, 'provided-section progress correctly expands to ten linear algebra sections');
 const configurations = [
   { number: 3, knowledge: 7, examples: 8, blocks: 25, assessment: 'AS01', ids: ['MC01','MC02','MC03','MC04','MC05','HW01','HW02'], correct: [2,0,3,1,2], points: 20, written: 5 },
   { number: 4, knowledge: 13, examples: 14, blocks: 43, assessment: 'AS01', ids: ['T01','T02','T03','T04','T05','W01','W02'], correct: [0,2,1,3,1], points: null, written: 10 },
@@ -231,14 +231,14 @@ for (const sec of persistedCatalog.subjects[0].chapters[0].sections) {
   upsertSection(persistedCatalog, payload);
 }
 check(persistedCatalog.subjects[0].chapters[0].sections.length === 6, 'reimport does not erase other sections');
-check(persistedCatalog.questions.length === 105, 'reimport does not duplicate questions across subjects');
-check(persistedCatalog.examples.length === 100, 'reimport does not duplicate examples across subjects');
+check(persistedCatalog.questions.length === 133, 'reimport does not duplicate questions across subjects');
+check(persistedCatalog.examples.length === 135, 'reimport does not duplicate examples across subjects');
 check(JSON.stringify(persistedCatalog.subjects[0].chapters[0].sections[0]) === originalFirstSection, 'original 1-1 section content remains byte-for-byte equivalent');
 check(JSON.stringify(persistedCatalog.questions.filter(question=>question.sectionId==='LA-CH01-S01')) === originalFirstQuestions, 'original 1-1 question IDs and answers stay equivalent');
 const ids = persistedCatalog.questions.map(question=>question.id);
 check(new Set(ids).size === ids.length, 'question IDs globally unique');
 check(persistedCatalog.questions.every(question=>persistedCatalog.solutions[question.id]?.markdown), 'all formal questions have reference solutions');
-check(persistedCatalog.questions.filter(question=>question.options).every(question=>persistedCatalog.solutions[question.id].optionExplanations.length===4), 'all seventy-five choices have all four option explanations');
+check(persistedCatalog.questions.filter(question=>question.options).every(question=>persistedCatalog.solutions[question.id].optionExplanations.length===4), 'all ninety-five choices have all four option explanations');
 check(persistedCatalog.subjects[0].chapters[0].sections.every(section=>section.blocks.filter(block=>block.type==='example').every(block=>persistedCatalog.examples.some(example=>example.id===block.exampleId))), 'all example references resolve');
 multiple.location.hash = '#question?q=LA-CH01-S05-Q07';
 check(multiple.get('#app').innerHTML.includes('(a)') && multiple.get('#app').innerHTML.includes('(b)'), '1-5 shared two-part question remains a single complete card');
@@ -342,7 +342,7 @@ check(structures.run('Object.keys(state.records).length')===63, 'all DS question
 structures.location.hash='#questions'; structures.run("bankFilters={subject:'data-structures'};render()");
 check(structures.get('#app').innerHTML.includes('共 63 題')&&structures.get('#app').innerHTML.includes('資料結構 · 第 1 章'), 'bank subject and chapter filters distinguish DS');
 structures.run("bankFilters={subject:'linear-algebra'};render()");
-check(structures.get('#app').innerHTML.includes('共 42 題')&&!structures.get('#app').innerHTML.includes('資料結構 · 第 1 章'), 'linear algebra bank remains separate');
+check(structures.get('#app').innerHTML.includes('共 70 題')&&!structures.get('#app').innerHTML.includes('資料結構 · 第 1 章'), 'linear algebra bank remains separate');
 structures.click({action:'settings'});
 check(structures.get('#modal-root').innerHTML.includes('線性代數')&&structures.get('#modal-root').innerHTML.includes('資料結構')&&!structures.get('#modal-root').innerHTML.includes('其他五科'), 'settings reflect two supplied subjects');
 structures.click({action:'close-modal'}); structures.location.hash='#notes'; structures.change({dataset:{noteFilter:'subject'},value:'2'});
@@ -375,7 +375,79 @@ for(let n=1;n<=8;n++) { let triples=0;for(let i=1;i<=n;i++)for(let j=1;j<=i;j++)
 for(let n=1;n<=5;n++) { let cost=0;for(let i=1;i<=n;i++)for(let j=0;j<i*i;j++)cost+=j;assert.equal(cost,Array.from({length:n},(_,i)=>((i+1)**4-(i+1)**2)/2).reduce((a,b)=>a+b,0));checks++; }
 check((3+1)+3*(2+1)+3*2===19&&(2+1)+2*(3+1)+2*3===17, 'rectangular matrix cost distinguishes rows and columns');
 for(const subject of dsData.subjects)for(const chapter of subject.chapters)for(const section of chapter.sections){const belongs=id=>id.startsWith(section.id+'-');upsertSection(dsData,{subjectId:subject.id,chapter,section,questions:dsData.questions.filter(q=>belongs(q.id)),examples:dsData.examples.filter(q=>belongs(q.id)),knowledgePoints:dsData.knowledgePoints.filter(q=>belongs(q.id)),answers:Object.fromEntries(Object.entries(dsData.answers).filter(([id])=>belongs(id))),solutions:Object.fromEntries(Object.entries(dsData.solutions).filter(([id])=>belongs(id))),sourceReview:dsData.sourceReviews.find(review=>review.scope===section.id)});}
-check(dsData.subjects[2].chapters[0].sections.length===9&&dsData.subjects[0].chapters[0].sections.length===6&&dsData.questions.length===105, 'cross-subject idempotent upsert preserves all sections');
+check(dsData.subjects[2].chapters[0].sections.length===9&&dsData.subjects[0].chapters[0].sections.length===6&&dsData.questions.length===133, 'cross-subject idempotent upsert preserves all sections');
 const dsReloaded=launch(Object.fromEntries(structures.store),false);
 check(dsReloaded.run("state.notes['lesson-LA-CH01-S01'].text")==='既有線代筆記', 'cross-subject notes survive reload');
-console.log(`PASS: ${checks} final checks; ${formulaCount} mathematical expressions. Two subjects, 15 sections, 94 knowledge points, 100 examples, 105 questions. Browser and physical stylus verification are not included.`);
+console.log(`PASS: ${checks} existing workflow and cross-subject checks.`);
+
+const determinants=launch({},false), chapterTwoConfigs=[
+  {n:1,k:4,e:5,b:17,total:null,written:10,ids:['Q101','Q102','Q103','Q104','Q105','Q106','Q107'],correct:[2,0,3,1,2]},
+  {n:2,k:6,e:8,b:25,total:null,written:10,ids:['Q201','Q202','Q203','Q204','Q205','Q206','Q207'],correct:[1,3,0,2,1]},
+  {n:3,k:11,e:14,b:40,total:40,written:10,ids:['Q01','Q02','Q03','Q04','Q05','H01','H02'],correct:[1,2,3,0,2]},
+  {n:4,k:8,e:8,b:28,total:100,written:30,ids:['Q01','Q02','Q03','Q04','Q05','Q06','Q07'],correct:[1,3,0,2,1]}
+];
+determinants.run("state.notes['lesson-LA-CH01-S01']={text:'第一章筆記',strokes:[],sectionId:'LA-CH01-S01',subjectIndex:0};state.notes['lesson-DS-CH01-S01']={text:'資料結構筆記',strokes:[],sectionId:'DS-CH01-S01',subjectIndex:2};persist()");
+determinants.location.hash='#courses';
+check(determinants.get('#app').innerHTML.includes('第 2 章 行列式'), 'second chapter appears with determinant title');
+check(determinants.run('courses[0].chapters.length')===2, 'linear algebra chapters are distinct');
+check(determinants.run("allSections().filter(section=>section.chapter.id==='LA-CH02').map(section=>section.title.split(' ')[0]).join(',')")==='2-1,2-2,2-3,2-4', 'second chapter section order correct');
+for(const config of chapterTwoConfigs){
+  const prefix='LA-CH02-S0'+config.n,qid=short=>prefix+'-'+short;
+  determinants.location.hash='#lesson?section='+prefix;
+  check(determinants.run('currentLesson().chapter.id')==='LA-CH02'&&determinants.run('state.subject')===0, 'deep link selects second chapter '+config.n);
+  check(determinants.run(`catalog.knowledgePoints.filter(point=>point.id.startsWith('${prefix}-')).length`)===config.k, 'determinant knowledge coverage '+config.n);
+  check(determinants.run(`catalog.examples.filter(example=>example.id.startsWith('${prefix}-')).length`)===config.e, 'determinant example coverage '+config.n);
+  check(determinants.run('currentLesson().blocks.length')===config.b, 'determinant block coverage '+config.n);
+  check(!determinants.get('#app').innerHTML.includes('math-fallback')&&!determinants.get('#app').innerHTML.includes('undefined'), 'determinant lecture formulas render '+config.n);
+  check(determinants.get('#app').innerHTML.includes('第一階段審閱稿'), 'determinant source limitations visible '+config.n);
+  determinants.click({action:'section-quiz'});
+  check(determinants.run('assessmentFor(currentLesson()).totalPoints')===config.total, 'determinant total follows source '+config.n);
+  determinants.click({action:'submit-assessment'});
+  check(!determinants.run(`state.quizzes['${prefix}-AS01']`), 'unfinished determinant test cannot submit '+config.n);
+  for(let i=0;i<5;i++)determinants.change({dataset:{assessmentChoice:qid(config.ids[i])},value:String(config.correct[i])});
+  determinants.run(`state.notes['answer-${qid(config.ids[5])}'].text='第2章小節${config.n}的原作答'`);
+  determinants.click({action:'submit-assessment'});
+  check(determinants.get('#app').innerHTML.includes(config.total===null?'5<small> / 5 題':config.n===3?'20<small> / 20 分':'40<small> / 40 分'), 'determinant score or count correct '+config.n);
+  check(!determinants.get('#app').innerHTML.includes('math-fallback'), 'determinant solution formulas render '+config.n);
+  check(determinants.run(`bank.find(q=>q.id==='${qid(config.ids[5])}').points`)===config.written, 'determinant handwriting points correct '+config.n);
+  determinants.click({assessmentRate:qid(config.ids[5])+',部分正確'});determinants.click({assessmentRate:qid(config.ids[6])+',不會'});
+  determinants.click({action:'finish-assessment'});determinants.click({action:'close-modal'});
+  check(determinants.run(`state.completedSections.includes('${prefix}')`), 'determinant subsection completion recorded '+config.n);
+  check(determinants.run('state.completedChapters.length')===0, 'source review does not claim entire chapter complete '+config.n);
+  determinants.location.hash='#question?q='+qid(config.ids[6]);determinants.click({action:'question-review'});
+  check(determinants.run('activeSectionId')===prefix&&determinants.run('currentLesson().chapter.id')==='LA-CH02', 'weakness review returns to right second-chapter lesson '+config.n);
+}
+determinants.click({action:'chapter-practice'});
+check(determinants.run('bankFilters.chapter')==='LA-CH02'&&determinants.get('#app').innerHTML.includes('共 28 題'), 'chapter practice filters second chapter only');
+determinants.location.hash='#quiz?section=LA-CH02-S04';determinants.click({action:'retry-assessment'});
+check(determinants.run("state.notes['archive-LA-CH02-S04-Q06-1'].text")==='第2章小節4的原作答', 'second-chapter retry archives handwriting');
+check(determinants.run("state.notes['lesson-LA-CH01-S01'].text")==='第一章筆記'&&determinants.run("state.notes['lesson-DS-CH01-S01'].text")==='資料結構筆記', 'new chapter preserves previous subjects and notes');
+determinants.location.hash='#lesson?section=LA-CH02-S03';
+check(determinants.get('#app').innerHTML.includes('與前節的記號對照'), 'cofactor and minor notation bridge visible');
+determinants.location.hash='#lesson?section=LA-CH02-S04';
+check(determinants.get('#app').innerHTML.includes('原教材轉述，例23編號待核')&&determinants.get('#app').innerHTML.includes('原教材轉述，例7編號待核'), 'both transcribed adjugate examples show original verification status');
+check(determinants.run("catalog.examples.filter(example=>example.id.startsWith('LA-CH02-')&&example.source.verificationStatus==='pending_original').length")===6, 'six second-chapter examples await original verification');
+check(determinants.run("catalog.examples.filter(example=>example.id.startsWith('LA-CH02-')&&example.source.kind==='simulation').length")===29, 'twenty-nine second-chapter examples authored simulations');
+check(determinants.run("catalog.examples.find(example=>example.id==='LA-CH02-S04-E02').text.includes('bmatrix')"), 'adjugate verification example retains its complete matrix');
+const determinant=matrix=>matrix.length===0?1:matrix[0].reduce((sum,value,j)=>sum+(-1)**j*value*determinant(matrix.slice(1).map(row=>row.filter((_,k)=>k!==j))),0);
+const adjugate=matrix=>matrix.map((row,i)=>row.map((_,j)=>(-1)**(i+j)*determinant(matrix.filter((_,k)=>k!==j).map(row=>row.filter((_,k)=>k!==i)))||0));
+for(const [matrix,expected] of [
+  [[[1,2],[3,4]],-2],[[[-7,4],[-3,6]],-30],[[[0,1,3],[-2,-3,-5],[4,-4,4]],48],
+  [[[2,0,0,0],[1,3,4,0],[0,0,5,0],[2,1,0,-1]],-30],[[[1,2,0],[0,3,4],[2,0,5]],31],
+  [[[0,2,1],[1,1,0],[2,3,4]],-7],[[[2,0,1],[0,3,1],[1,2,4]],17],
+  [[[1,0,1,0],[0,2,0,1],[3,0,5,0],[0,4,0,6]],16],[[[1,1,1],[1,2,4],[1,4,16]],6]
+]){assert.equal(determinant(matrix),expected);checks++;}
+const adjA=[[3,-2,1],[5,6,2],[1,0,-3]],adjExpected=[[-18,-6,-10],[17,-10,-1],[-6,-2,28]];
+assert.equal(determinant(adjA),-94);checks++;assert.deepEqual(adjugate(adjA),adjExpected);checks++;
+assert.deepEqual(multiply(adjA,adjExpected),[[-94,0,0],[0,-94,0],[0,0,-94]]);checks++;
+const adjQuiz=[[1,2,0],[0,1,0],[0,0,3]];
+assert.deepEqual(adjugate(adjQuiz),[[3,-6,0],[0,3,0],[0,0,1]]);checks++;
+assert.deepEqual(multiply(adjQuiz,adjugate(adjQuiz)),[[3,0,0],[0,3,0],[0,0,3]]);checks++;
+for(let n=1;n<=6;n++){const tri=Array.from({length:n},(_,i)=>Array.from({length:n},(_,j)=>i===j?10:Math.abs(i-j)===1?5:0));assert.equal(determinant(tri),(n+1)*5**n);checks++;}
+for(const a of [-4,-2,-1,0,1,2,4]){assert.equal(determinant([[1,1,a],[1,a,1],[a,1,1]]),-1*(a-1)**2*(a+2)||0);checks++;if(a!==1&&a!==-2){const rhs=multiply([[1,1,a],[1,a,1],[a,1,1]],[[2],[1/(a-1)],[-1/(a-1)]]);[1,3,2*a].forEach((value,i)=>assert(Math.abs(rhs[i][0]-value)<1e-10));checks++;}}
+for(const t of [0,1/3,2]){const x=[[5/3+t],[-2/3+t],[t]],rhs=multiply([[1,1,-2],[1,-2,1],[-2,1,1]],x);[1,3,-4].forEach((value,i)=>assert(Math.abs(rhs[i][0]-value)<1e-10));checks++;}
+const ch2Data=readCatalog(),ch2=ch2Data.subjects[0].chapters.find(chapter=>chapter.id==='LA-CH02');
+for(const section of [...ch2.sections].reverse()){const belongs=id=>id.startsWith(section.id+'-');upsertSection(ch2Data,{section,chapter:ch2,questions:ch2Data.questions.filter(q=>belongs(q.id)),examples:ch2Data.examples.filter(q=>belongs(q.id)),knowledgePoints:ch2Data.knowledgePoints.filter(q=>belongs(q.id)),answers:Object.fromEntries(Object.entries(ch2Data.answers).filter(([id])=>belongs(id))),solutions:Object.fromEntries(Object.entries(ch2Data.solutions).filter(([id])=>belongs(id))),sourceReview:ch2Data.sourceReviews.find(review=>review.scope===section.id)});}
+check(ch2.sections.map(section=>section.title.split(' ')[0]).join(',')==='2-1,2-2,2-3,2-4', 'second chapter order stable even when reimported backwards');
+check(ch2Data.questions.length===133&&ch2Data.examples.length===135&&ch2Data.knowledgePoints.length===123, 'second chapter reimport does not duplicate catalog');
+console.log(`PASS: ${checks} final checks; ${formulaCount} mathematical expressions. Two subjects, 19 sections, 123 knowledge points, 135 examples, 133 questions. Browser and physical stylus verification are not included.`);

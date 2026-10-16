@@ -2079,6 +2079,1202 @@ window.ZILIU_CONTENT = {
               }
             }
           ]
+        },
+        {
+          "id": "LA-CH02",
+          "title": "第 2 章 行列式",
+          "titleStatus": "章名與教材完整性待原目錄核對",
+          "curriculumComplete": false,
+          "sections": [
+            {
+              "id": "LA-CH02-S01",
+              "title": "2-1 二階行列式",
+              "sourceSectionId": "la-ch02-s01",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得九張原圖，原教材完整性待核。缺少完整矩陣或題幹的課本例7、實例1、2、6未補造。教材轉錄、編輯補充與自編例題分開標示；考古題候選尚未核實，不列入正式題庫。",
+              "knowledgePointIds": [
+                "LA-CH02-S01-K01",
+                "LA-CH02-S01-K02",
+                "LA-CH02-S01-K03",
+                "LA-CH02-S01-K04"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH02-S01-B-INTRO",
+                  "type": "concept",
+                  "title": "符號與閱讀約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "本稿依臺灣教材慣例：**列 row 為橫向，行 column 為縱向**。其他資料有時用「行」指 row，閱讀時以英文或索引確認。\n\n| 符號 | 意義 |\n|---|---|\n| $A=[a_{ij}]$ | $a_{ij}$ 是矩陣第 $i$ 列、第 $j$ 行的元素 |\n| $n\\times n$ | 有 $n$ 列、$n$ 行的方陣 |\n| $\\det(A)$ 或 $|A|$ | 方陣的行列式，是純量，不是逐元素絕對值 |\n| $F$ | 數值所在的體（field）；本稿計算例以實數為主 |\n| $A^T$ | 轉置（transpose），列與行互換 |\n| $I_n$ | $n$ 階單位矩陣，主對角為1，其餘為0 |\n| $\\sum_{j=1}^n b_j$ | 依序把 $b_1,b_2,\\ldots,b_n$ 相加；$j$ 是逐項改變的索引 |\n| $A_{ij}$ | 刪去第 $i$ 列、第 $j$ 行後的子矩陣；其他教材可能用此符號指餘因子，須先看定義 |\n| $M_{ij}$ | 本稿統一指子式 $\\det(A_{ij})$ |\n| $C_{ij}$ | 代數餘因子 $(-1)^{i+j}M_{ij}$ |\n\n難度：基礎 ★；中階 ★★★；進階 ★★★★★。這些是學習難度，並非出題頻率。"
+                },
+                {
+                  "id": "LA-CH02-S01-B001",
+                  "type": "concept",
+                  "title": "矩陣與行列式不同",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "矩陣是一個數值陣列；行列式是對方陣定義的純量函數。非方陣在本課程不定義行列式。\n\n對 $A=\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}$，\n\n$$\\det(A)=ad-bc.$$\n\n先算左上乘右下，再減右上乘左下。二階公式同時也是高階遞迴計算的基礎。可逆性連結為 $A$ 可逆當且僅當 $\\det(A)\\ne0$；一般階數的證明留後續性質建立後處理。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S01-EX001",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B003",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S01-EX002",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B004",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K01"
+                  ],
+                  "prompt": "畫出兩個乘積的位置，再把「減去負數」單獨寫一步。"
+                },
+                {
+                  "id": "LA-CH02-S01-B005",
+                  "type": "concept",
+                  "title": "固定其餘列時的線性",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "若 $u=(a_1,a_2)$、$v=(b_1,b_2)$、$w=(c_1,c_2)$ 為橫向列向量，$k$ 為純量，則\n\n$$\\det\\begin{bmatrix}u+kv\\\\w\\end{bmatrix}=\\det\\begin{bmatrix}u\\\\w\\end{bmatrix}+k\\det\\begin{bmatrix}v\\\\w\\end{bmatrix}.$$\n\n證明逐步如下：\n\n$$\\begin{aligned}\n\\det\\begin{bmatrix}a_1+kb_1&a_2+kb_2\\\\c_1&c_2\\end{bmatrix}\n&=(a_1+kb_1)c_2-(a_2+kb_2)c_1 &&\\text{二階定義}\\\\\n&=(a_1c_2-a_2c_1)+k(b_1c_2-b_2c_1) &&\\text{分配律與合併}.\n\\end{aligned}$$\n\n最後兩組就是右邊的兩個行列式。固定第一列、改變第二列也成立。\n\n**限制：其他列必須固定。** $\\det(A+B)=\\det(A)+\\det(B)$ 一般不成立。以 $A=B=I_2$ 為例，左邊為4，右邊為2。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B006",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S01-EX003",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B007",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K02"
+                  ],
+                  "prompt": "標出固定列與改變列，寫清楚每個係數。"
+                },
+                {
+                  "id": "LA-CH02-S01-B008",
+                  "type": "concept",
+                  "title": "單列縮放與整體縮放",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "只有一列乘 $k$，行列式乘 $k$。整個二階矩陣乘 $k$ 時，兩列各提出一次，故\n\n$$\\det(kA)=k^2\\det(A).$$\n\n一般 $n$ 階則為 $\\det(kA)=k^n\\det(A)$，理由是每列各貢獻一個 $k$。不需除以 $k$，所以 $k=0$ 也適用。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B009",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S01-EX004",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B010",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K03"
+                  ],
+                  "prompt": "把「只改一列」和「每列都改」分成兩格比較。"
+                },
+                {
+                  "id": "LA-CH02-S01-B011",
+                  "type": "concept",
+                  "title": "相同列、比例列、零列",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "$$\\det\\begin{bmatrix}a&b\\\\a&b\\end{bmatrix}=ab-ba=0.$$\n\n比例列可先提出倍數，化成相同列；零列也可直接由二階公式得到0。對行也成立。例：$\\det\\begin{bmatrix}6&8\\\\3&4\\end{bmatrix}=24-24=0$。\n\n提醒：二階行列式為0代表兩列線性相依；若含零列，不宜硬用比值描述，避免除以0。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B012",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S01-EX005",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S01-B013",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K04"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S01-B014",
+                  "type": "summary",
+                  "title": "考前摘要與錯誤檢查",
+                  "markdown": "1. 二階 $ad-bc$，負號與括號最先檢查。\n2. 單列線性必須固定其餘列；整體加法一般不成立。\n3. 單列乘k只乘一次；n階整體乘k是乘$k^n$。\n4. 零列、重複列、比例列使行列式為0。"
+                },
+                {
+                  "id": "LA-CH02-S01-B015",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH02-S01-AS01"
+                },
+                {
+                  "id": "LA-CH02-S01-B016",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "knowledgePointIds": [
+                    "LA-CH02-S01-K01",
+                    "LA-CH02-S01-K02",
+                    "LA-CH02-S01-K03",
+                    "LA-CH02-S01-K04"
+                  ],
+                  "prompt": "記錄錯題、出錯步驟、適用條件與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。"
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH02-S01-AS01",
+                "scope": "section",
+                "title": "2-1 小節測驗",
+                "questionIds": [
+                  "LA-CH02-S01-Q101",
+                  "LA-CH02-S01-Q102",
+                  "LA-CH02-S01-Q103",
+                  "LA-CH02-S01-Q104",
+                  "LA-CH02-S01-Q105",
+                  "LA-CH02-S01-Q106",
+                  "LA-CH02-S01-Q107"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "la-ch02-s01-test01"
+              }
+            },
+            {
+              "id": "LA-CH02-S02",
+              "title": "2-2 高階行列式",
+              "sourceSectionId": "la-ch02-s02",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得九張原圖，原教材完整性待核。缺少完整矩陣或題幹的課本例7、實例1、2、6未補造。教材轉錄、編輯補充與自編例題分開標示；考古題候選尚未核實，不列入正式題庫。",
+              "knowledgePointIds": [
+                "LA-CH02-S02-K01",
+                "LA-CH02-S02-K02",
+                "LA-CH02-S02-K03",
+                "LA-CH02-S02-K04",
+                "LA-CH02-S02-K05",
+                "LA-CH02-S02-K06"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH02-S02-B-INTRO",
+                  "type": "concept",
+                  "title": "符號與閱讀約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "本稿依臺灣教材慣例：**列 row 為橫向，行 column 為縱向**。其他資料有時用「行」指 row，閱讀時以英文或索引確認。\n\n| 符號 | 意義 |\n|---|---|\n| $A=[a_{ij}]$ | $a_{ij}$ 是矩陣第 $i$ 列、第 $j$ 行的元素 |\n| $n\\times n$ | 有 $n$ 列、$n$ 行的方陣 |\n| $\\det(A)$ 或 $|A|$ | 方陣的行列式，是純量，不是逐元素絕對值 |\n| $F$ | 數值所在的體（field）；本稿計算例以實數為主 |\n| $A^T$ | 轉置（transpose），列與行互換 |\n| $I_n$ | $n$ 階單位矩陣，主對角為1，其餘為0 |\n| $\\sum_{j=1}^n b_j$ | 依序把 $b_1,b_2,\\ldots,b_n$ 相加；$j$ 是逐項改變的索引 |\n| $A_{ij}$ | 刪去第 $i$ 列、第 $j$ 行後的子矩陣；其他教材可能用此符號指餘因子，須先看定義 |\n| $M_{ij}$ | 本稿統一指子式 $\\det(A_{ij})$ |\n| $C_{ij}$ | 代數餘因子 $(-1)^{i+j}M_{ij}$ |\n\n難度：基礎 ★；中階 ★★★；進階 ★★★★★。這些是學習難度，並非出題頻率。"
+                },
+                {
+                  "id": "LA-CH02-S02-B001",
+                  "type": "concept",
+                  "title": "子矩陣、子式、餘因子",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "一階 $\\det([a])=a$。對 $n\\ge2$，選 $a_{ij}$，刪第 $i$ 列與第 $j$ 行得到 $(n-1)$ 階子矩陣；取其行列式得 $M_{ij}$，再加符號得\n\n$$C_{ij}=(-1)^{i+j}M_{ij}.$$\n\n三階符號棋盤為 $\\begin{bmatrix}+&-&+\\\\-&+&-\\\\+&-&+\\end{bmatrix}$。$i+j$ 偶數取正、奇數取負。子矩陣是矩陣，子式與餘因子都是數；子式本身也可能為負，不能把棋盤負號當成子式的數值。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX006",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B003",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K01"
+                  ],
+                  "prompt": "分別列出刪去的位置、留下的矩陣、子式和餘因子。"
+                },
+                {
+                  "id": "LA-CH02-S02-B004",
+                  "type": "concept",
+                  "title": "Laplace展開",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "可用第一列遞迴定義：$\\det(A)=\\sum_{j=1}^n a_{1j}C_{1j}$。Laplace展開定理（Laplace expansion）指出任一列、任一行皆可展開：\n\n$$\\det(A)=\\sum_{j=1}^n a_{ij}C_{ij}\\quad\\text{（固定列 }i\\text{）},$$\n$$\\det(A)=\\sum_{i=1}^n a_{ij}C_{ij}\\quad\\text{（固定行 }j\\text{）}.$$\n\n例如沿第二列，就是 $a_{21}C_{21}+a_{22}C_{22}+\\cdots+a_{2n}C_{2n}$。每項必須保留原元素；若已使用 $C_{ij}$，不要再乘一次棋盤符號。\n\n計算流程：確認方陣 → 找零最多的列或行 → 只對非零元素列項 → 刪對列行 → 算子式與符號 → 合併。遇一般稠密高階矩陣，不必硬做大量展開；列運算化簡屬後續延伸方法。\n\n三階沿第一列展開為\n\n$$\\begin{aligned}\\det(A)={}&a_{11}(a_{22}a_{33}-a_{23}a_{32})\\\\&-a_{12}(a_{21}a_{33}-a_{23}a_{31})\\\\&+a_{13}(a_{21}a_{32}-a_{22}a_{31}).\\end{aligned}$$\n\nSarrus斜線法只適用三階，不可直接延用到四階。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B005",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX007",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B006",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX008",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B007",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K02"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S02-B008",
+                  "type": "concept",
+                  "title": "多重線性與轉置",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "高階行列式固定其他列時，對某一列線性，稱多重線性（multilinearity）；對行亦然。可把二階的單列拆和、單列倍數性質推廣至 $n$ 階。兩列相同或成比例、存在零列時行列式為0。\n\n$$\\det(A^T)=\\det(A).$$\n\n轉置不等於交換兩列。利用轉置性質，列的性質可對應到行。上述為本節性質整理；一般階數的完整定理證明未出現在可讀的先前文字，不能聲稱已照錄原教材證明。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B009",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX009",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B010",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K03"
+                  ],
+                  "prompt": "寫一組 $A,B$ 反例否定整體加法線性，再說明單列線性為何不矛盾。"
+                },
+                {
+                  "id": "LA-CH02-S02-B011",
+                  "type": "concept",
+                  "title": "三角矩陣",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "上三角矩陣主對角下方全為0；下三角矩陣主對角上方全為0。兩者皆滿足\n\n$$\\det(A)=\\prod_{i=1}^n a_{ii}=a_{11}\\cdots a_{nn}.$$\n\n上三角可沿第一行（縱向）展開，只剩 $a_{11}$，留下仍為上三角的子矩陣，重複得到公式；下三角可沿第一列展開。對角矩陣同時為上下三角，$\\det(I_n)=1$。\n\n**左下方有非零數不代表一定不是三角矩陣**：仍可能是下三角；必須檢查整個上方或下方區域。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B012",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX010",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B013",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K04"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S02-B014",
+                  "type": "concept",
+                  "title": "不同列的元素與餘因子配對",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "$$\\sum_{j=1}^n a_{rj}C_{sj}=\\begin{cases}\\det(A),&r=s,\\\\0,&r\\ne s.\\end{cases}$$\n\n當 $r\\ne s$，把第 $s$ 列換成第 $r$ 列。新矩陣有重複列，行列式為0；沿第 $s$ 列展開，其餘因子刪除的是替換列，因此與原矩陣 $C_{sj}$ 相同，得到公式。對行的版本為 $\\sum_i a_{ir}C_{is}=0$（$r\\ne s$）。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B015",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX011",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B016",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K05"
+                  ],
+                  "prompt": "寫出替換後矩陣，圈出重複列。"
+                },
+                {
+                  "id": "LA-CH02-S02-B017",
+                  "type": "concept",
+                  "title": "函數行列式的微分",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "各元素在考察點可微時，若列向量為 $r_1(x),\\ldots,r_n(x)$，\n\n$$\\frac{d}{dx}\\det\\begin{bmatrix}r_1\\\\\\vdots\\\\r_n\\end{bmatrix}=\\sum_{k=1}^n\\det\\begin{bmatrix}r_1\\\\\\vdots\\\\r'_k\\\\\\vdots\\\\r_n\\end{bmatrix}.$$\n\n每項只微分一列，其餘不變。二階可從 $f_1g_2-f_2g_1$ 使用乘法法則得到 $f'_1g_2+f_1g'_2-f'_2g_1-f_2g'_1$，再分成兩個行列式。不可寫成 $\\det(A')$。\n\n連續導數列的特殊形式：\n\n$$W=\\det\\begin{bmatrix}f_1&f_2&f_3\\\\f'_1&f'_2&f'_3\\\\f''_1&f''_2&f''_3\\end{bmatrix}\\quad\\Longrightarrow\\quad W'=\\det\\begin{bmatrix}f_1&f_2&f_3\\\\f'_1&f'_2&f'_3\\\\f'''_1&f'''_2&f'''_3\\end{bmatrix}.$$\n\n假設所需三階導數存在。前兩項分別出現兩列相同而為0，才可只留最後一列微分。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B018",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX012",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B019",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S02-EX013",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S02-B020",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K06"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S02-B-EXT",
+                  "type": "concept",
+                  "title": "補充延伸與適用限制",
+                  "provenance": "補充延伸",
+                  "knowledgePointIds": [],
+                  "markdown": "以下為本稿補充，用來銜接後續章節；不宣稱都出現在本次九張原圖。\n\n| 延伸主題 | 結論與條件 | 對本節的用途 |\n|---|---|---|\n| 列運算 | 交換兩列變號；一列乘k使值乘k；一列加另一列倍數不變 | 高階稠密矩陣可先化簡 |\n| 乘法 | 同階方陣$\\det(AB)=\\det A\\det B$ | 可逆、冪次與正交題 |\n| 逆矩陣 | 可逆時$\\det(A^{-1})=1/\\det A$ | 注意不可逆時無此式 |\n| 正交矩陣 | 實正交$Q^TQ=I$，所以$(\\det Q)^2=1$、$\\det Q=\\pm1$ | 不可只記+1 |\n| 實數條件 | 實非奇異$A$有$\\det(A^TA)=(\\det A)^2>0$ | 複數若用普通轉置不能直接說正值 |\n| 三對角遞迴 | 對角3、鄰對角1：$D_n=3D_{n-1}-D_{n-2}$，$D_0=1,D_1=3$ | 展開後識別相同結構，屬進階連結 |\n| Wronskian限制 | Wronskian某點非零可推函數線性獨立；對一般可微函數，恆為0不保證相依 | 避免把矩陣判別直接誤套所有函數 |"
+                },
+                {
+                  "id": "LA-CH02-S02-B021",
+                  "type": "summary",
+                  "title": "考前摘要與錯誤檢查",
+                  "markdown": "1. $A_{ij}$是矩陣；$M_{ij}$是子式；$C_{ij}=(-1)^{i+j}M_{ij}$。\n2. 展開用原元素乘同位置餘因子；零最多處通常最省計算。\n3. 轉置不變、三角矩陣乘對角；Sarrus僅三階。\n4. 異列元素與餘因子配對和為0。\n5. 函數行列式每項只微分一列；連續導數列的消去有特定原因。\n\n| 常錯 | 訂正動作 |\n|---|---|\n| 混淆子式與餘因子 | 先寫M，再另寫C的符號 |\n| 展開漏元素 | 每項固定寫成$a_{ij}C_{ij}$ |\n| 一看到左下非零就否定三角性 | 分別檢查上方、下方完整區域 |\n| 整體縮放漏次方 | 標出每列提出的因數 |\n| 微分所有元素後只取一個行列式 | 列出n個項，再逐項判斷消去 |\n\n### 自我檢查\n\n能否不用看答案解釋「Σ每項在變什麼」？能否說出子式與餘因子的差別？能否指出何時不能乘主對角？能否證明異列配對為0？正式自測使用第7節題庫，第8節作答後再開啟。"
+                },
+                {
+                  "id": "LA-CH02-S02-B022",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH02-S02-AS01"
+                },
+                {
+                  "id": "LA-CH02-S02-B023",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "knowledgePointIds": [
+                    "LA-CH02-S02-K01",
+                    "LA-CH02-S02-K02",
+                    "LA-CH02-S02-K03",
+                    "LA-CH02-S02-K04",
+                    "LA-CH02-S02-K05",
+                    "LA-CH02-S02-K06"
+                  ],
+                  "prompt": "記錄錯題、出錯步驟、適用條件與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。"
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH02-S02-AS01",
+                "scope": "section",
+                "title": "2-2 小節測驗",
+                "questionIds": [
+                  "LA-CH02-S02-Q201",
+                  "LA-CH02-S02-Q202",
+                  "LA-CH02-S02-Q203",
+                  "LA-CH02-S02-Q204",
+                  "LA-CH02-S02-Q205",
+                  "LA-CH02-S02-Q206",
+                  "LA-CH02-S02-Q207"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "la-ch02-s02-test01"
+              }
+            },
+            {
+              "id": "LA-CH02-S03",
+              "title": "2-3 行列式的性質",
+              "sourceSectionId": "LA-C02-S03",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得前次記載的14張原圖；完整原題、頁數及原矩陣仍待核對。本節餘因子記為 Kᵢⱼ，與前節記號不同，請先讀符號表。教材轉錄、編輯補充與自編例題分開標示；考古題候選尚未核實，不列入正式題庫。",
+              "knowledgePointIds": [
+                "LA-CH02-S03-K01",
+                "LA-CH02-S03-K02",
+                "LA-CH02-S03-K03",
+                "LA-CH02-S03-K04",
+                "LA-CH02-S03-K05",
+                "LA-CH02-S03-K06",
+                "LA-CH02-S03-K09",
+                "LA-CH02-S03-K07",
+                "LA-CH02-S03-K08",
+                "LA-CH02-S03-K10",
+                "LA-CH02-S03-K11"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH02-S03-B-INTRO",
+                  "type": "concept",
+                  "title": "符號與閱讀約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "**與前節的記號對照：**2-2 的 $A_{ij}$ 表示子矩陣、$M_{ij}$ 表示子式、$C_{ij}$ 表示餘因子。本節改以 $M_{ij}$ 表示子矩陣、$K_{ij}$ 表示餘因子，請以本節符號表為準。\n\n本稿採臺灣常見用語：**列（row）為橫向，行（column）為直向**。以 $R_i$ 表第 $i$ 列、$C_j$ 表第 $j$ 行；為免與行符號混淆，餘因子另記為 $K_{ij}$。\n\n| 符號 | 意義 |\n|---|---|\n| $A=[a_{ij}]$ | 矩陣；$a_{ij}$ 在第 $i$ 列、第 $j$ 行 |\n| $n\\times n$ | 有 $n$ 列、$n$ 行的方陣 |\n| $\\det A$、$|A|$ | 方陣 $A$ 的行列式，是純量而非矩陣 |\n| $A^T$、$A^{-1}$ | 轉置、反矩陣；反矩陣只在可逆時使用 |\n| $I_n$、$0$ | $n$ 階單位矩陣、由上下文確定大小的零矩陣 |\n| $M_{ij}$ | 刪去第 $i$ 列、第 $j$ 行後所得子矩陣 |\n| $K_{ij}=(-1)^{i+j}\\det M_{ij}$ | 餘因子 cofactor；有些教材記為 $C_{ij}$ |\n| $\\sum_{j=1}^n f(j)$ | 依序把 $f(1),\\ldots,f(n)$ 相加；$j$ 是加總索引 |\n| $\\prod_{i=1}^n b_i$ | $b_1b_2\\cdots b_n$；$\\prod$ 表連乘 |\n| $\\operatorname{rank}A$ | 秩，即獨立的列／行的最大個數 |\n| $\\operatorname{adj}A$ | 古典伴隨矩陣；是餘因子矩陣的轉置 |\n| $\\ker A$ | 零空間，即滿足 $Ax=0$ 的全部向量 |\n| $\\lambda$ | 參數，或依題意表示特徵值 |\n\n預設在實數或複數上討論。需要 $2\\ne0$ 的論證，會明列「數域特徵不為 2」；這表示 $1+1\\ne0$，實數與複數皆符合。行列式的主要公式以同階方陣為前提。"
+                },
+                {
+                  "id": "LA-CH02-S03-B001",
+                  "type": "concept",
+                  "title": "三類基本運算與零值",
+                  "provenance": "教材整理轉述",
+                  "markdown": "對任意兩個不同的列索引 $i\\ne j$：\n\n| 操作 | 新行列式 | 直向的行操作 |\n|---|---|---|\n| $R_i\\leftrightarrow R_j$ | $-\\det A$ | 同樣變號 |\n| $R_i\\leftarrow kR_i$ | $k\\det A$ | 同樣乘 $k$ |\n| $R_i\\leftarrow R_i+kR_j$ | $\\det A$ | 同樣不變 |\n\n倍乘公式允許 $k=0$，但「可逆的基本列運算／初等矩陣」要求 $k\\ne0$。交換 $s$ 次乘 $(-1)^s$。整個矩陣乘 $k$ 等於每一列都乘 $k$，所以 $\\det(kA)=k^n\\det A$。\n\n零列、零行、兩列相同或成倍數，均使行列式為 0。更一般地，列或行線性相依等價於行列式為 0。若兩列相同，交換後矩陣不變但行列式變號，故在特徵不為 2 的數域可直接推出零值；一般數域可由行列式的交替性得到同一結論。\n\n**計算策略：**先找相同、倍數、相依與可相減的列行，再用加倍數消去，最後對角線連乘；交換與倍乘必須記帳。見 E01、E02。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E01",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B003",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E02",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K01",
+                    "LA-CH02-S03-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B004",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K01"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B005",
+                  "type": "concept",
+                  "title": "多重線性 Multilinearity",
+                  "provenance": "教材整理轉述",
+                  "markdown": "其餘列固定，只將第 $i$ 列寫成 $\\alpha u+\\beta v$ 時：\n\n$$\\det(\\ldots,\\alpha u+\\beta v,\\ldots)=\\alpha\\det(\\ldots,u,\\ldots)+\\beta\\det(\\ldots,v,\\ldots).$$\n\n直向的行也成立。「分別線性」表示一次固定其餘位置；**不是對整個矩陣線性**。例如 $A=B=I_2$，$\\det(A+B)=4$，但 $\\det A+\\det B=2$。若有兩列都拆成兩項，通常產生四個行列式，交叉項不能省略。見 E03。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B006",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E03",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B007",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K02"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B008",
+                  "type": "concept",
+                  "title": "餘因子與錯位展開",
+                  "provenance": "教材整理轉述",
+                  "markdown": "沿第 $i$ 列展開：$\\det A=\\sum_{j=1}^n a_{ij}K_{ij}$。符號棋盤由左上角正號開始，依 $(-1)^{i+j}$ 決定。\n\n將第 $k$ 列換成第 $i$ 列，沿新矩陣第 $k$ 列展開。因為餘因子的子矩陣刪除了第 $k$ 列，故使用的餘因子仍是原矩陣的 $K_{kj}$。當 $i\\ne k$，新矩陣有相同列，得到：\n\n$$\\sum_{j=1}^n a_{ij}K_{kj}=\\begin{cases}\\det A&i=k,\\\\0&i\\ne k.\\end{cases}$$\n\n行版本為 $\\sum_{i=1}^n a_{ij}K_{ik}$，$j=k$ 時等於 $\\det A$，其餘為 0。\n\n因 $\\operatorname{adj}(A)=[K_{ji}]$，矩陣乘法第 $(i,k)$ 元素正好是上述和式，因此\n\n$$A\\operatorname{adj}(A)=\\operatorname{adj}(A)A=(\\det A)I.$$\n\n這個等式即使 $A$ 不可逆也成立；只有再除以 $\\det A$ 求反矩陣時才要求非零。見 E04。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B009",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E04",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B010",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K03"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B011",
+                  "type": "concept",
+                  "title": "轉置、乘法與反矩陣",
+                  "provenance": "教材整理轉述",
+                  "markdown": "$$\\det A^T=\\det A,\\qquad \\det(AB)=\\det A\\det B.$$\n\n因此 $\\det(AB)=\\det(BA)$，但不能推出 $AB=BA$。同理，任意有限個同階方陣的乘積，其行列式等於各自行列式的乘積。\n\n$$\\det(A^m)=(\\det A)^m\\quad(m\\ge0),\\qquad \\det(A^{-1})=\\frac1{\\det A}\\quad(A\\text{ 可逆}).$$\n\n後式由 $AA^{-1}=I$ 取行列式得出；對可逆矩陣，冪次公式也適用於負整數。$m=0$ 時 $A^0=I$，應理解右側為空乘積 1，避免將奇異矩陣的情況解讀為一般實數運算中的 $0^0$。\n\n**方法辨識：**題目只給 $\\det A,\\det B$，卻問轉置、反矩陣、乘積或冪的行列式時，先用公式拆解，不必求矩陣元素。見 E05。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B012",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E05",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B013",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K04"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B014",
+                  "type": "concept",
+                  "title": "可逆性、參數與奇數階",
+                  "provenance": "教材整理轉述",
+                  "markdown": "對 $n$ 階方陣，以下條件等價：\n\n$$A\\text{ 可逆}\\iff\\det A\\ne0\\iff\\operatorname{rank}A=n\\iff\\ker A=\\{0\\}.$$\n\n也等價於列、行皆線性獨立。含參數題先算 $d(t)=\\det A(t)$：解 $d(t)=0$ 得不可逆參數，其餘可逆。先前整理提到的因式 $(\\lambda-5)(\\lambda-1)(\\lambda-21)$ 的零點確為 $1,5,21$，但原矩陣尚缺，不能驗證它是否真的具有該行列式。見 E06。\n\n若 $AB=-BA$ 且 $n$ 是奇數，取行列式：\n\n$$\\det A\\det B=\\det(-BA)=(-1)^n\\det B\\det A=-\\det A\\det B.$$\n\n在特徵不為 2 的數域，得到 $\\det A\\det B=0$，所以至少一個不可逆。偶數階無法如此推出；例如 $A=\\operatorname{diag}(1,-1)$、$B=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$ 都可逆，卻有 $AB=-BA$。\n\n若 $A^T=-A$（斜對稱 skew-symmetric）且階數為奇數，同樣由 $\\det A=\\det A^T=\\det(-A)=-\\det A$ 得不可逆。見 E07。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B015",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E06",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B016",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E07",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B017",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K05"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B018",
+                  "type": "concept",
+                  "title": "初等矩陣 Elementary Matrix",
+                  "provenance": "教材整理轉述",
+                  "markdown": "對 $A$ 做橫向列運算，相當於左乘初等矩陣 $E$；直向行運算相當於右乘。三類初等矩陣的行列式分別為 $-1,k,1$，皆非零。\n\n若 $U=E_r\\cdots E_1A$ 是消去所得上三角矩陣，則\n\n$$\\det U=\\left(\\prod_{i=1}^r\\det E_i\\right)\\det A.$$\n\n要算原行列式，就把修正係數除回去；不能把消去後的對角線連乘不加修正就當原答案。上、下三角矩陣皆有 $\\det U=\\prod_i u_{ii}$。見 E02、E08。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B019",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E08",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B020",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K06"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B021",
+                  "type": "concept",
+                  "title": "矩陣和與乘積",
+                  "provenance": "教材整理轉述",
+                  "markdown": "若 $A$ 可逆，\n\n$$A+B=(I+BA^{-1})A=A(I+A^{-1}B).$$\n\n取行列式後，因 $\\det A\\ne0$，$A+B$ 可逆若且唯若 $I+BA^{-1}$ 可逆，也等價於 $I+A^{-1}B$ 可逆。\n\n對同階方陣，$AB$ 可逆若且唯若 $A,B$ 都可逆，因為 $\\det(AB)=\\det A\\det B$ 非零恰好表示兩個因子都非零。但不可逆矩陣的和可能可逆，例如 $\\operatorname{diag}(1,0)+\\operatorname{diag}(0,1)=I_2$。見 E12。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B022",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E12",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B023",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K09"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B024",
+                  "type": "concept",
+                  "title": "分塊三角與 Schur 補",
+                  "provenance": "教材整理 · 含編輯補充",
+                  "markdown": "令 $P$ 為 $p\\times p$、$S$ 為 $q\\times q$，$Q$ 為 $p\\times q$、$R$ 為 $q\\times p$。則\n\n$$\\det\\begin{bmatrix}P&Q\\\\0&S\\end{bmatrix}=\\det P\\det S,\\qquad\\det\\begin{bmatrix}P&0\\\\R&S\\end{bmatrix}=\\det P\\det S.$$\n\n$p,q$ 不必相等，$P,S$ 也不必可逆。此公式是對角「區塊」行列式的乘積，不是單純把所有對角區塊元素相乘。\n\n若 $P$ 可逆，左乘\n\n$$L=\\begin{bmatrix}I_p&0\\\\-RP^{-1}&I_q\\end{bmatrix},\\qquad\\det L=1,$$\n\n得到\n\n$$L\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}=\\begin{bmatrix}P&Q\\\\0&S-RP^{-1}Q\\end{bmatrix}.$$\n\n因此\n\n$$\\det\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}=\\det P\\det(S-RP^{-1}Q).$$\n\n$S-RP^{-1}Q$ 是相對於 $P$ 的 Schur 補（Schur complement）。**編輯補充：**若 $S$ 可逆，可改用 $\\det S\\det(P-QS^{-1}R)$。見 E09。\n\n若四區塊都是同階方陣，且 $PR=RP$，則有\n\n$$\\det\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}=\\det(PS-RQ).$$\n\n先假設 $P$ 可逆，由上式及乘積公式：$\\det P\\det(S-RP^{-1}Q)=\\det(PS-PRP^{-1}Q)=\\det(PS-RQ)$。最後一步使用交換條件。\n\n**編輯補充：奇異的 $P$ 如何補足證明。**在實數或複數上，把 $P$ 換為 $P+tI$；它仍與 $R$ 可交換，且除有限多個 $t$ 外均可逆。等式兩邊都是 $t$ 的多項式，無限多個 $t$ 成立，故為恆等式，代回 $t=0$ 即得一般情形。有限數域需用形式變數的多項式論證，不能直接使用「無限多個數值」這一步。\n\n特別注意原對話的排列是 $\\begin{bmatrix}A&C\\\\B&D\\end{bmatrix}$，因此條件為 $AB=BA$，結果為 $\\det(AD-BC)$。若區塊排列改為 $\\begin{bmatrix}A&B\\\\C&D\\end{bmatrix}$，對應條件應為 $AC=CA$，結果才是 $\\det(AD-CB)$；不要只背字母順序。見 E10。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B025",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E09",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B026",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E10",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B027",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K07"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B028",
+                  "type": "concept",
+                  "title": "成對分塊結構",
+                  "provenance": "教材整理轉述",
+                  "markdown": "對任意同階方陣 $A,B$，不必假設 $AB=BA$：\n\n$$\\det\\begin{bmatrix}A&B\\\\B&A\\end{bmatrix}=\\det(A+B)\\det(A-B).$$\n\n證明：將上方區塊列加上下方區塊列，得到 $\\begin{bmatrix}A+B&A+B\\\\B&A\\end{bmatrix}$；再將右方區塊行減左方區塊行，得到 $\\begin{bmatrix}A+B&0\\\\B&A-B\\end{bmatrix}$。這些操作都可拆成普通的加倍數列／行運算，故不改行列式；最後用分塊三角公式。此證法不需要除以 2。見 E11。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B029",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E11",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B030",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K08"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B031",
+                  "type": "concept",
+                  "title": "Vandermonde 行列式",
+                  "provenance": "教材整理 · 含編輯補充",
+                  "markdown": "$$V=\\begin{bmatrix}1&x_1&\\cdots&x_1^{n-1}\\\\1&x_2&\\cdots&x_2^{n-1}\\\\\\vdots&\\vdots&&\\vdots\\\\1&x_n&\\cdots&x_n^{n-1}\\end{bmatrix},\\qquad\\det V=\\prod_{1\\le i<j\\le n}(x_j-x_i).$$\n\n下標 $i<j$ 表示每一對不同索引只取一次。例如 $n=3$ 時乘 $(x_2-x_1)(x_3-x_1)(x_3-x_2)$。公式不要求數值互異才能成立；互異是行列式非零的充要條件。\n\n**編輯補充：證明主線。**視行列式為各 $x_i$ 的多項式。令 $x_i=x_j$ 時兩列相同，所以含因子 $x_j-x_i$。全部因子的總次數為 $n(n-1)/2$，與行列式的總次數相同，故僅差常數。比較單項式 $x_2x_3^2\\cdots x_n^{n-1}$ 的係數為 1，得常數為 1。轉置不變，但任意交換兩列仍會變號。見 E13。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K10"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B032",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E13",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K10"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B033",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K10"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B034",
+                  "type": "concept",
+                  "title": "三對角行列式與遞迴",
+                  "provenance": "教材整理 · 含編輯補充",
+                  "markdown": "設 $T_n$ 主對角線皆為 $a$，上副對角線皆為 $b$，下副對角線皆為 $c$，其餘為 0。令 $D_n=\\det T_n$，並定義 $D_0=1$（空行列式），$D_1=a$。\n\n沿第一列展開，第一項是 $aD_{n-1}$；第二項符號為負，刪除第一列第二行後，其子矩陣第一行只有頂端的 $c$，再展開得 $cD_{n-2}$，所以\n\n$$D_n=aD_{n-1}-bcD_{n-2}\\quad(n\\ge2).$$\n\n注意副對角線不相等時是 $bc$，不是 $b^2$。若相同皆為 $x$、主對角線為 $y$，則是 $D_n=yD_{n-1}-x^2D_{n-2}$。\n\n對話中的遞迴 $D_n=10D_{n-1}-25D_{n-2}$、$D_1=10,D_2=75$，特徵方程 $(r-5)^2=0$。重根通解 $(u+vn)5^n$，代入得 $u=v=1$，所以 $D_n=(n+1)5^n$。\n\n**編輯補充：成大候選題的解法工具。**當 $y=x$，$D_n=x^nf_n$（$x\\ne0$ 時可用除法定義），$f_0=f_1=1$、$f_n=f_{n-1}-f_{n-2}$，依序為 $1,1,0,-1,-1,0$ 並以 6 為週期。當 $y=2x$，$D_n=(n+1)x^n$。若 $x=0$，對 $n\\ge1$ 原矩陣是零矩陣，直接得 $D_n=0$，不要在推導中除以零。見 E14。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K11"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B035",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S03-E14",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K11"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S03-B036",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K11"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S03-B037",
+                  "type": "summary",
+                  "title": "考前摘要與錯誤檢查",
+                  "markdown": "### 8.1 公式速查\n\n| 辨識特徵 | 優先方法／結論 |\n|---|---|\n| 零列、倍數列、線性相依 | 行列式為 0 |\n| 一次交換、單列倍乘、加倍數 | 分別乘 $-1,k,1$ |\n| 整個 $n$ 階矩陣乘 $k$ | 乘 $k^n$ |\n| 上、下三角 | 對角線連乘 |\n| 乘積、轉置、反矩陣 | $\\det AB=\\det A\\det B$；轉置不變；反矩陣取倒數 |\n| 同位／錯位餘因子展開 | $\\det A$／0 |\n| 含參數的可逆性 | 解 $\\det A(t)=0$ 找不可逆值 |\n| 分塊三角 | 對角區塊的行列式相乘 |\n| 一般分塊且 $P$ 可逆 | Schur 補 $S-RP^{-1}Q$ |\n| 成對分塊 $[A,B;B,A]$ | $\\det(A+B)\\det(A-B)$ |\n| 冪次型列 $1,x_i,x_i^2,\\ldots$ | Vandermonde 差的連乘 |\n| 三對角 | $D_n=aD_{n-1}-bcD_{n-2}$ |\n\n### 8.2 易錯表\n\n| 錯誤 | 校正 |\n|---|---|\n| 把 $\\det(A+B)$ 拆成兩個行列式相加 | 僅對固定其他列／行後的單列／行具有線性性 |\n| 列等價就代表行列式相等 | 只保證秩相同；交換、倍乘可能改值 |\n| $\\det AB=\\det BA$ 就認為矩陣可交換 | 純量相等不表示矩陣相等 |\n| 分塊矩陣直接套 $ad-bc$ | 檢查區塊階數、排列與交換條件 |\n| 先寫 $P^{-1}$ 再看是否存在 | 必須先確認 $P$ 可逆 |\n| $\\det(-A)=-\\det A$ 不問階數 | 正確為 $(-1)^n\\det A$ |\n| 三對角遞迴第二項用加號 | 餘因子符號使它是 $-bc$ |\n| 重根遞迴只保留一個常數 | 二重根用 $(u+vn)r^n$ |\n\n### 8.3 自我檢核（無新增題目 ID，作為複習提示）\n\n能否口述三種運算的差別？能否不計算矩陣元素求乘積行列式？能否解釋錯位和式為何是 0？能否寫出 Schur 補的消去矩陣？能否辨認分塊公式需不需要交換條件？能否由三對角形狀建立遞迴而不是只背閉式？"
+                },
+                {
+                  "id": "LA-CH02-S03-B038",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH02-S03-AS01"
+                },
+                {
+                  "id": "LA-CH02-S03-B039",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "knowledgePointIds": [
+                    "LA-CH02-S03-K01",
+                    "LA-CH02-S03-K02",
+                    "LA-CH02-S03-K03",
+                    "LA-CH02-S03-K04",
+                    "LA-CH02-S03-K05",
+                    "LA-CH02-S03-K06",
+                    "LA-CH02-S03-K09",
+                    "LA-CH02-S03-K07",
+                    "LA-CH02-S03-K08",
+                    "LA-CH02-S03-K10",
+                    "LA-CH02-S03-K11"
+                  ],
+                  "prompt": "記錄錯題、出錯步驟、適用條件與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。"
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH02-S03-AS01",
+                "scope": "section",
+                "title": "2-3 小節測驗",
+                "questionIds": [
+                  "LA-CH02-S03-Q01",
+                  "LA-CH02-S03-Q02",
+                  "LA-CH02-S03-Q03",
+                  "LA-CH02-S03-Q04",
+                  "LA-CH02-S03-Q05",
+                  "LA-CH02-S03-H01",
+                  "LA-CH02-S03-H02"
+                ],
+                "totalPoints": 40,
+                "scoringNote": "選擇題各 4 分，手寫題各 10 分，共 40 分；手寫對照詳解自評。",
+                "sourceId": "LA-C02-S03-A01"
+              }
+            },
+            {
+              "id": "LA-CH02-S04",
+              "title": "2-4 古典伴隨矩陣與克拉瑪法則",
+              "sourceSectionId": "la-ch02-s04",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得七張原圖；例23、例7的矩陣依文字轉述，原例號待核。原例28缺少矩陣未重建，另以自編例題練習。前文標成不可逆的矩陣已更正，其行列式為 −94，實際可逆。教材轉錄、編輯補充與自編例題分開標示；考古題候選尚未核實，不列入正式題庫。",
+              "knowledgePointIds": [
+                "LA-CH02-S04-K01",
+                "LA-CH02-S04-K02",
+                "LA-CH02-S04-K03",
+                "LA-CH02-S04-K04",
+                "LA-CH02-S04-K05",
+                "LA-CH02-S04-K06",
+                "LA-CH02-S04-K07",
+                "LA-CH02-S04-K08"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH02-S04-B-INTRO",
+                  "type": "concept",
+                  "title": "符號與閱讀約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "本稿採臺灣教材用語：列 row（橫向）、行 column（直向），首次出現並附英文，避免與其他地區用語混淆。\n\n本節以 $M_{ij}$ 表示子行列式（純量）、$C_{ij}$ 表示餘因子；前節的餘因子 $K_{ij}$ 在此對應為 $C_{ij}$。"
+                },
+                {
+                  "id": "LA-CH02-S04-B001",
+                  "type": "concept",
+                  "title": "從餘因子建立伴隨矩陣",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "設 $A=[a_{ij}]$ 為 $n\\times n$ 方陣；$a_{ij}$ 表示第 $i$ 列、第 $j$ 行元素。$A^T$ 是轉置（transpose），將列、行交換。刪除第 $i$ 列、第 $j$ 行後，剩餘矩陣的行列式為子行列式（minor）$M_{ij}$。餘因子（cofactor）定義為\n\n$$C_{ij}=(-1)^{i+j}M_{ij}.$$\n\n正負號由 $i+j$ 的奇偶決定：偶數為正、奇數為負。三階符號依序為第一列 $+,-,+$；第二列 $-,+,-$；第三列 $+,-,+$。\n\n古典伴隨矩陣（classical adjugate）是餘因子矩陣的轉置：\n\n$$\\operatorname{adj}(A)=[C_{ij}]^T=[C_{ji}].$$\n\n第 $(i,j)$ 位置應放 $C_{ji}$，不能只把所有餘因子原位排好就停止。它與複數矩陣的共軛轉置（常記 $A^*$）是不同運算。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E01",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B003",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K01"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B004",
+                  "type": "concept",
+                  "title": "核心恆等式",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "$I_n$ 表示對角為1、其他為0的單位矩陣；$\\det(A)$ 表示行列式。對所有方陣均有\n\n$$A\\operatorname{adj}(A)=\\operatorname{adj}(A)A=\\det(A)I_n.$$\n\n證明第一個乘積：矩陣乘法第 $(i,j)$ 項為\n\n$$[A\\operatorname{adj}(A)]_{ij}=\\sum_{k=1}^{n}a_{ik}C_{jk}.$$\n\n$\\sum$（sigma）代表把 $k=1,2,\\ldots,n$ 的項逐項相加；例如三階時就是 $a_{i1}C_{j1}+a_{i2}C_{j2}+a_{i3}C_{j3}$。\n\n若 $i=j$，正好是沿第 $i$ 列的餘因子展開，等於 $\\det(A)$。若 $i\\ne j$，把 $A$ 的第 $j$ 列改成原第 $i$ 列；刪除第 $j$ 列所得子行列式不變，故上述和式就是新矩陣沿第 $j$ 列的展開。新矩陣有兩列相同，行列式為0。這證明乘積對角為 $\\det(A)$，其餘為0。右乘的等式同理由行（column）展開證明。\n\n此處沒有除法，因此 $\\det(A)=0$ 時依然成立，乘積為零矩陣。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B005",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E02",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B006",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K02"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B007",
+                  "type": "concept",
+                  "title": "反矩陣公式",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "若且唯若 $\\det(A)\\ne0$，矩陣可逆（invertible），此時核心式可除以非零純量：\n\n$$A^{-1}=\\frac{\\operatorname{adj}(A)}{\\det(A)}.$$\n\n操作：先算行列式判斷可逆，再算餘因子、轉置、除以行列式。對二階矩陣有\n\n$$A=\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix},\\quad \\operatorname{adj}(A)=\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}.$$\n\n「對角交換，非對角變號」只適用二階；不可直接套在三階。行列式為零時伴隨仍有定義，反矩陣沒有定義。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B008",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E03",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B009",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K03"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B010",
+                  "type": "concept",
+                  "title": "性質與適用條件",
+                  "provenance": "教材整理 · 含補充延伸",
+                  "markdown": "以下 $n\\ge2$，$A,B$ 為同階方陣。\n\n| 性質 | 公式 | 限制 |\n|---|---|---|\n| 行列式 | $\\det(\\operatorname{adj}A)=\\det(A)^{n-1}$ | 可含奇異矩陣 |\n| 轉置 | $\\operatorname{adj}(A^T)=\\operatorname{adj}(A)^T$ | 無可逆要求 |\n| 乘積 | $\\operatorname{adj}(AB)=\\operatorname{adj}(B)\\operatorname{adj}(A)$ | 順序反轉，無可逆要求 |\n| 純量（補充） | $\\operatorname{adj}(cA)=c^{n-1}\\operatorname{adj}(A)$ | 每個餘因子為 $n-1$ 階行列式 |\n| 可逆等價 | $A$ 可逆 $\\iff\\operatorname{adj}(A)$ 可逆 | $n\\ge2$ |\n\n可逆時對核心式取行列式：$\\det(A)\\det(\\operatorname{adj}A)=\\det(A)^n$，約去非零的 $\\det(A)$ 即得公式。若奇異，不能約分：當秩不超過 $n-2$，全部 $n-1$ 階子行列式為0；當秩等於 $n-1$，由核心式知伴隨的每個行向量都在一維零空間中，故伴隨的秩至多1。兩種情況的伴隨皆奇異（$n\\ge2$），行列式為0。\n\n轉置性質由子行列式轉置不改行列式可得。若兩矩陣可逆，乘積性質由\n\n$$\\operatorname{adj}(AB)=\\det(A)\\det(B)B^{-1}A^{-1}$$\n\n依序分組而得。對奇異情況，兩側的每一元素都是矩陣元素的多項式；在實數或複數域，可用可逆矩陣逼近，再由多項式連續性得到同一恆等式。以上將「可逆時的推導」與「奇異時的補充論證」分開，不以反矩陣代替不存在的運算。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B011",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E04",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B012",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K04"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B013",
+                  "type": "concept",
+                  "title": "逆矩陣與重複伴隨",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "可逆時 $\\operatorname{adj}(A)=\\det(A)A^{-1}$，因此\n\n$$\\operatorname{adj}(A^{-1})=\\det(A)^{-1}A=\\operatorname{adj}(A)^{-1}.$$\n\n再次取伴隨，利用純量公式與前式：\n\n$$\\operatorname{adj}(\\operatorname{adj}(A))=\\det(A)^{n-1}\\operatorname{adj}(A^{-1})=\\det(A)^{n-2}A.$$\n\n$n\\ge2$ 時此式亦可透過多項式恆等式延伸到奇異矩陣。特別是 $n=2$，直接有 $\\operatorname{adj}(\\operatorname{adj}A)=A$，不需要在 $\\det(A)=0$ 時討論 $0^0$。\n\n若已知 $B=\\operatorname{adj}(A)$ 且 $B$ 可逆，則先由 $\\det B=\\det(A)^{n-1}$ 求出可能的 $\\det A$，再由 $A=\\det(A)B^{-1}$ 還原。實數域中，$n=4$ 的次方是3，實立方根唯一；$n=3$ 的次方是2，可能存在正負兩種，不能默認唯一。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B014",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E05",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B015",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K05"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B016",
+                  "type": "concept",
+                  "title": "不可逆時，伴隨不一定為零",
+                  "provenance": "教材整理 · 含補充延伸",
+                  "markdown": "例如 $A=\\operatorname{diag}(1,0)$，$\\operatorname{diag}$ 表示只把所列數字放在主對角，其餘為0。此時 $\\operatorname{adj}(A)=\\operatorname{diag}(0,1)\\ne0$，但兩者均不可逆。\n\n**額外補充：秩分類。** 秩（rank）是線性獨立行向量數目的最大值；$\\ker A=\\{x:Ax=0\\}$ 為零空間。\n\n| $\\operatorname{rank}A$ | $\\operatorname{rank}(\\operatorname{adj}A)$ | 原因 |\n|---|---:|---|\n| $n$ | $n$ | 伴隨可逆 |\n| $n-1$ | 1 | 至少一個 $n-1$ 階子行列式非零；各行向量皆落在一維零空間 |\n| $\\le n-2$ | 0 | 所有 $n-1$ 階子行列式皆為0 |\n\n此分類假設 $n\\ge2$。延伸理解：秩為 $n-1$ 時，伴隨的非零行向量提供 $Ax=0$ 的解方向。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B017",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E06",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B018",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K06"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B019",
+                  "type": "concept",
+                  "title": "克拉瑪法則（Cramer's rule）",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "考慮方形方程組 $Ax=b$，$a_i$ 表示 $A$ 的第 $i$ 行（column），所以\n\n$$A=[a_1\\ \\cdots\\ a_n],\\quad b=x_1a_1+\\cdots+x_na_n.$$\n\n令 $\\Delta=\\det A$；$A_i(b)$ 表示將第 $i$ 行整行替換成 $b$，其餘行不變；$\\Delta_i=\\det A_i(b)$。若 $\\Delta\\ne0$，唯一解為\n\n$$x_i=\\frac{\\Delta_i}{\\Delta}.$$\n\n推導：將第 $i$ 行的 $b$ 展為上面的線性組合；行列式對這一行線性，所以分成 $n$ 項。來自 $a_k$ 且 $k\\ne i$ 的項會與原第 $k$ 行重複，行列式為0；只有 $x_i a_i$ 一項留下，得到 $\\Delta_i=x_i\\Delta$，再除以非零 $\\Delta$。\n\n若 $\\Delta=0$，不能使用比值。若有某個 $\\Delta_i\\ne0$，由「任何解皆須滿足 $\\Delta_i=x_i\\Delta$」可知無解；但所有 $\\Delta_i=0$ 並不足以保證相容，仍須消去法。例：$A=0_{2\\times2}$、$b=(1,0)^T$，所有替換行列式都是0，系統仍無解。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B020",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E07",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B021",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K07"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B022",
+                  "type": "concept",
+                  "title": "參數方程組",
+                  "provenance": "教材整理 · 含補充延伸",
+                  "markdown": "先找 $\\det A=0$ 的參數值；非奇異區用克拉瑪法則或消去法求唯一解；各奇異值必須代回原方程。\n\n**補充判斷工具：** 增廣矩陣 $[A\\mid b]$ 是將 $b$ 接在係數矩陣右側。若 $\\operatorname{rank}A<\\operatorname{rank}[A\\mid b]$，無解；若兩者秩相同且小於未知數個數，在實數域有無限多解。\n\n消去／約分後的公式可能可在奇異點算出某個解，但不代表該點有唯一解。前文的「不可直接代入」應精確理解為「不可用代入後的值宣稱唯一解」。",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B023",
+                  "type": "example",
+                  "exampleId": "LA-CH02-S04-E08",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH02-S04-B024",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K08"
+                  ],
+                  "prompt": "對照上方觀念，先遮住詳解，自行寫出推導、適用條件與驗算。"
+                },
+                {
+                  "id": "LA-CH02-S04-B025",
+                  "type": "summary",
+                  "title": "考前摘要與錯誤檢查",
+                  "markdown": "- 伴隨等於餘因子矩陣轉置；不是直接轉置原矩陣。\n- 核心式所有方陣都成立；求逆與克拉瑪比值需要行列式非零。\n- $\\det(\\operatorname{adj}A)$ 的次方是 $n-1$；重複伴隨的次方是 $n-2$。\n- 乘積伴隨順序反轉；二階速算法不能套三階。\n- 奇異不等於伴隨為零；參數分式約分不能保證奇異點唯一解。\n- 克拉瑪替換 column；所有替換行列式為零不保證有解。\n\n### 自我檢核\n\n能否不用背誦解釋轉置？能否用三項相加解讀 $\\Sigma$？能否證明非對角項為0？能否說明分母為0後要做什麼？請先作答A01，再檢視答案區。"
+                },
+                {
+                  "id": "LA-CH02-S04-B026",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH02-S04-AS01"
+                },
+                {
+                  "id": "LA-CH02-S04-B027",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "knowledgePointIds": [
+                    "LA-CH02-S04-K01",
+                    "LA-CH02-S04-K02",
+                    "LA-CH02-S04-K03",
+                    "LA-CH02-S04-K04",
+                    "LA-CH02-S04-K05",
+                    "LA-CH02-S04-K06",
+                    "LA-CH02-S04-K07",
+                    "LA-CH02-S04-K08"
+                  ],
+                  "prompt": "記錄錯題、出錯步驟、適用條件與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。"
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH02-S04-AS01",
+                "scope": "section",
+                "title": "2-4 小節測驗",
+                "questionIds": [
+                  "LA-CH02-S04-Q01",
+                  "LA-CH02-S04-Q02",
+                  "LA-CH02-S04-Q03",
+                  "LA-CH02-S04-Q04",
+                  "LA-CH02-S04-Q05",
+                  "LA-CH02-S04-Q06",
+                  "LA-CH02-S04-Q07"
+                ],
+                "totalPoints": 100,
+                "scoringNote": "選擇題各 8 分，手寫題各 30 分，共 100 分；手寫對照詳解自評。",
+                "sourceId": "la-ch02-s04-A01"
+              }
+            }
+          ]
         }
       ],
       "sourceSubjectId": "LA"
@@ -6528,6 +7724,738 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 自編模擬題"
       }
+    },
+    {
+      "id": "LA-CH02-S01-Q101",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S01",
+      "title": "線性代數 2-1 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "$\\det\\begin{bmatrix}2&-1\\\\3&4\\end{bmatrix}=$？",
+      "options": [
+        "5",
+        "−11",
+        "11",
+        "−5。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K01"
+      ],
+      "tags": [
+        "矩陣與行列式不同"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-Q102",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S01",
+      "title": "線性代數 2-1 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "二階 $\\det A=5$，$\\det(2A)=$？",
+      "options": [
+        "20",
+        "10",
+        "5",
+        "25。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K03"
+      ],
+      "tags": [
+        "單列縮放與整體縮放"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-Q103",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S01",
+      "title": "線性代數 2-1 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "已知 $\\det[u;w]=4,\\det[v;w]=1$，$\\det[u-3v;w]=$？",
+      "options": [
+        "7",
+        "−1",
+        "3",
+        "1。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K02"
+      ],
+      "tags": [
+        "固定其餘列時的線性"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-Q104",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S01",
+      "title": "線性代數 2-1 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "哪個矩陣行列式為0？",
+      "options": [
+        "$\\begin{bmatrix}1&0\\\\0&1\\end{bmatrix}$",
+        "$\\begin{bmatrix}2&4\\\\1&2\\end{bmatrix}$",
+        "$\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$",
+        "$\\begin{bmatrix}1&1\\\\1&0\\end{bmatrix}$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K04"
+      ],
+      "tags": [
+        "相同列、比例列、零列"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-Q105",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S01",
+      "title": "線性代數 2-1 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "下列何者正確？",
+      "options": [
+        "每個矩陣都有行列式",
+        "二階 $\\det A=0$ 則 $A=0$",
+        "固定其餘列時，對一列具有線性",
+        "$\\det(A+B)=\\det A+\\det B$ 恆成立。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K01",
+        "LA-CH02-S01-K02"
+      ],
+      "tags": [
+        "矩陣與行列式不同",
+        "固定其餘列時的線性"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-Q106",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S01",
+      "title": "線性代數 2-1 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "$A=\\begin{bmatrix}-2&3\\\\4&1\\end{bmatrix}$。求 $\\det A$，並比較僅第二列乘−2與整體乘−2時的行列式。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K01",
+        "LA-CH02-S01-K03"
+      ],
+      "tags": [
+        "矩陣與行列式不同",
+        "單列縮放與整體縮放"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-Q107",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S01",
+      "title": "線性代數 2-1 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "用二階定義證明 $\\det[u+kv;w]=\\det[u;w]+k\\det[v;w]$，並給出整體加法線性不成立的反例。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K02"
+      ],
+      "tags": [
+        "固定其餘列時的線性"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-Q201",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S02",
+      "title": "線性代數 2-2 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "若 $M_{23}=-4$，則 $C_{23}=$？",
+      "options": [
+        "−4",
+        "4",
+        "0",
+        "−1。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K01"
+      ],
+      "tags": [
+        "子矩陣、子式、餘因子"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-Q202",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S02",
+      "title": "線性代數 2-2 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "$\\det\\begin{bmatrix}-2&7&1\\\\0&3&5\\\\0&0&4\\end{bmatrix}=$？",
+      "options": [
+        "24",
+        "−9",
+        "5",
+        "−24。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K04"
+      ],
+      "tags": [
+        "三角矩陣"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-Q203",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S02",
+      "title": "線性代數 2-2 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "最適合直接展開的位置為何？$A=\\begin{bmatrix}1&2&0&3\\\\0&0&5&0\\\\2&1&0&4\\\\3&2&0&1\\end{bmatrix}$",
+      "options": [
+        "第二列",
+        "第一列",
+        "第一行（縱向）",
+        "第四列。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K02"
+      ],
+      "tags": [
+        "Laplace展開"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-Q204",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S02",
+      "title": "線性代數 2-2 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "對任意三階矩陣何者恆成立？",
+      "options": [
+        "$\\det(-A)=\\det A$",
+        "$\\sum_j a_{1j}C_{2j}=\\det A$",
+        "$\\det(A^T)=\\det A$",
+        "行列式等於主對角乘積。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K03",
+        "LA-CH02-S02-K05"
+      ],
+      "tags": [
+        "多重線性與轉置",
+        "不同列的元素與餘因子配對"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-Q205",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S02",
+      "title": "線性代數 2-2 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "$W=\\begin{vmatrix}x&1\\\\x^2&x\\end{vmatrix}$，$W'=$？",
+      "options": [
+        "2x",
+        "0",
+        "2",
+        "$x^2$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K06"
+      ],
+      "tags": [
+        "函數行列式的微分"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-Q206",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S02",
+      "title": "線性代數 2-2 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "沿第二列計算 $\\det\\begin{bmatrix}1&2&0\\\\0&3&4\\\\2&0&5\\end{bmatrix}$，列出所有非零項的子式和餘因子。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K01",
+        "LA-CH02-S02-K02"
+      ],
+      "tags": [
+        "子矩陣、子式、餘因子",
+        "Laplace展開"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-Q207",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S02",
+      "title": "線性代數 2-2 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "對 $W=\\det\\begin{bmatrix}f_1&f_2&f_3\\\\f'_1&f'_2&f'_3\\\\f''_1&f''_2&f''_3\\end{bmatrix}$，假設函數三次可微。逐項推導 $W'$，說明哪兩項為0、為何；再用 $f_1=1,f_2=x,f_3=x^2$ 驗證。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K06"
+      ],
+      "tags": [
+        "函數行列式的微分"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-Q01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S03",
+      "title": "線性代數 2-3 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "$A$ 為四階方陣，$\\det A=-3$。求 $\\det(-2A)$。",
+      "options": [
+        "$6$",
+        "$-48$",
+        "$48$",
+        "$-6$"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K01",
+        "LA-CH02-S03-K04"
+      ],
+      "tags": [
+        "三類基本運算與零值",
+        "轉置、乘法與反矩陣"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-Q02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S03",
+      "title": "線性代數 2-3 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "以下何者對所有實數同階方陣 $A,B$ 均成立？",
+      "options": [
+        "$\\det(A+B)=\\det A+\\det B$",
+        "若 $A,B$ 列等價，則 $\\det A=\\det B$",
+        "$\\det(AB)=\\det(BA)$",
+        "$\\det A=\\det B$ 可推出 $A=B$"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K01",
+        "LA-CH02-S03-K02"
+      ],
+      "tags": [
+        "三類基本運算與零值",
+        "多重線性 Multilinearity"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-Q03",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S03",
+      "title": "線性代數 2-3 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "$A$ 為三階方陣，$K_{ij}$ 是其餘因子。下列何者必為 0？",
+      "options": [
+        "$\\sum_{j=1}^3a_{2j}K_{2j}$",
+        "$\\sum_{j=1}^3a_{1j}K_{1j}$",
+        "$\\sum_{i=1}^3a_{i3}K_{i3}$",
+        "$\\sum_{j=1}^3a_{1j}K_{2j}$"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K03"
+      ],
+      "tags": [
+        "餘因子與錯位展開"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-Q04",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S03",
+      "title": "線性代數 2-3 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$P$ 可逆，$M=\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}$ 的大小相容。哪一個公式必成立？",
+      "options": [
+        "$\\det M=\\det P\\det(S-RP^{-1}Q)$",
+        "$\\det M=\\det P\\det(S-QP^{-1}R)$",
+        "$\\det M=\\det P+\\det S$",
+        "不需交換條件，永遠有 $\\det M=\\det(PS-RQ)$"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K07"
+      ],
+      "tags": [
+        "分塊三角與 Schur 補"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-Q05",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S03",
+      "title": "線性代數 2-3 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "$D_n$ 為主對角線全為 3、上下副對角線全為 1 的 $n$ 階三對角行列式。何者正確？",
+      "options": [
+        "$D_2=10$",
+        "$D_n=3D_{n-1}+D_{n-2}$",
+        "$D_0=1,D_1=3,D_n=3D_{n-1}-D_{n-2}$",
+        "$D_n=3^n$"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K11"
+      ],
+      "tags": [
+        "三對角行列式與遞迴"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-H01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S03",
+      "title": "線性代數 2-3 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "用基本列運算計算\n\n$$\\det\\begin{bmatrix}1&2&1\\\\2&5&3\\\\0&1&2\\end{bmatrix}.$$\n\n須標示每一步是否改變行列式，並判斷矩陣是否可逆。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K01",
+        "LA-CH02-S03-K06"
+      ],
+      "tags": [
+        "三類基本運算與零值",
+        "初等矩陣 Elementary Matrix"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-H02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S03",
+      "title": "線性代數 2-3 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "設 $A,B$ 為實數奇數階方陣，且 $AB=-BA$。證明至少一個不可逆，並用二階反例說明偶數階不能直接使用同一結論。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K05"
+      ],
+      "tags": [
+        "可逆性、參數與奇數階"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-Q01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S04",
+      "title": "線性代數 2-4 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "若 $C=[C_{ij}]$ 為 $A$ 的餘因子矩陣，下列哪個等於 $\\operatorname{adj}A$？",
+      "options": [
+        "$C$",
+        "$C^T$",
+        "$A^T$",
+        "$A^{-1}$（不附可逆條件）"
+      ],
+      "points": 8,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K01"
+      ],
+      "tags": [
+        "從餘因子建立伴隨矩陣"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-Q02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S04",
+      "title": "線性代數 2-4 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "$A$ 為三階方陣且 $\\det A=0$，哪項必成立？",
+      "options": [
+        "$A^{-1}=0$",
+        "$\\operatorname{adj}A=0$",
+        "$\\operatorname{rank}A=0$",
+        "$A\\operatorname{adj}A=0$"
+      ],
+      "points": 8,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K02",
+        "LA-CH02-S04-K03"
+      ],
+      "tags": [
+        "核心恆等式",
+        "反矩陣公式"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-Q03",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S04",
+      "title": "線性代數 2-4 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "若 $A$ 為四階方陣且 $\\det A=-2$，則 $\\det(\\operatorname{adj}A)$ 為何？",
+      "options": [
+        "$-8$",
+        "$4$",
+        "$16$",
+        "$-2$"
+      ],
+      "points": 8,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K04"
+      ],
+      "tags": [
+        "性質與適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-Q04",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S04",
+      "title": "線性代數 2-4 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "方程組 $Ax=b$ 為三階，已知 $\\Delta=0$ 且所有 $\\Delta_i=0$，可作何判斷？",
+      "options": [
+        "必唯一解",
+        "必無解",
+        "尚須檢查相容性",
+        "必無限多解"
+      ],
+      "points": 8,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K07"
+      ],
+      "tags": [
+        "克拉瑪法則（Cramer's rule）"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-Q05",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S04",
+      "title": "線性代數 2-4 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "三階矩陣 $A$ 的秩為2，下列何者正確？",
+      "options": [
+        "$\\operatorname{adj}A$ 的秩為2",
+        "$\\operatorname{adj}A$ 的秩為1",
+        "$\\operatorname{adj}A=0$",
+        "$\\operatorname{adj}(\\operatorname{adj}A)=I_3$"
+      ],
+      "points": 8,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K05",
+        "LA-CH02-S04-K06"
+      ],
+      "tags": [
+        "逆矩陣與重複伴隨",
+        "不可逆時，伴隨不一定為零"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-Q06",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S04",
+      "title": "線性代數 2-4 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "對 $A=\\begin{bmatrix}1&2&0\\\\0&1&0\\\\0&0&3\\end{bmatrix}$，求 $\\det A$、全部餘因子、$\\operatorname{adj}A$ 與 $A^{-1}$，並驗證 $A\\operatorname{adj}A=\\det(A)I_3$。",
+      "points": 30,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K01",
+        "LA-CH02-S04-K02",
+        "LA-CH02-S04-K03"
+      ],
+      "tags": [
+        "從餘因子建立伴隨矩陣",
+        "核心恆等式",
+        "反矩陣公式"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-Q07",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH02",
+      "sectionId": "LA-CH02-S04",
+      "title": "線性代數 2-4 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "討論實參數 $t$ 下 $x+y=2$、$x+ty=3$ 的解，非奇異時用克拉瑪法則求解；奇異時說明相容性。另證明一般方形系統若有解，即使 $\\Delta=0$，仍須滿足 $\\Delta_i=x_i\\Delta$。",
+      "points": 30,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K07",
+        "LA-CH02-S04-K08"
+      ],
+      "tags": [
+        "克拉瑪法則（Cramer's rule）",
+        "參數方程組"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
     }
   ],
   "examples": [
@@ -7869,6 +9797,468 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 自編模擬例題"
       }
+    },
+    {
+      "id": "LA-CH02-S01-EX001",
+      "title": "例題 001",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K01"
+      ],
+      "text": "求 $\\det\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$。",
+      "source": {
+        "kind": "material",
+        "title": "教材轉錄待核 · 原圖尚未確認",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-EX002",
+      "title": "例題 002",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K01"
+      ],
+      "text": "求 $\\det\\begin{bmatrix}-7&4\\\\-3&6\\end{bmatrix}$。",
+      "source": {
+        "kind": "material",
+        "title": "教材轉錄待核 · 原圖尚未確認",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-EX003",
+      "title": "例題 003",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K02"
+      ],
+      "text": "已知 $\\det[u;w]=3,\\det[v;w]=-2$，求 $\\det[2u-v;w]$；分號表示換列。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-EX004",
+      "title": "例題 004",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K03"
+      ],
+      "text": "二階 $\\det(A)=-2$。僅第一列乘3得 $B$，求 $\\det(B)$ 與 $\\det(3A)$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S01-EX005",
+      "title": "例題 005",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S01-K04"
+      ],
+      "text": "求 $\\det\\begin{bmatrix}6&8\\\\3&4\\end{bmatrix}$，先辨識結構。",
+      "source": {
+        "kind": "material",
+        "title": "教材轉錄待核 · 原圖尚未確認",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX006",
+      "title": "例題 006",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K01"
+      ],
+      "text": "$A=\\begin{bmatrix}1&2&3\\\\0&4&5\\\\1&0&6\\end{bmatrix}$，求 $A_{12},M_{12},C_{12}$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX007",
+      "title": "例題 007",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K02"
+      ],
+      "text": "求 $\\det\\begin{bmatrix}0&1&3\\\\-2&-3&-5\\\\4&-4&4\\end{bmatrix}$。",
+      "source": {
+        "kind": "material",
+        "title": "教材轉錄待核 · 原圖尚未確認",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX008",
+      "title": "例題 008",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K02"
+      ],
+      "text": "求 $\\det\\begin{bmatrix}2&0&0&0\\\\1&3&4&0\\\\0&0&5&0\\\\2&1&0&-1\\end{bmatrix}$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX009",
+      "title": "例題 009",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K03"
+      ],
+      "text": "$A$ 為三階且 $\\det A=2$，求 $\\det(A^T),\\det(-A)$；再以 $I_2$ 反駁行列式整體加法線性。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX010",
+      "title": "例題 010",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K04"
+      ],
+      "text": "求 $\\det\\begin{bmatrix}2&0&0\\\\3&-1&0\\\\5&7&4\\end{bmatrix}$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX011",
+      "title": "例題 011",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K05"
+      ],
+      "text": "對 $A=\\begin{bmatrix}1&2&3\\\\0&4&5\\\\1&0&6\\end{bmatrix}$計算 $\\sum_{j=1}^3 a_{1j}C_{2j}$ 並解釋原因。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX012",
+      "title": "例題 012",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K06"
+      ],
+      "text": "令 $W(x)=\\det\\begin{bmatrix}x&x^2\\\\1&3x\\end{bmatrix}$，用逐列微分法求 $W'$ 並直接展開驗算。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S02-EX013",
+      "title": "例題 013",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S02-K06"
+      ],
+      "text": "令 $W=\\det\\begin{bmatrix}1&x&x^2\\\\0&1&2x\\\\0&0&2\\end{bmatrix}$，求 $W'$，說明消去項。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E01",
+      "title": "例題 01",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K01"
+      ],
+      "text": "$A=\\begin{bmatrix}1&2&3\\\\2&4&6\\\\0&1&1\\end{bmatrix}$，不展開行列式，判斷可逆性並說明原因。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E02",
+      "title": "例題 02",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K01",
+        "LA-CH02-S03-K06"
+      ],
+      "text": "用基本列運算求 $\\det\\begin{bmatrix}0&2&1\\\\1&1&0\\\\2&3&4\\end{bmatrix}$，逐步記錄行列式變化。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E03",
+      "title": "例題 03",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K02"
+      ],
+      "text": "$D(t)=\\det\\begin{bmatrix}1+t&2+3t\\\\4&5\\end{bmatrix}$。只拆第一列求 $D(t)$，並說明為何不代表整個矩陣具有加法線性。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E04",
+      "title": "例題 04",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K03"
+      ],
+      "text": "$A=\\begin{bmatrix}1&2&0\\\\0&3&1\\\\2&0&1\\end{bmatrix}$。求 $K_{21},K_{22},K_{23}$，並計算 $\\sum_{j=1}^3a_{1j}K_{2j}$、$\\sum_{j=1}^3a_{2j}K_{2j}$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E05",
+      "title": "例題 05",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K04"
+      ],
+      "text": "$A,B$ 為三階方陣，$\\det A=2,\\det B=-1$。求 $\\det\\bigl(2(A^{-1})^TB^3\\bigr)$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E06",
+      "title": "例題 06",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K05"
+      ],
+      "text": "$A(t)=\\begin{bmatrix}t&1\\\\2&t-1\\end{bmatrix}$，何時不可逆？",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E07",
+      "title": "例題 07",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K05"
+      ],
+      "text": "在實數上證明：奇數階斜對稱矩陣必不可逆。指出奇數階條件用在哪一步。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E08",
+      "title": "例題 08",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K06"
+      ],
+      "text": "已知 $\\det A=6$。先交換兩列，再把某一列乘 3，最後將一列加上另一列的 5 倍，所得為 $U$。求 $\\det U$；若 $U$ 是三角矩陣，其對角線乘積為何？",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E09",
+      "title": "例題 09",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K07"
+      ],
+      "text": "$M=\\begin{bmatrix}2&0&1\\\\0&3&1\\\\1&2&4\\end{bmatrix}$。用左上 $2\\times2$ 區塊的 Schur 補求 $\\det M$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E10",
+      "title": "例題 10",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K07"
+      ],
+      "text": "設 $P=\\operatorname{diag}(1,2)$、$R=\\operatorname{diag}(3,4)$、$Q=I_2$、$S=\\operatorname{diag}(5,6)$。求 $\\det\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}$，並寫出可用分塊乘差公式的條件。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E11",
+      "title": "例題 11",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K08"
+      ],
+      "text": "$A=\\operatorname{diag}(2,3)$、$B=I_2$，求 $\\det\\begin{bmatrix}A&B\\\\B&A\\end{bmatrix}$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E12",
+      "title": "例題 12",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K09"
+      ],
+      "text": "$A=\\operatorname{diag}(1,2)$、$B=\\operatorname{diag}(t,-2)$。利用 $I+BA^{-1}$ 判斷 $A+B$ 是否可逆。另舉兩個不可逆矩陣，其和可逆。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E13",
+      "title": "例題 13",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K10"
+      ],
+      "text": "求 $\\det\\begin{bmatrix}1&1&1\\\\1&2&4\\\\1&4&16\\end{bmatrix}$。若交換前兩列，答案如何改變？",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S03-E14",
+      "title": "例題 14",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S03-K11"
+      ],
+      "text": "主對角線為 10、上下副對角線為 5 的 $n$ 階三對角矩陣，求行列式閉式。須寫遞迴、初值及重根求解。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編模擬例題"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E01",
+      "title": "例題 01",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K01"
+      ],
+      "text": "求 $A=\\begin{bmatrix}3&-2&1\\\\5&6&2\\\\1&0&-3\\end{bmatrix}$ 的餘因子矩陣及古典伴隨矩陣。",
+      "source": {
+        "kind": "material",
+        "title": "原教材轉述，例23編號待核",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E02",
+      "title": "例題 02",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K02"
+      ],
+      "text": "對 $A=\\begin{bmatrix}3&-2&1\\\\5&6&2\\\\1&0&-3\\end{bmatrix}$，求 $\\det A$，並用核心恆等式檢查伴隨矩陣。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編驗證，沿用E01數據"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E03",
+      "title": "例題 03",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K03"
+      ],
+      "text": "求 $D=\\begin{bmatrix}2&1\\\\3&2\\end{bmatrix}$ 的伴隨及反矩陣。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E04",
+      "title": "例題 04",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K04"
+      ],
+      "text": "$A,B$ 為三階方陣，$\\det A=2$、$\\det B=-3$。求 $\\det(\\operatorname{adj}A)$、$\\operatorname{adj}(2A)$ 與 $\\det(\\operatorname{adj}(AB))$，並寫出 $\\operatorname{adj}(AB)$ 的乘法順序。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E05",
+      "title": "例題 05",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K05"
+      ],
+      "text": "在實數域，$A$ 為四階方陣，已知 $\\operatorname{adj}A=2I_4$，求 $A$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編，非原例28"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E06",
+      "title": "例題 06",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K06"
+      ],
+      "text": "分別求 $\\operatorname{diag}(1,1,0)$ 與 $\\operatorname{diag}(1,0,0)$ 的伴隨及其秩。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E07",
+      "title": "例題 07",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K07"
+      ],
+      "text": "用克拉瑪法則解 $2x+y=5$、$x-y=1$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH02-S04-E08",
+      "title": "例題 08",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH02-S04-K08"
+      ],
+      "text": "討論實參數 $a$ 下方程組的解：\n\n$$x_1+x_2+ax_3=1,\\quad x_1+ax_2+x_3=3,\\quad ax_1+x_2+x_3=2a.$$\n\n分別找出唯一解、無解與無限多解時的條件及完整解。",
+      "source": {
+        "kind": "material",
+        "title": "原教材轉述，例7編號待核",
+        "verificationStatus": "pending_original"
+      }
     }
   ],
   "knowledgePoints": [
@@ -8575,6 +10965,209 @@ window.ZILIU_CONTENT = {
       "difficulty": 3,
       "provenance": "教材整理",
       "markdown": "| 性質 | 敘述 |\n|---|---|\n| 遞移性 | $f=\\Theta(g),g=\\Theta(h)\\Rightarrow f=\\Theta(h)$；$O,\\Omega$ 也有遞移性 |\n| 反身性 | $f=\\Theta(f)$，也有 $f=O(f),f=\\Omega(f)$ |\n| 對稱性 | $f=\\Theta(g)\\iff g=\\Theta(f)$ |\n| 轉置對稱性 | $f=O(g)\\iff g=\\Omega(f)$ |"
+    },
+    {
+      "id": "LA-CH02-S01-K01",
+      "title": "矩陣與行列式不同",
+      "difficulty": 1,
+      "markdown": "矩陣是一個數值陣列；行列式是對方陣定義的純量函數。非方陣在本課程不定義行列式。\n\n對 $A=\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}$，\n\n$$\\det(A)=ad-bc.$$\n\n先算左上乘右下，再減右上乘左下。二階公式同時也是高階遞迴計算的基礎。可逆性連結為 $A$ 可逆當且僅當 $\\det(A)\\ne0$；一般階數的證明留後續性質建立後處理。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S01-K02",
+      "title": "固定其餘列時的線性",
+      "difficulty": 3,
+      "markdown": "若 $u=(a_1,a_2)$、$v=(b_1,b_2)$、$w=(c_1,c_2)$ 為橫向列向量，$k$ 為純量，則\n\n$$\\det\\begin{bmatrix}u+kv\\\\w\\end{bmatrix}=\\det\\begin{bmatrix}u\\\\w\\end{bmatrix}+k\\det\\begin{bmatrix}v\\\\w\\end{bmatrix}.$$\n\n證明逐步如下：\n\n$$\\begin{aligned}\n\\det\\begin{bmatrix}a_1+kb_1&a_2+kb_2\\\\c_1&c_2\\end{bmatrix}\n&=(a_1+kb_1)c_2-(a_2+kb_2)c_1 &&\\text{二階定義}\\\\\n&=(a_1c_2-a_2c_1)+k(b_1c_2-b_2c_1) &&\\text{分配律與合併}.\n\\end{aligned}$$\n\n最後兩組就是右邊的兩個行列式。固定第一列、改變第二列也成立。\n\n**限制：其他列必須固定。** $\\det(A+B)=\\det(A)+\\det(B)$ 一般不成立。以 $A=B=I_2$ 為例，左邊為4，右邊為2。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S01-K03",
+      "title": "單列縮放與整體縮放",
+      "difficulty": 1,
+      "markdown": "只有一列乘 $k$，行列式乘 $k$。整個二階矩陣乘 $k$ 時，兩列各提出一次，故\n\n$$\\det(kA)=k^2\\det(A).$$\n\n一般 $n$ 階則為 $\\det(kA)=k^n\\det(A)$，理由是每列各貢獻一個 $k$。不需除以 $k$，所以 $k=0$ 也適用。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S01-K04",
+      "title": "相同列、比例列、零列",
+      "difficulty": 1,
+      "markdown": "$$\\det\\begin{bmatrix}a&b\\\\a&b\\end{bmatrix}=ab-ba=0.$$\n\n比例列可先提出倍數，化成相同列；零列也可直接由二階公式得到0。對行也成立。例：$\\det\\begin{bmatrix}6&8\\\\3&4\\end{bmatrix}=24-24=0$。\n\n提醒：二階行列式為0代表兩列線性相依；若含零列，不宜硬用比值描述，避免除以0。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S02-K01",
+      "title": "子矩陣、子式、餘因子",
+      "difficulty": 1,
+      "markdown": "一階 $\\det([a])=a$。對 $n\\ge2$，選 $a_{ij}$，刪第 $i$ 列與第 $j$ 行得到 $(n-1)$ 階子矩陣；取其行列式得 $M_{ij}$，再加符號得\n\n$$C_{ij}=(-1)^{i+j}M_{ij}.$$\n\n三階符號棋盤為 $\\begin{bmatrix}+&-&+\\\\-&+&-\\\\+&-&+\\end{bmatrix}$。$i+j$ 偶數取正、奇數取負。子矩陣是矩陣，子式與餘因子都是數；子式本身也可能為負，不能把棋盤負號當成子式的數值。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S02-K02",
+      "title": "Laplace展開",
+      "difficulty": 3,
+      "markdown": "可用第一列遞迴定義：$\\det(A)=\\sum_{j=1}^n a_{1j}C_{1j}$。Laplace展開定理（Laplace expansion）指出任一列、任一行皆可展開：\n\n$$\\det(A)=\\sum_{j=1}^n a_{ij}C_{ij}\\quad\\text{（固定列 }i\\text{）},$$\n$$\\det(A)=\\sum_{i=1}^n a_{ij}C_{ij}\\quad\\text{（固定行 }j\\text{）}.$$\n\n例如沿第二列，就是 $a_{21}C_{21}+a_{22}C_{22}+\\cdots+a_{2n}C_{2n}$。每項必須保留原元素；若已使用 $C_{ij}$，不要再乘一次棋盤符號。\n\n計算流程：確認方陣 → 找零最多的列或行 → 只對非零元素列項 → 刪對列行 → 算子式與符號 → 合併。遇一般稠密高階矩陣，不必硬做大量展開；列運算化簡屬後續延伸方法。\n\n三階沿第一列展開為\n\n$$\\begin{aligned}\\det(A)={}&a_{11}(a_{22}a_{33}-a_{23}a_{32})\\\\&-a_{12}(a_{21}a_{33}-a_{23}a_{31})\\\\&+a_{13}(a_{21}a_{32}-a_{22}a_{31}).\\end{aligned}$$\n\nSarrus斜線法只適用三階，不可直接延用到四階。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S02-K03",
+      "title": "多重線性與轉置",
+      "difficulty": 3,
+      "markdown": "高階行列式固定其他列時，對某一列線性，稱多重線性（multilinearity）；對行亦然。可把二階的單列拆和、單列倍數性質推廣至 $n$ 階。兩列相同或成比例、存在零列時行列式為0。\n\n$$\\det(A^T)=\\det(A).$$\n\n轉置不等於交換兩列。利用轉置性質，列的性質可對應到行。上述為本節性質整理；一般階數的完整定理證明未出現在可讀的先前文字，不能聲稱已照錄原教材證明。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S02-K04",
+      "title": "三角矩陣",
+      "difficulty": 1,
+      "markdown": "上三角矩陣主對角下方全為0；下三角矩陣主對角上方全為0。兩者皆滿足\n\n$$\\det(A)=\\prod_{i=1}^n a_{ii}=a_{11}\\cdots a_{nn}.$$\n\n上三角可沿第一行（縱向）展開，只剩 $a_{11}$，留下仍為上三角的子矩陣，重複得到公式；下三角可沿第一列展開。對角矩陣同時為上下三角，$\\det(I_n)=1$。\n\n**左下方有非零數不代表一定不是三角矩陣**：仍可能是下三角；必須檢查整個上方或下方區域。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S02-K05",
+      "title": "不同列的元素與餘因子配對",
+      "difficulty": 3,
+      "markdown": "$$\\sum_{j=1}^n a_{rj}C_{sj}=\\begin{cases}\\det(A),&r=s,\\\\0,&r\\ne s.\\end{cases}$$\n\n當 $r\\ne s$，把第 $s$ 列換成第 $r$ 列。新矩陣有重複列，行列式為0；沿第 $s$ 列展開，其餘因子刪除的是替換列，因此與原矩陣 $C_{sj}$ 相同，得到公式。對行的版本為 $\\sum_i a_{ir}C_{is}=0$（$r\\ne s$）。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S02-K06",
+      "title": "函數行列式的微分",
+      "difficulty": 3,
+      "markdown": "各元素在考察點可微時，若列向量為 $r_1(x),\\ldots,r_n(x)$，\n\n$$\\frac{d}{dx}\\det\\begin{bmatrix}r_1\\\\\\vdots\\\\r_n\\end{bmatrix}=\\sum_{k=1}^n\\det\\begin{bmatrix}r_1\\\\\\vdots\\\\r'_k\\\\\\vdots\\\\r_n\\end{bmatrix}.$$\n\n每項只微分一列，其餘不變。二階可從 $f_1g_2-f_2g_1$ 使用乘法法則得到 $f'_1g_2+f_1g'_2-f'_2g_1-f_2g'_1$，再分成兩個行列式。不可寫成 $\\det(A')$。\n\n連續導數列的特殊形式：\n\n$$W=\\det\\begin{bmatrix}f_1&f_2&f_3\\\\f'_1&f'_2&f'_3\\\\f''_1&f''_2&f''_3\\end{bmatrix}\\quad\\Longrightarrow\\quad W'=\\det\\begin{bmatrix}f_1&f_2&f_3\\\\f'_1&f'_2&f'_3\\\\f'''_1&f'''_2&f'''_3\\end{bmatrix}.$$\n\n假設所需三階導數存在。前兩項分別出現兩列相同而為0，才可只留最後一列微分。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S03-K01",
+      "title": "三類基本運算與零值",
+      "difficulty": 1,
+      "markdown": "對任意兩個不同的列索引 $i\\ne j$：\n\n| 操作 | 新行列式 | 直向的行操作 |\n|---|---|---|\n| $R_i\\leftrightarrow R_j$ | $-\\det A$ | 同樣變號 |\n| $R_i\\leftarrow kR_i$ | $k\\det A$ | 同樣乘 $k$ |\n| $R_i\\leftarrow R_i+kR_j$ | $\\det A$ | 同樣不變 |\n\n倍乘公式允許 $k=0$，但「可逆的基本列運算／初等矩陣」要求 $k\\ne0$。交換 $s$ 次乘 $(-1)^s$。整個矩陣乘 $k$ 等於每一列都乘 $k$，所以 $\\det(kA)=k^n\\det A$。\n\n零列、零行、兩列相同或成倍數，均使行列式為 0。更一般地，列或行線性相依等價於行列式為 0。若兩列相同，交換後矩陣不變但行列式變號，故在特徵不為 2 的數域可直接推出零值；一般數域可由行列式的交替性得到同一結論。\n\n**計算策略：**先找相同、倍數、相依與可相減的列行，再用加倍數消去，最後對角線連乘；交換與倍乘必須記帳。見 E01、E02。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K02",
+      "title": "多重線性 Multilinearity",
+      "difficulty": 3,
+      "markdown": "其餘列固定，只將第 $i$ 列寫成 $\\alpha u+\\beta v$ 時：\n\n$$\\det(\\ldots,\\alpha u+\\beta v,\\ldots)=\\alpha\\det(\\ldots,u,\\ldots)+\\beta\\det(\\ldots,v,\\ldots).$$\n\n直向的行也成立。「分別線性」表示一次固定其餘位置；**不是對整個矩陣線性**。例如 $A=B=I_2$，$\\det(A+B)=4$，但 $\\det A+\\det B=2$。若有兩列都拆成兩項，通常產生四個行列式，交叉項不能省略。見 E03。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K03",
+      "title": "餘因子與錯位展開",
+      "difficulty": 3,
+      "markdown": "沿第 $i$ 列展開：$\\det A=\\sum_{j=1}^n a_{ij}K_{ij}$。符號棋盤由左上角正號開始，依 $(-1)^{i+j}$ 決定。\n\n將第 $k$ 列換成第 $i$ 列，沿新矩陣第 $k$ 列展開。因為餘因子的子矩陣刪除了第 $k$ 列，故使用的餘因子仍是原矩陣的 $K_{kj}$。當 $i\\ne k$，新矩陣有相同列，得到：\n\n$$\\sum_{j=1}^n a_{ij}K_{kj}=\\begin{cases}\\det A&i=k,\\\\0&i\\ne k.\\end{cases}$$\n\n行版本為 $\\sum_{i=1}^n a_{ij}K_{ik}$，$j=k$ 時等於 $\\det A$，其餘為 0。\n\n因 $\\operatorname{adj}(A)=[K_{ji}]$，矩陣乘法第 $(i,k)$ 元素正好是上述和式，因此\n\n$$A\\operatorname{adj}(A)=\\operatorname{adj}(A)A=(\\det A)I.$$\n\n這個等式即使 $A$ 不可逆也成立；只有再除以 $\\det A$ 求反矩陣時才要求非零。見 E04。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K04",
+      "title": "轉置、乘法與反矩陣",
+      "difficulty": 1,
+      "markdown": "$$\\det A^T=\\det A,\\qquad \\det(AB)=\\det A\\det B.$$\n\n因此 $\\det(AB)=\\det(BA)$，但不能推出 $AB=BA$。同理，任意有限個同階方陣的乘積，其行列式等於各自行列式的乘積。\n\n$$\\det(A^m)=(\\det A)^m\\quad(m\\ge0),\\qquad \\det(A^{-1})=\\frac1{\\det A}\\quad(A\\text{ 可逆}).$$\n\n後式由 $AA^{-1}=I$ 取行列式得出；對可逆矩陣，冪次公式也適用於負整數。$m=0$ 時 $A^0=I$，應理解右側為空乘積 1，避免將奇異矩陣的情況解讀為一般實數運算中的 $0^0$。\n\n**方法辨識：**題目只給 $\\det A,\\det B$，卻問轉置、反矩陣、乘積或冪的行列式時，先用公式拆解，不必求矩陣元素。見 E05。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K05",
+      "title": "可逆性、參數與奇數階",
+      "difficulty": 3,
+      "markdown": "對 $n$ 階方陣，以下條件等價：\n\n$$A\\text{ 可逆}\\iff\\det A\\ne0\\iff\\operatorname{rank}A=n\\iff\\ker A=\\{0\\}.$$\n\n也等價於列、行皆線性獨立。含參數題先算 $d(t)=\\det A(t)$：解 $d(t)=0$ 得不可逆參數，其餘可逆。先前整理提到的因式 $(\\lambda-5)(\\lambda-1)(\\lambda-21)$ 的零點確為 $1,5,21$，但原矩陣尚缺，不能驗證它是否真的具有該行列式。見 E06。\n\n若 $AB=-BA$ 且 $n$ 是奇數，取行列式：\n\n$$\\det A\\det B=\\det(-BA)=(-1)^n\\det B\\det A=-\\det A\\det B.$$\n\n在特徵不為 2 的數域，得到 $\\det A\\det B=0$，所以至少一個不可逆。偶數階無法如此推出；例如 $A=\\operatorname{diag}(1,-1)$、$B=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$ 都可逆，卻有 $AB=-BA$。\n\n若 $A^T=-A$（斜對稱 skew-symmetric）且階數為奇數，同樣由 $\\det A=\\det A^T=\\det(-A)=-\\det A$ 得不可逆。見 E07。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K06",
+      "title": "初等矩陣 Elementary Matrix",
+      "difficulty": 3,
+      "markdown": "對 $A$ 做橫向列運算，相當於左乘初等矩陣 $E$；直向行運算相當於右乘。三類初等矩陣的行列式分別為 $-1,k,1$，皆非零。\n\n若 $U=E_r\\cdots E_1A$ 是消去所得上三角矩陣，則\n\n$$\\det U=\\left(\\prod_{i=1}^r\\det E_i\\right)\\det A.$$\n\n要算原行列式，就把修正係數除回去；不能把消去後的對角線連乘不加修正就當原答案。上、下三角矩陣皆有 $\\det U=\\prod_i u_{ii}$。見 E02、E08。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K09",
+      "title": "矩陣和與乘積",
+      "difficulty": 3,
+      "markdown": "若 $A$ 可逆，\n\n$$A+B=(I+BA^{-1})A=A(I+A^{-1}B).$$\n\n取行列式後，因 $\\det A\\ne0$，$A+B$ 可逆若且唯若 $I+BA^{-1}$ 可逆，也等價於 $I+A^{-1}B$ 可逆。\n\n對同階方陣，$AB$ 可逆若且唯若 $A,B$ 都可逆，因為 $\\det(AB)=\\det A\\det B$ 非零恰好表示兩個因子都非零。但不可逆矩陣的和可能可逆，例如 $\\operatorname{diag}(1,0)+\\operatorname{diag}(0,1)=I_2$。見 E12。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K07",
+      "title": "分塊三角與 Schur 補",
+      "difficulty": 5,
+      "markdown": "令 $P$ 為 $p\\times p$、$S$ 為 $q\\times q$，$Q$ 為 $p\\times q$、$R$ 為 $q\\times p$。則\n\n$$\\det\\begin{bmatrix}P&Q\\\\0&S\\end{bmatrix}=\\det P\\det S,\\qquad\\det\\begin{bmatrix}P&0\\\\R&S\\end{bmatrix}=\\det P\\det S.$$\n\n$p,q$ 不必相等，$P,S$ 也不必可逆。此公式是對角「區塊」行列式的乘積，不是單純把所有對角區塊元素相乘。\n\n若 $P$ 可逆，左乘\n\n$$L=\\begin{bmatrix}I_p&0\\\\-RP^{-1}&I_q\\end{bmatrix},\\qquad\\det L=1,$$\n\n得到\n\n$$L\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}=\\begin{bmatrix}P&Q\\\\0&S-RP^{-1}Q\\end{bmatrix}.$$\n\n因此\n\n$$\\det\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}=\\det P\\det(S-RP^{-1}Q).$$\n\n$S-RP^{-1}Q$ 是相對於 $P$ 的 Schur 補（Schur complement）。**編輯補充：**若 $S$ 可逆，可改用 $\\det S\\det(P-QS^{-1}R)$。見 E09。\n\n若四區塊都是同階方陣，且 $PR=RP$，則有\n\n$$\\det\\begin{bmatrix}P&Q\\\\R&S\\end{bmatrix}=\\det(PS-RQ).$$\n\n先假設 $P$ 可逆，由上式及乘積公式：$\\det P\\det(S-RP^{-1}Q)=\\det(PS-PRP^{-1}Q)=\\det(PS-RQ)$。最後一步使用交換條件。\n\n**編輯補充：奇異的 $P$ 如何補足證明。**在實數或複數上，把 $P$ 換為 $P+tI$；它仍與 $R$ 可交換，且除有限多個 $t$ 外均可逆。等式兩邊都是 $t$ 的多項式，無限多個 $t$ 成立，故為恆等式，代回 $t=0$ 即得一般情形。有限數域需用形式變數的多項式論證，不能直接使用「無限多個數值」這一步。\n\n特別注意原對話的排列是 $\\begin{bmatrix}A&C\\\\B&D\\end{bmatrix}$，因此條件為 $AB=BA$，結果為 $\\det(AD-BC)$。若區塊排列改為 $\\begin{bmatrix}A&B\\\\C&D\\end{bmatrix}$，對應條件應為 $AC=CA$，結果才是 $\\det(AD-CB)$；不要只背字母順序。見 E10。",
+      "provenance": "教材整理 · 含編輯補充"
+    },
+    {
+      "id": "LA-CH02-S03-K08",
+      "title": "成對分塊結構",
+      "difficulty": 3,
+      "markdown": "對任意同階方陣 $A,B$，不必假設 $AB=BA$：\n\n$$\\det\\begin{bmatrix}A&B\\\\B&A\\end{bmatrix}=\\det(A+B)\\det(A-B).$$\n\n證明：將上方區塊列加上下方區塊列，得到 $\\begin{bmatrix}A+B&A+B\\\\B&A\\end{bmatrix}$；再將右方區塊行減左方區塊行，得到 $\\begin{bmatrix}A+B&0\\\\B&A-B\\end{bmatrix}$。這些操作都可拆成普通的加倍數列／行運算，故不改行列式；最後用分塊三角公式。此證法不需要除以 2。見 E11。",
+      "provenance": "教材整理轉述"
+    },
+    {
+      "id": "LA-CH02-S03-K10",
+      "title": "Vandermonde 行列式",
+      "difficulty": 3,
+      "markdown": "$$V=\\begin{bmatrix}1&x_1&\\cdots&x_1^{n-1}\\\\1&x_2&\\cdots&x_2^{n-1}\\\\\\vdots&\\vdots&&\\vdots\\\\1&x_n&\\cdots&x_n^{n-1}\\end{bmatrix},\\qquad\\det V=\\prod_{1\\le i<j\\le n}(x_j-x_i).$$\n\n下標 $i<j$ 表示每一對不同索引只取一次。例如 $n=3$ 時乘 $(x_2-x_1)(x_3-x_1)(x_3-x_2)$。公式不要求數值互異才能成立；互異是行列式非零的充要條件。\n\n**編輯補充：證明主線。**視行列式為各 $x_i$ 的多項式。令 $x_i=x_j$ 時兩列相同，所以含因子 $x_j-x_i$。全部因子的總次數為 $n(n-1)/2$，與行列式的總次數相同，故僅差常數。比較單項式 $x_2x_3^2\\cdots x_n^{n-1}$ 的係數為 1，得常數為 1。轉置不變，但任意交換兩列仍會變號。見 E13。",
+      "provenance": "教材整理 · 含編輯補充"
+    },
+    {
+      "id": "LA-CH02-S03-K11",
+      "title": "三對角行列式與遞迴",
+      "difficulty": 5,
+      "markdown": "設 $T_n$ 主對角線皆為 $a$，上副對角線皆為 $b$，下副對角線皆為 $c$，其餘為 0。令 $D_n=\\det T_n$，並定義 $D_0=1$（空行列式），$D_1=a$。\n\n沿第一列展開，第一項是 $aD_{n-1}$；第二項符號為負，刪除第一列第二行後，其子矩陣第一行只有頂端的 $c$，再展開得 $cD_{n-2}$，所以\n\n$$D_n=aD_{n-1}-bcD_{n-2}\\quad(n\\ge2).$$\n\n注意副對角線不相等時是 $bc$，不是 $b^2$。若相同皆為 $x$、主對角線為 $y$，則是 $D_n=yD_{n-1}-x^2D_{n-2}$。\n\n對話中的遞迴 $D_n=10D_{n-1}-25D_{n-2}$、$D_1=10,D_2=75$，特徵方程 $(r-5)^2=0$。重根通解 $(u+vn)5^n$，代入得 $u=v=1$，所以 $D_n=(n+1)5^n$。\n\n**編輯補充：成大候選題的解法工具。**當 $y=x$，$D_n=x^nf_n$（$x\\ne0$ 時可用除法定義），$f_0=f_1=1$、$f_n=f_{n-1}-f_{n-2}$，依序為 $1,1,0,-1,-1,0$ 並以 6 為週期。當 $y=2x$，$D_n=(n+1)x^n$。若 $x=0$，對 $n\\ge1$ 原矩陣是零矩陣，直接得 $D_n=0$，不要在推導中除以零。見 E14。",
+      "provenance": "教材整理 · 含編輯補充"
+    },
+    {
+      "id": "LA-CH02-S04-K01",
+      "title": "從餘因子建立伴隨矩陣",
+      "difficulty": 1,
+      "markdown": "設 $A=[a_{ij}]$ 為 $n\\times n$ 方陣；$a_{ij}$ 表示第 $i$ 列、第 $j$ 行元素。$A^T$ 是轉置（transpose），將列、行交換。刪除第 $i$ 列、第 $j$ 行後，剩餘矩陣的行列式為子行列式（minor）$M_{ij}$。餘因子（cofactor）定義為\n\n$$C_{ij}=(-1)^{i+j}M_{ij}.$$\n\n正負號由 $i+j$ 的奇偶決定：偶數為正、奇數為負。三階符號依序為第一列 $+,-,+$；第二列 $-,+,-$；第三列 $+,-,+$。\n\n古典伴隨矩陣（classical adjugate）是餘因子矩陣的轉置：\n\n$$\\operatorname{adj}(A)=[C_{ij}]^T=[C_{ji}].$$\n\n第 $(i,j)$ 位置應放 $C_{ji}$，不能只把所有餘因子原位排好就停止。它與複數矩陣的共軛轉置（常記 $A^*$）是不同運算。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S04-K02",
+      "title": "核心恆等式",
+      "difficulty": 3,
+      "markdown": "$I_n$ 表示對角為1、其他為0的單位矩陣；$\\det(A)$ 表示行列式。對所有方陣均有\n\n$$A\\operatorname{adj}(A)=\\operatorname{adj}(A)A=\\det(A)I_n.$$\n\n證明第一個乘積：矩陣乘法第 $(i,j)$ 項為\n\n$$[A\\operatorname{adj}(A)]_{ij}=\\sum_{k=1}^{n}a_{ik}C_{jk}.$$\n\n$\\sum$（sigma）代表把 $k=1,2,\\ldots,n$ 的項逐項相加；例如三階時就是 $a_{i1}C_{j1}+a_{i2}C_{j2}+a_{i3}C_{j3}$。\n\n若 $i=j$，正好是沿第 $i$ 列的餘因子展開，等於 $\\det(A)$。若 $i\\ne j$，把 $A$ 的第 $j$ 列改成原第 $i$ 列；刪除第 $j$ 列所得子行列式不變，故上述和式就是新矩陣沿第 $j$ 列的展開。新矩陣有兩列相同，行列式為0。這證明乘積對角為 $\\det(A)$，其餘為0。右乘的等式同理由行（column）展開證明。\n\n此處沒有除法，因此 $\\det(A)=0$ 時依然成立，乘積為零矩陣。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S04-K03",
+      "title": "反矩陣公式",
+      "difficulty": 1,
+      "markdown": "若且唯若 $\\det(A)\\ne0$，矩陣可逆（invertible），此時核心式可除以非零純量：\n\n$$A^{-1}=\\frac{\\operatorname{adj}(A)}{\\det(A)}.$$\n\n操作：先算行列式判斷可逆，再算餘因子、轉置、除以行列式。對二階矩陣有\n\n$$A=\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix},\\quad \\operatorname{adj}(A)=\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}.$$\n\n「對角交換，非對角變號」只適用二階；不可直接套在三階。行列式為零時伴隨仍有定義，反矩陣沒有定義。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S04-K04",
+      "title": "性質與適用條件",
+      "difficulty": 3,
+      "markdown": "以下 $n\\ge2$，$A,B$ 為同階方陣。\n\n| 性質 | 公式 | 限制 |\n|---|---|---|\n| 行列式 | $\\det(\\operatorname{adj}A)=\\det(A)^{n-1}$ | 可含奇異矩陣 |\n| 轉置 | $\\operatorname{adj}(A^T)=\\operatorname{adj}(A)^T$ | 無可逆要求 |\n| 乘積 | $\\operatorname{adj}(AB)=\\operatorname{adj}(B)\\operatorname{adj}(A)$ | 順序反轉，無可逆要求 |\n| 純量（補充） | $\\operatorname{adj}(cA)=c^{n-1}\\operatorname{adj}(A)$ | 每個餘因子為 $n-1$ 階行列式 |\n| 可逆等價 | $A$ 可逆 $\\iff\\operatorname{adj}(A)$ 可逆 | $n\\ge2$ |\n\n可逆時對核心式取行列式：$\\det(A)\\det(\\operatorname{adj}A)=\\det(A)^n$，約去非零的 $\\det(A)$ 即得公式。若奇異，不能約分：當秩不超過 $n-2$，全部 $n-1$ 階子行列式為0；當秩等於 $n-1$，由核心式知伴隨的每個行向量都在一維零空間中，故伴隨的秩至多1。兩種情況的伴隨皆奇異（$n\\ge2$），行列式為0。\n\n轉置性質由子行列式轉置不改行列式可得。若兩矩陣可逆，乘積性質由\n\n$$\\operatorname{adj}(AB)=\\det(A)\\det(B)B^{-1}A^{-1}$$\n\n依序分組而得。對奇異情況，兩側的每一元素都是矩陣元素的多項式；在實數或複數域，可用可逆矩陣逼近，再由多項式連續性得到同一恆等式。以上將「可逆時的推導」與「奇異時的補充論證」分開，不以反矩陣代替不存在的運算。",
+      "provenance": "教材整理 · 含補充延伸"
+    },
+    {
+      "id": "LA-CH02-S04-K05",
+      "title": "逆矩陣與重複伴隨",
+      "difficulty": 3,
+      "markdown": "可逆時 $\\operatorname{adj}(A)=\\det(A)A^{-1}$，因此\n\n$$\\operatorname{adj}(A^{-1})=\\det(A)^{-1}A=\\operatorname{adj}(A)^{-1}.$$\n\n再次取伴隨，利用純量公式與前式：\n\n$$\\operatorname{adj}(\\operatorname{adj}(A))=\\det(A)^{n-1}\\operatorname{adj}(A^{-1})=\\det(A)^{n-2}A.$$\n\n$n\\ge2$ 時此式亦可透過多項式恆等式延伸到奇異矩陣。特別是 $n=2$，直接有 $\\operatorname{adj}(\\operatorname{adj}A)=A$，不需要在 $\\det(A)=0$ 時討論 $0^0$。\n\n若已知 $B=\\operatorname{adj}(A)$ 且 $B$ 可逆，則先由 $\\det B=\\det(A)^{n-1}$ 求出可能的 $\\det A$，再由 $A=\\det(A)B^{-1}$ 還原。實數域中，$n=4$ 的次方是3，實立方根唯一；$n=3$ 的次方是2，可能存在正負兩種，不能默認唯一。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S04-K06",
+      "title": "不可逆時，伴隨不一定為零",
+      "difficulty": 5,
+      "markdown": "例如 $A=\\operatorname{diag}(1,0)$，$\\operatorname{diag}$ 表示只把所列數字放在主對角，其餘為0。此時 $\\operatorname{adj}(A)=\\operatorname{diag}(0,1)\\ne0$，但兩者均不可逆。\n\n**額外補充：秩分類。** 秩（rank）是線性獨立行向量數目的最大值；$\\ker A=\\{x:Ax=0\\}$ 為零空間。\n\n| $\\operatorname{rank}A$ | $\\operatorname{rank}(\\operatorname{adj}A)$ | 原因 |\n|---|---:|---|\n| $n$ | $n$ | 伴隨可逆 |\n| $n-1$ | 1 | 至少一個 $n-1$ 階子行列式非零；各行向量皆落在一維零空間 |\n| $\\le n-2$ | 0 | 所有 $n-1$ 階子行列式皆為0 |\n\n此分類假設 $n\\ge2$。延伸理解：秩為 $n-1$ 時，伴隨的非零行向量提供 $Ax=0$ 的解方向。",
+      "provenance": "教材整理 · 含補充延伸"
+    },
+    {
+      "id": "LA-CH02-S04-K07",
+      "title": "克拉瑪法則（Cramer's rule）",
+      "difficulty": 3,
+      "markdown": "考慮方形方程組 $Ax=b$，$a_i$ 表示 $A$ 的第 $i$ 行（column），所以\n\n$$A=[a_1\\ \\cdots\\ a_n],\\quad b=x_1a_1+\\cdots+x_na_n.$$\n\n令 $\\Delta=\\det A$；$A_i(b)$ 表示將第 $i$ 行整行替換成 $b$，其餘行不變；$\\Delta_i=\\det A_i(b)$。若 $\\Delta\\ne0$，唯一解為\n\n$$x_i=\\frac{\\Delta_i}{\\Delta}.$$\n\n推導：將第 $i$ 行的 $b$ 展為上面的線性組合；行列式對這一行線性，所以分成 $n$ 項。來自 $a_k$ 且 $k\\ne i$ 的項會與原第 $k$ 行重複，行列式為0；只有 $x_i a_i$ 一項留下，得到 $\\Delta_i=x_i\\Delta$，再除以非零 $\\Delta$。\n\n若 $\\Delta=0$，不能使用比值。若有某個 $\\Delta_i\\ne0$，由「任何解皆須滿足 $\\Delta_i=x_i\\Delta$」可知無解；但所有 $\\Delta_i=0$ 並不足以保證相容，仍須消去法。例：$A=0_{2\\times2}$、$b=(1,0)^T$，所有替換行列式都是0，系統仍無解。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH02-S04-K08",
+      "title": "參數方程組",
+      "difficulty": 3,
+      "markdown": "先找 $\\det A=0$ 的參數值；非奇異區用克拉瑪法則或消去法求唯一解；各奇異值必須代回原方程。\n\n**補充判斷工具：** 增廣矩陣 $[A\\mid b]$ 是將 $b$ 接在係數矩陣右側。若 $\\operatorname{rank}A<\\operatorname{rank}[A\\mid b]$，無解；若兩者秩相同且小於未知數個數，在實數域有無限多解。\n\n消去／約分後的公式可能可在奇異點算出某個解，但不代表該點有唯一解。前文的「不可直接代入」應精確理解為「不可用代入後的值宣稱唯一解」。",
+      "provenance": "教材整理 · 含補充延伸"
     }
   ],
   "answers": {
@@ -8802,6 +11395,66 @@ window.ZILIU_CONTENT = {
     },
     "DS-CH01-S09-Q19M5": {
       "correctOption": 2
+    },
+    "LA-CH02-S01-Q101": {
+      "correctOption": 2
+    },
+    "LA-CH02-S01-Q102": {
+      "correctOption": 0
+    },
+    "LA-CH02-S01-Q103": {
+      "correctOption": 3
+    },
+    "LA-CH02-S01-Q104": {
+      "correctOption": 1
+    },
+    "LA-CH02-S01-Q105": {
+      "correctOption": 2
+    },
+    "LA-CH02-S02-Q201": {
+      "correctOption": 1
+    },
+    "LA-CH02-S02-Q202": {
+      "correctOption": 3
+    },
+    "LA-CH02-S02-Q203": {
+      "correctOption": 0
+    },
+    "LA-CH02-S02-Q204": {
+      "correctOption": 2
+    },
+    "LA-CH02-S02-Q205": {
+      "correctOption": 1
+    },
+    "LA-CH02-S03-Q01": {
+      "correctOption": 1
+    },
+    "LA-CH02-S03-Q02": {
+      "correctOption": 2
+    },
+    "LA-CH02-S03-Q03": {
+      "correctOption": 3
+    },
+    "LA-CH02-S03-Q04": {
+      "correctOption": 0
+    },
+    "LA-CH02-S03-Q05": {
+      "correctOption": 2
+    },
+    "LA-CH02-S04-Q01": {
+      "correctOption": 1
+    },
+    "LA-CH02-S04-Q02": {
+      "correctOption": 3
+    },
+    "LA-CH02-S04-Q03": {
+      "correctOption": 0
+    },
+    "LA-CH02-S04-Q04": {
+      "correctOption": 2
+    },
+    "LA-CH02-S04-Q05": {
+      "correctOption": 1
     }
   },
   "solutions": {
@@ -9869,6 +12522,315 @@ window.ZILIU_CONTENT = {
     },
     "DS-CH01-S09-Q19W2": {
       "markdown": "提示：常數相乘，門檻取最大。\n\n參考解：若門檻後 $f\\le c_1g$、$g\\le c_2h$，則取兩門檻最大值，有 $f\\le c_1c_2h$，故 $f=O(h)$。例 $n=O(n^2)$，但 $n^2/n=n$ 無界，所以 $n^2\\ne O(n)$。\n\n評分：定義與門檻 3 分、串接 3 分、例子及反方向理由 4 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "LA-CH02-S01-EX001": {
+      "markdown": "辨識：二階直接用 $ad-bc$。$1\\cdot4-2\\cdot3=-2$。提示：先把兩個乘積算完。常錯：交換兩項順序。"
+    },
+    "LA-CH02-S01-EX002": {
+      "markdown": "辨識：二階直接用 $ad-bc$。$(-7)6-4(-3)=-42+12=-30$。提示：先把兩個乘積算完，注意減去負數。常錯：漏寫括號或負號。"
+    },
+    "LA-CH02-S01-EX003": {
+      "markdown": "辨識：第二列固定、第一列是線性組合，因此用單列線性。$\\det[2u-v;w]=2\\det[u;w]-\\det[v;w]=2(3)-(-2)=8$。提示：先拆成兩個行列式。常錯：把負係數漏掉，或把這個性質誤用於整個矩陣相加。"
+    },
+    "LA-CH02-S01-EX004": {
+      "markdown": "單列倍數得 $\\det(B)=3(-2)=-6$；兩列都乘3得 $\\det(3A)=3^2(-2)=-18$。提示：數一共有幾列被乘3。常錯：整體縮放只提出一次。"
+    },
+    "LA-CH02-S01-EX005": {
+      "markdown": "第一列為第二列兩倍，所以行列式為0；直接算為 $6\\cdot4-8\\cdot3=0$。辨識比例列後可直接判斷。"
+    },
+    "LA-CH02-S01-Q101": {
+      "markdown": "**提示：** 用ad−bc\n\nA=5誤把負乘積當正；B=−11是把正確結果反號；C：8−(−3)=11；D=−5也不符兩個乘積相減。",
+      "optionExplanations": [
+        "5誤把負乘積當正",
+        "−11是把正確結果反號",
+        "8−(−3)=11",
+        "−5也不符兩個乘積相減。"
+      ]
+    },
+    "LA-CH02-S01-Q102": {
+      "markdown": "**提示：** 兩列都乘2\n\nA：$2^2\\cdot5=20$；B只提出一次2；C忽略縮放；D誤把原行列式平方。",
+      "optionExplanations": [
+        "$2^2\\cdot5=20$",
+        "只提出一次2",
+        "忽略縮放",
+        "誤把原行列式平方。"
+      ]
+    },
+    "LA-CH02-S01-Q103": {
+      "markdown": "**提示：** 固定第二列\n\nA把減法作加法；B反轉相減結果；C未依係數組合；D：4−3(1)=1。",
+      "optionExplanations": [
+        "把減法作加法",
+        "反轉相減結果",
+        "未依係數組合",
+        "4−3(1)=1。"
+      ]
+    },
+    "LA-CH02-S01-Q104": {
+      "markdown": "**提示：** 看比例列\n\nA為1；B第一列是第二列兩倍，為0；C為−1；D為−1。",
+      "optionExplanations": [
+        "為1",
+        "第一列是第二列兩倍，為0",
+        "為−1",
+        "為−1。"
+      ]
+    },
+    "LA-CH02-S01-Q105": {
+      "markdown": "**提示：** 留意「固定」\n\nA非方陣不適用；B零行列式不代表零矩陣，104的B即反例；C為單列線性；D以兩個$I_2$反駁。",
+      "optionExplanations": [
+        "非方陣不適用",
+        "零行列式不代表零矩陣，104的B即反例",
+        "為單列線性",
+        "以兩個$I_2$反駁。"
+      ]
+    },
+    "LA-CH02-S01-Q106": {
+      "markdown": "提示：先求原行列式，再辨識縮放列數。$\\det A=(-2)1-3(4)=-14$；只第二列乘−2，得28；整體乘−2，得 $(-2)^2(-14)=-56$。配分：原式及計算4分、單列3分、整體3分。常錯：整體乘−2仍只乘一次。"
+    },
+    "LA-CH02-S01-Q107": {
+      "markdown": "提示：把 $u,v,w$ 寫成兩個座標。設 $u=(a,b),v=(c,d),w=(e,f)$，左邊 $=(a+kc)f-(b+kd)e=af-be+k(cf-de)$，即右邊。取 $A=B=I_2$，左4右2。配分：設符號2分、用二階定義2分、正確分配合併3分、反例及兩側計算3分。只寫公式未推導不得拿證明部分滿分。"
+    },
+    "LA-CH02-S02-EX006": {
+      "markdown": "辨識：題目分別問矩陣與數值，須分步。刪第一列、第二行得 $A_{12}=\\begin{bmatrix}0&5\\\\1&6\\end{bmatrix}$；$M_{12}=0\\cdot6-5\\cdot1=-5$；$C_{12}=(-1)^3(-5)=5$。提示：先刪除，再取行列式。常錯：把 $M_{12}$ 也乘棋盤符號。"
+    },
+    "LA-CH02-S02-EX007": {
+      "markdown": "辨識：第一列有0，沿它展開。$\\det A=0-1[(-2)4-(-5)4]+3[(-2)(-4)-(-3)4]=-12+60=48$。提示：中間項的棋盤符號為負。常錯：子式的數值負號與棋盤符號混淆。"
+    },
+    "LA-CH02-S02-EX008": {
+      "markdown": "辨識：第一列有三個0；先提出第一個元素2，得到 $\\begin{vmatrix}3&4&0\\\\0&5&0\\\\1&0&-1\\end{vmatrix}$。再沿第三行（縱向）展開，只有位置 $(3,3)$ 的 $-1$：原式 $=2(-1)\\begin{vmatrix}3&4\\\\0&5\\end{vmatrix}=-30$。提示：縮階後重新確認索引。常錯：沿用原矩陣索引判斷新子矩陣的符號。"
+    },
+    "LA-CH02-S02-EX009": {
+      "markdown": "轉置不改值，為2；三階每列乘 $-1$，故 $\\det(-A)=(-1)^3(2)=-2$。取 $A=B=I_2$，$\\det(A+B)=4\\ne2=\\det A+\\det B$。提示：先辨認階數與運算。"
+    },
+    "LA-CH02-S02-EX010": {
+      "markdown": "下三角，雖左下有5仍可乘主對角，$2(-1)4=-8$。提示：先檢查完整零區域，不能以一個左下非零數否定所有三角結構。"
+    },
+    "LA-CH02-S02-EX011": {
+      "markdown": "辨識：元素來自第一列，餘因子來自第二列，屬異列配對。$C_{21}=-12,C_{22}=3,C_{23}=2$，故 $1(-12)+2(3)+3(2)=0$。也可把第二列換第一列，形成重複列後沿第二列展開。提示：區分元素與餘因子的列索引。常錯：誤認為任意配對都等於原行列式。"
+    },
+    "LA-CH02-S02-EX012": {
+      "markdown": "逐列微分得 $\\begin{vmatrix}1&2x\\\\1&3x\\end{vmatrix}+\\begin{vmatrix}x&x^2\\\\0&3\\end{vmatrix}=x+3x=4x$。驗算 $W=3x^2-x^2=2x^2$，故 $W'=4x$。提示：每次只動一列。常錯：只算 $\\det(A')=3$。"
+    },
+    "LA-CH02-S02-EX013": {
+      "markdown": "第一列微分等於第二列，第二列微分等於第三列，因此前兩項為0；最後一列微分為零列，第三項也為0，故 $W'=0$。也可由三角矩陣 $W=2$ 驗證。常錯：把此結論誤記成所有函數行列式只微分最後一列。"
+    },
+    "LA-CH02-S02-Q201": {
+      "markdown": "**提示：** 棋盤符號\n\nA漏掉$(-1)^5$；B：$(-1)^5(-4)=4$；C無零的依據；D只有符號，沒乘子式。",
+      "optionExplanations": [
+        "漏掉$(-1)^5$",
+        "$(-1)^5(-4)=4$",
+        "無零的依據",
+        "只有符號，沒乘子式。"
+      ]
+    },
+    "LA-CH02-S02-Q202": {
+      "markdown": "**提示：** 確認上三角\n\nA漏負號；B把對角相加；C只取單一元素；D為$(-2)3(4)=-24$。",
+      "optionExplanations": [
+        "漏負號",
+        "把對角相加",
+        "只取單一元素",
+        "為$(-2)3(4)=-24$。"
+      ]
+    },
+    "LA-CH02-S02-Q203": {
+      "markdown": "**提示：** 比較非零項數\n\nA只有一個非零，僅一項；B有三個；C有三個；D有三個。第三行（縱向）也只有一個非零，但未列為選項，故仍為單選。",
+      "optionExplanations": [
+        "只有一個非零，僅一項",
+        "有三個",
+        "有三個",
+        "有三個。第三行（縱向）也只有一個非零，但未列為選項，故仍為單選。"
+      ]
+    },
+    "LA-CH02-S02-Q204": {
+      "markdown": "**提示：** 分清轉置與縮放\n\nA三階應變號，取$I_3$即反例；B異列配對為0，取$I_3$可否定；C轉置性質；D僅三角等特殊條件可直接使用。",
+      "optionExplanations": [
+        "三階應變號，取$I_3$即反例",
+        "異列配對為0，取$I_3$可否定",
+        "轉置性質",
+        "僅三角等特殊條件可直接使用。"
+      ]
+    },
+    "LA-CH02-S02-Q205": {
+      "markdown": "**提示：** 可先展開驗算\n\nA漏一個微分項；B因$W=x^2-x^2=0$故導數0；C把元素全微分後取行列式得到2，方法錯；D為原來的一個乘積，非導數。",
+      "optionExplanations": [
+        "漏一個微分項",
+        "因$W=x^2-x^2=0$故導數0",
+        "把元素全微分後取行列式得到2，方法錯",
+        "為原來的一個乘積，非導數。"
+      ]
+    },
+    "LA-CH02-S02-Q206": {
+      "markdown": "提示：第二列第2、3位置非零。$M_{22}=\\begin{vmatrix}1&0\\\\2&5\\end{vmatrix}=5$，$C_{22}=5$；$M_{23}=\\begin{vmatrix}1&2\\\\2&0\\end{vmatrix}=-4$，$C_{23}=-M_{23}=4$；行列式 $=3C_{22}+4C_{23}=15+16=31$。配分：兩個子矩陣各2分、兩餘因子各1分、展開保留原元素2分、答案2分。常錯：把$4C_{23}$再乘負號。"
+    },
+    "LA-CH02-S02-Q207": {
+      "markdown": "提示：先寫三個行列式，再看重複列。逐列微分得到：第一項列為 $(f',f',f'')$；第二項為 $(f,f'',f'')$；第三項為 $(f,f',f''')$。前兩項各有重複列，為0，故剩第三項。代入 $1,x,x^2$，原行列式是上三角、值2，其導數0；第三項最後一列全0，亦得0。配分：三項寫完整3分、兩個消去原因各2分、保留項1分、數值驗證2分。常錯：只背結論，沒有說明特殊結構。"
+    },
+    "LA-CH02-S03-E01": {
+      "markdown": "- 辨識／方法：第二列是第一列的 2 倍，直接使用相依列零值性質。\n- 提示：比較前兩列對應元素。\n- 答案：行列式為 0，不可逆。\n- 步驟：$R_2=2R_1$，故列相依，$\\det A=0$，由可逆性等價條件得不可逆。\n- 易錯：非零矩陣仍可能行列式為 0。"
+    },
+    "LA-CH02-S03-E02": {
+      "markdown": "- 辨識／方法：第一個樞紐是 0，先交換再消去。\n- 提示：將第一、二列互換。\n- 答案：$-7$。\n- 步驟：交換後 $B=\\begin{bmatrix}1&1&0\\\\0&2&1\\\\2&3&4\\end{bmatrix}$，$\\det B=-\\det A$。做 $R_3\\leftarrow R_3-2R_1$ 得第三列 $(0,1,4)$；再做 $R_3\\leftarrow R_3-\\tfrac12R_2$ 得 $(0,0,7/2)$。兩步均不變，故 $\\det B=1\\cdot2\\cdot7/2=7$，$\\det A=-7$。\n- 易錯：交換的負號忘記補回；誤以為減半倍就要把整個行列式除 2。"
+    },
+    "LA-CH02-S03-E03": {
+      "markdown": "- 辨識／方法：只有第一列含 $t$，可按列線性拆解。\n- 提示：第一列為 $(1,2)+t(1,3)$。\n- 答案：$-3-7t$。\n- 步驟：$D(t)=\\det\\begin{bmatrix}1&2\\\\4&5\\end{bmatrix}+t\\det\\begin{bmatrix}1&3\\\\4&5\\end{bmatrix}=(5-8)+t(5-12)$。固定的第二列在兩項中都保留，因此不是兩個完整矩陣相加的行列式加法規則。\n- 易錯：第二項也把第二列乘 $t$，會多算一次係數。"
+    },
+    "LA-CH02-S03-E04": {
+      "markdown": "- 辨識／方法：先求同一列餘因子，再比較同位與錯位展開。\n- 提示：刪除第二列，按 $-,+,-$ 的符號計算。\n- 答案：$(K_{21},K_{22},K_{23})=(-2,1,4)$；兩個和式依序為 $0,7$。\n- 步驟：$K_{21}=-\\det\\begin{bmatrix}2&0\\\\0&1\\end{bmatrix}=-2$；$K_{22}=\\det\\begin{bmatrix}1&0\\\\2&1\\end{bmatrix}=1$；$K_{23}=-\\det\\begin{bmatrix}1&2\\\\2&0\\end{bmatrix}=4$。錯位和為 $1(-2)+2(1)+0(4)=0$，同位和為 $0(-2)+3(1)+1(4)=7=\\det A$。\n- 易錯：忘記餘因子帶正負號，或把 $K_{2j}$ 寫成 $K_{j2}$。"
+    },
+    "LA-CH02-S03-E05": {
+      "markdown": "- 辨識／方法：倍數、反矩陣、轉置、冪各處理一次。\n- 提示：最外層的 2 乘遍三列。\n- 答案：$-4$。\n- 步驟：$2^3\\det((A^{-1})^T)(\\det B)^3=8\\cdot\\tfrac12\\cdot(-1)^3=-4$。\n- 易錯：把 $2^3$ 寫成 2；把倒數忘掉。"
+    },
+    "LA-CH02-S03-E06": {
+      "markdown": "- 辨識／方法：參數可逆性轉成行列式零點。\n- 提示：先展開二階行列式，再因式分解。\n- 答案：$t=-1,2$ 時不可逆。\n- 步驟：$\\det A=t(t-1)-2=t^2-t-2=(t-2)(t+1)$。行列式為 0 恰在兩個根，其餘 $t$ 可逆。\n- 易錯：將零點誤報為可逆參數。"
+    },
+    "LA-CH02-S03-E07": {
+      "markdown": "- 辨識／方法：把 $A^T=-A$ 同時套入轉置與倍數性質。\n- 提示：$\\det(-A)=(-1)^n\\det A$。\n- 答案與步驟：$\\det A=\\det A^T=\\det(-A)=(-1)^n\\det A=-\\det A$；奇數條件用於倒數第二步。故 $2\\det A=0$；實數上 2 非零，$\\det A=0$，不可逆。\n- 易錯：沒有說明奇數階、或把 $\\det(-A)$ 一概當成 $-\\det A$。"
+    },
+    "LA-CH02-S03-E08": {
+      "markdown": "- 辨識／方法：追蹤每個運算的乘數。\n- 提示：最後加倍數不造成新乘數。\n- 答案：$\\det U=-18$；對角線乘積同為 $-18$。\n- 步驟：$6\\to-6\\to-18\\to-18$。若已知 $\\det U$ 求原值，應除以 $-3$。\n- 易錯：把「加 5 倍」誤認成行列式乘 5。"
+    },
+    "LA-CH02-S03-E09": {
+      "markdown": "- 辨識／方法：左上角對角矩陣可逆，Schur 補只剩一階。\n- 提示：$P^{-1}=\\operatorname{diag}(1/2,1/3)$。\n- 答案：17。\n- 步驟：$P=\\operatorname{diag}(2,3),Q=(1,1)^T,R=(1,2),S=4$。$RP^{-1}Q=1/2+2/3=7/6$，Schur 補為 $17/6$；$\\det M=6\\cdot17/6=17$。\n- 易錯：把乘法順序換掉，或忘記再乘 $\\det P$。"
+    },
+    "LA-CH02-S03-E10": {
+      "markdown": "- 辨識／方法：左上與左下區塊皆為對角矩陣，可交換。\n- 提示：先確認 $PR=RP$，再算 $PS-RQ$。\n- 答案：16。\n- 步驟：四個區塊皆為二階，$PR=RP$。$PS-RQ=\\operatorname{diag}(5,12)-\\operatorname{diag}(3,4)=\\operatorname{diag}(2,8)$，行列式為 16。\n- 易錯：認為任意分塊矩陣皆可套二階純量公式。"
+    },
+    "LA-CH02-S03-E11": {
+      "markdown": "- 辨識／方法：左右對角區塊相同、另外兩區塊也相同。\n- 提示：分別求 $A+B$ 與 $A-B$。\n- 答案：24。\n- 步驟：$A+B=\\operatorname{diag}(3,4)$，$A-B=\\operatorname{diag}(1,2)$，故為 $(3\\cdot4)(1\\cdot2)=24$。\n- 易錯：右側是行列式乘積，不是行列式差，也不需檢查可交換。"
+    },
+    "LA-CH02-S03-E12": {
+      "markdown": "- 辨識／方法：$A$ 可逆，提出 $A$ 將加法轉成乘法。\n- 提示：檢查 $I+BA^{-1}$ 的第二個對角元素。\n- 答案：所有 $t$ 均不可逆。\n- 步驟：$BA^{-1}=\\operatorname{diag}(t,-1)$，$I+BA^{-1}=\\operatorname{diag}(1+t,0)$ 永遠不可逆，故 $A+B$ 亦然。和可逆的反例取 $\\operatorname{diag}(1,0)$、$\\operatorname{diag}(0,1)$，各自不可逆、相加為 $I_2$。\n- 易錯：把乘積的可逆條件套到加法。"
+    },
+    "LA-CH02-S03-E13": {
+      "markdown": "- 辨識／方法：每列呈現 $1,x_i,x_i^2$。\n- 提示：按 $i<j$ 列出三個差。\n- 答案：6；交換前兩列後為 $-6$。\n- 步驟：$x_1=1,x_2=2,x_3=4$，故 $(2-1)(4-1)(4-2)=6$；交換一次變號。\n- 易錯：將所有差倒過來卻漏算符號。"
+    },
+    "LA-CH02-S03-E14": {
+      "markdown": "- 辨識／方法：三對角稀疏結構適合沿第一列建立二階遞迴。\n- 提示：副對角項造成 $-5\\cdot5$。\n- 答案：$D_n=(n+1)5^n$。\n- 步驟：$D_0=1,D_1=10$，$D_n=10D_{n-1}-25D_{n-2}$，並可驗 $D_2=100-25=75$。特徵方程 $(r-5)^2=0$，令 $D_n=(u+vn)5^n$。由 $D_0=1$ 得 $u=1$，由 $10=(1+v)5$ 得 $v=1$。故得閉式，代回初值與遞迴皆成立。\n- 易錯：重根只寫 $u5^n$ 而漏掉 $vn5^n$。"
+    },
+    "LA-CH02-S03-Q01": {
+      "markdown": "**提示：** 整個四階矩陣乘常數，要取四次方。\n\nA 的 6 漏掉階數；B 正確，$(-2)^4(-3)=-48$；C 忽略原行列式的負號；D 的 $-6$ 也沒有依四次方計算。",
+      "optionExplanations": [
+        "的 6 漏掉階數",
+        "正確，$(-2)^4(-3)=-48$",
+        "忽略原行列式的負號",
+        "的 $-6$ 也沒有依四次方計算。"
+      ]
+    },
+    "LA-CH02-S03-Q02": {
+      "markdown": "**提示：** 乘法可拆；一般加法不可拆。\n\nA 錯，$A=B=I_2$ 就有 $4\\ne2$；B 錯，$I_2$ 與 $\\operatorname{diag}(2,1)$ 列等價但行列式為 1、2；C 正確，都等於 $\\det A\\det B$；D 錯，$I_2$ 與 $\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$ 不同，但行列式都為 1。",
+      "optionExplanations": [
+        "錯，$A=B=I_2$ 就有 $4\\ne2$",
+        "錯，$I_2$ 與 $\\operatorname{diag}(2,1)$ 列等價但行列式為 1、2",
+        "正確，都等於 $\\det A\\det B$",
+        "錯，$I_2$ 與 $\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$ 不同，但行列式都為 1。"
+      ]
+    },
+    "LA-CH02-S03-Q03": {
+      "markdown": "**提示：** 比較元素列索引與餘因子列索引。\n\nA、B 是同列正常展開，均為 $\\det A$；C 是同一行的正常展開，也為 $\\det A$。取 $A=I_3$ 時這三者為 1，故不是必為 0。D 是第 1 列元素搭配第 2 列餘因子，錯位展開必為 0。",
+      "optionExplanations": [
+        "同列正常展開，等於 $\\det A$；取 $A=I_3$ 時為1。",
+        "同列正常展開，等於 $\\det A$；取 $A=I_3$ 時為1。",
+        "同一行的正常展開，也等於 $\\det A$，不必為0。",
+        "第1列元素搭配第2列餘因子，錯位展開必為0。"
+      ]
+    },
+    "LA-CH02-S03-Q04": {
+      "markdown": "**提示：** 先把左下角消為 0。\n\nA 是 Schur 補公式；B 乘法順序錯且有時大小不相容，例如 $P$ 二階、$S$ 一階時 $QP^{-1}$ 根本無法相乘；C 錯，取 $Q=R=0,P=I_2,S=[1]$ 時左側為 1、右側為 2；D 缺交換與同階條件。即使全部區塊同階也可能錯：取 $P=\\operatorname{diag}(1,2)$、$R=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$、$Q=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$、$S=I_2$。此時 $RP^{-1}Q=\\begin{bmatrix}0&0\\\\0&1\\end{bmatrix}$，$\\det M=0$；$PS-RQ=\\operatorname{diag}(1,1)$，行列式為 1，兩者不同。",
+      "optionExplanations": [
+        "是 Schur 補公式",
+        "乘法順序錯且有時大小不相容，例如 $P$ 二階、$S$ 一階時 $QP^{-1}$ 根本無法相乘",
+        "錯，取 $Q=R=0,P=I_2,S=[1]$ 時左側為 1、右側為 2",
+        "缺交換與同階條件。即使全部區塊同階也可能錯：取 $P=\\operatorname{diag}(1,2)$、$R=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$、$Q=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}$、$S=I_2$。此時 $RP^{-1}Q=\\begin{bmatrix}0&0\\\\0&1\\end{bmatrix}$，$\\det M=0$；$PS-RQ=\\operatorname{diag}(1,1)$，行列式為 1，兩者不同。"
+      ]
+    },
+    "LA-CH02-S03-Q05": {
+      "markdown": "**提示：** 第二項的餘因子展開符號為負。\n\nA 錯，$D_2=3\\cdot3-1=8$；B 第二項符號錯；C 正確，$a=3,b=c=1$；D 忽略副對角線貢獻，$n=2$ 時 $8\\ne9$。",
+      "optionExplanations": [
+        "錯，$D_2=3\\cdot3-1=8$",
+        "第二項符號錯",
+        "正確，$a=3,b=c=1$",
+        "忽略副對角線貢獻，$n=2$ 時 $8\\ne9$。"
+      ]
+    },
+    "LA-CH02-S03-H01": {
+      "markdown": "提示：先消去第二列的第一個元素，再消第三列。\n\n參考答案：$R_2\\leftarrow R_2-2R_1$ 得 $\\begin{bmatrix}1&2&1\\\\0&1&1\\\\0&1&2\\end{bmatrix}$；$R_3\\leftarrow R_3-R_2$ 得 $\\begin{bmatrix}1&2&1\\\\0&1&1\\\\0&0&1\\end{bmatrix}$。兩步都是加倍數，行列式不變。因此答案為 $1\\cdot1\\cdot1=1\\ne0$，矩陣可逆。\n\n評分：第一步正確 3 分；第二步正確 2 分；說明不變 2 分；對角線連乘 2 分；可逆判斷 1 分。自評：答對／部分正確／不會。"
+    },
+    "LA-CH02-S03-H02": {
+      "markdown": "提示：先對 $AB=-BA$ 取行列式，偶數階反例可用對角矩陣與交換矩陣。\n\n參考答案：$\\det A\\det B=\\det(AB)=\\det(-BA)=(-1)^n\\det B\\det A=-\\det A\\det B$。因此實數上 $2\\det A\\det B=0$，故 $\\det A=0$ 或 $\\det B=0$，至少一個不可逆。二階取 $A=\\operatorname{diag}(1,-1)$、$B=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$，則 $AB=\\begin{bmatrix}0&1\\\\-1&0\\end{bmatrix}$、$BA=\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix}$，確有 $AB=-BA$，但兩者行列式均為 $-1$，皆可逆。\n\n評分：正確使用乘積公式 2 分；用奇數階得到負號 2 分；實數上推出乘積零與結論 2 分；給出並驗證反例 4 分。自評：答對／部分正確／不會。"
+    },
+    "LA-CH02-S04-E01": {
+      "markdown": "**提示：** 先算 $C_{12}$，確認符號後再轉置。\n\n辨識：題目要伴隨，方法是「每項餘因子→轉置」。例如 $C_{12}=-\\det\\begin{bmatrix}5&2\\\\1&-3\\end{bmatrix}=-(-17)=17$。逐項計算：\n\n$$C=\\begin{bmatrix}-18&17&-6\\\\-6&-10&-2\\\\-10&-1&28\\end{bmatrix},\\quad \\operatorname{adj}A=\\begin{bmatrix}-18&-6&-10\\\\17&-10&-1\\\\-6&-2&28\\end{bmatrix}.$$\n\n錯誤：把 $C_{12}$ 放在伴隨的 $(1,2)$；正確應放 $(2,1)$。"
+    },
+    "LA-CH02-S04-E02": {
+      "markdown": "**提示：** 沿第一列展開。\n\n辨識：同一矩陣已知伴隨，可用乘積檢查。沿第一列展開得 $3(-18)+(-2)(17)+1(-6)=-94$。直接相乘得\n\n$$A\\operatorname{adj}A=\\begin{bmatrix}-94&0&0\\\\0&-94&0\\\\0&0&-94\\end{bmatrix}.$$\n\n例如第 $(1,2)$ 項是 $3(-6)+(-2)(-10)+1(-2)=0$；第 $(2,2)$ 項是 $5(-6)+6(-10)+2(-2)=-94$。故計算符合恆等式。錯誤：認為此例不可逆；實際行列式非零。"
+    },
+    "LA-CH02-S04-E03": {
+      "markdown": "**提示：** 先確認行列式不為零。\n\n辨識：二階求逆，可用速算。$\\det D=4-3=1$；$\\operatorname{adj}D=\\begin{bmatrix}2&-1\\\\-3&2\\end{bmatrix}$，故 $D^{-1}$ 就是此矩陣。錯誤：忘了除以行列式，僅本例因行列式為1而看似無差別。"
+    },
+    "LA-CH02-S04-E04": {
+      "markdown": "**提示：** 三階的次方為2。\n\n辨識：只問性質，不需逐項算餘因子。三階時 $\\det(\\operatorname{adj}A)=2^2=4$；$\\operatorname{adj}(2A)=2^2\\operatorname{adj}A=4\\operatorname{adj}A$；$\\det AB=-6$，故 $\\det(\\operatorname{adj}(AB))=(-6)^2=36$。乘積必為 $\\operatorname{adj}B\\operatorname{adj}A$。錯誤：把伴隨純量係數寫成 $2^3$，或不反轉乘法順序。"
+    },
+    "LA-CH02-S04-E05": {
+      "markdown": "**提示：** 先取行列式，注意實立方根。\n\n辨識：由伴隨還原原矩陣。$\\det(2I_4)=2^4=16$；因此 $\\det A=\\sqrt[3]{16}$。再由 $A=\\det(A)(2I_4)^{-1}$ 得 $A=\\sqrt[3]{2}I_4$。檢查：四階純量矩陣 $cI$ 的伴隨為 $c^3I$，代入即 $2I$。錯誤：把 $\\det(2I_4)$ 當成2。"
+    },
+    "LA-CH02-S04-E06": {
+      "markdown": "**提示：** 直接看二階子行列式。\n\n辨識：奇異矩陣不能套逆矩陣公式。三階對角矩陣的伴隨對角為另外兩項的乘積，非對角為0。因此前者伴隨 $\\operatorname{diag}(0,0,1)$、秩1；後者伴隨為零矩陣、秩0。錯誤：將所有奇異矩陣的伴隨都判為0。"
+    },
+    "LA-CH02-S04-E07": {
+      "markdown": "**提示：** 替換 column。\n\n辨識：方形系統且行列式非零。$\\Delta=\\det\\begin{bmatrix}2&1\\\\1&-1\\end{bmatrix}=-3$；$\\Delta_1=\\det\\begin{bmatrix}5&1\\\\1&-1\\end{bmatrix}=-6$；$\\Delta_2=\\det\\begin{bmatrix}2&5\\\\1&1\\end{bmatrix}=-3$。所以 $x=2,y=1$，代回兩式均成立。錯誤：用 $b$ 替換橫列。"
+    },
+    "LA-CH02-S04-E08": {
+      "markdown": "**提示：** 先做行列式因式分解，再分別代回奇異值。\n\n辨識：含參數，須先找分母為零的例外。\n\n$$\\Delta=\\det\\begin{bmatrix}1&1&a\\\\1&a&1\\\\a&1&1\\end{bmatrix}=3a-2-a^3=-(a-1)^2(a+2).$$\n\n三個替換行列式分別為 $\\Delta_1=-2(a-1)^2(a+2)$、$\\Delta_2=-(a-1)(a+2)$、$\\Delta_3=(a-1)(a+2)$。若 $a\\ne1,-2$，相除得唯一解 $x_1=2,x_2=1/(a-1),x_3=-1/(a-1)$。\n\n$a=1$ 時三式左側相同，右側1、3、2不同，無解。\n\n$a=-2$ 時，第三式等於前兩式相加再取負；前兩式係數不成比例，秩為2。令 $x_3=t$，第一式得 $x_1+x_2=1+2t$；第二式得 $x_1-2x_2=3-t$；相減得 $3x_2=-2+3t$，因此\n\n$$x=(5/3+t,\\ -2/3+t,\\ t)^T,\\qquad t\\in\\mathbb R.$$\n\n取 $t=1/3$ 就得到 $(2,-1/3,1/3)^T$，正好是非奇異區公式在 $a=-2$ 的值，但只是無限多解中的一組。錯誤：消去 $a+2$ 後忘記原先唯一解的條件。"
+    },
+    "LA-CH02-S04-Q01": {
+      "markdown": "**提示：** 回想最後一步運算。\n\nA少一次轉置；B符合定義；C是原矩陣的轉置，不是餘因子轉置；D不一定存在，即使存在也通常還差一個行列式係數。",
+      "optionExplanations": [
+        "少一次轉置",
+        "符合定義",
+        "是原矩陣的轉置，不是餘因子轉置",
+        "不一定存在，即使存在也通常還差一個行列式係數。"
+      ]
+    },
+    "LA-CH02-S04-Q02": {
+      "markdown": "**提示：** 從不含除法的恆等式出發。\n\nA的逆根本不存在；B可由 $\\operatorname{diag}(1,1,0)$ 反駁；C行列式為0只代表秩小於3；D直接由核心式成立。",
+      "optionExplanations": [
+        "的逆根本不存在",
+        "可由 $\\operatorname{diag}(1,1,0)$ 反駁",
+        "行列式為0只代表秩小於3",
+        "直接由核心式成立。"
+      ]
+    },
+    "LA-CH02-S04-Q03": {
+      "markdown": "**提示：** 看階數減一。\n\nA正確，$(-2)^{4-1}=-8$；B誤用平方；C誤用四次方；D忘記次方。",
+      "optionExplanations": [
+        "正確，$(-2)^{4-1}=-8$",
+        "誤用平方",
+        "誤用四次方",
+        "忘記次方。"
+      ]
+    },
+    "LA-CH02-S04-Q04": {
+      "markdown": "**提示：** 考慮零係數矩陣。\n\nA違反奇異矩陣不可能有唯一解；B錯，例如零矩陣配零右端有無限多解；C正確；D錯，例如零矩陣配非零右端無解。",
+      "optionExplanations": [
+        "違反奇異矩陣不可能有唯一解",
+        "錯，例如零矩陣配零右端有無限多解",
+        "正確",
+        "錯，例如零矩陣配非零右端無解。"
+      ]
+    },
+    "LA-CH02-S04-Q05": {
+      "markdown": "**提示：** 比較秩和階數差。\n\nA錯，伴隨的每個行向量皆在一維零空間內；B正確，至少一個二階子行列式非零，所以秩恰為1；C與上述非零餘因子矛盾；D錯，三階時重複伴隨為 $\\det(A)A=0$。",
+      "optionExplanations": [
+        "錯，伴隨的每個行向量皆在一維零空間內",
+        "正確，至少一個二階子行列式非零，所以秩恰為1",
+        "與上述非零餘因子矛盾",
+        "錯，三階時重複伴隨為 $\\det(A)A=0$。"
+      ]
+    },
+    "LA-CH02-S04-Q06": {
+      "markdown": "**提示：** 可先利用上三角行列式。\n\n上三角行列式為對角乘積，$\\det A=3$。餘因子矩陣\n\n$$C=\\begin{bmatrix}3&0&0\\\\-6&3&0\\\\0&0&1\\end{bmatrix},\\quad \\operatorname{adj}A=\\begin{bmatrix}3&-6&0\\\\0&3&0\\\\0&0&1\\end{bmatrix}.$$\n\n除以3得\n\n$$A^{-1}=\\begin{bmatrix}1&-2&0\\\\0&1&0\\\\0&0&1/3\\end{bmatrix}.$$\n\n乘積的第一列是 $(3,-6+6,0)$，第二列 $(0,3,0)$，第三列 $(0,0,3)$，故為 $3I_3$。\n\n評分30分：行列式4、餘因子10、正確轉置6、反矩陣5、乘積驗證5。自評：答對／部分正確／不會；錯誤須指出是哪一個餘因子符號或轉置位置。"
+    },
+    "LA-CH02-S04-Q07": {
+      "markdown": "**提示：** 計算 $t-1$，證明用行列式對替換行的線性性。\n\n$\\Delta=t-1$，$\\Delta_1=2t-3$，$\\Delta_2=1$。$t\\ne1$ 時 $x=(2t-3)/(t-1)$、$y=1/(t-1)$。$t=1$ 時左式相同、右端2與3不同，無解，沒有無限多解的參數值。\n\n一般證明：設 $A=[a_1\\cdots a_n]$ 且 $b=\\sum_k x_ka_k$。將第 $i$ 行替換為此線性組合，再按該行線性性展開。$k\\ne i$ 時兩行相同，該項為0；$k=i$ 時留下 $x_i\\det A$。因此 $\\Delta_i=x_i\\Delta$，不需要除以 $\\Delta$，故奇異時也成立。\n\n評分30分：三個行列式8、非奇異解6、奇異值判斷6、線性展開4、重複行論證4、不做非法除法2。自評：答對／部分正確／不會。"
     }
   },
   "sourceReview": {
@@ -10047,6 +13009,50 @@ window.ZILIU_CONTENT = {
       "pendingExamCount": 15,
       "pendingExamImported": false,
       "note": "依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "2-1_2-2_行列式_第一階段審閱稿.md",
+      "sha256": "a4a254ff2fde5e9e68c734fb3f65429c33edf8c2dc7a92995f70b10b9b55502c",
+      "contentVersion": "0.1-review",
+      "status": "draft",
+      "scope": "LA-CH02-S01",
+      "sourceGroup": "2-1_2-2_行列式_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "未取得九張原圖，原教材完整性待核。缺少完整矩陣或題幹的課本例7、實例1、2、6未補造。同份跨節稿件共用候選索引，不逐節加總為獨立考古題數；未製作大章綜合測驗。"
+    },
+    {
+      "filename": "2-1_2-2_行列式_第一階段審閱稿.md",
+      "sha256": "a4a254ff2fde5e9e68c734fb3f65429c33edf8c2dc7a92995f70b10b9b55502c",
+      "contentVersion": "0.1-review",
+      "status": "draft",
+      "scope": "LA-CH02-S02",
+      "sourceGroup": "2-1_2-2_行列式_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "未取得九張原圖，原教材完整性待核。缺少完整矩陣或題幹的課本例7、實例1、2、6未補造。同份跨節稿件共用候選索引，不逐節加總為獨立考古題數；未製作大章綜合測驗。"
+    },
+    {
+      "filename": "2-3_行列式的性質_第一階段審閱稿.md",
+      "sha256": "2db22e022880dbdd1f30b3d22c48df42fd5beb22fa3aedd4e8476b2e5c52195a",
+      "contentVersion": "0.1-review",
+      "status": "draft",
+      "scope": "LA-CH02-S03",
+      "sourceGroup": "2-3_行列式的性質_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "未取得前次記載的14張原圖；完整原題、頁數及原矩陣仍待核對。本節餘因子記為 Kᵢⱼ，與前節記號不同，請先讀符號表。同份跨節稿件共用候選索引，不逐節加總為獨立考古題數；未製作大章綜合測驗。"
+    },
+    {
+      "filename": "2-4_古典伴隨矩陣與克拉瑪法則_第一階段審閱稿.md",
+      "sha256": "91e733219a58a860bf05b9bff984b0cd0db92f738c2772fcda0f20822d0109f8",
+      "contentVersion": "0.1-review",
+      "status": "draft",
+      "scope": "LA-CH02-S04",
+      "sourceGroup": "2-4_古典伴隨矩陣與克拉瑪法則_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "未取得七張原圖；例23、例7的矩陣依文字轉述，原例號待核。原例28缺少矩陣未重建，另以自編例題練習。前文標成不可逆的矩陣已更正，其行列式為 −94，實際可逆。同份跨節稿件共用候選索引，不逐節加總為獨立考古題數；未製作大章綜合測驗。"
     }
   ]
 };
