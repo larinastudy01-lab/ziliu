@@ -1471,6 +1471,311 @@ window.ZILIU_CONTENT = {
                 "totalPoints": null,
                 "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。"
               }
+            },
+            {
+              "id": "LA-CH01-S06",
+              "title": "1-6 LU 分解",
+              "reviewStatus": "draft",
+              "contentVersion": "0.1-review",
+              "sourceSectionId": "la-ch01-s06",
+              "notice": "第一階段審閱稿：本稿依先前文字轉錄整理，未重新核對七張原圖。教材例 38、39 待原圖確認；例 40、42–45 及右頁範例題幹／數值尚缺，未補造題目。補充延伸另行標示。",
+              "knowledgePointIds": [
+                "LA-CH01-S06-K01",
+                "LA-CH01-S06-K02",
+                "LA-CH01-S06-K03",
+                "LA-CH01-S06-K04",
+                "LA-CH01-S06-K05",
+                "LA-CH01-S06-K06",
+                "LA-CH01-S06-K07",
+                "LA-CH01-S06-K08"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH01-S06-B-INTRO",
+                  "type": "concept",
+                  "title": "符號與用語",
+                  "provenance": "前置補充",
+                  "knowledgePointIds": [],
+                  "markdown": "本稿採臺灣常用用語：列（row）為橫向、行（column）為直向。\n\n|符號|意思|\n|---|---|\n|$A=(a_{ij})$|矩陣；$a_{ij}$ 是第 $i$ 列、第 $j$ 行元素|\n|$n$|方陣的列數與行數|\n|$I$|單位矩陣，對角為 1，其餘為 0|\n|$L,U$|下三角、上三角矩陣|\n|$m_{ik}$|用第 $k$ 列消去第 $i$ 列時的倍數|\n|$P$|排列矩陣，記錄列的重排|\n|$A^T,A^{-1}$|轉置、反矩陣；反矩陣須存在才可使用|\n|$\\operatorname{diag}(d_1,\\ldots,d_n)$|以各 $d_i$ 為主對角的矩陣，其餘為 0|\n|$\\sum_{j=1}^{i-1}$|把 $j=1$ 到 $i-1$ 的各項相加；無項時取 0|\n|$\\det(A)$|行列式；$\\Delta_k$ 表示左上角 $k\\times k$ 子矩陣的行列式|"
+                },
+                {
+                  "id": "LA-CH01-S06-B01",
+                  "type": "concept",
+                  "title": "LU 是高斯消去的紀錄",
+                  "provenance": "教材整理",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K01"
+                  ],
+                  "markdown": "目標是 $A=LU$，其中 $L$ 為主對角全 1 的下三角矩陣，$U$ 為上三角矩陣。$L$ 記錄消去倍數，$U$ 記錄消去結果。通常 $LU\\ne UL$。\n\n若消去步驟為 $E_r\\cdots E_2E_1A=U$，其中每個 $E_i$ 只進行倍加列，則\n\n$$A=E_1^{-1}E_2^{-1}\\cdots E_r^{-1}U=LU.$$\n\n理由：從左側依序消去 $E_r,\\ldots,E_1$ 時，反矩陣在右側結果的排列為 $E_1^{-1}\\cdots E_r^{-1}$。每個反矩陣為單位下三角，其乘積仍為單位下三角。"
+                },
+                {
+                  "id": "LA-CH01-S06-B02",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E01",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B03",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "寫出 E01 的消去矩陣及其反矩陣，驗算乘積。",
+                  "layout": "inline",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B04",
+                  "type": "concept",
+                  "title": "消去倍數與演算法",
+                  "provenance": "教材整理",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K02"
+                  ],
+                  "markdown": "第 $k$ 步，先看目前矩陣的主元 $a_{kk}^{(k)}$。對 $i>k$，若主元非零：\n\n$$m_{ik}=\\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}},\\qquad R_i\\leftarrow R_i-m_{ik}R_k.$$\n\n上標 $(k)$ 表示「已完成前面步驟的當前值」，不是次方。把 $m_{ik}$ 寫入 $L_{ik}$。不可把列運算中加號後的數字直接照抄到 $L$。\n\n例如 $R_3\\leftarrow R_3+\\frac12R_2$，等於減去 $-\\frac12R_2$，所以倍數是 $-\\frac12$。\n\n步驟：初始化 $L=I,U=A$ → 逐主元消去 → 每次記錄倍數 → 最後驗算 $LU=A$。不得把 $U$ 繼續化成 RREF 後仍沿用原本 $L$。",
+                  "layout": "split"
+                },
+                {
+                  "id": "LA-CH01-S06-B05",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E02",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B06",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "逐步記錄 E02 的三個消去倍數，追蹤目前矩陣，並驗算第三列。",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B07",
+                  "type": "concept",
+                  "title": "不換列 LU 的適用條件",
+                  "provenance": "教材整理",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K03"
+                  ],
+                  "markdown": "「可逆」不保證不換列 LU；「奇異」不代表沒有 LU。\n\n對可逆方陣，在 $L$ 單位下三角的約定下，存在 $A=LU$ 等價於所有順序主子式 $\\Delta_1,\\ldots,\\Delta_n$ 非零。因可逆已知 $\\Delta_n\\ne0$，亦可只檢查前 $n-1$ 個。\n\n必要性：$A$ 的左上角主區塊等於相應的 $L_kU_k$，故 $\\Delta_k=\\prod_{i=1}^ku_{ii}$；可逆的三角 $U$ 對角皆非零。充分性：依消去過程，主元為 $u_{kk}=\\Delta_k/\\Delta_{k-1}$，取 $\\Delta_0=1$，所以不會遇到零主元。\n\n零主元若下方同一行尚有非零元素，直接消去會失敗；若下方已全零，則不一定需要除法。例如上三角奇異矩陣可直接取 $L=I$。不能將「所有主元非零」當所有奇異矩陣存在 LU 的必要條件。"
+                },
+                {
+                  "id": "LA-CH01-S06-B08",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E03",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B09",
+                  "type": "summary",
+                  "title": "存在條件對照",
+                  "provenance": "教材整理",
+                  "markdown": "|情形|判斷重點|\n|---|---|\n|可逆方陣的不換列 LU|順序主子式全非零是此形式 LU 存在的充要條件。|\n|零主元且下方尚有非零元素|直接消去失敗，須檢查換列。|\n|奇異上三角矩陣|可直接取 $L=I,U=A$；奇異不代表沒有 LU。|",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B10",
+                  "type": "concept",
+                  "title": "LDU 分解",
+                  "provenance": "教材整理",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K04"
+                  ],
+                  "markdown": "當 $U$ 的對角全非零，令 $D=\\operatorname{diag}(u_{11},\\ldots,u_{nn})$，$\\widehat U=D^{-1}U$，則\n\n$$A=LD\\widehat U.$$\n\n$L$ 是單位下三角，$D$ 是對角，$\\widehat U$ 是單位上三角。左乘 $D^{-1}$ 是把 $U$ 的第 $i$ 列除以 $u_{ii}$。有零對角時 $D^{-1}$ 不存在，這個公式不能使用。"
+                },
+                {
+                  "id": "LA-CH01-S06-B11",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E04",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B12",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "從 E02 的 U 抽出 D，逐列寫出單位上三角矩陣。",
+                  "layout": "inline",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B13",
+                  "type": "concept",
+                  "title": "排列與 PA=LU",
+                  "provenance": "教材整理",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K05"
+                  ],
+                  "markdown": "排列矩陣是單位矩陣重排列後的結果，$P^{-1}=P^T$。左乘 $PA$ 重新排列列，右乘 $AP$ 重新排列行；兩者效果不可混用。多個排列矩陣的乘積仍是排列矩陣，但通常不交換。\n\n換列後應記錄 $PA=LU$，所以 $A=P^TLU$。單次兩列交換的矩陣滿足 $P=P^T$，一般排列矩陣未必對稱。\n\n**延伸提醒：中途換列。** 若在第 $k$ 步換第 $k$ 與第 $p$ 列，須連同 $L$ 已填好的第 $1$ 到 $k-1$ 行位置一併交換；尚未填寫部分不要整列亂換。"
+                },
+                {
+                  "id": "LA-CH01-S06-B14",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E05",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B15",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "用 E05 同時驗算 PA=LU 和 A=PᵀLU。",
+                  "layout": "inline",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B16",
+                  "type": "concept",
+                  "title": "部分選主元與數值精度",
+                  "provenance": "教材整理",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K06"
+                  ],
+                  "markdown": "部分選主元（partial pivoting）：第 $k$ 步在第 $k$ 行中，從第 $k$ 列至第 $n$ 列的候選元素選絕對值最大者，交換到第 $k$ 列。這裡「行」指 column，搜尋的是同一直行的下方元素。\n\n很小的主元會產生很大的倍數，在有限精度計算下容易使誤差放大。選主元有助於減少這種問題，但不保證所有矩陣都沒有數值誤差，也不改變病態問題本身的敏感性。若候選全部為零，不可硬做除法。"
+                },
+                {
+                  "id": "LA-CH01-S06-B17",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E06",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B18",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "寫出 E06 第一輪的倍數，說明交換前後的差異。",
+                  "layout": "inline",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B19",
+                  "type": "concept",
+                  "title": "利用 LU 解方程組",
+                  "provenance": "教材整理",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K07"
+                  ],
+                  "markdown": "由 $Ax=b$ 與 $A=LU$，令 $y=Ux$，得到先 $Ly=b$、再 $Ux=y$。\n\n$L$ 為單位下三角時，前代為\n\n$$y_i=b_i-\\sum_{j=1}^{i-1}\\ell_{ij}y_j.$$\n\n這表示從 $b_i$ 扣掉「已知的前面變數所貢獻的項」。例如 $y_3=b_3-\\ell_{31}y_1-\\ell_{32}y_2$。\n\n若 $u_{ii}\\ne0$，回代為\n\n$$x_i=\\frac{y_i-\\sum_{j=i+1}^nu_{ij}x_j}{u_{ii}},\\quad i=n,n-1,\\ldots,1.$$\n\n若 $PA=LU$，則應解 $Ly=Pb$，再解 $Ux=y$。有零對角時，不能直接套回代除法；須檢查相容性、自由變數，可能無解或無限多解。\n\n同一 $A$ 有多個右端向量時，分解只做一次。延伸：稠密矩陣分解約 $O(n^3)$，每組前代與回代約 $O(n^2)$。一般不必先求 $A^{-1}$。",
+                  "layout": "split"
+                },
+                {
+                  "id": "LA-CH01-S06-B20",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E07",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B21",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "先遮住詳解，用 E07 計算 y 再算 x，最後代回 Ax=b。",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B22",
+                  "type": "concept",
+                  "title": "延伸：唯一性、行列式與塊狀消去",
+                  "provenance": "補充延伸",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K08"
+                  ],
+                  "markdown": "### 唯一性\n\n若 $A$ 可逆且 $A=L_1U_1=L_2U_2$，兩個 $L$ 都是單位下三角，則\n\n$$L_2^{-1}L_1=U_2U_1^{-1}.$$\n\n左側為單位下三角，右側為上三角；相同矩陣必同時上下三角，因此為對角矩陣，再由左側對角全為 1 得為 $I$。故兩組分解相同。未規範 $L$ 的對角，或 $A$ 奇異時，不能照搬這個唯一性結論。\n\n### 行列式\n\n$A=LU$ 時 $\\det(A)=\\prod_i u_{ii}$，因為 $\\det(L)=1$。$PA=LU$ 時 $\\det(A)=\\det(P)\\prod_i u_{ii}$，每交換一次兩列會改變一次符號。\n\n### 塊狀消去與 Schur complement\n\n令 $M=\\begin{bmatrix}B&C\\\\D&E\\end{bmatrix}$，假設方陣 $B$ 可逆，令 $S=E-DB^{-1}C$，則\n\n$$M=\\begin{bmatrix}I&0\\\\DB^{-1}&I\\end{bmatrix}\\begin{bmatrix}B&C\\\\0&S\\end{bmatrix}.$$\n\n相乘的左下為 $D$，右下為 $DB^{-1}C+S=E$，所以等式成立；故 $\\det(M)=\\det(B)\\det(S)$。乘法順序不可交換，也不能省略 $B$ 可逆的條件。\n\n正定矩陣延伸：實對稱正定矩陣順序主子式皆正，可不換列 LU；亦有 Cholesky 分解，但不作本節原教材已完整涵蓋的主張。"
+                },
+                {
+                  "id": "LA-CH01-S06-B23",
+                  "type": "example",
+                  "exampleId": "LA-CH01-S06-E08",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B24",
+                  "type": "summary",
+                  "title": "延伸條件檢查",
+                  "provenance": "補充延伸",
+                  "markdown": "1. 唯一性結論須有 $A$ 可逆且 $L$ 單位下三角。\n2. $A=LU$ 時 $\\det(A)=\\prod_i u_{ii}$；$PA=LU$ 時 $\\det(A)=\\det(P)\\prod_i u_{ii}$。\n3. 塊狀公式 $S=E-DB^{-1}C$ 要求 $B$ 可逆，且須保留矩陣乘法順序。",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH01-S06-B25",
+                  "type": "summary",
+                  "title": "考前摘要與錯誤檢查",
+                  "markdown": "1. $U$ 是消去結果；$L$ 填消去倍數，對角為 1。\n2. $R_i\\leftarrow R_i-mR_k$ 對應 $L_{ik}=m$。\n3. 可逆不保證不換列 LU；奇異仍可能有 LU。\n4. 可逆矩陣的順序主子式全非零，等價於此形式 LU 存在。\n5. 換列記錄為 $PA=LU$；解方程先 $Ly=Pb$。\n6. 前代由上而下，回代由下而上；除主元前先看是否為零。\n7. $D$ 抽出 $U$ 的對角；$\\widehat U=D^{-1}U$。\n8. 部分選主元比較當前主元行下方的絕對值。\n9. 多次解同一 $A$ 的不同右端，可重用分解。\n10. 最後檢查 $LU=A$ 或 $LU=PA$，再檢查 $Ax=b$。"
+                },
+                {
+                  "id": "LA-CH01-S06-B26",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH01-S06-A01"
+                },
+                {
+                  "id": "LA-CH01-S06-B27",
+                  "type": "note",
+                  "title": "測驗後訂正與回想",
+                  "prompt": "不用看公式，說明「為什麼 L 的符號與列運算寫法看起來相反」，再寫出 PA=LU 的解題順序。",
+                  "height": 260,
+                  "layout": "inline",
+                  "knowledgePointIds": [
+                    "LA-CH01-S06-K01",
+                    "LA-CH01-S06-K02",
+                    "LA-CH01-S06-K03",
+                    "LA-CH01-S06-K04",
+                    "LA-CH01-S06-K05",
+                    "LA-CH01-S06-K06",
+                    "LA-CH01-S06-K07",
+                    "LA-CH01-S06-K08"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH01-S06-A01",
+                "scope": "section",
+                "title": "1-6 小節測驗",
+                "questionIds": [
+                  "LA-CH01-S06-Q01",
+                  "LA-CH01-S06-Q02",
+                  "LA-CH01-S06-Q03",
+                  "LA-CH01-S06-Q04",
+                  "LA-CH01-S06-Q05",
+                  "LA-CH01-S06-Q06",
+                  "LA-CH01-S06-Q07"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。"
+              }
             }
           ]
         }
@@ -2266,6 +2571,189 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 自編模擬題"
       }
+    },
+    {
+      "id": "LA-CH01-S06-Q01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S06",
+      "title": "1-6 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "若消去操作為 $R_3\\leftarrow R_3+2R_1$，相應的 $L_{31}$ 為何？",
+      "options": [
+        "$2$",
+        "$-2$",
+        "$1/2$",
+        "$0$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K02"
+      ],
+      "tags": [
+        "消去倍數與演算法"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-Q02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S06",
+      "title": "1-6 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "哪個敘述正確？",
+      "options": [
+        "可逆矩陣一定能不換列 LU。",
+        "奇異矩陣一定不能 LU。",
+        "LU 的 $U$ 必須為 RREF。",
+        "上三角矩陣可以取 $L=I,U=A$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K03"
+      ],
+      "tags": [
+        "不換列 LU 的適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-Q03",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S06",
+      "title": "1-6 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "已知 $PA=LU$，要解 $Ax=b$，應先解哪一式？",
+      "options": [
+        "$Ly=Pb$",
+        "$Ly=b$",
+        "$Py=Lb$",
+        "$Uy=Pb$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K05",
+        "LA-CH01-S06-K07"
+      ],
+      "tags": [
+        "排列與 PA=LU",
+        "利用 LU 解方程組"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-Q04",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S06",
+      "title": "1-6 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$U=\\begin{bmatrix}2&6\\\\0&-4\\end{bmatrix}$，若 $D=\\operatorname{diag}(2,-4)$，則 $D^{-1}U$ 為何？",
+      "options": [
+        "$\\begin{bmatrix}1&-3/2\\\\0&1\\end{bmatrix}$",
+        "$\\begin{bmatrix}2&3\\\\0&-4\\end{bmatrix}$",
+        "$\\begin{bmatrix}1&3\\\\0&1\\end{bmatrix}$",
+        "$\\begin{bmatrix}1&6\\\\0&1\\end{bmatrix}$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K04"
+      ],
+      "tags": [
+        "LDU 分解"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-Q05",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S06",
+      "title": "1-6 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "消去第 2 步，第 2 行在第 2–4 列的當前值為 $0.01,-4,2$。部分選主元應如何做？",
+      "options": [
+        "將第 1 列換到第 2 列。",
+        "交換第 2、3 列，選 $-4$ 為主元。",
+        "交換第 2、4 列，選正數 2。",
+        "不交換，因為 $0.01$ 非零。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K06"
+      ],
+      "tags": [
+        "部分選主元與數值精度"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-Q06",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S06",
+      "title": "1-6 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "求 $A=\\begin{bmatrix}2&1&1\\\\4&3&3\\\\2&2&3\\end{bmatrix}$ 的不換列 LU，再解 $Ax=(4,10,7)^T$。須寫出倍數、前代與回代，並驗算。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K02",
+        "LA-CH01-S06-K07"
+      ],
+      "tags": [
+        "消去倍數與演算法",
+        "利用 LU 解方程組"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-Q07",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH01",
+      "sectionId": "LA-CH01-S06",
+      "title": "1-6 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "對 $A(t)=\\begin{bmatrix}t&1\\\\1&1\\end{bmatrix}$：\n\n(a) 判斷何時可逆。(b) 判斷何時有單位下三角的不換列 LU，並寫出分解。(c) 當 $t=0$，寫出 $PA=LU$。(d) 用 $t=1$ 說明可逆性與 LU 存在性的區別。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K03",
+        "LA-CH01-S06-K05"
+      ],
+      "tags": [
+        "不換列 LU 的適用條件",
+        "排列與 PA=LU"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
     }
   ],
   "examples": [
@@ -2851,6 +3339,112 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 自編模擬例題"
       }
+    },
+    {
+      "id": "LA-CH01-S06-E01",
+      "title": "例題 01",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K01"
+      ],
+      "text": "對 $A=\\begin{bmatrix}2&1\\\\6&5\\end{bmatrix}$ 寫出消去矩陣 $E$，由 $EA=U$ 求 $L$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編示範"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-E02",
+      "title": "例題 02",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K02"
+      ],
+      "text": "求 $A=\\begin{bmatrix}1&2&3\\\\4&-6&-6\\\\-7&-7&9\\end{bmatrix}$ 的 LU。",
+      "source": {
+        "kind": "material",
+        "title": "教材例 38，依先前轉錄待原圖確認",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-E03",
+      "title": "例題 03",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K03"
+      ],
+      "text": "證明 $A=\\begin{bmatrix}0&1\\\\1&1\\end{bmatrix}$ 不存在單位下三角 $L$ 的不換列 LU，並給一個奇異矩陣有 LU 的例子。",
+      "source": {
+        "kind": "material",
+        "title": "教材例 39，依先前轉錄待原圖確認",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-E04",
+      "title": "例題 04",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K04"
+      ],
+      "text": "將 E02 的 LU 改寫成 LDU。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編延續 E02"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-E05",
+      "title": "例題 05",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K05"
+      ],
+      "text": "對 E03 的矩陣求 $PA=LU$；再解 $Ax=(1,2)^T$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編示範"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-E06",
+      "title": "例題 06",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K06"
+      ],
+      "text": "$A=\\begin{bmatrix}0.001&1\\\\1&1\\end{bmatrix}$，比較不換列與部分選主元的第一個倍數。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編示範，非講義小數例原題"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-E07",
+      "title": "例題 07",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K07"
+      ],
+      "text": "用 E01 的 LU 解 $Ax=(3,11)^T$。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編示範"
+      }
+    },
+    {
+      "id": "LA-CH01-S06-E08",
+      "title": "例題 08",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "LA-CH01-S06-K08"
+      ],
+      "text": "用塊狀消去求 $\\det\\begin{bmatrix}2&4\\\\3&7\\end{bmatrix}$，再說明公式的條件。",
+      "source": {
+        "kind": "simulation",
+        "title": "自編示範"
+      }
     }
   ],
   "knowledgePoints": [
@@ -3165,6 +3759,62 @@ window.ZILIU_CONTENT = {
       "provenance": "補充延伸",
       "markdown": "設 $M=\\begin{bmatrix}A&B\\\\C&D\\end{bmatrix}$，$A,D$ 是方陣、各區塊尺寸相容、$A$ 可逆。左乘可逆消去矩陣得\n\n$$\\begin{bmatrix}I&0\\\\-CA^{-1}&I\\end{bmatrix}M=\\begin{bmatrix}A&B\\\\0&D-CA^{-1}B\\end{bmatrix}.$$\n\n故 $M$ 可逆等價於 Schur 補 $D-CA^{-1}B$ 可逆。若補矩陣有非零零向量 $y$，取 $x=-A^{-1}By$ 即得 $M[x^T\\ y^T]^T=0$；若補矩陣可逆，則可先解 $y$ 再解 $x$，任何右側均有唯一解。\n\n若 $A$ 可逆，$u,v\\in F^n$，令 $d=1+v^TA^{-1}u$。$d\\ne0$ 時\n\n$$(A+uv^T)^{-1}=A^{-1}-\\frac{A^{-1}uv^TA^{-1}}d.$$\n\n若 $d=0$，則 $u\\ne0$、$A^{-1}u\\ne0$，而 $(A+uv^T)A^{-1}u=u(1+v^TA^{-1}u)=0$，故不可逆。若 $d\\ne0$，乘法展開可驗證上式。複數情況此為代數外積 $uv^T$；若題目使用 $uv^*$，全部相應改用共軛轉置。",
       "writingPrompt": "各挑一個 2×2 數值例子驗證公式，先確認分母非零。"
+    },
+    {
+      "id": "LA-CH01-S06-K01",
+      "title": "LU 是高斯消去的紀錄",
+      "difficulty": 1,
+      "provenance": "教材整理",
+      "markdown": "目標是 $A=LU$，其中 $L$ 為主對角全 1 的下三角矩陣，$U$ 為上三角矩陣。$L$ 記錄消去倍數，$U$ 記錄消去結果。通常 $LU\\ne UL$。\n\n若消去步驟為 $E_r\\cdots E_2E_1A=U$，其中每個 $E_i$ 只進行倍加列，則\n\n$$A=E_1^{-1}E_2^{-1}\\cdots E_r^{-1}U=LU.$$\n\n理由：從左側依序消去 $E_r,\\ldots,E_1$ 時，反矩陣在右側結果的排列為 $E_1^{-1}\\cdots E_r^{-1}$。每個反矩陣為單位下三角，其乘積仍為單位下三角。"
+    },
+    {
+      "id": "LA-CH01-S06-K02",
+      "title": "消去倍數與演算法",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "第 $k$ 步，先看目前矩陣的主元 $a_{kk}^{(k)}$。對 $i>k$，若主元非零：\n\n$$m_{ik}=\\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}},\\qquad R_i\\leftarrow R_i-m_{ik}R_k.$$\n\n上標 $(k)$ 表示「已完成前面步驟的當前值」，不是次方。把 $m_{ik}$ 寫入 $L_{ik}$。不可把列運算中加號後的數字直接照抄到 $L$。\n\n例如 $R_3\\leftarrow R_3+\\frac12R_2$，等於減去 $-\\frac12R_2$，所以倍數是 $-\\frac12$。\n\n步驟：初始化 $L=I,U=A$ → 逐主元消去 → 每次記錄倍數 → 最後驗算 $LU=A$。不得把 $U$ 繼續化成 RREF 後仍沿用原本 $L$。"
+    },
+    {
+      "id": "LA-CH01-S06-K03",
+      "title": "不換列 LU 的適用條件",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "「可逆」不保證不換列 LU；「奇異」不代表沒有 LU。\n\n對可逆方陣，在 $L$ 單位下三角的約定下，存在 $A=LU$ 等價於所有順序主子式 $\\Delta_1,\\ldots,\\Delta_n$ 非零。因可逆已知 $\\Delta_n\\ne0$，亦可只檢查前 $n-1$ 個。\n\n必要性：$A$ 的左上角主區塊等於相應的 $L_kU_k$，故 $\\Delta_k=\\prod_{i=1}^ku_{ii}$；可逆的三角 $U$ 對角皆非零。充分性：依消去過程，主元為 $u_{kk}=\\Delta_k/\\Delta_{k-1}$，取 $\\Delta_0=1$，所以不會遇到零主元。\n\n零主元若下方同一行尚有非零元素，直接消去會失敗；若下方已全零，則不一定需要除法。例如上三角奇異矩陣可直接取 $L=I$。不能將「所有主元非零」當所有奇異矩陣存在 LU 的必要條件。"
+    },
+    {
+      "id": "LA-CH01-S06-K04",
+      "title": "LDU 分解",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "當 $U$ 的對角全非零，令 $D=\\operatorname{diag}(u_{11},\\ldots,u_{nn})$，$\\widehat U=D^{-1}U$，則\n\n$$A=LD\\widehat U.$$\n\n$L$ 是單位下三角，$D$ 是對角，$\\widehat U$ 是單位上三角。左乘 $D^{-1}$ 是把 $U$ 的第 $i$ 列除以 $u_{ii}$。有零對角時 $D^{-1}$ 不存在，這個公式不能使用。"
+    },
+    {
+      "id": "LA-CH01-S06-K05",
+      "title": "排列與 PA=LU",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "排列矩陣是單位矩陣重排列後的結果，$P^{-1}=P^T$。左乘 $PA$ 重新排列列，右乘 $AP$ 重新排列行；兩者效果不可混用。多個排列矩陣的乘積仍是排列矩陣，但通常不交換。\n\n換列後應記錄 $PA=LU$，所以 $A=P^TLU$。單次兩列交換的矩陣滿足 $P=P^T$，一般排列矩陣未必對稱。\n\n**延伸提醒：中途換列。** 若在第 $k$ 步換第 $k$ 與第 $p$ 列，須連同 $L$ 已填好的第 $1$ 到 $k-1$ 行位置一併交換；尚未填寫部分不要整列亂換。"
+    },
+    {
+      "id": "LA-CH01-S06-K06",
+      "title": "部分選主元與數值精度",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "部分選主元（partial pivoting）：第 $k$ 步在第 $k$ 行中，從第 $k$ 列至第 $n$ 列的候選元素選絕對值最大者，交換到第 $k$ 列。這裡「行」指 column，搜尋的是同一直行的下方元素。\n\n很小的主元會產生很大的倍數，在有限精度計算下容易使誤差放大。選主元有助於減少這種問題，但不保證所有矩陣都沒有數值誤差，也不改變病態問題本身的敏感性。若候選全部為零，不可硬做除法。"
+    },
+    {
+      "id": "LA-CH01-S06-K07",
+      "title": "利用 LU 解方程組",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "由 $Ax=b$ 與 $A=LU$，令 $y=Ux$，得到先 $Ly=b$、再 $Ux=y$。\n\n$L$ 為單位下三角時，前代為\n\n$$y_i=b_i-\\sum_{j=1}^{i-1}\\ell_{ij}y_j.$$\n\n這表示從 $b_i$ 扣掉「已知的前面變數所貢獻的項」。例如 $y_3=b_3-\\ell_{31}y_1-\\ell_{32}y_2$。\n\n若 $u_{ii}\\ne0$，回代為\n\n$$x_i=\\frac{y_i-\\sum_{j=i+1}^nu_{ij}x_j}{u_{ii}},\\quad i=n,n-1,\\ldots,1.$$\n\n若 $PA=LU$，則應解 $Ly=Pb$，再解 $Ux=y$。有零對角時，不能直接套回代除法；須檢查相容性、自由變數，可能無解或無限多解。\n\n同一 $A$ 有多個右端向量時，分解只做一次。延伸：稠密矩陣分解約 $O(n^3)$，每組前代與回代約 $O(n^2)$。一般不必先求 $A^{-1}$。"
+    },
+    {
+      "id": "LA-CH01-S06-K08",
+      "title": "延伸：唯一性、行列式與塊狀消去",
+      "difficulty": 5,
+      "provenance": "補充延伸",
+      "markdown": "### 唯一性\n\n若 $A$ 可逆且 $A=L_1U_1=L_2U_2$，兩個 $L$ 都是單位下三角，則\n\n$$L_2^{-1}L_1=U_2U_1^{-1}.$$\n\n左側為單位下三角，右側為上三角；相同矩陣必同時上下三角，因此為對角矩陣，再由左側對角全為 1 得為 $I$。故兩組分解相同。未規範 $L$ 的對角，或 $A$ 奇異時，不能照搬這個唯一性結論。\n\n### 行列式\n\n$A=LU$ 時 $\\det(A)=\\prod_i u_{ii}$，因為 $\\det(L)=1$。$PA=LU$ 時 $\\det(A)=\\det(P)\\prod_i u_{ii}$，每交換一次兩列會改變一次符號。\n\n### 塊狀消去與 Schur complement\n\n令 $M=\\begin{bmatrix}B&C\\\\D&E\\end{bmatrix}$，假設方陣 $B$ 可逆，令 $S=E-DB^{-1}C$，則\n\n$$M=\\begin{bmatrix}I&0\\\\DB^{-1}&I\\end{bmatrix}\\begin{bmatrix}B&C\\\\0&S\\end{bmatrix}.$$\n\n相乘的左下為 $D$，右下為 $DB^{-1}C+S=E$，所以等式成立；故 $\\det(M)=\\det(B)\\det(S)$。乘法順序不可交換，也不能省略 $B$ 可逆的條件。\n\n正定矩陣延伸：實對稱正定矩陣順序主子式皆正，可不換列 LU；亦有 Cholesky 分解，但不作本節原教材已完整涵蓋的主張。"
     }
   ],
   "answers": {
@@ -3227,6 +3877,21 @@ window.ZILIU_CONTENT = {
     },
     "LA-CH01-S05-Q05": {
       "correctOption": 2
+    },
+    "LA-CH01-S06-Q01": {
+      "correctOption": 1
+    },
+    "LA-CH01-S06-Q02": {
+      "correctOption": 3
+    },
+    "LA-CH01-S06-Q03": {
+      "correctOption": 0
+    },
+    "LA-CH01-S06-Q04": {
+      "correctOption": 2
+    },
+    "LA-CH01-S06-Q05": {
+      "correctOption": 1
     }
   },
   "solutions": {
@@ -3568,6 +4233,81 @@ window.ZILIU_CONTENT = {
     },
     "LA-CH01-S05-Q07": {
       "markdown": "**提示：** 用望遠鏡相消與長度平方。\n\nQ07(a)：答案 I+N+N²。相乘為 I−N³=I，另一側同理。答案 2 分、驗證 2 分。\n\nQ07(b)：若 Ax=0，則 AᵀAx=0。若 AᵀAx=0，左乘 xᵀ 得 0=xᵀAᵀAx=||Ax||²，故 Ax=0。兩方向各 1 分、長度平方推論 2 分。滿欄秩使 AᵀA 可逆，取 L=(AᵀA)⁻¹Aᵀ，算 LA=Iₙ，2 分。答對：兩方向與左逆驗證皆完整；部分正確：只完成一方向或公式未說明存在；不會：混淆 AᵀA 與 AAᵀ 或直接假設 A 有雙側逆。"
+    },
+    "LA-CH01-S06-E01": {
+      "markdown": "辨識：題目要求消去矩陣與 LU，從倍加列開始。提示：消去倍數是 3。\n\n$R_2\\leftarrow R_2-3R_1$，所以 $E=\\begin{bmatrix}1&0\\\\-3&1\\end{bmatrix}$，$U=\\begin{bmatrix}2&1\\\\0&2\\end{bmatrix}$。由 $EA=U$ 左乘 $E^{-1}$，得 $L=\\begin{bmatrix}1&0\\\\3&1\\end{bmatrix}$。乘回的第二列是 $(6,5)$。常見錯誤：把 $-3$ 放入 $L$。"
+    },
+    "LA-CH01-S06-E02": {
+      "markdown": "辨識：第一主元非零，先嘗試不換列消去。提示：第二輪使用更新後的矩陣。\n\n第一輪倍數 $m_{21}=4,m_{31}=-7$，消去後第二列 $(0,-14,-18)$、第三列 $(0,7,30)$。第二輪 $m_{32}=7/(-14)=-1/2$，執行 $R_3\\leftarrow R_3+R_2/2$，得到\n\n$$L=\\begin{bmatrix}1&0&0\\\\4&1&0\\\\-7&-1/2&1\\end{bmatrix},\\quad U=\\begin{bmatrix}1&2&3\\\\0&-14&-18\\\\0&0&21\\end{bmatrix}.$$\n\n驗算第三列：$-7(1,2,3)-\\frac12(0,-14,-18)+(0,0,21)=(-7,-7,9)$。常見錯誤：直接拿原始 $a_{32}/a_{22}$。"
+    },
+    "LA-CH01-S06-E03": {
+      "markdown": "辨識：首元素為零但下方不為零，先用乘積比較證明。提示：比較左上與左下。\n\n設 $L=\\begin{bmatrix}1&0\\\\t&1\\end{bmatrix}$，$U=\\begin{bmatrix}u&v\\\\0&w\\end{bmatrix}$。乘積左上迫使 $u=0$，左下便為 $tu=0$，但題目的左下為 1，矛盾。\n\n奇異例：$A=\\operatorname{diag}(1,0)=I A$，可取 $L=I,U=A$。常見錯誤：把反例擴大成所有可逆矩陣都無 LU，或奇異矩陣都無 LU。"
+    },
+    "LA-CH01-S06-E04": {
+      "markdown": "辨識：要求單位上三角，需要將各列除以對角元素。提示：$D$ 放在 $L$ 與 $\\widehat U$ 之間。\n\n$D=\\operatorname{diag}(1,-14,21)$，$\\widehat U=\\begin{bmatrix}1&2&3\\\\0&1&9/7\\\\0&0&1\\end{bmatrix}$。$D\\widehat U=U$，再左乘 E02 的 $L$ 得原矩陣。常見錯誤：按行縮放，或寫成 $L\\widehat UD$。"
+    },
+    "LA-CH01-S06-E05": {
+      "markdown": "辨識：零主元需要換列；解方程的右端也要換列。\n\n$P=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$，$PA=\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$，故 $L=I,U=PA$。$Pb=(2,1)^T$；前代得 $y=(2,1)^T$，回代得 $x_2=1,x_1=1$。代回原式得 $(1,2)^T$。常見錯誤：使用原本的 $b$。"
+    },
+    "LA-CH01-S06-E06": {
+      "markdown": "辨識：主元很小，需要比較倍數大小。未交換時倍數 $1/0.001=1000$。交換兩列後首主元為 1，倍數為 $0.001$。有限精度下，大倍數與相減可能放大捨入誤差；本例只比較倍數，沒有指定有效位數，因此不虛構捨入後數值。常見錯誤：宣稱精確算術下的小主元必然使答案錯誤。"
+    },
+    "LA-CH01-S06-E07": {
+      "markdown": "辨識：同一矩陣已有分解，直接前代／回代。提示：先算 $y$。\n\n$y_1=3$，$3y_1+y_2=11$，得 $y_2=2$。$2x_2=2$ 得 $x_2=1$；$2x_1+x_2=3$ 得 $x_1=1$。驗算 $Ax=(3,11)^T$。常見錯誤：先回代 $L$，或將 $y$ 當最終答案。"
+    },
+    "LA-CH01-S06-E08": {
+      "markdown": "辨識：右下可由 Schur complement 化簡。$B=2,C=4,D=3,E=7$，$S=7-3(1/2)4=1$，故行列式 $2\\cdot1=2$。條件是 $B$ 可逆；驗算一般二階公式 $14-12=2$。常見錯誤：漏掉反矩陣或乘法順序。"
+    },
+    "LA-CH01-S06-Q01": {
+      "markdown": "提示：把加法改寫為減去倍數。答案 B。\n\nA：混淆列運算加號後的係數；B：$R_3-(-2)R_1$，倍數為 $-2$；C：沒有取倒數的理由；D：確實發生消去，倍數不是 0。",
+      "optionExplanations": [
+        "混淆列運算加號後的係數",
+        "$R_3-(-2)R_1$，倍數為 $-2$",
+        "沒有取倒數的理由",
+        "確實發生消去，倍數不是 0。"
+      ]
+    },
+    "LA-CH01-S06-Q02": {
+      "markdown": "提示：用零主元反例與奇異上三角反例檢查。答案 D。\n\nA：E03 可逆卻沒有此形式 LU；B：$\\operatorname{diag}(1,0)$ 是反例；C：上三角無須主元歸一或消去主元上方；D：$IA=A$ 且 $I$ 符合單位下三角。",
+      "optionExplanations": [
+        "E03 可逆卻沒有此形式 LU",
+        "$\\operatorname{diag}(1,0)$ 是反例",
+        "上三角無須主元歸一或消去主元上方",
+        "$IA=A$ 且 $I$ 符合單位下三角。"
+      ]
+    },
+    "LA-CH01-S06-Q03": {
+      "markdown": "提示：把原方程左乘 $P$。答案 A。\n\nA：$LUx=Pb$，令 $y=Ux$ 即得；B：漏掉排列右端；C：不是由代入推得的三角系統；D：先解 $U$ 不符合此處變數定義與分解順序。",
+      "optionExplanations": [
+        "$LUx=Pb$，令 $y=Ux$ 即得",
+        "漏掉排列右端",
+        "不是由代入推得的三角系統",
+        "先解 $U$ 不符合此處變數定義與分解順序。"
+      ]
+    },
+    "LA-CH01-S06-Q04": {
+      "markdown": "提示：左乘對角矩陣是逐列縮放。答案 C。\n\nA：把右乘的行縮放效果混入；B：對角未歸一；C：第一列除 2、第二列除 $-4$；D：沒有將第一列非對角元素一併除 2。",
+      "optionExplanations": [
+        "把右乘的行縮放效果混入",
+        "對角未歸一",
+        "第一列除 2、第二列除 $-4$",
+        "沒有將第一列非對角元素一併除 2。"
+      ]
+    },
+    "LA-CH01-S06-Q05": {
+      "markdown": "提示：比較絕對值，而非比較正負。答案 B。\n\nA：不從已完成的第 1 列選；B：$|-4|=4$ 最大；C：2 的絕對值較小；D：非零仍可能需要為數值穩定選主元。",
+      "optionExplanations": [
+        "不從已完成的第 1 列選",
+        "$|-4|=4$ 最大",
+        "2 的絕對值較小",
+        "非零仍可能需要為數值穩定選主元。"
+      ]
+    },
+    "LA-CH01-S06-Q06": {
+      "markdown": "提示：先消去第 1 行下方，再消去第 2 行下方。\n\n$m_{21}=2,m_{31}=1$。第一輪後第二列 $(0,1,1)$，第三列 $(0,1,2)$；$m_{32}=1$。\n\n$$L=\\begin{bmatrix}1&0&0\\\\2&1&0\\\\1&1&1\\end{bmatrix},\\quad U=\\begin{bmatrix}2&1&1\\\\0&1&1\\\\0&0&1\\end{bmatrix}.$$\n\n前代：$y_1=4,y_2=10-8=2,y_3=7-4-2=1$。回代：$x_3=1,x_2=1,x_1=1$。$LU=A$，且 $A(1,1,1)^T=(4,10,7)^T$。\n\n評分：倍數 2 分；$L,U$ 各 2 分；前代 1 分；回代 2 分；驗算 1 分。部分正確：方法成立但單步算錯；不會：無法建立兩個三角系統。"
+    },
+    "LA-CH01-S06-Q07": {
+      "markdown": "提示：分開檢查行列式與首主元。\n\n(a) $\\det A=t-1$，故 $t\\ne1$ 時可逆。\n\n(b) $t\\ne0$ 時：\n\n$$L=\\begin{bmatrix}1&0\\\\1/t&1\\end{bmatrix},\\quad U=\\begin{bmatrix}t&1\\\\0&1-1/t\\end{bmatrix}.$$\n\n$t=0$ 時比較乘積首行首項及第二列首項即得矛盾，故無此 LU。\n\n(c) $P=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$，$L=I$，$U=\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$。\n\n(d) $t=1$ 時奇異，仍有 (b) 的分解，其中 $U$ 最後對角為 0；所以奇異不排除 LU。相對地 $t=0$ 可逆，卻需要換列。\n\n評分：(a) 2 分；(b) 分解 3 分與零主元證明 1 分；(c) 2 分；(d) 2 分。部分正確：能求分解但混淆條件；不會：只用可逆性判斷 LU。"
     }
   },
   "sourceReview": {
@@ -3620,6 +4360,16 @@ window.ZILIU_CONTENT = {
       "pendingExamCount": 15,
       "pendingExamImported": false,
       "note": "未核實的考古候選索引不進正式題庫；未製作大章綜合測驗。"
+    },
+    {
+      "filename": "線性代數_1-6_LU分解_第一階段審閱稿.md",
+      "sha256": "800395ac671de60986ef7df89dfe1aeb43d03a994b1c1ed51e6e1812fcd5cd0b",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "LA-CH01-S06",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "原圖未重讀；教材例 38、39 依先前轉錄，仍待原圖確認，其他缺漏例題未補造。15 筆未核實考古候選不進正式題庫，未製作大章綜合測驗。"
     }
   ]
 };

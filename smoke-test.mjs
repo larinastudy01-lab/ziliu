@@ -80,12 +80,12 @@ live.click({ action: 'start-first-lesson' });
 check(live.run('activeSectionId') === sectionId, 'home entry opens exact 1-1 section');
 live.run("state.notes['height-test']={height:345,text:'',strokes:[]}");
 check(live.run("inkPad('height-test',230).includes('height:345px')"), 'saved canvas height restored');
-check(live.run('allSections().length') === 4, 'all four supplied sections are imported');
+check(live.run('allSections().length') === 5, 'all five supplied sections are imported');
 check(live.run('courses.slice(1).every(subject=>subject.chapters.length===0)'), 'other five subjects stay empty');
 check(live.run('catalog.knowledgePoints.filter(item=>item.id.startsWith("LA-CH01-S01-")).length') === 12, 'original twelve knowledge points retained');
 check(live.run('catalog.examples.filter(item=>item.id.startsWith("LA-CH01-S01-")).length') === 12, 'original twelve examples retained');
 check(live.run('allSections()[0].blocks.length') === 35, 'thirty-five planned blocks');
-check(live.run('bank.length') === 28, 'twenty-eight supplied assessment questions');
+check(live.run('bank.length') === 35, 'thirty-five supplied assessment questions');
 check(live.run('bank.every(question=>question.source.kind==="simulation")'), 'simulation provenance explicit');
 check(live.run('catalog.sourceReview.pendingExamImported') === false, 'unverified exam summaries excluded');
 check(live.run('courses[0].chapters[0].quiz===undefined'), 'no fabricated whole-chapter quiz');
@@ -135,7 +135,7 @@ live.click({ action: 'submit-assessment' });
 check(live.run(`state.records['${questionId(1)}'].attempts.length`) === 2, 'second attempt stored separately');
 check(live.run(`state.records['${questionId(1)}'].attempts[0].status`) === '已答對', 'first attempt unchanged after wrong retry');
 live.location.hash = '#questions';
-check(live.get('#app').innerHTML.includes('共 28 題'), 'question bank displays supplied simulations only');
+check(live.get('#app').innerHTML.includes('共 35 題'), 'question bank displays supplied simulations only');
 live.click({ question: questionId(7) });
 check(live.get('#app').innerHTML.includes('(a)') && live.get('#app').innerHTML.includes('(b)'), 'proof question preserves shared stem and subparts');
 live.click({ bankRate: '已答對' });
@@ -164,12 +164,13 @@ console.log(`PASS: ${checks} total checks, including the imported 1-1 workflow, 
 
 const multiple = launch({}, false), originalNote = '舊有 1-1 筆記';
 multiple.run(`state.notes['lesson-LA-CH01-S01']={text:'${originalNote}',strokes:[],title:'1-1'};state.completedSections=['LA-CH01-S01'];persist()`);
-check(multiple.run('allSections().map(section=>section.id).join(",")') === 'LA-CH01-S01,LA-CH01-S03,LA-CH01-S04,LA-CH01-S05', 'section order follows source numbering and does not invent 1-2');
-check(multiple.run('subjectProgress(courses[0]).percent') === 25, 'provided-section progress correctly expands to four sections');
+check(multiple.run('allSections().map(section=>section.id).join(",")') === 'LA-CH01-S01,LA-CH01-S03,LA-CH01-S04,LA-CH01-S05,LA-CH01-S06', 'section order follows source numbering and does not invent 1-2');
+check(multiple.run('subjectProgress(courses[0]).percent') === 20, 'provided-section progress correctly expands to five sections');
 const configurations = [
   { number: 3, knowledge: 7, examples: 8, blocks: 25, assessment: 'AS01', ids: ['MC01','MC02','MC03','MC04','MC05','HW01','HW02'], correct: [2,0,3,1,2], points: 20, written: 5 },
   { number: 4, knowledge: 13, examples: 14, blocks: 43, assessment: 'AS01', ids: ['T01','T02','T03','T04','T05','W01','W02'], correct: [0,2,1,3,1], points: null, written: 10 },
-  { number: 5, knowledge: 11, examples: 11, blocks: 37, assessment: 'A01', ids: ['Q01','Q02','Q03','Q04','Q05','Q06','Q07'], correct: [2,0,3,1,2], points: null, written: 10 }
+  { number: 5, knowledge: 11, examples: 11, blocks: 37, assessment: 'A01', ids: ['Q01','Q02','Q03','Q04','Q05','Q06','Q07'], correct: [2,0,3,1,2], points: null, written: 10 },
+  { number: 6, knowledge: 8, examples: 8, blocks: 28, assessment: 'A01', ids: ['Q01','Q02','Q03','Q04','Q05','Q06','Q07'], correct: [1,3,0,2,1], points: null, written: 10 }
 ];
 for (const config of configurations) {
   const prefix = 'LA-CH01-S0' + config.number, qid = short => prefix + '-' + short;
@@ -210,16 +211,16 @@ for (const config of configurations) {
   check(multiple.run('activeSectionId') === prefix, 'weakness review returns to right new section ' + config.number);
 }
 check(multiple.run(`state.notes['lesson-LA-CH01-S01'].text`) === originalNote, 'adding sections never erases previous user notes');
-check(multiple.run('Object.keys(state.records).length') === 21, 'independent question IDs prevent cross-section collisions');
+check(multiple.run('Object.keys(state.records).length') === 28, 'independent question IDs prevent cross-section collisions');
 multiple.location.hash = '#quiz?section=LA-CH01-S04'; multiple.click({ action: 'retry-assessment' });
 check(multiple.run("state.notes['archive-LA-CH01-S04-W01-1'].text") === '1-4 的原始推導', 'new-section retry archives handwriting');
 check(multiple.run("state.records['LA-CH01-S03-HW01'].attempts[0].status") === '部分正確', 'retry in one section preserves another section result');
-check(multiple.run("catalog.sourceReviews.every(review=>review.pendingExamImported===false)"), 'all four unverified exam lists excluded');
+check(multiple.run("catalog.sourceReviews.every(review=>review.pendingExamImported===false)"), 'all five unverified exam lists excluded');
 check(multiple.run('catalog.knowledgePoints.filter(point=>point.provenance.includes("延伸")).length') >= 7, 'supplementary extensions clearly labelled');
 check(multiple.run('catalog.questions.every(question=>question.source.kind==="simulation")'), 'no fabricated real exam provenance');
 check(!content.includes('drive.google.com'), 'unverified external source links not promoted to course data');
 check(multiple.run('courseMarkdown("### 自我檢核\\n\\n- 檢查尺寸")').includes('<h3>自我檢核</h3>'), 'source summary headings render as headings');
-console.log(`PASS: ${checks} checks across 1-1, 1-3, 1-4 and 1-5; ${formulaCount} mathematical expressions parsed.`);
+console.log(`PASS: ${checks} checks across 1-1, 1-3, 1-4, 1-5 and 1-6; ${formulaCount} mathematical expressions parsed.`);
 
 const persistedCatalog = readCatalog(), originalFirstSection = JSON.stringify(persistedCatalog.subjects[0].chapters[0].sections[0]);
 const originalFirstQuestions = JSON.stringify(persistedCatalog.questions.filter(question=>question.sectionId==='LA-CH01-S01'));
@@ -228,15 +229,15 @@ for (const sec of persistedCatalog.subjects[0].chapters[0].sections) {
   const payload = { section: sec, questions: persistedCatalog.questions.filter(item=>belongs(item.id)), examples: persistedCatalog.examples.filter(item=>belongs(item.id)), knowledgePoints: persistedCatalog.knowledgePoints.filter(item=>belongs(item.id)), answers: Object.fromEntries(Object.entries(persistedCatalog.answers).filter(([id])=>belongs(id))), solutions: Object.fromEntries(Object.entries(persistedCatalog.solutions).filter(([id])=>belongs(id))), sourceReview: persistedCatalog.sourceReviews.find(review=>review.scope===sec.id) };
   upsertSection(persistedCatalog, payload);
 }
-check(persistedCatalog.subjects[0].chapters[0].sections.length === 4, 'reimport does not erase other sections');
-check(persistedCatalog.questions.length === 28, 'reimport does not duplicate questions');
-check(persistedCatalog.examples.length === 45, 'reimport does not duplicate examples');
+check(persistedCatalog.subjects[0].chapters[0].sections.length === 5, 'reimport does not erase other sections');
+check(persistedCatalog.questions.length === 35, 'reimport does not duplicate questions');
+check(persistedCatalog.examples.length === 53, 'reimport does not duplicate examples');
 check(JSON.stringify(persistedCatalog.subjects[0].chapters[0].sections[0]) === originalFirstSection, 'original 1-1 section content remains byte-for-byte equivalent');
 check(JSON.stringify(persistedCatalog.questions.filter(question=>question.sectionId==='LA-CH01-S01')) === originalFirstQuestions, 'original 1-1 question IDs and answers stay equivalent');
 const ids = persistedCatalog.questions.map(question=>question.id);
 check(new Set(ids).size === ids.length, 'question IDs globally unique');
 check(persistedCatalog.questions.every(question=>persistedCatalog.solutions[question.id]?.markdown), 'all formal questions have reference solutions');
-check(persistedCatalog.questions.filter(question=>question.options).every(question=>persistedCatalog.solutions[question.id].optionExplanations.length===4), 'all twenty choices have all four option explanations');
+check(persistedCatalog.questions.filter(question=>question.options).every(question=>persistedCatalog.solutions[question.id].optionExplanations.length===4), 'all twenty-five choices have all four option explanations');
 check(persistedCatalog.subjects[0].chapters[0].sections.every(section=>section.blocks.filter(block=>block.type==='example').every(block=>persistedCatalog.examples.some(example=>example.id===block.exampleId))), 'all example references resolve');
 multiple.location.hash = '#question?q=LA-CH01-S05-Q07';
 check(multiple.get('#app').innerHTML.includes('(a)') && multiple.get('#app').innerHTML.includes('(b)'), '1-5 shared two-part question remains a single complete card');
@@ -244,4 +245,22 @@ multiple.location.hash = '#question?q=LA-CH01-S03-HW02';
 check(['(1)','(2)','(3)'].every(part=>multiple.get('#app').innerHTML.includes(part)), '1-3 shared three-part question remains intact');
 const multReloaded = launch(Object.fromEntries(multiple.store), false);
 check(multReloaded.run("state.notes['lesson-LA-CH01-S01'].text") === originalNote, 'prior notes survive new-catalog reload');
-console.log(`PASS: ${checks} final checks. Four review sections, 43 knowledge points, 45 examples (one prerequisite), 28 questions. Browser and physical stylus verification are not included.`);
+multiple.location.hash = '#lesson?section=LA-CH01-S06';
+check(multiple.get('#app').innerHTML.includes('教材例 38，依先前轉錄待原圖確認') && multiple.get('#app').innerHTML.includes('教材例 39，依先前轉錄待原圖確認'), 'both transcribed LU examples show their original verification limits beside the question');
+check(multiple.run("catalog.examples.filter(example=>example.id.startsWith('LA-CH01-S06-')&&example.source.verificationStatus==='pending_original').length") === 2, 'exactly two LU examples await original verification');
+check(multiple.run("catalog.examples.filter(example=>example.id.startsWith('LA-CH01-S06-')&&example.source.kind==='simulation').length") === 6, 'six LU examples clearly marked as authored simulations');
+check(multiple.run("catalog.knowledgePoints.find(point=>point.id==='LA-CH01-S06-K08').provenance") === '補充延伸', 'LU uniqueness, determinants and block elimination marked as extension');
+check(!multiple.get('#app').innerHTML.includes('split B04：') && !multiple.get('#app').innerHTML.includes('手寫 B03：'), 'draft layout instructions become actual handwriting blocks');
+check(multiple.run("currentLesson().blocks.map(block=>block.id).includes('LA-CH01-S06-B27')"), 'post-assessment LU correction block retained');
+multiple.location.hash = '#question?q=LA-CH01-S06-Q07';
+check(['(a)','(b)','(c)','(d)'].every(part=>multiple.get('#app').innerHTML.includes(part)), 'LU parameter problem retains shared stem and all four subquestions');
+const LU = [[1,0,0],[4,1,0],[-7,-0.5,1]], U = [[1,2,3],[0,-14,-18],[0,0,21]], A = [[1,2,3],[4,-6,-6],[-7,-7,9]];
+assert.deepEqual(multiply(LU, U), A); checks++;
+const D = [[1,0,0],[0,-14,0],[0,0,21]], unitU = [[1,2,3],[0,1,9/7],[0,0,1]];
+assert.deepEqual(multiply(D, unitU), U); checks++;
+const quizA = [[2,1,1],[4,3,3],[2,2,3]], quizL = [[1,0,0],[2,1,0],[1,1,1]], quizU = [[2,1,1],[0,1,1],[0,0,1]];
+assert.deepEqual(multiply(quizL, quizU), quizA); checks++;
+assert.deepEqual(multiply(quizA, [[1],[1],[1]]), [[4],[10],[7]]); checks++;
+for (const t of [-3, 1, 2, 4]) { assert.deepEqual(multiply([[1,0],[1/t,1]], [[t,1],[0,1-1/t]]), [[t,1],[1,1]]); checks++; }
+assert.deepEqual(multiply([[0,1],[1,0]], [[0,1],[1,1]]), [[1,1],[0,1]]); checks++;
+console.log(`PASS: ${checks} final checks. Five review sections, 51 knowledge points, 53 examples (one prerequisite), 35 questions. Browser and physical stylus verification are not included.`);
