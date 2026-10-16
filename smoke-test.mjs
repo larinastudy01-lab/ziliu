@@ -1,24 +1,31 @@
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const katex = require('./docs/vendor/katex/katex.min.js');
 
 const app = readFileSync('docs/app.js', 'utf8');
 const content = readFileSync('docs/content.js', 'utf8');
+const markdown = readFileSync('docs/course-markdown.js', 'utf8');
 let checks = 0;
 function check(value, message) { assert(value, message); checks++; }
-function launch(initialStorage = {}) {
+function launch(initialStorage = {}, emptyCatalog = true) {
   const store = new Map(Object.entries(initialStorage)), handlers = {}, windowHandlers = {}, elements = new Map();
   const element = () => ({ innerHTML: '', textContent: '', isConnected: true, classList: { add() {}, remove() {}, toggle() {}, contains: () => false }, focus() {}, querySelector: () => element(), querySelectorAll: () => [] });
   const get = selector => { if (!elements.has(selector)) elements.set(selector, element()); return elements.get(selector); };
   const document = { querySelector: get, querySelectorAll: () => [], activeElement: element(), documentElement: element(), addEventListener: (type, fn) => (handlers[type] ??= []).push(fn) };
   let hash = '#home';
   const location = { get hash() { return hash; }, set hash(value) { hash = value.startsWith('#') ? value : '#' + value; (windowHandlers.hashchange || []).forEach(fn => fn()); } };
-  const window = { addEventListener: (type, fn) => (windowHandlers[type] ??= []).push(fn), scrollTo() {} };
+  const window = { katex, addEventListener: (type, fn) => (windowHandlers[type] ??= []).push(fn), scrollTo() {} };
   const context = vm.createContext({ window, document, location, localStorage: { getItem: key => store.get(key) || null, setItem: (key, value) => store.set(key, value) }, setTimeout: () => 1, clearTimeout() {}, requestAnimationFrame() {}, ResizeObserver: class { observe() {} disconnect() {} }, devicePixelRatio: 1, URLSearchParams, Intl, Date, structuredClone, matchMedia: () => ({ matches: true }), console });
-  vm.runInContext(content, context); vm.runInContext(app, context);
+  vm.runInContext(content, context);
+  if (emptyCatalog) { context.window.ZILIU_CONTENT.subjects.forEach(subject => subject.chapters = []); context.window.ZILIU_CONTENT.questions = []; }
+  vm.runInContext(markdown, context); vm.runInContext(app, context);
   const run = code => vm.runInContext(code, context);
   const click = dataset => { const target = { dataset, classList: { contains: () => false }, closest() { return this; } }; (handlers.click || []).forEach(fn => fn({ target })); };
-  return { run, click, get, location, store, handlers };
+  const change = target => (handlers.change || []).forEach(fn => fn({ target }));
+  return { run, click, change, get, location, store, handlers };
 }
 const page = launch();
 check(page.run('courses.length') === 6, 'six subject entry points retained');
@@ -36,7 +43,7 @@ page.location.hash = '#courses';
 for (let index = 0; index < 6; index++) {
   page.click({ subject: String(index) });
   check(page.run('state.subject') === index, 'subject selection ' + index);
-  check(page.get('#app').innerHTML.includes('0 個大章 · 0 個小節'), 'subject ' + index + ' has empty curriculum');
+  check(page.get('#app').innerHTML.includes('0 個已提供大章 · 0 個已提供小節'), 'subject ' + index + ' has empty curriculum');
 }
 page.location.hash = '#quiz'; page.click({ action: 'submit-quiz' });
 check(page.run('Object.keys(state.quizzes).length') === 0, 'cannot submit a nonexistent quiz');
@@ -64,3 +71,92 @@ migrated.run('persist()'); check(migrated.store.has('ziliu-v2'), 'new local stat
 for (const forbidden of ['示範學校', 'span{', '基底與維度', 'v₁', '最長共同子序列', '二元搜尋樹', 'demoNotes']) check(!app.includes(forbidden), 'removed material absent from public source: ' + forbidden);
 console.log(`PASS: ${checks} checks — empty catalog and routes, zero statistics, removed deep links, filter/search behavior, and preservation of user-authored notes.`);
 console.log('Browser visual and physical stylus verification remain unavailable in this environment.');
+
+const live = launch({}, false), sectionId = 'LA-CH01-S01', assessmentId = sectionId + '-AS01';
+const questionId = number => sectionId + '-Q' + String(number).padStart(2, '0');
+check(live.get('#app').innerHTML.includes('開始閱讀 1-1'), 'home offers the available first lesson');
+live.click({ action: 'start-first-lesson' });
+check(live.run('activeSectionId') === sectionId, 'home entry opens exact 1-1 section');
+live.run("state.notes['height-test']={height:345,text:'',strokes:[]}");
+check(live.run("inkPad('height-test',230).includes('height:345px')"), 'saved canvas height restored');
+check(live.run('allSections().length') === 1, 'only the supplied 1-1 section is imported');
+check(live.run('courses.slice(1).every(subject=>subject.chapters.length===0)'), 'other five subjects stay empty');
+check(live.run('catalog.knowledgePoints.length') === 12, 'twelve knowledge points');
+check(live.run('catalog.examples.length') === 12, 'twelve examples');
+check(live.run('allSections()[0].blocks.length') === 35, 'thirty-five planned blocks');
+check(live.run('bank.length') === 7, 'seven actual assessment questions');
+check(live.run('bank.every(question=>question.source.kind==="simulation")'), 'simulation provenance explicit');
+check(live.run('catalog.sourceReview.pendingExamImported') === false, 'unverified exam summaries excluded');
+check(live.run('courses[0].chapters[0].quiz===undefined'), 'no fabricated whole-chapter quiz');
+check(live.run('assessmentQuestions(allSections()[0]).reduce((n,q)=>n+q.points,0)') === 30, 'assessment points total thirty');
+live.location.hash = '#courses';
+check(live.get('#app').innerHTML.includes('1-1 矩陣及矩陣運算'), 'course title matches user naming');
+live.click({ section: sectionId });
+check(live.run('route') === 'lesson', 'subject → supplied lesson');
+check(live.get('#app').innerHTML.includes('原教材前段尚待補齊'), 'source coverage limitation visible');
+check(live.get('#app').innerHTML.includes('katex'), 'matrices and formulas typeset');
+check(live.get('#app').innerHTML.includes('<table>'), 'source concept tables retained');
+check(!live.get('#app').innerHTML.includes('math-fallback'), 'all lesson and example formulas render');
+check(live.get('#app').innerHTML.includes('查看提示與分步詳解'), 'examples have collapsible solutions');
+check(live.run('noteEntries().length') === 0, 'import does not prefill handwriting');
+live.click({ action: 'edit' }); live.click({ insertBlock: '0' });
+check(live.run('Object.keys(state.customBlocks).length') === 1, 'new handwriting block is personal state');
+live.run('persist()');
+check(JSON.parse(live.store.get('ziliu-v2')).layouts[sectionId].length === 36, 'block arrangement saved');
+live.click({ action: 'toggle-favorite' }); live.location.hash = '#notes';
+check(live.get('#app').innerHTML.includes('1-1 矩陣及矩陣運算'), 'section favorite appears in notes');
+live.location.hash = '#lesson?section=' + sectionId; live.click({ action: 'section-quiz' });
+check(live.run('route') === 'quiz', 'lesson → section assessment');
+check(!live.get('#app').innerHTML.includes('正確選項'), 'answers not shown before submission');
+live.click({ action: 'submit-assessment' });
+check(live.run('Object.keys(state.quizzes).length') === 0, 'incomplete choices block submission');
+for (const [index, value] of [1, 3, 0, 2, 1].entries()) live.change({ dataset: { assessmentChoice: questionId(index + 1) }, value: String(value) });
+live.run(`state.notes['answer-${questionId(6)}'].text='我自己的推導'`);
+live.click({ action: 'submit-assessment' });
+check(live.run('Object.keys(state.records).length') === 7, 'quiz shares all seven records with question bank and analysis');
+check(live.get('#app').innerHTML.includes('10<small> / 10 分'), 'choice subtotal correctly scores ten out of ten');
+check(live.get('#app').innerHTML.includes('原始作答 · 已保留'), 'submitted handwriting locked');
+check(live.get('#app').innerHTML.includes('正確選項'), 'per-option explanations shown after submission');
+check(live.run(`state.records['${questionId(6)}'].attempts[0].answer.text`) === '我自己的推導', 'original handwriting snapshot retained');
+live.click({ assessmentRate: questionId(6) + ',部分正確' }); live.click({ assessmentRate: questionId(7) + ',不會' });
+live.click({ action: 'finish-assessment' });
+check(live.run(`state.completedSections.includes('${sectionId}')`), 'section completion recorded');
+check(live.run('state.completedChapters.length') === 0, 'partial chapter never marked wholly complete');
+live.location.hash = '#analysis';
+check(live.get('#app').innerHTML.includes('71<small>%'), 'analysis uses real first-attempt results including self-assessment');
+live.click({ reviewQuestion: questionId(7) });
+check(live.run('activeSectionId') === sectionId, 'weakness returns to exact supplied lesson');
+live.location.hash = '#quiz?section=' + sectionId; live.click({ action: 'retry-assessment' });
+check(live.run(`state.records['${questionId(6)}'].attempts.length`) === 1, 'retry retains first attempt');
+check(live.run(`state.notes['archive-${questionId(6)}-1'].text`) === '我自己的推導', 'retry archives original work');
+for (const [index, value] of [0, 3, 0, 2, 1].entries()) live.change({ dataset: { assessmentChoice: questionId(index + 1) }, value: String(value) });
+live.click({ action: 'submit-assessment' });
+check(live.run(`state.records['${questionId(1)}'].attempts.length`) === 2, 'second attempt stored separately');
+check(live.run(`state.records['${questionId(1)}'].attempts[0].status`) === '已答對', 'first attempt unchanged after wrong retry');
+live.location.hash = '#questions';
+check(live.get('#app').innerHTML.includes('共 7 題'), 'question bank displays supplied simulations only');
+live.click({ question: questionId(7) });
+check(live.get('#app').innerHTML.includes('(a)') && live.get('#app').innerHTML.includes('(b)'), 'proof question preserves shared stem and subparts');
+live.click({ bankRate: '已答對' });
+check(live.run(`state.quizzes['${assessmentId}'].ratings['${questionId(7)}']`) === '答對', 'bank self-assessment stays synchronized with section quiz');
+check(live.run(`state.records['${questionId(7)}'].attempts[0].status`) === '待訂正', 'revising latest self-assessment preserves first-attempt result');
+live.run('persist()');
+const restored = launch(Object.fromEntries(live.store), false);
+check(restored.run(`state.records['${questionId(1)}'].attempts.length`) === 2, 'attempt history survives reload');
+check(restored.run('Object.keys(state.customBlocks).length') === 1, 'inserted notes survive reload');
+check(restored.run(`state.notes['archive-${questionId(6)}-1'].text`) === '我自己的推導', 'archived handwriting survives reload');
+check(!live.run('courseMarkdown("<img src=x onerror=alert(1)>")').includes('<img'), 'source HTML cannot execute');
+check(!live.run('courseMarkdown("$\\\\href{javascript:alert(1)}{x}$")').includes('href="javascript:'), 'untrusted math links rejected');
+let formulaCount = 0;
+const data = live.run('catalog');
+function validateFormulas(value) {
+  if (typeof value === 'string') for (const match of value.matchAll(/\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$/g)) { katex.renderToString((match[1] ?? match[2]).trim(), { displayMode: match[1] !== undefined, throwOnError: true, trust: false, strict: 'ignore' }); formulaCount++; }
+  else if (Array.isArray(value)) value.forEach(validateFormulas);
+  else if (value && typeof value === 'object') Object.values(value).forEach(validateFormulas);
+}
+validateFormulas(data);
+check(formulaCount > 200, 'all imported inline and display formulas parse');
+const multiply = (a, b) => a.map(row => b[0].map((_, j) => row.reduce((sum, value, k) => sum + value * b[k][j], 0)));
+assert.deepEqual(multiply([[1, 2], [0, 1]], [[2, 0], [3, 1]]), [[8, 2], [3, 1]]); checks++;
+assert.deepEqual(multiply(multiply([[1, -3], [1, 1]], [[1, -3], [1, 1]]), [[1, -3], [1, 1]]), [[-8, 0], [0, -8]]); checks++;
+console.log(`PASS: ${checks} total checks, including the imported 1-1 workflow, ${formulaCount} math expressions, scoring, self-assessment, notes, provenance and reload persistence.`);
