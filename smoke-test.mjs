@@ -11,7 +11,7 @@ const content = readFileSync('docs/content.js', 'utf8');
 const markdown = readFileSync('docs/course-markdown.js', 'utf8');
 let checks = 0;
 function check(value, message) { assert(value, message); checks++; }
-function launch(initialStorage = {}, emptyCatalog = true) {
+function launch(initialStorage = {}, emptyCatalog = true, withExams = false) {
   const store = new Map(Object.entries(initialStorage)), handlers = {}, windowHandlers = {}, elements = new Map();
   const element = () => ({ innerHTML: '', textContent: '', isConnected: true, classList: { add() {}, remove() {}, toggle() {}, contains: () => false }, focus() {}, querySelector: () => element(), querySelectorAll: () => [] });
   const get = selector => { if (!elements.has(selector)) elements.set(selector, element()); return elements.get(selector); };
@@ -21,6 +21,7 @@ function launch(initialStorage = {}, emptyCatalog = true) {
   const window = { katex, addEventListener: (type, fn) => (windowHandlers[type] ??= []).push(fn), scrollTo() {} };
   const context = vm.createContext({ window, document, location, localStorage: { getItem: key => store.get(key) || null, setItem: (key, value) => store.set(key, value) }, setTimeout: () => 1, clearTimeout() {}, requestAnimationFrame() {}, ResizeObserver: class { observe() {} disconnect() {} }, devicePixelRatio: 1, URLSearchParams, Intl, Date, structuredClone, matchMedia: () => ({ matches: true }), console });
   vm.runInContext(content, context);
+  if (withExams) vm.runInContext(readFileSync('docs/exams.js', 'utf8'), context);
   if (emptyCatalog) { context.window.ZILIU_CONTENT.subjects.forEach(subject => subject.chapters = []); context.window.ZILIU_CONTENT.questions = []; }
   vm.runInContext(markdown, context); vm.runInContext(app, context);
   const run = code => vm.runInContext(code, context);
@@ -80,12 +81,12 @@ live.click({ action: 'start-first-lesson' });
 check(live.run('activeSectionId') === sectionId, 'home entry opens exact 1-1 section');
 live.run("state.notes['height-test']={height:345,text:'',strokes:[]}");
 check(live.run("inkPad('height-test',230).includes('height:345px')"), 'saved canvas height restored');
-check(live.run('allSections().length') === 19, 'all nineteen supplied sections are imported across two subjects');
+check(live.run('allSections().length') === 24, 'all twenty-four supplied sections are imported across two subjects');
 check(live.run("courses.filter(subject=>!['linear-algebra','data-structures'].includes(subject.id)).every(subject=>subject.chapters.length===0)"), 'other four subjects stay empty');
 check(live.run('catalog.knowledgePoints.filter(item=>item.id.startsWith("LA-CH01-S01-")).length') === 12, 'original twelve knowledge points retained');
 check(live.run('catalog.examples.filter(item=>item.id.startsWith("LA-CH01-S01-")).length') === 12, 'original twelve examples retained');
 check(live.run('allSections()[0].blocks.length') === 35, 'thirty-five planned blocks');
-check(live.run('bank.length') === 133, 'one hundred thirty-three supplied assessment questions');
+check(live.run('bank.length') === 168, 'one hundred sixty-eight supplied assessment questions');
 check(live.run('bank.every(question=>question.source.kind==="simulation")'), 'simulation provenance explicit');
 check(live.run('catalog.sourceReview.pendingExamImported') === false, 'unverified exam summaries excluded');
 check(live.run('courses[0].chapters[0].quiz===undefined'), 'no fabricated whole-chapter quiz');
@@ -135,7 +136,7 @@ live.click({ action: 'submit-assessment' });
 check(live.run(`state.records['${questionId(1)}'].attempts.length`) === 2, 'second attempt stored separately');
 check(live.run(`state.records['${questionId(1)}'].attempts[0].status`) === '已答對', 'first attempt unchanged after wrong retry');
 live.location.hash = '#questions';
-check(live.get('#app').innerHTML.includes('共 133 題'), 'question bank displays supplied simulations only');
+check(live.get('#app').innerHTML.includes('共 168 題'), 'question bank displays supplied simulations only');
 live.click({ question: questionId(7) });
 check(live.get('#app').innerHTML.includes('(a)') && live.get('#app').innerHTML.includes('(b)'), 'proof question preserves shared stem and subparts');
 live.click({ bankRate: '已答對' });
@@ -165,7 +166,7 @@ console.log(`PASS: ${checks} total checks, including the imported 1-1 workflow, 
 const multiple = launch({}, false), originalNote = '舊有 1-1 筆記';
 multiple.run(`state.notes['lesson-LA-CH01-S01']={text:'${originalNote}',strokes:[],title:'1-1'};state.completedSections=['LA-CH01-S01'];persist()`);
 check(multiple.run('allSections().filter(section=>section.chapter.id==="LA-CH01").map(section=>section.id).join(",")') === 'LA-CH01-S01,LA-CH01-S03,LA-CH01-S04,LA-CH01-S05,LA-CH01-S06,LA-CH01-S07', 'linear algebra first chapter follows source numbering and does not invent 1-2');
-check(multiple.run('subjectProgress(courses[0]).percent') === 10, 'provided-section progress correctly expands to ten linear algebra sections');
+check(multiple.run('subjectProgress(courses[0]).percent') === 7, 'provided-section progress expands to fifteen linear algebra sections, excluding pending 3-4');
 const configurations = [
   { number: 3, knowledge: 7, examples: 8, blocks: 25, assessment: 'AS01', ids: ['MC01','MC02','MC03','MC04','MC05','HW01','HW02'], correct: [2,0,3,1,2], points: 20, written: 5 },
   { number: 4, knowledge: 13, examples: 14, blocks: 43, assessment: 'AS01', ids: ['T01','T02','T03','T04','T05','W01','W02'], correct: [0,2,1,3,1], points: null, written: 10 },
@@ -231,14 +232,14 @@ for (const sec of persistedCatalog.subjects[0].chapters[0].sections) {
   upsertSection(persistedCatalog, payload);
 }
 check(persistedCatalog.subjects[0].chapters[0].sections.length === 6, 'reimport does not erase other sections');
-check(persistedCatalog.questions.length === 133, 'reimport does not duplicate questions across subjects');
-check(persistedCatalog.examples.length === 135, 'reimport does not duplicate examples across subjects');
+check(persistedCatalog.questions.length === 168, 'reimport does not duplicate questions across subjects');
+check(persistedCatalog.examples.length === 175, 'reimport does not duplicate examples across subjects');
 check(JSON.stringify(persistedCatalog.subjects[0].chapters[0].sections[0]) === originalFirstSection, 'original 1-1 section content remains byte-for-byte equivalent');
 check(JSON.stringify(persistedCatalog.questions.filter(question=>question.sectionId==='LA-CH01-S01')) === originalFirstQuestions, 'original 1-1 question IDs and answers stay equivalent');
 const ids = persistedCatalog.questions.map(question=>question.id);
 check(new Set(ids).size === ids.length, 'question IDs globally unique');
 check(persistedCatalog.questions.every(question=>persistedCatalog.solutions[question.id]?.markdown), 'all formal questions have reference solutions');
-check(persistedCatalog.questions.filter(question=>question.options).every(question=>persistedCatalog.solutions[question.id].optionExplanations.length===4), 'all ninety-five choices have all four option explanations');
+check(persistedCatalog.questions.filter(question=>question.options).every(question=>persistedCatalog.solutions[question.id].optionExplanations.length===4), 'all choice questions have all four option explanations');
 check(persistedCatalog.subjects[0].chapters[0].sections.every(section=>section.blocks.filter(block=>block.type==='example').every(block=>persistedCatalog.examples.some(example=>example.id===block.exampleId))), 'all example references resolve');
 multiple.location.hash = '#question?q=LA-CH01-S05-Q07';
 check(multiple.get('#app').innerHTML.includes('(a)') && multiple.get('#app').innerHTML.includes('(b)'), '1-5 shared two-part question remains a single complete card');
@@ -342,7 +343,7 @@ check(structures.run('Object.keys(state.records).length')===63, 'all DS question
 structures.location.hash='#questions'; structures.run("bankFilters={subject:'data-structures'};render()");
 check(structures.get('#app').innerHTML.includes('共 63 題')&&structures.get('#app').innerHTML.includes('資料結構 · 第 1 章'), 'bank subject and chapter filters distinguish DS');
 structures.run("bankFilters={subject:'linear-algebra'};render()");
-check(structures.get('#app').innerHTML.includes('共 70 題')&&!structures.get('#app').innerHTML.includes('資料結構 · 第 1 章'), 'linear algebra bank remains separate');
+check(structures.get('#app').innerHTML.includes('共 105 題')&&!structures.get('#app').innerHTML.includes('資料結構 · 第 1 章'), 'linear algebra bank remains separate');
 structures.click({action:'settings'});
 check(structures.get('#modal-root').innerHTML.includes('線性代數')&&structures.get('#modal-root').innerHTML.includes('資料結構')&&!structures.get('#modal-root').innerHTML.includes('其他五科'), 'settings reflect two supplied subjects');
 structures.click({action:'close-modal'}); structures.location.hash='#notes'; structures.change({dataset:{noteFilter:'subject'},value:'2'});
@@ -375,7 +376,7 @@ for(let n=1;n<=8;n++) { let triples=0;for(let i=1;i<=n;i++)for(let j=1;j<=i;j++)
 for(let n=1;n<=5;n++) { let cost=0;for(let i=1;i<=n;i++)for(let j=0;j<i*i;j++)cost+=j;assert.equal(cost,Array.from({length:n},(_,i)=>((i+1)**4-(i+1)**2)/2).reduce((a,b)=>a+b,0));checks++; }
 check((3+1)+3*(2+1)+3*2===19&&(2+1)+2*(3+1)+2*3===17, 'rectangular matrix cost distinguishes rows and columns');
 for(const subject of dsData.subjects)for(const chapter of subject.chapters)for(const section of chapter.sections){const belongs=id=>id.startsWith(section.id+'-');upsertSection(dsData,{subjectId:subject.id,chapter,section,questions:dsData.questions.filter(q=>belongs(q.id)),examples:dsData.examples.filter(q=>belongs(q.id)),knowledgePoints:dsData.knowledgePoints.filter(q=>belongs(q.id)),answers:Object.fromEntries(Object.entries(dsData.answers).filter(([id])=>belongs(id))),solutions:Object.fromEntries(Object.entries(dsData.solutions).filter(([id])=>belongs(id))),sourceReview:dsData.sourceReviews.find(review=>review.scope===section.id)});}
-check(dsData.subjects[2].chapters[0].sections.length===9&&dsData.subjects[0].chapters[0].sections.length===6&&dsData.questions.length===133, 'cross-subject idempotent upsert preserves all sections');
+check(dsData.subjects[2].chapters[0].sections.length===9&&dsData.subjects[0].chapters[0].sections.length===6&&dsData.questions.length===168, 'cross-subject idempotent upsert preserves all sections');
 const dsReloaded=launch(Object.fromEntries(structures.store),false);
 check(dsReloaded.run("state.notes['lesson-LA-CH01-S01'].text")==='既有線代筆記', 'cross-subject notes survive reload');
 console.log(`PASS: ${checks} existing workflow and cross-subject checks.`);
@@ -389,7 +390,7 @@ const determinants=launch({},false), chapterTwoConfigs=[
 determinants.run("state.notes['lesson-LA-CH01-S01']={text:'第一章筆記',strokes:[],sectionId:'LA-CH01-S01',subjectIndex:0};state.notes['lesson-DS-CH01-S01']={text:'資料結構筆記',strokes:[],sectionId:'DS-CH01-S01',subjectIndex:2};persist()");
 determinants.location.hash='#courses';
 check(determinants.get('#app').innerHTML.includes('第 2 章 行列式'), 'second chapter appears with determinant title');
-check(determinants.run('courses[0].chapters.length')===2, 'linear algebra chapters are distinct');
+check(determinants.run('courses[0].chapters.length')===3, 'linear algebra chapters are distinct');
 check(determinants.run("allSections().filter(section=>section.chapter.id==='LA-CH02').map(section=>section.title.split(' ')[0]).join(',')")==='2-1,2-2,2-3,2-4', 'second chapter section order correct');
 for(const config of chapterTwoConfigs){
   const prefix='LA-CH02-S0'+config.n,qid=short=>prefix+'-'+short;
@@ -449,5 +450,188 @@ for(const t of [0,1/3,2]){const x=[[5/3+t],[-2/3+t],[t]],rhs=multiply([[1,1,-2],
 const ch2Data=readCatalog(),ch2=ch2Data.subjects[0].chapters.find(chapter=>chapter.id==='LA-CH02');
 for(const section of [...ch2.sections].reverse()){const belongs=id=>id.startsWith(section.id+'-');upsertSection(ch2Data,{section,chapter:ch2,questions:ch2Data.questions.filter(q=>belongs(q.id)),examples:ch2Data.examples.filter(q=>belongs(q.id)),knowledgePoints:ch2Data.knowledgePoints.filter(q=>belongs(q.id)),answers:Object.fromEntries(Object.entries(ch2Data.answers).filter(([id])=>belongs(id))),solutions:Object.fromEntries(Object.entries(ch2Data.solutions).filter(([id])=>belongs(id))),sourceReview:ch2Data.sourceReviews.find(review=>review.scope===section.id)});}
 check(ch2.sections.map(section=>section.title.split(' ')[0]).join(',')==='2-1,2-2,2-3,2-4', 'second chapter order stable even when reimported backwards');
-check(ch2Data.questions.length===133&&ch2Data.examples.length===135&&ch2Data.knowledgePoints.length===123, 'second chapter reimport does not duplicate catalog');
-console.log(`PASS: ${checks} final checks; ${formulaCount} mathematical expressions. Two subjects, 19 sections, 123 knowledge points, 135 examples, 133 questions. Browser and physical stylus verification are not included.`);
+check(ch2Data.questions.length===168&&ch2Data.examples.length===175&&ch2Data.knowledgePoints.length===163, 'second chapter reimport does not duplicate catalog');
+
+const vectors=launch({},false), vectorConfigs=[
+  {n:1,k:9,e:10,b:31,correct:[2,0,3,1,2]},
+  {n:2,k:8,e:8,b:27,correct:[2,0,3,1,2]},
+  {n:3,k:13,e:12,b:50,correct:[2,0,3,[1,2,3],1]},
+  {n:5,k:6,e:5,b:20,correct:[2,3,0,1,2]},
+  {n:6,k:4,e:5,b:16,correct:[3,0,2,1,3]}
+];
+vectors.location.hash='#courses';
+const courseHTML=vectors.get('#app').innerHTML;
+check(courseHTML.includes('3-4 基底與維度')&&courseHTML.includes('教材待提供'), '3-4 keeps user-confirmed title and unavailable material status');
+check(courseHTML.indexOf('3-3 生成與線性獨立')<courseHTML.indexOf('3-4 基底與維度')&&courseHTML.indexOf('3-4 基底與維度')<courseHTML.indexOf('3-5 直和'), 'pending 3-4 appears in numerical order');
+check(vectors.run("!allSections().some(section=>section.id==='LA-CH03-S04')&&!bank.some(question=>question.sectionId==='LA-CH03-S04')"), 'pending 3-4 has no fabricated lecture, assessment or progress');
+check(!courseHTML.includes('data-section="LA-CH03-S04"')&&!courseHTML.includes('data-open-assessment="LA-CH03-S04"'), 'pending title cannot open a nonexistent lesson');
+for(const config of vectorConfigs){
+  const prefix='LA-CH03-S0'+config.n,qid=n=>prefix+'-Q0'+n;
+  vectors.location.hash='#lesson?section='+prefix;
+  check(vectors.run('currentLesson().chapter.id')==='LA-CH03'&&vectors.run('state.subject')===0,'chapter three deep link '+config.n);
+  check(vectors.run(`catalog.knowledgePoints.filter(k=>k.id.startsWith('${prefix}-')).length`)===config.k,'chapter three knowledge coverage '+config.n);
+  check(vectors.run(`catalog.examples.filter(e=>e.id.startsWith('${prefix}-')).length`)===config.e,'chapter three example coverage '+config.n);
+  check(vectors.run('currentLesson().blocks.length')===config.b,'chapter three blocks '+config.n);
+  check(!vectors.get('#app').innerHTML.includes('math-fallback')&&!vectors.get('#app').innerHTML.includes('undefined'),'chapter three lecture renders '+config.n);
+  check(vectors.get('#app').innerHTML.includes('原圖')&&vectors.get('#app').innerHTML.includes('原創模擬例題'),'source limitations and authored examples '+config.n);
+  check(!/<details class="details" open>/.test(vectors.get('#app').innerHTML),'example and transcript solutions initially collapsed '+config.n);
+  vectors.click({action:'section-quiz'});vectors.click({action:'submit-assessment'});
+  check(!vectors.run(`state.quizzes['${prefix}-AS01']`),'incomplete chapter three quiz blocked '+config.n);
+  config.correct.forEach((value,index)=>{for(const chosen of Array.isArray(value)?value:[value])vectors.change({dataset:{assessmentChoice:qid(index+1)},value:String(chosen),checked:true});});
+  vectors.run(`state.notes['answer-${qid(6)}'].text='第3章${config.n}節原始證明'`);
+  vectors.click({action:'submit-assessment'});
+  check(vectors.get('#app').innerHTML.includes(config.n===1?'20<small> / 20 分':'5<small> / 5 題'),'chapter three scoring follows specified or unknown points '+config.n);
+  check(!vectors.get('#app').innerHTML.includes('math-fallback'),'chapter three solutions render '+config.n);
+  check(vectors.run(`state.records['${qid(6)}'].attempts[0].answer.text`)==='第3章'+config.n+'節原始證明','chapter three handwriting snapshot '+config.n);
+  vectors.click({assessmentRate:qid(6)+',部分正確'});vectors.click({assessmentRate:qid(7)+',不會'});vectors.click({action:'finish-assessment'});vectors.click({action:'close-modal'});
+  check(vectors.run(`state.completedSections.includes('${prefix}')&&!state.completedChapters.includes('LA-CH03')`),'chapter three subsection completion only '+config.n);
+  vectors.location.hash='#question?q='+qid(7);vectors.click({action:'question-review'});
+  check(vectors.run('activeSectionId')===prefix,'chapter three weakness returns to correct lecture '+config.n);
+}
+vectors.click({action:'chapter-practice'});
+check(vectors.run('bankFilters.chapter')==='LA-CH03'&&vectors.get('#app').innerHTML.includes('共 35 題'),'chapter three practice excludes eight pending transcripts');
+vectors.location.hash='#lesson?section=LA-CH03-S03';
+check(vectors.get('#app').innerHTML.includes('閱讀參考 · 不計入作答統計')&&vectors.get('#app').innerHTML.includes('未於本次重新核對來源'),'transcript provenance and statistics exclusion visible');
+check(vectors.run('catalog.pendingExamTranscripts.length')===8,'all eight full transcripts retained');
+check(vectors.run('catalog.pendingExamTranscripts.every(t=>t.groupId===t.id&&t.status==="pending_original"&&t.source.pages&&t.editorialSolution&&!bank.some(q=>q.id===t.id))'),'transcript shared stems, solutions and pages separate from graded questions');
+check(vectors.run("catalog.pendingExamTranscripts.find(t=>t.id==='PY-NCTU-103-04').text.includes('(e)')&&catalog.pendingExamTranscripts.find(t=>t.id==='PY-NCTU-104-05').text.includes('(N)')"),'long transcript retains all lettered statements and subparts');
+check(vectors.run("catalog.pendingExamTranscripts.find(t=>t.id==='PY-NCTU-106-08').editorialSolution.includes('min(n,2)')"),'editorial rank-bound correction retained');
+check(vectors.run("catalog.pendingExamTranscripts.find(t=>t.id==='PY-NCTU-101-05').editorialSolution.includes('n\\\\le m')"),'editorial non-strict inequality correction retained');
+const transcriptRecordCount=vectors.run('Object.keys(state.records).length');
+vectors.location.hash='#question?q=PY-NCTU-105-02';vectors.click({action:'submit-single'});
+check(vectors.run('Object.keys(state.records).length')===transcriptRecordCount,'unverified transcript cannot create graded attempt through deep link');
+vectors.location.hash='#lesson?section=LA-CH03-S01';
+check(vectors.get('#app').innerHTML.includes('A10')&&vectors.get('#app').innerHTML.includes('零向量唯一'),'axioms and extra uniqueness proof preserved');
+vectors.location.hash='#lesson?section=LA-CH03-S06';
+check(vectors.get('#app').innerHTML.includes('四點內插')&&vectors.get('#app').innerHTML.includes('待原圖確認'),'four-point source data limitation beside example');
+
+const multi=launch({},false),multiId='LA-CH03-S03-Q04',multiAssessment='LA-CH03-S03-AS01';
+multi.location.hash='#question?q='+multiId;
+check((multi.get('#app').innerHTML.match(/type="checkbox" name="choice-/g)||[]).length===4&&multi.get('#app').innerHTML.includes('須完全符合才算答對'),'multiple-select controls and exact-match rule visible');
+multi.click({action:'submit-single'});check(!multi.run(`state.records['${multiId}']`),'empty multiple-select blocked');
+const toggle=(index,checked)=>multi.change({dataset:{assessmentChoice:multiId},value:String(index),checked});
+toggle(1,true);toggle(1,false);multi.click({action:'submit-single'});
+check(!multi.run(`state.records['${multiId}']`),'deselecting all answers also blocks submission');
+for(const value of [undefined,[],[1],[1,2],[0,1,2,3],[1,2,2,3],[-1,1,2,3],[1,2,3,4]])check(!multi.run(`isCorrectChoice(bank.find(q=>q.id==='${multiId}'),${JSON.stringify(value)})`),'invalid or incomplete multiple selection cannot earn correctness '+JSON.stringify(value));
+check(multi.run(`isCorrectChoice(bank.find(q=>q.id==='${multiId}'),[3,1,2])`),'complete unordered set accepted');
+toggle(1,true);toggle(2,true);multi.click({action:'submit-single'});
+check(multi.run(`state.records['${multiId}'].status`)==='待訂正','subset fails grading in question bank');
+check((multi.get('#app').innerHTML.match(/data-assessment-choice="LA-CH03-S03-Q04" disabled/g)||[]).length===4,'submitted multiple choice controls locked');
+multi.click({action:'retry-single'});for(const index of [3,1,2])toggle(index,true);multi.click({action:'submit-single'});
+check(multi.run(`state.records['${multiId}'].status`)==='已答對'&&multi.run(`state.records['${multiId}'].attempts[0].status`)==='待訂正','bank retry preserves first wrong attempt and correct redo');
+multi.run(`quizAnswers['${multiId}'].push(0)`);
+check(multi.run(`state.records['${multiId}'].choice.join(',')`)==='1,2,3'&&multi.run(`state.records['${multiId}'].attempts[1].choice.join(',')`)==='1,2,3','submitted arrays do not alias mutable answer buffer');
+multi.location.hash='#analysis';
+check(multi.get('#app').innerHTML.includes('多選題'),'multiple-select type included in analysis');
+check(multi.get('#app').innerHTML.includes('0% / 1 題'),'first-attempt analysis uses original subset result');
+multi.click({analysis:'redo'});
+check(multi.get('#app').innerHTML.includes('100% / 1 題'),'redo analysis uses full correct set');
+multi.location.hash='#quiz?section=LA-CH03-S03';
+for(const [i,value]of [2,0,3].entries())multi.change({dataset:{assessmentChoice:'LA-CH03-S03-Q0'+(i+1)},value:String(value)});
+multi.change({dataset:{assessmentChoice:'LA-CH03-S03-Q05'},value:'1'});
+multi.run(`quizAnswers['${multiId}']=[]`);multi.click({action:'submit-assessment'});
+check(!multi.run(`state.quizzes['${multiAssessment}']`),'section assessment requires a nonempty multiple selection');
+for(const index of [1,2,3,0])toggle(index,true);multi.click({action:'submit-assessment'});
+check(multi.get('#app').innerHTML.includes('4<small> / 5 題'),'superset earns no correctness in section quiz');
+check(multi.run(`state.quizzes['${multiAssessment}'].answers['${multiId}'].length`)===4,'quiz preserves original superset');
+multi.click({action:'retry-assessment'});
+for(const [i,value]of [2,0,3,[1,2,3],1].entries())for(const selected of Array.isArray(value)?value:[value])multi.change({dataset:{assessmentChoice:'LA-CH03-S03-Q0'+(i+1)},value:String(selected),checked:true});
+multi.click({action:'submit-assessment'});
+check(multi.get('#app').innerHTML.includes('5<small> / 5 題'),'full correct set earns correctness in section quiz');
+multi.run(`quizAnswers['${multiId}'].length=0`);
+check(multi.run(`state.quizzes['${multiAssessment}'].answers['${multiId}'].join(',')`)==='1,2,3','submitted quiz independently snapshots checkbox selections');
+const multiReload=launch(Object.fromEntries(multi.store),false);multiReload.location.hash='#quiz?section=LA-CH03-S03';
+check(multiReload.get('#app').innerHTML.includes('5<small> / 5 題')&&multiReload.run(`state.records['${multiId}'].attempts.length`)===4,'multiple-select results and all attempts survive reload');
+multiReload.location.hash='#questions';multiReload.run("bankFilters={type:'多選題'};render()");
+check(multiReload.get('#app').innerHTML.includes('共 1 題'),'multiple-select bank filter works');
+
+// Check content-specific claims independently of rendered text.
+assert.equal(determinant([[1,0,1],[1,1,0],[0,1,-1]]),0);checks++;
+for(const t of [-2,-1,0,1,3]){assert.equal(determinant([[1,0,1],[1,1,0],[0,1,t]]),t+1);checks++;}
+assert.deepEqual(multiply([[1,2,1],[2,4,2],[0,1,1]],[[1],[-1],[1]]),[[0],[0],[0]]);checks++;
+assert.deepEqual(multiply([[-2,1,0]],[[1,2,1],[2,4,2],[0,1,1]]),[[0,0,0]]);checks++;
+for(const [r,s,t]of [[1,2,3],[-2,1,7],[0,0,0]]){const c=(r+s-t)/2,a=(r-s+t)/2,b=(-r+s+t)/2;assert.deepEqual([a+c,b+c,a+b],[r,s,t]);checks++;}
+const lagrange=(nodes,values,x)=>nodes.reduce((sum,node,i)=>sum+values[i]*nodes.reduce((p,other,j)=>j===i?p:p*(x-other)/(node-other),1),0);
+for(const x of [-7,-6,0,5,2]){assert(Math.abs(lagrange([5,-7,-6,0],[1,-23,-54,-954],x)-(4*x**3+35*x**2-84*x-954))<1e-8);checks++;}
+for(const x of [-2,-1,0,1,3]){assert(Math.abs(lagrange([-1,0,1],[2,1,4],x)-(2*x*x+x+1))<1e-8);checks++;assert(Math.abs(lagrange([-1,0,1],[1,1,1],x)-1)<1e-8);checks++;}
+const projection=[[4/6,2/6,-2/6],[2/6,4/6,2/6],[-2/6,2/6,4/6]], projected=multiply(projection,[[-1],[3],[1]]);
+projected.forEach((row,i)=>assert(Math.abs(row[0]-[0,2,2][i])<1e-12));checks++;
+const minNorm=[[-14/51],[-28/51],[6/51],[32/51]], projectedFromSolution=multiply([[1,2,1,2],[1,2,2,5],[0,0,1,3]],minNorm);
+projectedFromSolution.forEach((row,i)=>assert(Math.abs(row[0]-[0,2,2][i])<1e-12));checks++;
+check(Math.abs(-2*minNorm[0][0]+minNorm[1][0])<1e-12&&Math.abs(minNorm[0][0]/5+2*minNorm[1][0]/5-3*minNorm[2][0]+minNorm[3][0])<1e-12,'transcribed minimum-norm answer orthogonal to both nullspace directions');
+const thirdData=readCatalog(),thirdChapter=thirdData.subjects[0].chapters.find(c=>c.id==='LA-CH03');
+for(const section of [...thirdChapter.sections].reverse()){const belongs=id=>id.startsWith(section.id+'-');upsertSection(thirdData,{section,chapter:thirdChapter,questions:thirdData.questions.filter(q=>belongs(q.id)),examples:thirdData.examples.filter(q=>belongs(q.id)),knowledgePoints:thirdData.knowledgePoints.filter(q=>belongs(q.id)),answers:Object.fromEntries(Object.entries(thirdData.answers).filter(([id])=>belongs(id))),solutions:Object.fromEntries(Object.entries(thirdData.solutions).filter(([id])=>belongs(id))),sourceReview:thirdData.sourceReviews.find(review=>review.scope===section.id)});}
+check(thirdChapter.sections.map(s=>s.title.split(' ')[0]).join(',')==='3-1,3-2,3-3,3-5,3-6','chapter three reverse upsert retains ordering and missing section');
+check(thirdData.questions.length===168&&thirdData.examples.length===175&&thirdData.knowledgePoints.length===163&&thirdData.pendingExamTranscripts.length===8,'all records stable after chapter three upsert');
+console.log(`PASS: ${checks} final checks; ${formulaCount} mathematical expressions. Two subjects, 24 sections, 163 knowledge points, 175 examples, 168 graded questions and 8 read-only unverified transcripts. Browser and physical stylus verification are not included.`);
+
+const exams=launch({},false,true),examData=exams.run('examCollection'),examBank=examData.questions;
+check(exams.run('bank.length')===374,'revised bundle adds 206 scan indexes to 168 simulations without duplicating old answers');
+check(examData.papers.length===9&&examData.papers.reduce((sum,p)=>sum+p.pages.length,0)===68,'nine complete papers and all 68 pages');
+check(examBank.filter(q=>q.options).length===149&&examBank.filter(q=>q.practiceOnly).length===57,'149 answer records and 57 handwriting items remain distinct');
+check(examBank.filter(q=>q.bonusAll).length===4,'four source bonus records preserved');
+check(new Set(examBank.map(q=>q.id)).size===206,'stable original IDs unique');
+const {createHash}=await import('node:crypto');
+for(const paper of examData.papers)for(const page of paper.pages){
+  check(/^exam-scans\/NYCU-11[234]-\d{4}\/p\d{2}\.jpg$/.test(page.asset),'safe local scan path '+page.asset);
+  check(createHash('sha256').update(readFileSync('docs/'+page.asset)).digest('hex')===page.sha256,'scan bytes match reviewed source '+page.asset);
+}
+for(const question of examBank){
+  exams.location.hash='#question?q='+question.id;
+  const html=exams.get('#app').innerHTML;
+  check(!html.includes('undefined')&&!html.includes('math-fallback'),'scan question renders metadata '+question.id);
+  check(question.scans.every(page=>html.includes('src="'+page.asset+'"')),'complete mapped source pages visible '+question.id);
+  check(html.includes('data-ink="answer-'+question.id+'"'),'each source index has independent handwriting '+question.id);
+  check(!html.includes('附件採認：'),'unsubmitted indexed answer stays hidden '+question.id);
+  if(question.practiceOnly||question.bonusAll){exams.click({action:'submit-single'});check(!exams.run(`state.records['${question.id}']`),'unscored source item cannot create graded record '+question.id);check(!html.includes('data-action="submit-single"'),'unscored source item has no submit control '+question.id);}
+  else check((html.match(new RegExp('data-assessment-choice="'+question.id+'"','g'))||[]).length===question.options.length,'original four/five-option count preserved '+question.id);
+}
+const expectedPages={
+ 'NYCU-113-8101-Q03':[2,3],'NYCU-113-8101-Q06':[3,4],'NYCU-113-8101-Q21':[7,8],
+ 'NYCU-112-1103-Q13':[3,4],'NYCU-113-8103-Q25':[12,13],'NYCU-114-8103-Q20':[6,7],
+ 'NYCU-114-8103-Q31':[9,10],'NYCU-114-8101-Q14':[5,6],'NYCU-112-1101-W25':[7,8]
+};
+for(const[id,pages]of Object.entries(expectedPages))check(examBank.find(q=>q.id===id).scans.map(page=>page.number).join(',')===pages.join(','),'shared stems and cross-page figures retained '+id);
+check(examBank.find(q=>q.id==='NYCU-113-8101-Q03').groupLabel==='原卷第 1 大題 · 作答格 3','113 answer slots do not masquerade as separate printed big-question numbers');
+for(const paper of examData.papers){
+  exams.location.hash='#paper?id='+paper.id;
+  check(exams.run('activeRoute()')==='questions','paper viewer belongs to question navigation '+paper.id);
+  check(paper.pages.every(page=>exams.get('#app').innerHTML.includes('src="'+page.asset+'"')),'complete original paper accessible '+paper.id);
+}
+const indexedId='NYCU-113-8101-Q12';exams.location.hash='#question?q='+indexedId;
+const selectExam=(id,index,checked=true)=>exams.change({dataset:{assessmentChoice:id},value:String(index),checked});
+for(const [value,expected]of [[[0,2],true],[[4],true],[[0,2,4],false],[[0],false],[[2],false],[[],false],[[0,2,2],false]])check(exams.run(`isCorrectChoice(bank.find(q=>q.id==='${indexedId}'),${JSON.stringify(value)})`)===expected,'AC-or-E requires an entire accepted alternative '+JSON.stringify(value));
+exams.click({action:'submit-single'});check(!exams.run(`state.records['${indexedId}']`),'empty exam choice blocked');
+selectExam(indexedId,0);exams.run(`state.notes['answer-${indexedId}'].text='第一次原卷推導'`);exams.click({action:'submit-single'});
+check(exams.run(`state.records['${indexedId}'].status`)==='待訂正','partial alternative cannot pass source answer index');
+check(exams.get('#app').innerHTML.includes('AC 或 E')&&exams.get('#app').innerHTML.includes('原表：AC'),'accepted alternatives and original corrected answer visible after submission');
+check(exams.get('#app').innerHTML.includes('分步詳解與逐選項解析尚未提供'),'source answer table never pretends to provide missing explanations');
+check(exams.get('#app').innerHTML.includes('data-readonly="true"'),'submitted exam scratchwork locked');
+exams.click({action:'retry-single'});selectExam(indexedId,4);exams.click({action:'submit-single'});
+check(exams.run(`state.records['${indexedId}'].attempts.map(a=>a.status).join(',')`)==='待訂正,已答對','five-option exam redo preserves wrong first attempt');
+check(exams.run(`state.notes['archive-${indexedId}-1'].text`)==='第一次原卷推導','original exam handwriting archived before redo');
+check(exams.get('#app').innerHTML.includes('你的作答：E'),'fifth option rendered correctly');
+for(const id of ['NYCU-112-1101-Q08','NYCU-112-1103-Q06','NYCU-112-1103-Q17','NYCU-112-1103-Q20']){
+  const answer=examData.answers[id];for(const set of answer.acceptedSets)check(exams.run(`isCorrectChoice(bank.find(q=>q.id==='${id}'),${JSON.stringify(set)})`),'112 accepted corrected alternative '+id+' '+set);
+}
+const singleId='NYCU-114-8103-Q21';exams.location.hash='#question?q='+singleId;
+check((exams.get('#app').innerHTML.match(/type="radio"/g)||[]).length===4,'original system single-choice group stays single-choice');
+selectExam(singleId,2);exams.click({action:'submit-single'});check(exams.run(`state.records['${singleId}'].status`)==='已答對','original single-choice source answer graded');
+const writtenId=examBank.find(q=>q.source.examId==='NYCU-114-8102'&&q.originalNumber==='9').id;
+exams.location.hash='#question?q='+writtenId;exams.run(`state.notes['answer-${writtenId}'].text='線性映射的係數矩陣推導';persist()`);
+check(exams.run(`qStatus(bank.find(q=>q.id==='${writtenId}'))`)==='已練習','ungraded handwritten exam can record practice progress');
+exams.location.hash='#analysis';check(exams.get('#app').innerHTML.includes('2<small>題'),'statistics include only submitted normal choice questions');
+check(exams.get('#app').innerHTML.includes('50<small>%'),'first-attempt accuracy does not include ungraded writing or bonus items');
+exams.click({analysis:'redo'});check(exams.get('#app').innerHTML.includes('100% / 1 題'),'exam first and redo results separate');
+const examReload=launch(Object.fromEntries(exams.store),false,true);examReload.location.hash='#question?q='+indexedId;
+check(examReload.run(`state.records['${indexedId}'].choice.join(',')`)==='4'&&examReload.get('#app').innerHTML.includes('你的作答：E'),'source-answer and attempt history survive reload');
+check(examReload.run(`state.notes['answer-${writtenId}'].text`)==='線性映射的係數矩陣推導','ungraded exam handwriting survives reload');
+examReload.location.hash='#questions';examReload.run("bankFilters={school:'國立陽明交通大學',year:'114'};render()");
+check(examReload.get('#app').innerHTML.includes('共 64 筆練習'),'school and year filters include 114 source indexes only');
+examReload.run("bankFilters={type:'手寫題'};render()");check(examReload.get('#app').innerHTML.includes('共 57 筆練習'),'written source indexes filter independently');
+examReload.run("bankFilters={status:'送分'};render()");check(examReload.get('#app').innerHTML.includes('共 4 筆練習'),'bonus records carry explicit source status');
+examReload.run("bankFilters={status:'已練習'};render()");check(examReload.get('#app').innerHTML.includes('共 1 筆練習'),'handwritten practice status filter works');
+examReload.location.hash='#question?q=NYCU-114-8101-Q01';selectExam('NYCU-114-8101-Q01',0);examReload.click({action:'submit-single'});examReload.click({action:'question-review'});
+check(examReload.run('activeSectionId')==='DS-CH01-S05','verified asymptotic exam topic links back to supplied lecture');
+check(!readFileSync('docs/exams.js','utf8').includes('C:\\Users\\')&&!readFileSync('docs/exams.js','utf8').includes('source_repository_credential'),'published source provenance excludes local paths and credentials');
+console.log(`PASS: ${checks} checks including revised NYCU scans, corrected multi-answer sets, source groups, five options, original handwritten snapshots, ungraded practice, filtering and reload. ${formulaCount} course formulas; browser and physical stylus QA unavailable.`);

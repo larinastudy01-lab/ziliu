@@ -3275,6 +3275,1548 @@ window.ZILIU_CONTENT = {
               }
             }
           ]
+        },
+        {
+          "id": "LA-CH03",
+          "title": "第 3 章 向量空間",
+          "titleStatus": "章名與教材完整性待原目錄核對",
+          "pendingSections": [
+            {
+              "number": "3-4",
+              "title": "基底與維度",
+              "status": "awaiting_material"
+            }
+          ],
+          "coverageNote": "3-4「基底與維度」教材待提供，未計入閱讀進度。大章完整性與綜合測驗仍待確認。",
+          "curriculumComplete": false,
+          "sections": [
+            {
+              "id": "LA-CH03-S01",
+              "title": "3-1 向量空間",
+              "sourceSectionId": "la-s03-01",
+              "contentVersion": "0.1.0",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得原始五張教材圖片，考古題僅有候選摘要。原圖與教材完整性待核對；自編例題、模擬測驗及補充另行標示。僅為小節評量，不代表全章完成。",
+              "knowledgePointIds": [
+                "LA-CH03-S01-K01",
+                "LA-CH03-S01-K02",
+                "LA-CH03-S01-K03",
+                "LA-CH03-S01-K04",
+                "LA-CH03-S01-K05",
+                "LA-CH03-S01-K06",
+                "LA-CH03-S01-K07",
+                "LA-CH03-S01-K08",
+                "LA-CH03-S01-K09"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH03-S01-B-INTRO",
+                  "type": "concept",
+                  "title": "學習目標與符號約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "讀完後應能說明向量、純量、零向量的不同；完整寫出公設；用具體反例否定向量空間；辨識特殊運算中的零向量與反元素；依公設完成基本證明。"
+                },
+                {
+                  "id": "LA-CH03-S01-B001",
+                  "type": "concept",
+                  "title": "集合、體與兩種運算",
+                  "markdown": "設 $V$ 為非空集合，$F$ 為體（field）。指定向量加法 $V\\times V\\to V$ 及純量乘法 $F\\times V\\to V$，滿足公設時，稱 $V$ 為「在 $F$ 上的向量空間」。\n\n| 記號 | 意義 | 注意 |\n|---|---|---|\n| $v\\in V$ | $v$ 是集合 $V$ 的一個元素，即向量 | 可以是矩陣、多項式、函數 |\n| $\\alpha\\in F$ | $\\alpha$ 是純量（scalar） | 通常取 $\\mathbb R$ 或 $\\mathbb C$ |\n| $V\\times V$ | 所有有序對 $(u,v)$ 的集合 | 加法取兩個向量作輸入 |\n| $F\\times V$ | 所有 $(\\alpha,v)$ 的集合 | 純量乘法取一純量、一向量 |\n| $0_F,1_F$ | 體的加法零與乘法一 | 都是純量 |\n| $0_V$ | 向量加法的單位元素 | 是向量，不必是數字零 |\n| $-v$ | $v$ 的加法反元素 | 依指定向量加法決定 |\n| $\\in,\\subseteq$ | 屬於、包含於 | 元素屬於集合；集合包含於集合 |\n\n體中的加減乘除遵守通常代數規則，且每個非零元素有乘法反元素。$\\mathbb Z$ 不是體：$2$ 的倒數 $1/2$ 不在其中。本節定義不把以整數為純量的結構稱為向量空間。\n\n同一集合在不同純量體上可能都是向量空間。例如 $\\mathbb C$ 可在 $\\mathbb R$ 或 $\\mathbb C$ 上討論；必須指明純量範圍。此處先不使用後續章節的維度概念。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E01",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B003",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B004",
+                  "type": "concept",
+                  "title": "十項公設與兩個分配律",
+                  "markdown": "對每個 $u,v,w\\in V$ 與每個 $\\alpha,\\beta\\in F$ 都必須成立：\n\n| 編號 | 公設 | 條件 |\n|---|---|---|\n| A1 | 加法封閉 | $u+v\\in V$ |\n| A2 | 純量乘法封閉 | $\\alpha v\\in V$ |\n| A3 | 加法交換 | $u+v=v+u$ |\n| A4 | 加法結合 | $(u+v)+w=u+(v+w)$ |\n| A5 | 加法單位元素 | 存在 $0_V\\in V$，使 $u+0_V=0_V+u=u$ |\n| A6 | 加法反元素 | 每個 $u$ 有 $-u\\in V$，使 $u+(-u)=(-u)+u=0_V$ |\n| A7 | 對向量加法分配 | $\\alpha(u+v)=\\alpha u+\\alpha v$ |\n| A8 | 對純量加法分配 | $(\\alpha+\\beta)v=\\alpha v+\\beta v$ |\n| A9 | 純量乘法結合 | $(\\alpha\\beta)v=\\alpha(\\beta v)$ |\n| A10 | 純量一的作用 | $1_Fv=v$ |\n\n有些書把兩項封閉性包含在「運算為映射」的定義內，因而只列八項；本稿依教材採十項，並非不同數學結構。\n\nA7 括號內加的是向量；A8 括號內加的是純量。A9 不是向量間的乘法，向量空間並不要求一般向量乘法。\n\n**判斷量詞：**證明成立要處理「任意」元素；否定只需找出「一組」元素使某條件失敗。檢查兩三個數值不能證明全部公設成立。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B005",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E02",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B006",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B007",
+                  "type": "concept",
+                  "title": "零乘法、負號、消去律與零積推論",
+                  "markdown": "以下是推論，不是新增公設。為避免循環論證，先建立消去的合法性，再使用它。\n\n### 3.1 加法消去律\n\n若 $u+w=v+w$，兩邊加上 $w$ 的反元素 $-w$：\n\n$$\n(u+w)+(-w)=(v+w)+(-w)\n\\Rightarrow u+(w+(-w))=v+(w+(-w))\n\\Rightarrow u+0_V=v+0_V\n\\Rightarrow u=v.\n$$\n\n依次使用：同加一元素、A4、A6、A5。左側消去可由 A3 轉成相同形式。\n\n### 3.2 $0_Fv=0_V$\n\n$$\n0_Fv=(0_F+0_F)v=0_Fv+0_Fv.\n$$\n\n第一步用體的 $0_F+0_F=0_F$，第二步用 A8。將左側寫成 $0_V+0_Fv$，由 A5 與消去律可得 $0_V=0_Fv$。\n\n### 3.3 $\\alpha0_V=0_V$\n\n由 $0_V+0_V=0_V$ 及 A7，\n\n$$\n\\alpha0_V=\\alpha(0_V+0_V)=\\alpha0_V+\\alpha0_V.\n$$\n\n與上一步同樣消去 $\\alpha0_V$，得到結論。\n\n### 3.4 負純量與反向量\n\n先看\n\n$$\nv+(-1_F)v=1_Fv+(-1_F)v=(1_F-1_F)v=0_Fv=0_V.\n$$\n\n依次用 A10、A8 與前述零乘法，所以 $(-1_F)v$ 是 $v$ 的反元素，即 $(-1_F)v=-v$。反元素唯一：若 $v+a=v+b=0_V$，由消去律得 $a=b$。\n\n再由 A9 與體的乘法規則：\n\n$$\n\\alpha(-v)=\\alpha((-1_F)v)=(\\alpha(-1_F))v=(-\\alpha)v.\n$$\n\n又因 $\\alpha v+(-\\alpha)v=(\\alpha-\\alpha)v=0_V$，故\n\n$$(-\\alpha)v=\\alpha(-v)=-(\\alpha v).$$\n\n### 3.5 若 $\\alpha v=0_V$，則 $\\alpha=0_F$ 或 $v=0_V$\n\n若 $\\alpha=0_F$，結論已成立。若 $\\alpha\\ne0_F$，因 $F$ 是體，存在 $\\alpha^{-1}$，並且\n\n$$\nv=1_Fv=(\\alpha^{-1}\\alpha)v\n=\\alpha^{-1}(\\alpha v)=\\alpha^{-1}0_V=0_V.\n$$\n\n依次使用 A10、體的反元素、A9、已知條件、3.3。這裡是「純量乘向量」的零積性質，不能直接套成矩陣乘法的零積律。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B008",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E03",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B009",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B010",
+                  "type": "concept",
+                  "title": "座標及固定尺寸矩陣空間",
+                  "markdown": "### 座標空間 $F^n$\n\n$F^n=\\{(x_1,\\ldots,x_n):x_i\\in F\\}$，其中 $n$ 是固定正整數，$i$ 是座標編號。運算逐座標進行：\n\n$$\n(x_1,\\ldots,x_n)+(y_1,\\ldots,y_n)=(x_1+y_1,\\ldots,x_n+y_n),\n\\qquad \\alpha(x_1,\\ldots,x_n)=(\\alpha x_1,\\ldots,\\alpha x_n).\n$$\n\n零向量為 $(0,\\ldots,0)$，反向量為 $(-x_1,\\ldots,-x_n)$。每個座標都在體內運算，因此公設由體的對應規則逐座標成立。\n\n### 固定尺寸矩陣空間 $F^{m\\times n}$\n\n$m,n$ 分別為固定列數與行數，採台灣教材常見的「橫列、直行」用語。矩陣 $A=[a_{ij}]$ 的 $i$ 是列編號、$j$ 是行編號。\n\n$$\n[A+B]_{ij}=a_{ij}+b_{ij},\\qquad[\\alpha A]_{ij}=\\alpha a_{ij}.\n$$\n\n零向量為 $m\\times n$ 零矩陣，反向量為 $-A=[-a_{ij}]$。必須固定尺寸；任意不同尺寸矩陣混在一起，一般不能定義通常加法。矩陣空間成立不依賴矩陣乘法，也不要求矩陣可逆。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B011",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E04",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B012",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B013",
+                  "type": "concept",
+                  "title": "多項式與函數空間",
+                  "markdown": "### 多項式空間 $P(F)$ 與 $P_n(F)$\n\n$P(F)$ 是所有係數在 $F$ 的有限次多項式。一般式\n\n$$p(x)=\\sum_{i=0}^{n}a_ix^i=a_0+a_1x+\\cdots+a_nx^n.$$\n\n$\\sum$（Sigma）表示逐項相加；下限 $i=0$ 表示從常數項開始，上限 $n$ 表示加到 $a_nx^n$；$a_i$ 為第 $i$ 次項係數，$x^0=1$。不同多項式可有不同最高次數，加法時缺少的係數補零。\n\n採通常多項式加法、純量乘法，零向量為零多項式。\n\n$$P_n(F)=\\{a_0+a_1x+\\cdots+a_nx^n:a_i\\in F\\}.$$\n\n此表示自然包含零多項式，避免必須替零多項式指定次數。$P_n(F)$ 的次數「至多 $n$」，不是「恰好 $n$」。恰好 $n$ 次的集合不包含零多項式，且 $p+(-p)=0$ 離開集合；乘純量零也會離開。\n\n### 函數空間 $F^D$ 與連續函數\n\n$F^D=\\{f:D\\to F\\}$，其中 $D$ 是共同定義域。$f:D\\to F$ 表示函數把 $D$ 中每個輸入送到 $F$ 中一個值。運算逐點定義：\n\n$$(f+g)(x)=f(x)+g(x),\\qquad(\\alpha f)(x)=\\alpha f(x).$$\n\n對所有 $x\\in D$ 都成立才是函數相等。零向量為零函數 $z(x)=0$，反元素為 $(-f)(x)=-f(x)$。\n\n連續實函數集合 $C([a,b],\\mathbb R)$ 也構成實向量空間：兩連續函數相加與乘任意實常數仍連續；零函數連續，其餘等式由逐點運算繼承。\n\n| 空間 | 向量例子 | 零向量 | 加法反元素 |\n|---|---|---|---|\n| $F^n$ | $(x_1,\\ldots,x_n)$ | $(0,\\ldots,0)$ | 各座標取負 |\n| $F^{m\\times n}$ | $[a_{ij}]$ | 固定尺寸零矩陣 | $[-a_{ij}]$ |\n| $P(F)$ | $p(x)$ | 零多項式 | $-p(x)$ |\n| $F^D$ | $f$ | 恆等於零的函數 | 逐點取負 |",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B014",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B015",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E06",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B016",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B017",
+                  "type": "concept",
+                  "title": "位移、向量加減與幾何表示",
+                  "markdown": "點 $P=(p_1,p_2)$ 到 $Q=(q_1,q_2)$ 的位移向量為\n\n$$\\overrightarrow{PQ}=Q-P=(q_1-p_1,q_2-p_2).$$\n\n例：$P=(1,-2)$、$Q=(4,0)$，得到 $(3,2)$。從原點到 $(3,2)$ 的箭頭也代表同一位移；自由向量可以平移表示。\n\n加法採首尾相接：先走 $u$，再走 $v$，總位移為 $u+v$；也可用平行四邊形法。減法 $u-v=u+(-v)$；將兩箭頭放在同一起點時，由 $v$ 的終點指向 $u$ 的終點得到 $u-v$。\n\n純量 $\\alpha>0$ 保持方向，$\\alpha<0$ 反向，長度變成原來的 $|\\alpha|$ 倍；$\\alpha=0$ 得零向量。這是通常實座標空間的圖像，不是所有抽象向量空間的定義。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B018",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E07",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B019",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B020",
+                  "type": "concept",
+                  "title": "正實數的特殊向量運算",
+                  "markdown": "令 $V=\\mathbb R_{>0}=\\{x\\in\\mathbb R:x>0\\}$，純量體為 $\\mathbb R$，定義\n\n$$x\\oplus y=xy,\\qquad\\alpha\\odot x=x^\\alpha.$$\n\n$\\oplus$ 表示本題指定的向量加法，$\\odot$ 表示本題指定的純量乘法；等號右側使用通常數字乘法、次方。正實底數的實數次方可由 $x^\\alpha=\\exp(\\alpha\\ln x)$ 定義。\n\n### 十項公設驗證\n\n| 公設 | 驗證 |\n|---|---|\n| A1 | $x,y>0\\Rightarrow xy>0$ |\n| A2 | $x>0,\\alpha\\in\\mathbb R\\Rightarrow x^\\alpha>0$ |\n| A3 | $xy=yx$ |\n| A4 | $(xy)z=x(yz)$ |\n| A5 | 零向量 $0_V=1$，因為 $x\\oplus1=x\\cdot1=x$ |\n| A6 | $x$ 的反元素為 $1/x>0$，因為 $x\\oplus(1/x)=1=0_V$ |\n| A7 | $(xy)^\\alpha=x^\\alpha y^\\alpha=(\\alpha\\odot x)\\oplus(\\alpha\\odot y)$ |\n| A8 | $x^{\\alpha+\\beta}=x^\\alpha x^\\beta=(\\alpha\\odot x)\\oplus(\\beta\\odot x)$ |\n| A9 | $x^{\\alpha\\beta}=(x^\\beta)^\\alpha$ |\n| A10 | $1\\odot x=x^1=x$ |\n\n所以它是實向量空間。$0_F\\odot x=x^0=1=0_V$，並沒有違反零乘法性質。\n\n**提醒：**這個空間的「向量相減」為 $x\\oplus(1/y)=x/y$，不是通常的 $x-y$。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B021",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E08",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B022",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B023",
+                  "type": "concept",
+                  "title": "非向量空間與反例寫法",
+                  "markdown": "### 7.1 五種典型反例\n\n| 集合與運算 | 具體失敗證據 | 對應條件 |\n|---|---|---|\n| $\\mathbb R$，$u\\oplus v=u-v$，通常純量乘法 | $2\\oplus3=-1\\ne1=3\\oplus2$ | A3 交換律 |\n| $S=\\{(1,x):x\\in\\mathbb R\\}$，通常運算 | $(1,0)+(1,0)=(2,0)\\notin S$ | A1 封閉性 |\n| $\\mathbb R^2$，通常加法，$\\alpha\\odot(x,y)=(\\alpha x,y)$ | 取 $v=(0,1)$，$(1+1)\\odot v=(0,1)$，但 $(1\\odot v)+(1\\odot v)=(0,2)$ | A8 純量分配律 |\n| $\\mathbb R^2$，通常運算，以 $\\mathbb Z$ 當純量 | $\\mathbb Z$ 中非零元素 $2$ 沒有乘法反元素 | 純量集合不是體 |\n| $\\mathbb R$，$x\\oplus y=\\min(x,y)$，通常純量乘法 | 若有單位 $e$，取 $x=e+1$，則 $\\min(x,e)=e\\ne x$ | A5 不存在 |\n\n第三例也可用必要推論 $0_Fv=0_V$ 找矛盾，但若要求指明公設，應直接列出 A8 兩側不等。\n\n### 7.2 通常運算與特殊運算的不同策略\n\n- 通常運算的集合：先檢查是否包含通常零向量，再看加法、純量乘法是否封閉。\n- 若已知是某個向量空間的子集合且沿用運算，可用子空間判別法簡化；這是後續 3-2 的概念，本節先當補充，不當成未證定理直接取代所有公設。\n- 特殊運算：先由 $v\\oplus e=v$ 找單位元素，不可直接假設為通常零；再找反元素、檢查 $1\\odot v$ 及兩個分配律。\n- 特別代入 $0,1,-1$ 有助找反例；全部通過仍不等於證明成立。\n\n### 7.3 考卷上的反例模板\n\n「取……，則……，但……，故不滿足……公設，因此不是在指定體上的向量空間。」\n\n若是運算不封閉，務必寫清楚運算前元素屬於集合，運算後結果為何不屬於集合。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B024",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E09",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B025",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B026",
+                  "type": "concept",
+                  "title": "補充：平移運算與標準證明格式",
+                  "markdown": "### 8.1 零向量唯一\n\n若 $e,f$ 都是加法單位元素，由 $e+f=f$（$e$ 的單位性）與 $e+f=e$（$f$ 的單位性），得 $e=f$。\n\n### 8.2 平移後的運算\n\n取固定 $a\\in\\mathbb R$，在 $\\mathbb R$ 定義\n\n$$u\\oplus v=u+v-a,\\qquad\\alpha\\odot u=a+\\alpha(u-a).$$\n\n其零向量為 $a$，反元素為 $2a-u$。映射 $T(u)=u-a$ 是到通常 $\\mathbb R$ 的雙射，且\n\n$$T(u\\oplus v)=T(u)+T(v),\\qquad T(\\alpha\\odot u)=\\alpha T(u).$$\n\n因此可將公設轉成通常實數空間的公設。這是「用一一對應搬運運算」的例子；若考試尚未引入同構，仍可逐項直接代入驗證。\n\n正實數例子也有 $T(x)=\\ln x$，因為 $\\ln(xy)=\\ln x+\\ln y$、$\\ln(x^\\alpha)=\\alpha\\ln x$。此觀點幫助理解，不取代教材要求的公設證明。",
+                  "provenance": "補充延伸",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B027",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S01-E10",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B028",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S01-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S01-B029",
+                  "type": "summary",
+                  "title": "考前摘要與自我檢核",
+                  "markdown": "### 14.1 考前摘要\n\n1. 向量空間要一起看：集合 $V$、體 $F$、加法、純量乘法。\n2. 所有公設均須對任意合法輸入成立；反駁只要一組具體反例。\n3. 普通零與零向量角色不同；特殊運算先解 $v\\oplus e=v$。\n4. A7：純量乘「向量之和」；A8：「純量之和」乘向量。\n5. $0_Fv=0_V$、$\\alpha0_V=0_V$、$(-1_F)v=-v$ 都是公設的推論。\n6. 非零純量可消去；零純量不能一般消去。\n7. 矩陣空間固定尺寸；多項式「至多」與「恰好」不能混淆；函數等式逐點成立。\n8. 正實數特殊空間：加法是乘法，純量乘法是次方，零向量是 $1$，反元素是倒數。\n9. 不要將純量乘向量的零積性質套到矩陣乘積。\n\n### 14.2 空白錯題紀錄模板\n\n此表只有預設欄位，未保存任何使用者實際學習資料。\n\n| 題目 ID | 我誤判的公設或符號 | 正確辨識線索 | 重寫的關鍵一步 | 下次複習日期 |\n|---|---|---|---|---|\n|  |  |  |  |  |\n|  |  |  |  |  |\n|  |  |  |  |  |\n\n### 14.3 複習用法\n\n先遮住第 12、13 節，完成例題與測驗；再用第 13 節評分。錯在符號者回讀第 2 節；錯在推導者回讀第 3 節；錯在特殊零向量者回讀第 6 節。實際作答與手寫內容應由系統另存，不寫回課程資料。",
+                  "knowledgePointIds": []
+                },
+                {
+                  "id": "LA-CH03-S01-B030",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH03-S01-AS01",
+                  "knowledgePointIds": []
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH03-S01-AS01",
+                "scope": "section",
+                "title": "3-1 小節測驗",
+                "questionIds": [
+                  "LA-CH03-S01-Q01",
+                  "LA-CH03-S01-Q02",
+                  "LA-CH03-S01-Q03",
+                  "LA-CH03-S01-Q04",
+                  "LA-CH03-S01-Q05",
+                  "LA-CH03-S01-Q06",
+                  "LA-CH03-S01-Q07"
+                ],
+                "totalPoints": 40,
+                "scoringNote": "選擇各 4 分、手寫各 10 分，共 40 分；手寫對照詳解自評。"
+              }
+            },
+            {
+              "id": "LA-CH03-S02",
+              "title": "3-2 子空間",
+              "sourceSectionId": "la-ch03-s02",
+              "contentVersion": "1.0-draft",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得原始十張教材圖片，八道教學例題皆為自編，十五筆考古題只有摘要。原圖與教材完整性待核對；自編例題、模擬測驗及補充另行標示。僅為小節評量，不代表全章完成。",
+              "knowledgePointIds": [
+                "LA-CH03-S02-K01",
+                "LA-CH03-S02-K02",
+                "LA-CH03-S02-K03",
+                "LA-CH03-S02-K04",
+                "LA-CH03-S02-K05",
+                "LA-CH03-S02-K06",
+                "LA-CH03-S02-K07",
+                "LA-CH03-S02-K08"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH03-S02-B-INTRO",
+                  "type": "concept",
+                  "title": "學習目標與符號約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "| 符號 | 意義 |\n|---|---|\n| $F$ | 純量所屬數域，例如實數 $\\mathbb R$ |\n| $V$、$W$ | 向量空間及其子集合 |\n| $W\\le V$ | $W$ 是 $V$ 的子空間 |\n| $0$、$\\{0\\}$ | 零向量；只含零向量的集合，兩者不同 |\n| $\\alpha,\\beta$ | 任意純量，取自 $F$ |\n| $\\forall$、$\\exists$ | 對所有；存在 |\n| $\\subseteq$、$\\in$ | 子集合關係；元素屬於集合 |\n| $\\cap$、$\\cup$ | 交集；聯集 |\n| $\\operatorname{span}(S)$ | $S$ 中向量的所有有限線性組合 |\n| $\\sum_{i=1}^{k}c_iv_i$ | $c_1v_1+\\cdots+c_kv_k$；$i$ 是索引，$k$ 是項數 |\n| $A^T$、$\\ker A$ | 轉置矩陣；核空間 |\n| $e_i$ | 第 $i$ 個標準基底向量，只有第 $i$ 個分量為 1 |\n\n沿用前述教材用語：「列」為 row，「行／欄」為 column。以下盡量並列英文，避免不同教材造成混淆。四空間的正交補補充限定於實數及標準內積；一般數域部分只使用轉置與代數定義。"
+                },
+                {
+                  "id": "LA-CH03-S02-B001",
+                  "type": "concept",
+                  "title": "子空間的定義與判別",
+                  "markdown": "設 $V$ 是 $F$ 上的向量空間。若 $W\\subseteq V$，且沿用 $V$ 的加法與純量乘法後本身為向量空間，稱 $W$ 為 $V$ 的子空間。\n\n判別法：先證 $W\\ne\\varnothing$，再證加法封閉及純量乘法封閉。也可合併為\n\n$$u,v\\in W,\\ \\alpha,\\beta\\in F\\Longrightarrow\\alpha u+\\beta v\\in W.$$\n\n不需要重證十條向量空間公理，因結合律、交換律等已從母空間繼承。但運算或數域若改變，就不能直接套用此說法。\n\n為何非空加封閉可推出含零？取 $w\\in W$，由純量封閉得 $0w=0\\in W$。又 $(-1)w=-w\\in W$，所以反元素也在集合中。零子空間 $\\{0\\}$ 與 $V$ 本身都滿足條件。注意：空集合不是子空間，只有零向量則是子空間。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E01",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B003",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，以「任取」開頭寫完整封閉性證明。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B004",
+                  "type": "concept",
+                  "title": "如何找反例",
+                  "markdown": "否定子空間只需一項條件失敗，無須全部檢查。\n\n| 集合 | 判斷與理由 |\n|---|---|\n| $Ax=0$ 的解集合 | 是；$A(\\alpha u+\\beta v)=0$ |\n| $Ax=b$，$b\\ne0$ 的解集合 | 否；零向量不在內，無解時為空集合也不是 |\n| $x\\ge0$ 的半平面 | 否；負純量破壞條件 |\n| trace 為零的矩陣 | 是；trace 為對角元素總和，具線性 |\n| 對角矩陣、固定方向的上三角矩陣 | 是；指定位置為零的限制是齊次線性限制 |\n| 所有奇異方陣（階數至少 2） | 否；加法不封閉 |\n| $p(0)=0$ 的至多 $n$ 次多項式 | 是；代入值對加法與純量乘法封閉 |\n| 恰為三次的多項式 | 否；不含零多項式 |",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B005",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E02",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B006",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "為 $x+y=1$ 與 $x\\ge0$ 各寫最短反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B007",
+                  "type": "concept",
+                  "title": "交集一定是子空間",
+                  "markdown": "設 $W_1,W_2\\le V$。交集包含零。若 $u,v$ 同時在兩者中，線性組合也同時在兩者中，因此 $W_1\\cap W_2\\le V$。同理任意非空索引族子空間的交集仍是子空間；若討論空索引族，需約定其在母空間中的交集為 $V$。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B008",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E03",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B009",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "用兩次封閉性把一般交集定理寫成證明。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B010",
+                  "type": "concept",
+                  "title": "聯集何時是子空間？",
+                  "markdown": "對兩個子空間：\n\n$$U\\cup W\\le V\\iff U\\subseteq W\\ \\text{或}\\ W\\subseteq U.$$\n\n充分性：有包含關係時聯集就是較大的子空間。\n\n必要性：假設聯集是子空間，但彼此皆不包含。可取 $u\\in U\\setminus W$、$w\\in W\\setminus U$。加法封閉要求 $u+w\\in U\\cup W$。若 $u+w\\in U$，則 $w=(u+w)-u\\in U$，矛盾；若 $u+w\\in W$，則 $u=(u+w)-w\\in W$，也矛盾。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B011",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E04",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B012",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "練習必要性證明中兩種情況各用了哪個子空間的封閉性。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B013",
+                  "type": "concept",
+                  "title": "和空間與最小性",
+                  "markdown": "$$U+W=\\{u+w:u\\in U,w\\in W\\}.$$\n\n這裡的加號是集合的和空間，不是聯集。因 $0=0+0$，故非空。若 $x=u_1+w_1$、$y=u_2+w_2$，則\n\n$$\\alpha x+\\beta y=(\\alpha u_1+\\beta u_2)+(\\alpha w_1+\\beta w_2)\\in U+W.$$\n\n因此和是子空間。對任意 $u\\in U$，可寫 $u=u+0$，故 $U\\subseteq U+W$，同理 $W\\subseteq U+W$。若子空間 $Z$ 包含兩者，由加法封閉必包含所有 $u+w$，故 $U+W\\subseteq Z$。這就是「包含兩者的最小子空間」。\n\n$$U+W=\\operatorname{span}(U\\cup W).$$\n\n有限多個子空間的和可類推為所有 $w_1+\\cdots+w_k$；各項可取零。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B014",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B015",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "自行畫兩平面及交線，並寫一個向量的兩種分解。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B016",
+                  "type": "concept",
+                  "title": "四個基本子空間",
+                  "markdown": "設 $A\\in F^{m\\times n}$，也就是 $m$ 列、$n$ 欄，輸入長度 $n$、輸出長度 $m$。\n\n| 空間 | 定義 | 所在空間 | 解題意義 |\n|---|---|---|---|\n| Column space，CS | $\\{Ax:x\\in F^n\\}$ | $F^m$ | 所有可能輸出 |\n| Row space，RS | 各列向量的線性組合 | $F^n$（將列視為座標向量） | 所有列向量生成的空間 |\n| Null space，kernel | $\\{x:Ax=0\\}$ | $F^n$ | 被送到零的輸入 |\n| Left null space | $\\{y:y^TA=0\\}=\\ker A^T$ | $F^m$ | 對各欄的線性限制 |\n\n若 $A=[a_1\\ \\cdots\\ a_n]$，則 $Ax=x_1a_1+\\cdots+x_na_n$，故 CS 正是欄向量的 span。RS 可寫成 $\\{y^TA:y\\in F^m\\}$（以列向量表示）。span 對線性組合封閉，因此 CS、RS 是子空間。對 kernel，$A0=0$ 且 $A(\\alpha x+\\beta z)=\\alpha Ax+\\beta Az=0$，所以也是子空間。左核套用同樣論證於 $A^T$。\n\n重要連結：$Ax=b$ 有解當且僅當 $b\\in\\operatorname{CS}(A)$。若 $A$ 為方陣，可逆當且僅當 $\\ker A=\\{0\\}$，也當且僅當 $\\operatorname{CS}(A)=F^n$。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B017",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E06",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B018",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "每個答案旁標上向量長度，檢查是否吻合矩陣尺寸。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B019",
+                  "type": "concept",
+                  "title": "乘積與等價運算",
+                  "markdown": "若 $A$ 是 $m\\times n$、$B$ 是 $n\\times p$，則\n\n$$\\operatorname{CS}(AB)\\subseteq\\operatorname{CS}(A),\\qquad\\operatorname{RS}(AB)\\subseteq\\operatorname{RS}(B).$$\n\n第一式：$z=ABx=A(Bx)$ 是 $A$ 的輸出。第二式：$z=y^TAB=(y^TA)B$ 是 $B$ 各列的組合。一般只得到包含，不能直接升級為相等。\n\n若 $R=PA$，$P$ 可逆（基本列運算），則 $Rx=0\\iff Ax=0$，故核相同；各列互相為線性組合，所以 RS 相同。CS 通常改變。\n\n若 $C=AQ$，$Q$ 可逆（基本行／欄運算），則 $y^TC=0\\iff y^TA=0$，故左核相同；CS 相同，RS 與 kernel 通常改變。重排欄只是其中一種情況。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B020",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E07",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B021",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "寫出 $Rx=0\\Rightarrow Ax=0$ 中可逆矩陣的用途。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B022",
+                  "type": "concept",
+                  "title": "額外補充：維度、直和、正交",
+                  "markdown": "以下為編輯延伸，並非宣稱原圖已完整介紹。維度是基底向量的個數；基底同時滿足生成及線性獨立。設 rank 為 $r$：\n\n$$\\dim\\operatorname{CS}(A)=\\dim\\operatorname{RS}(A)=r,$$\n$$\\dim\\ker A=n-r,\\qquad\\dim\\ker A^T=m-r.$$\n\n因此已知 $\\dim\\ker A=k$，先得 $r=n-k$，再得左核維度 $m-n+k$。\n\n有限維情況下 $\\dim(U+W)=\\dim U+\\dim W-\\dim(U\\cap W)$。若交集為 $\\{0\\}$，則和中每個向量的分解唯一，稱直和 $U\\oplus W$。理由：$u_1+w_1=u_2+w_2$ 推出 $u_1-u_2=w_2-w_1\\in U\\cap W$；交集為零迫使兩部分各自相同。\n\n實數標準內積下，$\\ker A=\\operatorname{RS}(A)^\\perp$、$\\ker A^T=\\operatorname{CS}(A)^\\perp$。上標 $\\perp$ 表示與該空間所有向量垂直的集合。這裡不以轉置取代複數標準內積所需的共軛轉置。",
+                  "provenance": "補充延伸",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B023",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S02-E08",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B024",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "在 ex05 的兩平面例子驗證維度公式，並解釋為何不是直和。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S02-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S02-B025",
+                  "type": "summary",
+                  "title": "考前摘要與自我檢核",
+                  "markdown": "- 證明子空間：母空間與數域一致、非空、線性組合封閉。\n- 否定子空間：零向量、加法、純量任選一種具體失敗。\n- 交集必是；兩子空間的聯集需有包含關係；和必是。\n- CS 與左核在 $F^m$；RS 與 kernel 在 $F^n$。\n- 列運算保留 kernel、RS；欄運算保留左核、CS。\n- 乘積空間關係先寫包含，不能沒有條件就寫相等。",
+                  "knowledgePointIds": []
+                },
+                {
+                  "id": "LA-CH03-S02-B026",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH03-S02-AS01",
+                  "knowledgePointIds": []
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH03-S02-AS01",
+                "scope": "section",
+                "title": "3-2 小節測驗",
+                "questionIds": [
+                  "LA-CH03-S02-Q01",
+                  "LA-CH03-S02-Q02",
+                  "LA-CH03-S02-Q03",
+                  "LA-CH03-S02-Q04",
+                  "LA-CH03-S02-Q05",
+                  "LA-CH03-S02-Q06",
+                  "LA-CH03-S02-Q07"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分，僅計答對題數；手寫各 10 分，對照詳解自評。"
+              }
+            },
+            {
+              "id": "LA-CH03-S03",
+              "title": "3-3 生成與線性獨立",
+              "sourceSectionId": "LA-CH03-S03",
+              "contentVersion": "0.1.0",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得原始十四張教材照片。八道彙編轉錄另置待原卷核對閱讀區，不列正式題庫與作答統計；其餘候選只有摘要。原圖與教材完整性待核對；自編例題、模擬測驗及補充另行標示。僅為小節評量，不代表全章完成。",
+              "knowledgePointIds": [
+                "LA-CH03-S03-K01",
+                "LA-CH03-S03-K02",
+                "LA-CH03-S03-K03",
+                "LA-CH03-S03-K04",
+                "LA-CH03-S03-K05",
+                "LA-CH03-S03-K06",
+                "LA-CH03-S03-K07",
+                "LA-CH03-S03-K08",
+                "LA-CH03-S03-K09",
+                "LA-CH03-S03-K10",
+                "LA-CH03-S03-K11",
+                "LA-CH03-S03-K12",
+                "LA-CH03-S03-K13"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH03-S03-B-INTRO",
+                  "type": "concept",
+                  "title": "學習目標與符號約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "| 符號／用語 | 意義 |\n|---|---|\n| $F$ | 純量域（field），例如實數域 $\\mathbb R$、複數域 $\\mathbb C$ |\n| $V$ | 定義在 $F$ 上的向量空間（vector space） |\n| $v_i$ | 第 $i$ 個向量；下標是編號，不是乘法 |\n| $\\sum_{i=1}^k a_iv_i$ | 西格瑪求和，即 $a_1v_1+\\cdots+a_kv_k$；$i$ 從 1 到 $k$ |\n| $\\operatorname{span}(S)$ | $S$ 的所有有限線性組合所成集合 |\n| $\\varnothing$、$\\{0\\}$ | 分別為空集合、只含零向量的集合，兩者不同 |\n| $S\\subseteq W$ | $S$ 的每個元素都在 $W$ 中，允許相等 |\n| $S_1\\cup S_2$、$S_1\\cap S_2$ | 聯集（至少屬於一者）、交集（同時屬於兩者） |\n| $A=[v_1\\ \\cdots\\ v_k]$ | 各 $v_i$ 直向排成矩陣的一個 column |\n| $e_i$ | 標準向量：第 $i$ 個座標為 1，其餘為 0 |\n| $P_d(F)$ | 係數在 $F$、次數至多為 $d$ 的多項式，包含零多項式 |\n| $M_{m\\times n}(F)$ | 所有 $m\\times n$ 的 $F$ 係數矩陣 |\n| $A^T$、$\\det A$ | 轉置、行列式 |\n| $N(A)$、$CS(A)$、$RS(A)$ | 零空間、column space、row space |\n| $\\operatorname{rank}(A)$ | 樞紐數，等於 column space 與 row space 的維度 |\n\n**行、列用語處理：**不同臺灣教材的翻譯慣例可能不同。本稿統一使用 row（橫向）、column（直向）及「基本 row 運算」，避免把判準翻反。獨立看每個 **column** 是否有樞紐；生成 $F^m$ 看每個 **row** 是否有樞紐。"
+                },
+                {
+                  "id": "LA-CH03-S03-B001",
+                  "type": "concept",
+                  "title": "線性組合與 $Ax=b$",
+                  "markdown": "給定 $v_1,\\ldots,v_k\\in V$ 與 $a_1,\\ldots,a_k\\in F$，$\\sum_{i=1}^k a_iv_i$ 是這些向量的線性組合。係數可為零，不要求正值或總和為 1。\n\n判斷指定向量 $b$ 是否可以組出：設 $a_1v_1+\\cdots+a_kv_k=b$，再求係數。對普通座標向量，令 $A=[v_1\\ \\cdots\\ v_k]$，便得到 $Ax=b$。有解表示可以生成這個 $b$；無解表示不行。這只針對指定 $b$，還不能保證生成整個空間。例題：E01。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E01",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B003",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B004",
+                  "type": "concept",
+                  "title": "span、空集合與最小子空間",
+                  "markdown": "$$\\operatorname{span}(S)=\\left\\{\\sum_{i=1}^k a_iv_i:k\\text{ 有限},\\ a_i\\in F,\\ v_i\\in S\\right\\}.$$\n\n即使 $S$ 是無限集合，每一個線性組合仍只使用有限個向量。採空和等於零的慣例，$\\operatorname{span}(\\varnothing)=\\{0\\}$；而 $\\operatorname{span}(\\{0\\})=\\{0\\}$。\n\n**子空間證明：**span 含零向量。任取 $u=\\sum_i a_iv_i$、$w=\\sum_j b_jz_j$ 與純量 $c$，則 $cu+w=\\sum_i(ca_i)v_i+\\sum_jb_jz_j$，仍是 $S$ 中向量的有限線性組合。因此對純量倍乘與加法封閉。\n\n**最小性：**若子空間 $W$ 包含 $S$，則其封閉性保證 $\\sum_i a_iv_i\\in W$，所以 $\\operatorname{span}(S)\\subseteq W$。「最小」指集合包含關係，不是向量數最少。\n\n若 $\\operatorname{span}(S)=V$，稱 $S$ 生成 $V$（spans $V$）。例題：E02。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B005",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E02",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B006",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B007",
+                  "type": "concept",
+                  "title": "生成空間相等與移除冗餘",
+                  "markdown": "要證明 $\\operatorname{span}(S_1)=\\operatorname{span}(S_2)$，可證明 $S_1\\subseteq\\operatorname{span}(S_2)$ 且 $S_2\\subseteq\\operatorname{span}(S_1)$。由 K02 最小性得到兩方向包含。\n\n若 $v_k\\in\\operatorname{span}\\{v_1,\\ldots,v_{k-1}\\}$，加入或移除 $v_k$ 都不改變 span。若不屬於舊 span，加入後生成空間嚴格擴大。反之，兩集合元素數不同也可以有相同 span。另有 $S_1\\subseteq S_2\\Rightarrow\\operatorname{span}(S_1)\\subseteq\\operatorname{span}(S_2)$。例題：E03。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B008",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E03",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B009",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B010",
+                  "type": "concept",
+                  "title": "column space、row space 與樞紐",
+                  "markdown": "對 $A\\in F^{m\\times n}$：$CS(A)\\subseteq F^m$、$RS(A)\\subseteq F^n$，且 $CS(A)=\\{Ax:x\\in F^n\\}$。所以 $Ax=b$ 有解若且唯若 $b\\in CS(A)$。\n\n基本 row 運算相當於左乘可逆矩陣 $E$，所以 $N(EA)=N(A)$，並保留 row space；但 $CS(EA)=E(CS(A))$ 通常不等於原 column space。找 $CS(A)$ 的基底時：先化簡找樞紐 column 的**位置**，再回到原矩陣取那些 column。化簡後非零 row 則能作為原 row space 的基底。例題：E04。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B011",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E04",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B012",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B013",
+                  "type": "concept",
+                  "title": "相依與獨立的定義、齊次判準",
+                  "markdown": "有限向量列 $v_1,\\ldots,v_k$ 線性獨立，指 $\\sum_i a_iv_i=0$ 蘊含所有 $a_i=0$。若存在不全為零的係數使和為零，就是相依。全零係數的解稱平凡解（trivial solution）；「不全為零」只要求至少一個係數非零。\n\n令 $A=[v_1\\cdots v_k]$，有\n$$\\text{獨立}\\iff N(A)=\\{0\\}\\iff\\operatorname{rank}(A)=k\\iff\\text{每個 column 有樞紐}.$$\n有自由變數便有非平凡齊次解，即相依。\n\n**冗餘向量等價命題：**若相依關係中 $a_j\\ne0$，移項並除以 $a_j$ 得 $v_j=-\\sum_{i\\ne j}(a_i/a_j)v_i$。反方向將這個等式移到同一側，第 $j$ 個係數為 1，即得非平凡關係。注意：相依只保證「至少一個」可由其餘表示。例題：E05。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B014",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B015",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B016",
+                  "type": "concept",
+                  "title": "快速判斷與子集合性質",
+                  "markdown": "| 情況 | 結論與理由 |\n|---|---|\n| 向量列含零向量 | 相依：零向量係數取 1，其他取 0 |\n| 單一向量 $v$ | 獨立若且唯若 $v\\ne0$ |\n| 兩個向量 | 相依若且唯若其中一個可寫成另一個的純量倍數 |\n| 獨立集合的子集合 | 仍獨立；把缺少的係數補 0 即可證明 |\n| 相依集合的超集合 | 仍相依；沿用原非平凡係數，其餘補 0 |\n| $F^n$ 中超過 $n$ 個向量 | 相依：最多有 $n$ 個樞紐 |\n| $F^n$ 中不超過 $n$ 個向量 | 未必獨立，仍需判斷 |\n| 空集合 | 獨立，但只生成零空間 |\n\n對無限集合，獨立指其每個有限子集合皆獨立。重複向量若作為有序向量列的兩個位置，立即相依；集合記法會自動去除重複元素，需區分。例題：E06。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B017",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E06",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B018",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B019",
+                  "type": "concept",
+                  "title": "生成、獨立、基底的比較",
+                  "markdown": "| 問題（$A$ 為 $m\\times n$） | 判準 |\n|---|---|\n| 指定 $b$ 是否在 span？ | $Ax=b$ 有解 |\n| columns 是否獨立？ | $Ax=0$ 只有零解；rank 為 $n$ |\n| 是否生成 $F^m$？ | 對每個 $b\\in F^m$ 皆有解；rank 為 $m$ |\n| 同時獨立且生成 $F^m$？ | columns 是基底，必有 $m=n$ 且可逆 |\n\n基底（basis）是同時獨立且生成目標空間的集合，作為後續小節銜接概念；維度（dimension）是有限基底所含向量數。若 $n<m$，不能生成 $F^m$；若 $n>m$，columns 必相依。只有方陣時，「columns 獨立」與「生成整個目標空間」才等價。例題：E07。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B020",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E07",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B021",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B022",
+                  "type": "concept",
+                  "title": "含參數的獨立性",
+                  "markdown": "方陣 $A(t)$ 的 columns 獨立若且唯若 $\\det A(t)\\ne0$；非方陣需用秩或齊次方程。計算時先找使樞紐或行列式為零的值，再代回逐一討論。除以 $t-a$ 前，必須先處理 $t=a$，不能把特殊情況丟掉。例題：E08。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B023",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E08",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B024",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K08"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B025",
+                  "type": "concept",
+                  "title": "子空間的和、聯集與交集",
+                  "markdown": "$$W_1+W_2=\\{u+v:u\\in W_1,v\\in W_2\\}.$$\n零向量可寫成 $0+0$；若 $u+v$、$u'+v'$ 在其中，則 $c(u+v)+(u'+v')=(cu+u')+(cv+v')$ 仍在其中，故是子空間。\n\n若 $W_i=\\operatorname{span}(S_i)$，把線性組合依來源拆成兩部分，便得\n$$W_1+W_2=\\operatorname{span}(S_1\\cup S_2).$$\n交集 $W_1\\cap W_2$ 也是子空間：兩邊的封閉性可同時使用。聯集通常不是子空間；**補充命題**：兩子空間的聯集為子空間若且唯若其中一者包含另一者。必要性可取 $u\\in W_1\\setminus W_2$、$v\\in W_2\\setminus W_1$，則 $u+v$ 不在任一者中。\n\n$$\\operatorname{span}(S_1\\cap S_2)\\subseteq\\operatorname{span}(S_1)\\cap\\operatorname{span}(S_2).$$\n此式不保證相等：左邊只能使用共同的原始元素；右邊允許兩組不同線性組合產生同一向量。例題：E09。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B026",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E09",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B027",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K09"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B028",
+                  "type": "concept",
+                  "title": "矩陣與多項式作為向量",
+                  "markdown": "矩陣相等要逐位置比較，多項式相等要逐次項比較。矩陣可固定次序攤平成係數向量，之後始終使用相同次序；$a+bx+cx^2$ 可表示為 $(a,b,c)^T$。這些對應保留加法與純量倍乘，因此保留線性關係。零多項式是所有係數皆零，不是只在某點取值為零。例題：E10。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K10"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B029",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E10",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K10"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B030",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K10"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B031",
+                  "type": "concept",
+                  "title": "函數的獨立性與定義域",
+                  "markdown": "$\\sum_i c_if_i(x)=0$ 必須對定義域的**每個** $x$ 成立，且 $c_i$ 是不隨 $x$ 改變的常數。證明獨立可選取適當的點，推出所有係數必為零。有限點上得到非平凡解，卻不能直接證明函數相依，因為該關係未必在其他點成立。定義域與純量域都會影響判斷。例題：E11。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K11"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B032",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E11",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K11"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B033",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K11"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B034",
+                  "type": "concept",
+                  "title": "Wronskian 充分判準與限制",
+                  "markdown": "設 $f_1,\\ldots,f_n$ 在同一區間具有到 $n-1$ 階的導數，定義\n$$W(f_1,\\ldots,f_n)(x)=\\det\\begin{bmatrix}f_1(x)&\\cdots&f_n(x)\\\\f'_1(x)&\\cdots&f'_n(x)\\\\\\vdots&&\\vdots\\\\f_1^{(n-1)}(x)&\\cdots&f_n^{(n-1)}(x)\\end{bmatrix}.$$\n\n若函數相依，對恆等式逐次微分，同一組非零常數係數會使矩陣乘積為零，故 Wronskian 處處為零。取逆否命題：**存在一點 $x_0$ 使 $W(x_0)\\ne0$，即可證明獨立**。只需一點，不要求每一點皆非零。\n\n**補充限制：**對一般可微函數，Wronskian 恆零不能直接反推相依。例：在 $\\mathbb R$ 上 $f=x^2$、$g=x|x|$ 皆可微且 $W\\equiv0$；但在正半軸得到 $a+b=0$，負半軸得到 $a-b=0$，故兩函數仍獨立。若有額外解析性或同一線性常微分方程解族等條件，須先完整列出條件才使用更強結論。例題：E12。",
+                  "provenance": "教材整理 · 含補充延伸",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K12"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B035",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S03-E12",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K12"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B036",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K12"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B037",
+                  "type": "concept",
+                  "title": "小節統整",
+                  "markdown": "先辨認空間與純量域，再區分 $Ax=b$（有無解）與 $Ax=0$（是否唯一零解）。把物件轉成係數矩陣，檢查樞紐；參數例外值另算；最後寫回原問題的語言。證明題應寫「設任意係數使和為零 → 整理 → 用已知獨立性 → 得係數全零」，不要只寫「顯然」。",
+                  "provenance": "教材整理 · 含補充延伸",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K13"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B038",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K13"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-SOURCE-NOTICE",
+                  "type": "summary",
+                  "title": "考古題轉錄 · 待原卷核對",
+                  "knowledgePointIds": [],
+                  "markdown": "以下 8 道大題依稿件保留共用題幹、所有小題及編輯勘誤，來源為補教彙編，**尚未與官方原卷核對**。供閱讀參考，不提供交卷、不列入題庫或弱點統計；投影與最小平方等內容屬後續延伸。"
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-105-02",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-105-02",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-102-05",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-102-05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K05",
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-101-05",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-101-05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K06",
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-100-06",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-100-06",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-102-08",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-102-08",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K03",
+                    "LA-CH03-S03-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-103-04",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-103-04",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K04",
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-104-05",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-104-05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B-PY-NCTU-106-08",
+                  "type": "source-review",
+                  "transcriptId": "PY-NCTU-106-08",
+                  "knowledgePointIds": [
+                    "LA-CH03-S03-K05",
+                    "LA-CH03-S03-K07"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S03-B039",
+                  "type": "summary",
+                  "title": "考前摘要與自我檢核",
+                  "markdown": "先辨認空間與純量域，再區分 $Ax=b$（有無解）與 $Ax=0$（是否唯一零解）。把物件轉成係數矩陣，檢查樞紐；參數例外值另算；最後寫回原問題的語言。證明題應寫「設任意係數使和為零 → 整理 → 用已知獨立性 → 得係數全零」，不要只寫「顯然」。",
+                  "knowledgePointIds": []
+                },
+                {
+                  "id": "LA-CH03-S03-B040",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH03-S03-AS01",
+                  "knowledgePointIds": []
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH03-S03-AS01",
+                "scope": "section",
+                "title": "3-3 小節測驗",
+                "questionIds": [
+                  "LA-CH03-S03-Q01",
+                  "LA-CH03-S03-Q02",
+                  "LA-CH03-S03-Q03",
+                  "LA-CH03-S03-Q04",
+                  "LA-CH03-S03-Q05",
+                  "LA-CH03-S03-Q06",
+                  "LA-CH03-S03-Q07"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分，僅計答對題數；手寫各 10 分，對照詳解自評。"
+              }
+            },
+            {
+              "id": "LA-CH03-S05",
+              "title": "3-5 直和",
+              "sourceSectionId": "LA-S0305",
+              "contentVersion": "0.1.0",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得原始八張教材圖片；教材轉錄例題及四點內插數據待原圖核對。原圖與教材完整性待核對；自編例題、模擬測驗及補充另行標示。僅為小節評量，不代表全章完成。",
+              "knowledgePointIds": [
+                "LA-CH03-S05-K01",
+                "LA-CH03-S05-K02",
+                "LA-CH03-S05-K03",
+                "LA-CH03-S05-K04",
+                "LA-CH03-S05-K05",
+                "LA-CH03-S05-K06"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH03-S05-B-INTRO",
+                  "type": "concept",
+                  "title": "學習目標與符號約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "|記號|意思|\n|---|---|\n|$F$|係數域，本稿主要採實數域 $\\mathbb R$|\n|$V,W_i$|向量空間及其子空間；下標 $i$ 表示第幾個子空間|\n|$\\{0\\}$|只包含零向量的集合，不是空集合|\n|$\\operatorname{span}\\{v_1,\\ldots,v_r\\}$|這些向量所有線性組合構成的集合|\n|$\\sum_{i=1}^k w_i$|$w_1+\\cdots+w_k$；$\\Sigma$ 是加總記號|\n|$\\bigoplus_i W_i$|子空間的直和，要求分解唯一|\n|$\\dim W$|空間一組基底的向量數（有限維情形）|\n|$A^T$|矩陣轉置，上標 $T$ 不是次方|\n|$P_n$|次數至多 $n$ 的多項式及零多項式所成空間|\n|$\\prod$|連乘記號；$\\prod_{j\\ne i}$ 表示跳過 $j=i$|\n|$e_i$|標準基底向量：第 $i$ 個座標為 1，其餘為 0|"
+                },
+                {
+                  "id": "LA-CH03-S05-B001",
+                  "type": "concept",
+                  "title": "子空間的和",
+                  "markdown": "設 $W_1,\\ldots,W_k$ 是同一個向量空間 $V$ 的子空間。定義\n$$W_1+\\cdots+W_k=\\{w_1+\\cdots+w_k:w_i\\in W_i\\}.$$\n\n它是包含各 $W_i$ 的最小子空間。證明分三步：\n\n1. 各 $W_i$ 含零向量，所以和空間含零向量。\n2. 若 $u=\\sum u_i,v=\\sum v_i$，則對任意純量 $a,b$，$au+bv=\\sum(au_i+bv_i)$；每項仍在 $W_i$，故對線性組合封閉。\n3. 任一包含所有 $W_i$ 的子空間 $U$，因加法封閉，必包含每個 $\\sum w_i$，故包含和空間。\n\n不要把和空間與聯集混淆。聯集 $W_1\\cup W_2$ 一般不對加法封閉。\n\n例題引用：LA-E3501。手寫板塊提示：自行用「零向量＋線性組合封閉」重寫上述證明。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S05-E01",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K01",
+                    "LA-CH03-S05-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B003",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B004",
+                  "type": "concept",
+                  "title": "獨立子空間與兩兩獨立",
+                  "markdown": "子空間族獨立（Independent Subspaces）指對每個 $i$，\n$$W_i\\cap\\sum_{j\\ne i}W_j=\\{0\\}.$$\n\n等價地：若 $w_i\\in W_i$ 且 $\\sum_iw_i=0$，則每個 $w_i=0$。\n\n證明：固定 $i$，由總和為零得 $w_i=-\\sum_{j\\ne i}w_j$，它同時在 $W_i$ 與其餘子空間的和中，因此只能為零。反向若 $u\\in W_i\\cap\\sum_{j\\ne i}W_j$，寫成 $u=\\sum_{j\\ne i}u_j$，則 $u-\\sum_{j\\ne i}u_j=0$；依零和判準即得 $u=0$。\n\n|概念|條件|可否保證整體分解唯一|\n|---|---|---|\n|兩兩獨立|任意 $i\\ne j$，$W_i\\cap W_j=\\{0\\}$|只有兩個子空間時可以|\n|整體獨立|$\\sum_iw_i=0\\Rightarrow$ 每項為零|可以，對和空間內的向量而言|\n\n三個以上兩兩交集為零仍可能不獨立，見 LA-E3502。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B005",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S05-E02",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K02",
+                    "LA-CH03-S05-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B006",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B007",
+                  "type": "concept",
+                  "title": "維度判準",
+                  "markdown": "有限維時：\n$$\\dim(W_1+W_2)=\\dim W_1+\\dim W_2-\\dim(W_1\\cap W_2).$$\n\n證明：取交集基底 $c_1,\\ldots,c_r$，分別擴充為 $W_1$ 的基底 $(c,a)$ 與 $W_2$ 的基底 $(c,b)$。合併 $(c,a,b)$ 可生成和空間。若合併組有線性關係，把 $a$ 部分移至另一側，可知它在交集中；由 $(c,a)$ 獨立，$a$ 的係數為零，再由 $(c,b)$ 獨立，其餘係數也為零。因此合併組是基底，計數得到公式。\n\n對有限維的多個子空間：\n$$W_1,\\ldots,W_k\\text{ 獨立}\\iff \\dim\\left(\\sum_iW_i\\right)=\\sum_i\\dim W_i.$$\n\n理由：各子空間基底合併後必生成和空間。獨立子空間的零和判準保證合併組獨立；反向若生成組的數量等於維度，它就是基底，故零和判準成立。不能把三集合的容斥公式直接照搬成三子空間維度公式。\n\n例題引用：LA-E3501、LA-E3502。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B008",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B009",
+                  "type": "concept",
+                  "title": "直和、唯一性與補空間",
+                  "markdown": "若 $V=\\sum_iW_i$ 且子空間族獨立，記為\n$$V=W_1\\oplus\\cdots\\oplus W_k.$$\n\n這等價於每個 $v\\in V$ 都能唯一寫成 $v=\\sum_iw_i$，$w_i\\in W_i$。\n\n- 存在性由和等於 $V$ 保證。\n- 唯一性：若 $\\sum_iw_i=\\sum_iu_i$，則 $\\sum_i(w_i-u_i)=0$；因每項在對應子空間，獨立性給出 $w_i=u_i$。\n- 反向：零向量已有全零分解；若有另一組零和表示，唯一性迫使各項為零。\n\n對兩個子空間，證明直和可用「和是 $V$＋交集只有零向量」。有限維時也可用「交集只有零向量＋維度和為 $\\dim V$」。\n\n補空間（Complement）：$T$ 若滿足 $V=S\\oplus T$，稱為 $S$ 的補空間。先選 $S$ 的基底，再擴充成 $V$ 的基底，新增基底向量所生成的空間就是補空間。補空間一般不唯一，也不一定與 $S$ 正交。\n\n例題引用：LA-E3503。手寫提示：用兩種方法證明例題中的直和，並再找一個不同補空間。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B010",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S05-E03",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B011",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B012",
+                  "type": "concept",
+                  "title": "對稱與反對稱矩陣分解",
+                  "markdown": "在 $M_n(\\mathbb R)$ 中，令 $S=\\{A:A^T=A\\}$、$K=\\{A:A^T=-A\\}$。兩者對線性組合封閉，因此是子空間。對任何 $A$，\n$$A=\\frac{A+A^T}{2}+\\frac{A-A^T}{2}.$$\n\n第一項轉置後不變，第二項轉置後變號，因此和覆蓋全空間。若 $X\\in S\\cap K$，則 $X=X^T=-X$，所以 $2X=0$，在實數域得到 $X=0$。因此 $M_n(\\mathbb R)=S\\oplus K$。\n\n【額外補充】此公式需係數域特徵不為 2；在實數域沒有問題。$S$ 的基底可取 $E_{ii}$ 與 $E_{ij}+E_{ji}$（$i<j$）；$K$ 的基底可取 $E_{ij}-E_{ji}$。$E_{ij}$ 是只有第 $(i,j)$ 項為 1 的矩陣。維度分別為 $n(n+1)/2$ 與 $n(n-1)/2$，相加為 $n^2$。\n\n例題引用：LA-E3504。",
+                  "provenance": "教材整理 · 含補充延伸",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B013",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S05-E04",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B014",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K05"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B015",
+                  "type": "concept",
+                  "title": "偶函數與奇函數分解",
+                  "markdown": "對所有 $\\mathbb R\\to\\mathbb R$ 的函數所成空間，令 $E,O$ 分別為偶、奇函數子空間。定義\n$$f_e(x)=\\frac{f(x)+f(-x)}2,\\qquad f_o(x)=\\frac{f(x)-f(-x)}2.$$\n\n代入 $-x$ 可得 $f_e(-x)=f_e(x)$、$f_o(-x)=-f_o(x)$，且相加為 $f$。若 $g$ 同時奇且偶，則 $g(x)=g(-x)=-g(x)$，故處處為零。於是 $V=E\\oplus O$。若改用其他定義域，需先確認對 $x\\mapsto -x$ 封閉。\n\n例題引用：LA-E3505。\n\n## 3-5 板塊配置\n\n|block_id|類型|內容／引用|\n|---|---|---|\n|LA-B3501|concept|K0305-01～03 的定義、比較與證明|\n|LA-B3502|example|LA-E3501、LA-E3502|\n|LA-B3503|split|直和唯一性證明並排空白推導區|\n|LA-B3504|example|LA-E3503|\n|LA-B3505|concept|K0305-05、06|\n|LA-B3506|example|LA-E3504、LA-E3505|\n|LA-B3507|handwriting|自行整理「存在／唯一／直和」差異，內容留白|\n|LA-B3508|summary|兩兩獨立不足；補空間不唯一；直和未必正交|\n|LA-B3509|assessment|LA-A3501|",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B016",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S05-E05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B017",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S05-K06"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S05-B018",
+                  "type": "summary",
+                  "title": "考前摘要與自我檢核",
+                  "markdown": "1. 直和需同時證明存在與唯一。\n2. 三個以上子空間兩兩交集為零，不足以保證整體獨立。\n3. 補空間一般不唯一，也不一定正交。\n4. 對稱／反對稱與偶／奇分解，利用交集為零證明唯一。",
+                  "knowledgePointIds": []
+                },
+                {
+                  "id": "LA-CH03-S05-B019",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH03-S05-AS01",
+                  "knowledgePointIds": []
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH03-S05-AS01",
+                "scope": "section",
+                "title": "3-5 小節測驗",
+                "questionIds": [
+                  "LA-CH03-S05-Q01",
+                  "LA-CH03-S05-Q02",
+                  "LA-CH03-S05-Q03",
+                  "LA-CH03-S05-Q04",
+                  "LA-CH03-S05-Q05",
+                  "LA-CH03-S05-Q06",
+                  "LA-CH03-S05-Q07"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分，僅計答對題數；手寫各 10 分，對照詳解自評。",
+                "sourceId": "LA-A3501"
+              }
+            },
+            {
+              "id": "LA-CH03-S06",
+              "title": "3-6 Lagrange 內插法",
+              "sourceSectionId": "LA-S0306",
+              "contentVersion": "0.1.0",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：未取得原始八張教材圖片；教材轉錄例題及四點內插數據待原圖核對。原圖與教材完整性待核對；自編例題、模擬測驗及補充另行標示。僅為小節評量，不代表全章完成。",
+              "knowledgePointIds": [
+                "LA-CH03-S06-K01",
+                "LA-CH03-S06-K02",
+                "LA-CH03-S06-K03",
+                "LA-CH03-S06-K04"
+              ],
+              "blocks": [
+                {
+                  "id": "LA-CH03-S06-B-INTRO",
+                  "type": "concept",
+                  "title": "學習目標與符號約定",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "|記號|意思|\n|---|---|\n|$F$|係數域，本稿主要採實數域 $\\mathbb R$|\n|$V,W_i$|向量空間及其子空間；下標 $i$ 表示第幾個子空間|\n|$\\{0\\}$|只包含零向量的集合，不是空集合|\n|$\\operatorname{span}\\{v_1,\\ldots,v_r\\}$|這些向量所有線性組合構成的集合|\n|$\\sum_{i=1}^k w_i$|$w_1+\\cdots+w_k$；$\\Sigma$ 是加總記號|\n|$\\bigoplus_i W_i$|子空間的直和，要求分解唯一|\n|$\\dim W$|空間一組基底的向量數（有限維情形）|\n|$A^T$|矩陣轉置，上標 $T$ 不是次方|\n|$P_n$|次數至多 $n$ 的多項式及零多項式所成空間|\n|$\\prod$|連乘記號；$\\prod_{j\\ne i}$ 表示跳過 $j=i$|\n|$e_i$|標準基底向量：第 $i$ 個座標為 1，其餘為 0|"
+                },
+                {
+                  "id": "LA-CH03-S06-B001",
+                  "type": "concept",
+                  "title": "存在與唯一",
+                  "markdown": "給定互不相同的 $t_0,\\ldots,t_n$ 與任意指定值 $b_0,\\ldots,b_n$，存在唯一 $P\\in P_n$ 使 $P(t_i)=b_i$。$P_n$ 的標準基底為 $1,x,\\ldots,x^n$，維度 $n+1$。「至多 $n$ 次」不能改為「恰好 $n$ 次」。\n\n唯一性：若 $P,Q$ 都滿足條件，$P-Q$ 次數至多 $n$，卻有 $n+1$ 個相異根。非零至多 $n$ 次多項式最多有 $n$ 個相異根，故 $P-Q=0$。根數性質來自因式定理：每個相異根都貢獻一個不同的一次因子；非零多項式的次數至少等於這些因子的數量。\n\n重複節點時，指定值不同則無解；指定值相同則只是重複條件，通常不足以保證唯一。\n\n例題引用：LA-E3601、LA-E3605。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B002",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S06-E01",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K01",
+                    "LA-CH03-S06-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B003",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S06-E05",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B004",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K01"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B005",
+                  "type": "concept",
+                  "title": "Lagrange 基底與公式",
+                  "markdown": "定義\n$$L_i(x)=\\prod_{\\substack{0\\le j\\le n\\\\j\\ne i}}\\frac{x-t_j}{t_i-t_j}.$$\n\n節點相異保證分母非零。代入 $t_i$ 時每個因子都等於 1；代入 $t_j$（$j\\ne i$）時有一個分子為零。因此 $L_i(t_j)$ 在 $i=j$ 時為 1，其餘為 0，亦寫成 Kronecker delta $\\delta_{ij}$。\n\n所以\n$$P(x)=\\sum_{i=0}^n b_iL_i(x).$$\n\n每個 $L_i$ 次數至多 $n$，故 $P\\in P_n$；代入 $t_j$ 時只有第 $j$ 項留下，正好得到 $b_j$，完成存在性證明。\n\n若 $\\sum c_iL_i=0$，依次代入所有節點即得各 $c_i=0$。因此 $L_0,\\ldots,L_n$ 是 $n+1$ 個獨立向量，構成 $P_n$ 的基底；多項式在此基底下的座標是 $(P(t_0),\\ldots,P(t_n))^T$。\n\n例題引用：LA-E3601、LA-E3602。手寫提示：不看公式，自行設計「在指定點為 1、其他節點為 0」的多項式。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B006",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S06-E02",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B007",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K02"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B008",
+                  "type": "concept",
+                  "title": "四點內插例題",
+                  "markdown": "前文轉錄的教材數據為 $(5,1),(-7,-23),(-6,-54),(0,-954)$；仍待原圖核對。完整計算見 LA-E3603。此處不將自行展開結果宣稱為原書答案。",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B009",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S06-E03",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B010",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K03"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B011",
+                  "type": "concept",
+                  "title": "取值矩陣可逆",
+                  "markdown": "設 $f_1,\\ldots,f_n$ 是 $P_{n-1}$ 的基底，$a_1,\\ldots,a_n$ 相異，令 $M_{ij}=f_j(a_i)$。列索引 $i$ 對應節點，欄索引 $j$ 對應基底函數。\n\n令 $Mc=0$，並設 $f=\\sum_jc_jf_j$。矩陣方程第 $i$ 列表示 $f(a_i)=0$。$f$ 次數至多 $n-1$，卻有 $n$ 個相異根，因此 $f=0$。再由基底獨立得 $c=0$。方陣齊次方程只有零解，故 $M$ 可逆。\n\n【額外補充】取標準基底 $1,x,\\ldots,x^{n-1}$ 即得到 Vandermonde 矩陣，其行列式為 $\\prod_{i<j}(a_j-a_i)$。一般基底的取值矩陣可寫為「Vandermonde 矩陣 × 基底係數矩陣」，兩者均可逆。這是理解內插法的另一條路，不是本節必須另背的公式。\n\n例題引用：LA-E3604。\n\n## 3-6 板塊配置\n\n|block_id|類型|內容／引用|\n|---|---|---|\n|LA-B3601|concept|K0306-01 的問題與條件|\n|LA-B3602|split|唯一性證明並排空白證明區|\n|LA-B3603|concept|K0306-02 的基底設計|\n|LA-B3604|example|LA-E3601、LA-E3602|\n|LA-B3605|handwriting|自行算三個基底多項式，內容留白|\n|LA-B3606|example|LA-E3603|\n|LA-B3607|concept|K0306-04|\n|LA-B3608|example|LA-E3604、LA-E3605|\n|LA-B3609|summary|相異節點、次數上限、零多項式、分母符號|\n|LA-B3610|assessment|LA-A3601|",
+                  "provenance": "教材整理 · 含補充延伸",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B012",
+                  "type": "example",
+                  "exampleId": "LA-CH03-S06-E04",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B013",
+                  "type": "note",
+                  "title": "停一下，親手推導",
+                  "prompt": "不看詳解，重寫本知識點的定義、關鍵理由或反例。",
+                  "height": 230,
+                  "layout": "split",
+                  "knowledgePointIds": [
+                    "LA-CH03-S06-K04"
+                  ]
+                },
+                {
+                  "id": "LA-CH03-S06-B014",
+                  "type": "summary",
+                  "title": "考前摘要與自我檢核",
+                  "markdown": "1. 節點必須相異；多項式次數是「至多」，不是「恰好」。\n2. Lagrange 基底在自身節點為 1，其餘節點為 0；座標是節點值。\n3. 先保留乘積形式，留意分母負號，再代入節點核對。\n4. 唯一性使用根數上限；取值矩陣可逆還需要多項式基底條件。",
+                  "knowledgePointIds": []
+                },
+                {
+                  "id": "LA-CH03-S06-B015",
+                  "type": "assessment",
+                  "assessmentId": "LA-CH03-S06-AS01",
+                  "knowledgePointIds": []
+                }
+              ],
+              "assessment": {
+                "id": "LA-CH03-S06-AS01",
+                "scope": "section",
+                "title": "3-6 小節測驗",
+                "questionIds": [
+                  "LA-CH03-S06-Q01",
+                  "LA-CH03-S06-Q02",
+                  "LA-CH03-S06-Q03",
+                  "LA-CH03-S06-Q04",
+                  "LA-CH03-S06-Q05",
+                  "LA-CH03-S06-Q06",
+                  "LA-CH03-S06-Q07"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分，僅計答對題數；手寫各 10 分，對照詳解自評。",
+                "sourceId": "LA-A3601"
+              }
+            }
+          ]
         }
       ],
       "sourceSubjectId": "LA"
@@ -8456,6 +9998,965 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 自編模擬題"
       }
+    },
+    {
+      "id": "LA-CH03-S01-Q01",
+      "sourceId": "la-31-t01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S01",
+      "title": "線性代數 3-1 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "哪個敘述正確？",
+      "options": [
+        "向量必須是二維或三維箭頭。",
+        "任意非空集合在通常運算下都是向量空間。",
+        "函數可以作為向量，零向量可以是零函數。",
+        "向量空間中的純量集合一定只能是實數。"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K01",
+        "LA-CH03-S01-K04",
+        "LA-CH03-S01-K05"
+      ],
+      "tags": [
+        "集合、體與兩種運算",
+        "座標及固定尺寸矩陣空間",
+        "多項式與函數空間"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-Q02",
+      "sourceId": "la-31-t02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S01",
+      "title": "線性代數 3-1 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "在 $\\mathbb R^2$ 使用通常加法與 $\\alpha\\odot(x,y)=(\\alpha x,y)$。哪一組計算直接顯示對純量加法的分配律失敗？",
+      "options": [
+        "$v=(0,1)$ 時，$(1+1)\\odot v=(0,1)$，但 $(1\\odot v)+(1\\odot v)=(0,2)$。",
+        "$v=(1,0)$ 時，$1\\odot v=v$。",
+        "$u=(1,0),v=(0,1)$ 時，$u+v=v+u$。",
+        "$v=(1,2)$ 時，$2\\odot v=(2,2)\\in\\mathbb R^2$。"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K02"
+      ],
+      "tags": [
+        "十項公設與兩個分配律"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-Q03",
+      "sourceId": "la-31-t03",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S01",
+      "title": "線性代數 3-1 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "下列集合採通常運算與實數純量，哪一個是實向量空間？",
+      "options": [
+        "所有恰好三次的實多項式。",
+        "所有滿足 $p(0)=1$ 的實多項式。",
+        "所有最高次項係數為 $1$ 的三次實多項式。",
+        "所有可寫成 $a_0+a_1x+a_2x^2+a_3x^3$、$a_i\\in\\mathbb R$ 的多項式。"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K05"
+      ],
+      "tags": [
+        "多項式與函數空間"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-Q04",
+      "sourceId": "la-31-t04",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S01",
+      "title": "線性代數 3-1 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "在正實數空間 $x\\oplus y=xy$、$\\alpha\\odot x=x^\\alpha$ 中，向量 $9$ 的加法反元素為何？",
+      "options": [
+        "$-9$。",
+        "$1/9$。",
+        "$0$。",
+        "$1$。"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K07"
+      ],
+      "tags": [
+        "正實數的特殊向量運算"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-Q05",
+      "sourceId": "la-31-t05",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S01",
+      "title": "線性代數 3-1 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "已知 $V$ 是體 $F$ 上的向量空間，$\\alpha\\in F$、$v\\in V$，且 $\\alpha v=0_V$。哪個敘述一定成立？",
+      "options": [
+        "一定有 $\\alpha=0_F$。",
+        "一定有 $v=0_V$。",
+        "$\\alpha=0_F$ 或 $v=0_V$。",
+        "$\\alpha$ 與 $v$ 必須同時為零。"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K03",
+        "LA-CH03-S01-K08"
+      ],
+      "tags": [
+        "零乘法、負號、消去律與零積推論",
+        "非向量空間與反例寫法"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-Q06",
+      "sourceId": "la-31-t06",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S01",
+      "title": "線性代數 3-1 小節測驗 · 第 6 題",
+      "type": "證明題",
+      "text": "只使用向量空間公設及由其證得的消去律，逐步證明 $0_Fv=0_V$ 與 $\\alpha0_V=0_V$。須說明各自使用哪一個分配律。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K02",
+        "LA-CH03-S01-K03"
+      ],
+      "tags": [
+        "十項公設與兩個分配律",
+        "零乘法、負號、消去律與零積推論"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-Q07",
+      "sourceId": "la-31-t07",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S01",
+      "title": "線性代數 3-1 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "在 $V=\\mathbb R_{>0}$ 定義 $x\\oplus y=xy$、$\\alpha\\odot x=x^\\alpha$，純量取自 $\\mathbb R$。證明它是實向量空間，並說明零向量及加法反元素。答案需涵蓋封閉性、兩個分配律及其餘公設。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K02",
+        "LA-CH03-S01-K07"
+      ],
+      "tags": [
+        "十項公設與兩個分配律",
+        "正實數的特殊向量運算"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-Q01",
+      "sourceId": "la-ch03-s02-mc01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S02",
+      "title": "線性代數 3-2 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "下列何者是 $\\mathbb R^2$ 的子空間？",
+      "options": [
+        "$x+y=1$",
+        "$x\\ge0$",
+        "$x-2y=0$",
+        "$x^2+y^2=1$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K01",
+        "LA-CH03-S02-K02"
+      ],
+      "tags": [
+        "子空間的定義與判別",
+        "如何找反例"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-Q02",
+      "sourceId": "la-ch03-s02-mc02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S02",
+      "title": "線性代數 3-2 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "若 $U,W\\le V$，何者必成立？",
+      "options": [
+        "$U\\cap W$ 是子空間",
+        "$U\\cup W$ 是子空間",
+        "$U+W=U\\cup W$",
+        "$U\\cap W=\\{0\\}$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K03",
+        "LA-CH03-S02-K04",
+        "LA-CH03-S02-K05"
+      ],
+      "tags": [
+        "交集一定是子空間",
+        "聯集何時是子空間？",
+        "和空間與最小性"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-Q03",
+      "sourceId": "la-ch03-s02-mc03",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S02",
+      "title": "線性代數 3-2 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "$A$ 為 $3\\times5$ 實矩陣，何者正確？",
+      "options": [
+        "CS 是 $\\mathbb R^5$ 的子空間",
+        "kernel 是 $\\mathbb R^3$ 的子空間",
+        "左核是 $\\mathbb R^5$ 的子空間",
+        "RS 是 $\\mathbb R^5$ 的子空間。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K06"
+      ],
+      "tags": [
+        "四個基本子空間"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-Q04",
+      "sourceId": "la-ch03-s02-mc04",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S02",
+      "title": "線性代數 3-2 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$R$ 由 $A$ 經基本列運算取得，何者必成立？",
+      "options": [
+        "CS 相同",
+        "kernel 相同",
+        "左核相同",
+        "每個對應欄向量相同。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K07"
+      ],
+      "tags": [
+        "乘積與等價運算"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-Q05",
+      "sourceId": "la-ch03-s02-mc05",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S02",
+      "title": "線性代數 3-2 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "$U=\\operatorname{span}\\{(1,0)\\}$、$W=\\operatorname{span}\\{(0,1)\\}$，何者正確？",
+      "options": [
+        "聯集等於 $\\mathbb R^2$",
+        "交集為空集合",
+        "和等於 $\\mathbb R^2$",
+        "$U\\subseteq W$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K04",
+        "LA-CH03-S02-K05"
+      ],
+      "tags": [
+        "聯集何時是子空間？",
+        "和空間與最小性"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-Q06",
+      "sourceId": "la-ch03-s02-wr01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S02",
+      "title": "線性代數 3-2 小節測驗 · 第 6 題",
+      "type": "證明題",
+      "text": "證明：若 $U,W$ 是 $V$ 的子空間且 $U\\cup W$ 是子空間，則 $U\\subseteq W$ 或 $W\\subseteq U$。請明確交代所取向量及矛盾位置。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K04"
+      ],
+      "tags": [
+        "聯集何時是子空間？"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-Q07",
+      "sourceId": "la-ch03-s02-wr02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S02",
+      "title": "線性代數 3-2 小節測驗 · 第 7 題",
+      "type": "手寫計算題",
+      "text": "給定 $A=\\begin{bmatrix}1&2&1\\\\2&4&2\\\\0&1&1\\end{bmatrix}$，求 CS、RS、kernel、左核各一組基底，並標明各空間所在的 $\\mathbb R^d$。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K06",
+        "LA-CH03-S02-K07"
+      ],
+      "tags": [
+        "四個基本子空間",
+        "乘積與等價運算"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-Q01",
+      "sourceId": "Q01",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S03",
+      "title": "線性代數 3-3 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "令 $u=(1,1,0)$、$v=(0,1,1)$。下列哪個向量**不在** $\\operatorname{span}\\{u,v\\}$？",
+      "options": [
+        "$(2,5,3)$",
+        "$(1,0,-1)$",
+        "$(1,2,0)$",
+        "$(0,4,4)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K01",
+        "LA-CH03-S03-K04"
+      ],
+      "tags": [
+        "線性組合與 $Ax=b$",
+        "column space、row space 與樞紐"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-Q02",
+      "sourceId": "Q02",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S03",
+      "title": "線性代數 3-3 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "下列何者正確？",
+      "options": [
+        "空集合線性獨立，且其 span 為 $\\{0\\}$。",
+        "$\\{0\\}$ 線性獨立。",
+        "不含零向量的集合一定獨立。",
+        "每個生成集一定獨立。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K02",
+        "LA-CH03-S03-K06"
+      ],
+      "tags": [
+        "span、空集合與最小子空間",
+        "快速判斷與子集合性質"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-Q03",
+      "sourceId": "Q03",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S03",
+      "title": "線性代數 3-3 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "實數矩陣 $A$ 為 $4\\times6$ 且 rank 為 4。何者正確？",
+      "options": [
+        "六個 columns 線性獨立。",
+        "$Ax=0$ 只有零解。",
+        "存在 $b\\in\\mathbb R^4$ 使 $Ax=b$ 無解。",
+        "columns 生成 $\\mathbb R^4$，但線性相依。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K05",
+        "LA-CH03-S03-K07"
+      ],
+      "tags": [
+        "相依與獨立的定義、齊次判準",
+        "生成、獨立、基底的比較"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-Q04",
+      "sourceId": "Q04",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S03",
+      "title": "線性代數 3-3 小節測驗 · 第 4 題",
+      "type": "多選題",
+      "text": "設 $S,T\\subseteq V$。選出所有必然正確的敘述。",
+      "options": [
+        "$\\operatorname{span}(S\\cap T)=\\operatorname{span}(S)\\cap\\operatorname{span}(T)$。",
+        "$\\operatorname{span}(S\\cup T)=\\operatorname{span}(S)+\\operatorname{span}(T)$。",
+        "若 $S\\subseteq T$，則 $\\operatorname{span}(S)\\subseteq\\operatorname{span}(T)$。",
+        "若 $v\\in\\operatorname{span}(S)$，則 $\\operatorname{span}(S\\cup\\{v\\})=\\operatorname{span}(S)$。"
+      ],
+      "selectionMode": "multiple",
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K03",
+        "LA-CH03-S03-K09"
+      ],
+      "tags": [
+        "生成空間相等與移除冗餘",
+        "子空間的和、聯集與交集"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-Q05",
+      "sourceId": "Q05",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S03",
+      "title": "線性代數 3-3 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "三個二次可微函數在區間 $I$ 上的 Wronskian 為 $W(x)$。何者正確？",
+      "options": [
+        "若 $W(x_0)=0$，則三函數必相依。",
+        "若存在 $x_0\\in I$ 使 $W(x_0)\\ne0$，則三函數獨立。",
+        "若 $W\\equiv0$，則不需其他條件即可判定相依。",
+        "若三函數獨立，則 $W(x)$ 在每一點必非零。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K11",
+        "LA-CH03-S03-K12"
+      ],
+      "tags": [
+        "函數的獨立性與定義域",
+        "Wronskian 充分判準與限制"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-Q06",
+      "sourceId": "Q06",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S03",
+      "title": "線性代數 3-3 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "在 $P_2(\\mathbb R)$ 中，令 $p_1=1+x$、$p_2=x+x^2$、$p_3=1+tx^2$。求使三多項式獨立的所有實數 $t$；對相依的參數值寫出非平凡關係式。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K05",
+        "LA-CH03-S03-K08",
+        "LA-CH03-S03-K10"
+      ],
+      "tags": [
+        "相依與獨立的定義、齊次判準",
+        "含參數的獨立性",
+        "矩陣與多項式作為向量"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-Q07",
+      "sourceId": "Q07",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S03",
+      "title": "線性代數 3-3 小節測驗 · 第 7 題",
+      "type": "手寫計算題",
+      "text": "在 $\\mathbb R^3$，令 $U=\\operatorname{span}\\{(1,0,1),(0,1,1)\\}$，$W=\\operatorname{span}\\{(1,1,0)\\}$。求 $U\\cap W$，判斷 $U+W$ 是否為 $\\mathbb R^3$，並證明任意向量的 $U+W$ 分解是否唯一。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K01",
+        "LA-CH03-S03-K03",
+        "LA-CH03-S03-K09"
+      ],
+      "tags": [
+        "線性組合與 $Ax=b$",
+        "生成空間相等與移除冗餘",
+        "子空間的和、聯集與交集"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-Q01",
+      "sourceId": "LA-Q3501",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S05",
+      "title": "線性代數 3-5 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "何者保證 $V=U\\oplus W$",
+      "options": [
+        "$U\\cap W=\\{0\\}$",
+        "$U+W=V$",
+        "和為 $V$ 且交集為零",
+        "維度和為 $\\dim V$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K04"
+      ],
+      "tags": [
+        "直和、唯一性與補空間"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-Q02",
+      "sourceId": "LA-Q3502",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S05",
+      "title": "線性代數 3-5 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "三個子空間兩兩交集為零，何者必真",
+      "options": [
+        "和維度等於維度總和",
+        "整體獨立",
+        "和等於環境空間",
+        "任兩者的和都是直和。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K02"
+      ],
+      "tags": [
+        "獨立子空間與兩兩獨立"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-Q03",
+      "sourceId": "LA-Q3503",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S05",
+      "title": "線性代數 3-5 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "若 $\\dim U=3,\\dim W=2,\\dim(U\\cap W)=1$，和空間維度為何",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "1。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K03"
+      ],
+      "tags": [
+        "維度判準"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-Q04",
+      "sourceId": "LA-Q3504",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S05",
+      "title": "線性代數 3-5 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "實矩陣 $A$ 的反對稱部分是",
+      "options": [
+        "$A-A^T$",
+        "$(A-A^T)/2$",
+        "$(A+A^T)/2$",
+        "$A^T$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K05"
+      ],
+      "tags": [
+        "對稱與反對稱矩陣分解"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-Q05",
+      "sourceId": "LA-Q3505",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S05",
+      "title": "線性代數 3-5 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "對 $\\mathbb R^2$ 的 $x$ 軸，何者是補空間",
+      "options": [
+        "$x$ 軸自身",
+        "$\\{0\\}$",
+        "$\\operatorname{span}(1,2)$",
+        "$\\mathbb R^2$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K04"
+      ],
+      "tags": [
+        "直和、唯一性與補空間"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-Q06",
+      "sourceId": "LA-Q3506",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S05",
+      "title": "線性代數 3-5 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "令 $U=\\operatorname{span}(1,1)$、$W=\\operatorname{span}(1,-1)$，證明 $\\mathbb R^2=U\\oplus W$，並分解 $(4,2)$。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K04"
+      ],
+      "tags": [
+        "直和、唯一性與補空間"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-Q07",
+      "sourceId": "LA-Q3507",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S05",
+      "title": "線性代數 3-5 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "證明任一實函數可唯一分解成偶函數與奇函數，並分解 $f(x)=x^3+x^2+1$。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K06"
+      ],
+      "tags": [
+        "偶函數與奇函數分解"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-Q01",
+      "sourceId": "LA-Q3601",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S06",
+      "title": "線性代數 3-6 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "四個相異實數節點與任意指定值，唯一決定哪個空間的元素",
+      "options": [
+        "次數恰好 4",
+        "次數恰好 3",
+        "不限制次數的多項式空間",
+        "$P_3$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K01"
+      ],
+      "tags": [
+        "存在與唯一"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-Q02",
+      "sourceId": "LA-Q3602",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S06",
+      "title": "線性代數 3-6 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "節點為 $t_0,t_1,t_2$，$L_1(t_2)$ 為何",
+      "options": [
+        "0",
+        "1",
+        "$t_1$",
+        "無法判斷。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K02"
+      ],
+      "tags": [
+        "Lagrange 基底與公式"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-Q03",
+      "sourceId": "LA-Q3603",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S06",
+      "title": "線性代數 3-6 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "任意相異節點構成的 Lagrange 基底，$\\sum_iL_i(x)$ 恆等於",
+      "options": [
+        "0",
+        "$x$",
+        "1",
+        "$n+1$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K02"
+      ],
+      "tags": [
+        "Lagrange 基底與公式"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-Q04",
+      "sourceId": "LA-Q3604",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S06",
+      "title": "線性代數 3-6 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "哪個條件能推出 $p\\in P_3$ 為零多項式",
+      "options": [
+        "$p(0)=0$",
+        "有四個相異根",
+        "有三個相異根",
+        "最高次項係數為零。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K01"
+      ],
+      "tags": [
+        "存在與唯一"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-Q05",
+      "sourceId": "LA-Q3605",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S06",
+      "title": "線性代數 3-6 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "兩個函數為 $1,x^2$，節點為 $-1,1$。取值矩陣何者正確",
+      "options": [
+        "必可逆，因節點相異",
+        "必可逆，因兩函數獨立",
+        "行列式為 2",
+        "不可逆，兩列皆為 $(1,1)$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K04"
+      ],
+      "tags": [
+        "取值矩陣可逆"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-Q06",
+      "sourceId": "LA-Q3606",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S06",
+      "title": "線性代數 3-6 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "用 Lagrange 公式求通過 $(-1,2),(0,1),(1,4)$ 的至多二次多項式，並核對節點。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K02"
+      ],
+      "tags": [
+        "Lagrange 基底與公式"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-Q07",
+      "sourceId": "LA-Q3607",
+      "subjectId": "linear-algebra",
+      "chapterId": "LA-CH03",
+      "sectionId": "LA-CH03-S06",
+      "title": "線性代數 3-6 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "設 $f_1,\\ldots,f_n$ 是 $P_{n-1}$ 的基底，$a_i$ 相異，證明 $(f_j(a_i))$ 可逆，說明基底條件在哪一步使用。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K04"
+      ],
+      "tags": [
+        "取值矩陣可逆"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
     }
   ],
   "examples": [
@@ -10259,6 +12760,573 @@ window.ZILIU_CONTENT = {
         "title": "原教材轉述，例7編號待核",
         "verificationStatus": "pending_original"
       }
+    },
+    {
+      "id": "LA-CH03-S01-E01",
+      "sourceId": "la-31-e01",
+      "title": "例題 1",
+      "type": "手寫計算題",
+      "text": "以通常運算討論 $\\mathbb C$ 作為實向量空間時，$i$ 可否是向量？$i$ 可否是純量？若純量集合改為 $\\mathbb Z$，是否符合本節的向量空間定義？",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K01"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E02",
+      "sourceId": "la-31-e02",
+      "title": "例題 2",
+      "type": "手寫計算題",
+      "text": "在 $\\mathbb R^2$ 使用通常加法，另定義 $\\alpha\\odot(x,y)=(\\alpha x,y)$。以 $v=(0,1)$、$\\alpha=\\beta=1$ 檢查對純量加法的分配律。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K02"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E03",
+      "sourceId": "la-31-e03",
+      "title": "例題 3",
+      "type": "證明題",
+      "text": "在任意實向量空間 $V$ 中，若 $3u=3v$，證明 $u=v$。再說明若把 $3$ 改為 $0$，是否仍能推出結論。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K03"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E04",
+      "sourceId": "la-31-e04",
+      "title": "例題 4",
+      "type": "手寫計算題",
+      "text": "在 $\\mathbb R^{2\\times2}$ 中，令 $A=\\begin{pmatrix}1&-2\\\\0&3\\end{pmatrix}$、$B=\\begin{pmatrix}2&1\\\\4&-1\\end{pmatrix}$。求 $A+2B$、$A$ 的加法反元素及本空間的零向量。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K04"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E05",
+      "sourceId": "la-31-e05",
+      "title": "例題 5",
+      "type": "手寫計算題",
+      "text": "通常運算下，所有次數至多二次的實多項式（包含零多項式）是否為向量空間？所有恰好二次的實多項式是否為向量空間？說明理由。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K05"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E06",
+      "sourceId": "la-31-e06",
+      "title": "例題 6",
+      "type": "手寫計算題",
+      "text": "通常逐點運算下，判斷 $V_0=\\{f:\\mathbb R\\to\\mathbb R:f(0)=0\\}$ 與 $V_1=\\{f:\\mathbb R\\to\\mathbb R:f(0)=1\\}$ 是否為實向量空間。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K05"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E07",
+      "sourceId": "la-31-e07",
+      "title": "例題 7",
+      "type": "手寫計算題",
+      "text": "令 $P=(1,-2)$、$Q=(4,0)$、$u=(2,1)$、$v=(1,3)$。計算 $\\overrightarrow{PQ}$、$u+v$、$u-v$，說明為何位移向量不需固定起點。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K06"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E08",
+      "sourceId": "la-31-e08",
+      "title": "例題 8",
+      "type": "手寫計算題",
+      "text": "在正實數空間 $x\\oplus y=xy$、$\\alpha\\odot x=x^\\alpha$ 中，求零向量、向量 $4$ 的加法反元素、$2\\odot4$ 以及向量意義下的 $4$ 減 $2$。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K07"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E09",
+      "sourceId": "la-31-e09",
+      "title": "例題 9",
+      "type": "證明題",
+      "text": "在 $\\mathbb R$ 定義 $x\\oplus y=\\min(x,y)$，採通常純量乘法。用加法單位元素公設證明它不是實向量空間。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K08"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S01-E10",
+      "sourceId": "la-31-e10",
+      "title": "例題 10",
+      "type": "手寫計算題",
+      "text": "在 $\\mathbb R$ 定義 $u\\oplus v=u+v-2$、$\\alpha\\odot u=2+\\alpha(u-2)$。求零向量與 $u$ 的加法反元素，並完整驗證其向量空間公設。",
+      "knowledgePointIds": [
+        "LA-CH03-S01-K09"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E01",
+      "sourceId": "la-ch03-s02-ex01",
+      "title": "例題 1",
+      "type": "證明題",
+      "text": "證明 $W=\\{(x,y,z)\\in\\mathbb R^3:x+2y-z=0\\}$ 是子空間。",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K01"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E02",
+      "sourceId": "la-ch03-s02-ex02",
+      "title": "例題 2",
+      "type": "手寫計算題",
+      "text": "所有實數 $2\\times2$ 奇異矩陣構成子空間嗎？",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K02"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E03",
+      "sourceId": "la-ch03-s02-ex03",
+      "title": "例題 3",
+      "type": "手寫計算題",
+      "text": "求 $U=\\{(x,y,z):x+y=0\\}$ 與 $W=\\{(x,y,z):y+z=0\\}$ 的交集。",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K03"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E04",
+      "sourceId": "la-ch03-s02-ex04",
+      "title": "例題 4",
+      "type": "手寫計算題",
+      "text": "$x$ 軸與 $y$ 軸的聯集是 $\\mathbb R^2$ 的子空間嗎？",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K04"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E05",
+      "sourceId": "la-ch03-s02-ex05",
+      "title": "例題 5",
+      "type": "手寫計算題",
+      "text": "在 $\\mathbb R^3$ 中，$U=\\operatorname{span}\\{e_1,e_2\\}$、$W=\\operatorname{span}\\{e_2,e_3\\}$，求交集、和與聯集是否為子空間。",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K05"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E06",
+      "sourceId": "la-ch03-s02-ex06",
+      "title": "例題 6",
+      "type": "手寫計算題",
+      "text": "求 $A=\\begin{bmatrix}1&2&3\\\\0&1&1\\end{bmatrix}$ 的四個基本子空間之生成集合。",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K06"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E07",
+      "sourceId": "la-ch03-s02-ex07",
+      "title": "例題 7",
+      "type": "手寫計算題",
+      "text": "$A=\\begin{bmatrix}1&2\\\\2&4\\end{bmatrix}$ 化簡成 $R=\\begin{bmatrix}1&2\\\\0&0\\end{bmatrix}$，哪些空間相同？",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K07"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S02-E08",
+      "sourceId": "la-ch03-s02-ex08",
+      "title": "例題 8",
+      "type": "手寫計算題",
+      "text": "$A$ 為 $4\\times6$ 實矩陣，kernel 維度為 3，求其餘三空間維度。",
+      "knowledgePointIds": [
+        "LA-CH03-S02-K08"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E01",
+      "sourceId": "E01",
+      "title": "例題 1",
+      "type": "手寫計算題",
+      "text": "設 $u=(1,0,1)$、$v=(0,1,1)$。判斷 $b=(2,3,5)$ 與 $c=(2,3,6)$ 是否在 $\\operatorname{span}\\{u,v\\}$。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K01"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E02",
+      "sourceId": "E02",
+      "title": "例題 2",
+      "type": "證明題",
+      "text": "證明 $S=\\{(1,2)\\}$ 的 span 是包含 $S$ 的最小子空間。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K02"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E03",
+      "sourceId": "E03",
+      "title": "例題 3",
+      "type": "證明題",
+      "text": "設 $u=(1,0)$、$v=(0,1)$、$w=u+v$。證明 $\\operatorname{span}\\{u,v\\}=\\operatorname{span}\\{u,w\\}$，並說明移除 $w$ 的影響。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K03"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E04",
+      "sourceId": "E04",
+      "title": "例題 4",
+      "type": "手寫計算題",
+      "text": "對 $A=\\begin{bmatrix}1&2&0\\\\0&0&1\\\\0&0&1\\end{bmatrix}$，求 column space 與 row space 的一組基底。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K04"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E05",
+      "sourceId": "E05",
+      "title": "例題 5",
+      "type": "手寫計算題",
+      "text": "判斷 $(1,0,1),(0,1,1),(1,1,2)$ 是否獨立，並寫出相依關係式。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K05"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E06",
+      "sourceId": "E06",
+      "title": "例題 6",
+      "type": "手寫計算題",
+      "text": "分別判斷：$\\{(1,0),(0,0)\\}$；空集合；$\\mathbb R^3$ 中任意 4 個向量；$\\{(1,0),(0,1)\\}$ 的任意子集合。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K06"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E07",
+      "sourceId": "E07",
+      "title": "例題 7",
+      "type": "手寫計算題",
+      "text": "分別判斷 $A=[e_1\\ e_2]\\in\\mathbb R^{3\\times2}$ 與 $B=[e_1\\ e_2\\ e_1+e_2]\\in\\mathbb R^{2\\times3}$ 的 columns 是否獨立、是否生成目標空間。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K07"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E08",
+      "sourceId": "E08",
+      "title": "例題 8",
+      "type": "手寫計算題",
+      "text": "求 $v_1=(1,t)$、$v_2=(t,1)$ 獨立的所有實數 $t$，並討論例外值。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K08"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E09",
+      "sourceId": "E09",
+      "title": "例題 9",
+      "type": "手寫計算題",
+      "text": "令 $W_1$、$W_2$ 為 $\\mathbb R^2$ 的兩座標軸，求和、交集並判斷聯集。再以 $S_1=\\{e_1\\}$、$S_2=\\{2e_1\\}$ 比較 span 與交集的順序。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K09"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E10",
+      "sourceId": "E10",
+      "title": "例題 10",
+      "type": "手寫計算題",
+      "text": "(a) 判斷 $1+x,1-x,x^2$ 在 $P_2(\\mathbb R)$ 中是否獨立且生成。(b) 用 $E_{11},E_{12},E_{21},E_{22}$ 表示 $\\begin{bmatrix}2&-1\\\\0&3\\end{bmatrix}$，其中 $E_{ij}$ 只有位置 $(i,j)$ 是 1。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K10"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E11",
+      "sourceId": "E11",
+      "title": "例題 11",
+      "type": "證明題",
+      "text": "在 $\\mathbb R$ 上，用取值法證明 $\\sin x,\\cos x$ 獨立；若定義域改為單點 $\\{0\\}$ 呢？",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K11"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S03-E12",
+      "sourceId": "E12",
+      "title": "例題 12",
+      "type": "手寫計算題",
+      "text": "用 Wronskian 判斷 $1,x,x^2$ 在 $\\mathbb R$ 上是否獨立。",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K12"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編教學例題"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-E01",
+      "sourceId": "LA-E3501",
+      "title": "例題 1",
+      "type": "手寫計算題",
+      "text": "$U=\\operatorname{span}(e_1,e_2),W=\\operatorname{span}(e_2,e_3)$，求和、交集、維度，判斷是否直和。",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K01",
+        "LA-CH03-S05-K03"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-E02",
+      "sourceId": "LA-E3502",
+      "title": "例題 2",
+      "type": "手寫計算題",
+      "text": "在 $\\mathbb R^3$ 取 $W_1=\\operatorname{span}(1,0,0),W_2=\\operatorname{span}(0,1,0),W_3=\\operatorname{span}(1,1,0)$，判斷兩兩與整體獨立。",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K02",
+        "LA-CH03-S05-K03"
+      ],
+      "source": {
+        "kind": "material",
+        "title": "前文教材反例",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-E03",
+      "sourceId": "LA-E3503",
+      "title": "例題 3",
+      "type": "證明題",
+      "text": "證明 $\\mathbb R^2=\\operatorname{span}(1,0)\\oplus\\operatorname{span}(1,1)$，並求 $(x,y)$ 的分解。",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K04"
+      ],
+      "source": {
+        "kind": "material",
+        "title": "前文整理示例",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-E04",
+      "sourceId": "LA-E3504",
+      "title": "例題 4",
+      "type": "手寫計算題",
+      "text": "將 $A=\\begin{pmatrix}1&4\\\\2&3\\end{pmatrix}$ 分成對稱與反對稱兩部分。",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K05"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH03-S05-E05",
+      "sourceId": "LA-E3505",
+      "title": "例題 5",
+      "type": "手寫計算題",
+      "text": "將 $f(x)=e^x+x^2+x$ 分成偶函數與奇函數。",
+      "knowledgePointIds": [
+        "LA-CH03-S05-K06"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-E01",
+      "sourceId": "LA-E3601",
+      "title": "例題 1",
+      "type": "手寫計算題",
+      "text": "求通過 $(0,1),(1,2),(2,5)$ 的至多二次內插多項式，並寫出 Lagrange 基底。",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K01",
+        "LA-CH03-S06-K02"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-E02",
+      "sourceId": "LA-E3602",
+      "title": "例題 2",
+      "type": "證明題",
+      "text": "節點為 $-1,0,1$，求常數多項式 1 在 Lagrange 基底下的座標並證明 $\\sum_iL_i=1$。",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K02"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-E03",
+      "sourceId": "LA-E3603",
+      "title": "例題 3",
+      "type": "手寫計算題",
+      "text": "求通過 $(5,1),(-7,-23),(-6,-54),(0,-954)$ 的至多三次多項式。",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K03"
+      ],
+      "source": {
+        "kind": "material",
+        "title": "前文教材轉錄；數據待原圖核對",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-E04",
+      "sourceId": "LA-E3604",
+      "title": "例題 4",
+      "type": "證明題",
+      "text": "證明一般基底取值矩陣可逆；再對基底 $(1,1+x)$、節點 $(0,2)$ 寫出矩陣並算行列式。",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K04"
+      ],
+      "source": {
+        "kind": "material",
+        "title": "前文教材命題＋自編數值例",
+        "verificationStatus": "pending_original"
+      }
+    },
+    {
+      "id": "LA-CH03-S06-E05",
+      "sourceId": "LA-E3605",
+      "title": "例題 5",
+      "type": "手寫計算題",
+      "text": "指定 $P(0)=1,P(0)=2$ 是否有解？若只指定 $P(0)=1$，在 $P_1$ 中是否唯一？",
+      "knowledgePointIds": [
+        "LA-CH03-S06-K01"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "自編"
+      }
     }
   ],
   "knowledgePoints": [
@@ -11168,6 +14236,326 @@ window.ZILIU_CONTENT = {
       "difficulty": 3,
       "markdown": "先找 $\\det A=0$ 的參數值；非奇異區用克拉瑪法則或消去法求唯一解；各奇異值必須代回原方程。\n\n**補充判斷工具：** 增廣矩陣 $[A\\mid b]$ 是將 $b$ 接在係數矩陣右側。若 $\\operatorname{rank}A<\\operatorname{rank}[A\\mid b]$，無解；若兩者秩相同且小於未知數個數，在實數域有無限多解。\n\n消去／約分後的公式可能可在奇異點算出某個解，但不代表該點有唯一解。前文的「不可直接代入」應精確理解為「不可用代入後的值宣稱唯一解」。",
       "provenance": "教材整理 · 含補充延伸"
+    },
+    {
+      "id": "LA-CH03-S01-K01",
+      "sourceId": "la-31-k01",
+      "title": "集合、體與兩種運算",
+      "difficulty": 1,
+      "markdown": "設 $V$ 為非空集合，$F$ 為體（field）。指定向量加法 $V\\times V\\to V$ 及純量乘法 $F\\times V\\to V$，滿足公設時，稱 $V$ 為「在 $F$ 上的向量空間」。\n\n| 記號 | 意義 | 注意 |\n|---|---|---|\n| $v\\in V$ | $v$ 是集合 $V$ 的一個元素，即向量 | 可以是矩陣、多項式、函數 |\n| $\\alpha\\in F$ | $\\alpha$ 是純量（scalar） | 通常取 $\\mathbb R$ 或 $\\mathbb C$ |\n| $V\\times V$ | 所有有序對 $(u,v)$ 的集合 | 加法取兩個向量作輸入 |\n| $F\\times V$ | 所有 $(\\alpha,v)$ 的集合 | 純量乘法取一純量、一向量 |\n| $0_F,1_F$ | 體的加法零與乘法一 | 都是純量 |\n| $0_V$ | 向量加法的單位元素 | 是向量，不必是數字零 |\n| $-v$ | $v$ 的加法反元素 | 依指定向量加法決定 |\n| $\\in,\\subseteq$ | 屬於、包含於 | 元素屬於集合；集合包含於集合 |\n\n體中的加減乘除遵守通常代數規則，且每個非零元素有乘法反元素。$\\mathbb Z$ 不是體：$2$ 的倒數 $1/2$ 不在其中。本節定義不把以整數為純量的結構稱為向量空間。\n\n同一集合在不同純量體上可能都是向量空間。例如 $\\mathbb C$ 可在 $\\mathbb R$ 或 $\\mathbb C$ 上討論；必須指明純量範圍。此處先不使用後續章節的維度概念。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K02",
+      "sourceId": "la-31-k02",
+      "title": "十項公設與兩個分配律",
+      "difficulty": 3,
+      "markdown": "對每個 $u,v,w\\in V$ 與每個 $\\alpha,\\beta\\in F$ 都必須成立：\n\n| 編號 | 公設 | 條件 |\n|---|---|---|\n| A1 | 加法封閉 | $u+v\\in V$ |\n| A2 | 純量乘法封閉 | $\\alpha v\\in V$ |\n| A3 | 加法交換 | $u+v=v+u$ |\n| A4 | 加法結合 | $(u+v)+w=u+(v+w)$ |\n| A5 | 加法單位元素 | 存在 $0_V\\in V$，使 $u+0_V=0_V+u=u$ |\n| A6 | 加法反元素 | 每個 $u$ 有 $-u\\in V$，使 $u+(-u)=(-u)+u=0_V$ |\n| A7 | 對向量加法分配 | $\\alpha(u+v)=\\alpha u+\\alpha v$ |\n| A8 | 對純量加法分配 | $(\\alpha+\\beta)v=\\alpha v+\\beta v$ |\n| A9 | 純量乘法結合 | $(\\alpha\\beta)v=\\alpha(\\beta v)$ |\n| A10 | 純量一的作用 | $1_Fv=v$ |\n\n有些書把兩項封閉性包含在「運算為映射」的定義內，因而只列八項；本稿依教材採十項，並非不同數學結構。\n\nA7 括號內加的是向量；A8 括號內加的是純量。A9 不是向量間的乘法，向量空間並不要求一般向量乘法。\n\n**判斷量詞：**證明成立要處理「任意」元素；否定只需找出「一組」元素使某條件失敗。檢查兩三個數值不能證明全部公設成立。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K03",
+      "sourceId": "la-31-k03",
+      "title": "零乘法、負號、消去律與零積推論",
+      "difficulty": 3,
+      "markdown": "以下是推論，不是新增公設。為避免循環論證，先建立消去的合法性，再使用它。\n\n### 3.1 加法消去律\n\n若 $u+w=v+w$，兩邊加上 $w$ 的反元素 $-w$：\n\n$$\n(u+w)+(-w)=(v+w)+(-w)\n\\Rightarrow u+(w+(-w))=v+(w+(-w))\n\\Rightarrow u+0_V=v+0_V\n\\Rightarrow u=v.\n$$\n\n依次使用：同加一元素、A4、A6、A5。左側消去可由 A3 轉成相同形式。\n\n### 3.2 $0_Fv=0_V$\n\n$$\n0_Fv=(0_F+0_F)v=0_Fv+0_Fv.\n$$\n\n第一步用體的 $0_F+0_F=0_F$，第二步用 A8。將左側寫成 $0_V+0_Fv$，由 A5 與消去律可得 $0_V=0_Fv$。\n\n### 3.3 $\\alpha0_V=0_V$\n\n由 $0_V+0_V=0_V$ 及 A7，\n\n$$\n\\alpha0_V=\\alpha(0_V+0_V)=\\alpha0_V+\\alpha0_V.\n$$\n\n與上一步同樣消去 $\\alpha0_V$，得到結論。\n\n### 3.4 負純量與反向量\n\n先看\n\n$$\nv+(-1_F)v=1_Fv+(-1_F)v=(1_F-1_F)v=0_Fv=0_V.\n$$\n\n依次用 A10、A8 與前述零乘法，所以 $(-1_F)v$ 是 $v$ 的反元素，即 $(-1_F)v=-v$。反元素唯一：若 $v+a=v+b=0_V$，由消去律得 $a=b$。\n\n再由 A9 與體的乘法規則：\n\n$$\n\\alpha(-v)=\\alpha((-1_F)v)=(\\alpha(-1_F))v=(-\\alpha)v.\n$$\n\n又因 $\\alpha v+(-\\alpha)v=(\\alpha-\\alpha)v=0_V$，故\n\n$$(-\\alpha)v=\\alpha(-v)=-(\\alpha v).$$\n\n### 3.5 若 $\\alpha v=0_V$，則 $\\alpha=0_F$ 或 $v=0_V$\n\n若 $\\alpha=0_F$，結論已成立。若 $\\alpha\\ne0_F$，因 $F$ 是體，存在 $\\alpha^{-1}$，並且\n\n$$\nv=1_Fv=(\\alpha^{-1}\\alpha)v\n=\\alpha^{-1}(\\alpha v)=\\alpha^{-1}0_V=0_V.\n$$\n\n依次使用 A10、體的反元素、A9、已知條件、3.3。這裡是「純量乘向量」的零積性質，不能直接套成矩陣乘法的零積律。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K04",
+      "sourceId": "la-31-k04",
+      "title": "座標及固定尺寸矩陣空間",
+      "difficulty": 1,
+      "markdown": "### 座標空間 $F^n$\n\n$F^n=\\{(x_1,\\ldots,x_n):x_i\\in F\\}$，其中 $n$ 是固定正整數，$i$ 是座標編號。運算逐座標進行：\n\n$$\n(x_1,\\ldots,x_n)+(y_1,\\ldots,y_n)=(x_1+y_1,\\ldots,x_n+y_n),\n\\qquad \\alpha(x_1,\\ldots,x_n)=(\\alpha x_1,\\ldots,\\alpha x_n).\n$$\n\n零向量為 $(0,\\ldots,0)$，反向量為 $(-x_1,\\ldots,-x_n)$。每個座標都在體內運算，因此公設由體的對應規則逐座標成立。\n\n### 固定尺寸矩陣空間 $F^{m\\times n}$\n\n$m,n$ 分別為固定列數與行數，採台灣教材常見的「橫列、直行」用語。矩陣 $A=[a_{ij}]$ 的 $i$ 是列編號、$j$ 是行編號。\n\n$$\n[A+B]_{ij}=a_{ij}+b_{ij},\\qquad[\\alpha A]_{ij}=\\alpha a_{ij}.\n$$\n\n零向量為 $m\\times n$ 零矩陣，反向量為 $-A=[-a_{ij}]$。必須固定尺寸；任意不同尺寸矩陣混在一起，一般不能定義通常加法。矩陣空間成立不依賴矩陣乘法，也不要求矩陣可逆。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K05",
+      "sourceId": "la-31-k05",
+      "title": "多項式與函數空間",
+      "difficulty": 3,
+      "markdown": "### 多項式空間 $P(F)$ 與 $P_n(F)$\n\n$P(F)$ 是所有係數在 $F$ 的有限次多項式。一般式\n\n$$p(x)=\\sum_{i=0}^{n}a_ix^i=a_0+a_1x+\\cdots+a_nx^n.$$\n\n$\\sum$（Sigma）表示逐項相加；下限 $i=0$ 表示從常數項開始，上限 $n$ 表示加到 $a_nx^n$；$a_i$ 為第 $i$ 次項係數，$x^0=1$。不同多項式可有不同最高次數，加法時缺少的係數補零。\n\n採通常多項式加法、純量乘法，零向量為零多項式。\n\n$$P_n(F)=\\{a_0+a_1x+\\cdots+a_nx^n:a_i\\in F\\}.$$\n\n此表示自然包含零多項式，避免必須替零多項式指定次數。$P_n(F)$ 的次數「至多 $n$」，不是「恰好 $n$」。恰好 $n$ 次的集合不包含零多項式，且 $p+(-p)=0$ 離開集合；乘純量零也會離開。\n\n### 函數空間 $F^D$ 與連續函數\n\n$F^D=\\{f:D\\to F\\}$，其中 $D$ 是共同定義域。$f:D\\to F$ 表示函數把 $D$ 中每個輸入送到 $F$ 中一個值。運算逐點定義：\n\n$$(f+g)(x)=f(x)+g(x),\\qquad(\\alpha f)(x)=\\alpha f(x).$$\n\n對所有 $x\\in D$ 都成立才是函數相等。零向量為零函數 $z(x)=0$，反元素為 $(-f)(x)=-f(x)$。\n\n連續實函數集合 $C([a,b],\\mathbb R)$ 也構成實向量空間：兩連續函數相加與乘任意實常數仍連續；零函數連續，其餘等式由逐點運算繼承。\n\n| 空間 | 向量例子 | 零向量 | 加法反元素 |\n|---|---|---|---|\n| $F^n$ | $(x_1,\\ldots,x_n)$ | $(0,\\ldots,0)$ | 各座標取負 |\n| $F^{m\\times n}$ | $[a_{ij}]$ | 固定尺寸零矩陣 | $[-a_{ij}]$ |\n| $P(F)$ | $p(x)$ | 零多項式 | $-p(x)$ |\n| $F^D$ | $f$ | 恆等於零的函數 | 逐點取負 |",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K06",
+      "sourceId": "la-31-k06",
+      "title": "位移、向量加減與幾何表示",
+      "difficulty": 1,
+      "markdown": "點 $P=(p_1,p_2)$ 到 $Q=(q_1,q_2)$ 的位移向量為\n\n$$\\overrightarrow{PQ}=Q-P=(q_1-p_1,q_2-p_2).$$\n\n例：$P=(1,-2)$、$Q=(4,0)$，得到 $(3,2)$。從原點到 $(3,2)$ 的箭頭也代表同一位移；自由向量可以平移表示。\n\n加法採首尾相接：先走 $u$，再走 $v$，總位移為 $u+v$；也可用平行四邊形法。減法 $u-v=u+(-v)$；將兩箭頭放在同一起點時，由 $v$ 的終點指向 $u$ 的終點得到 $u-v$。\n\n純量 $\\alpha>0$ 保持方向，$\\alpha<0$ 反向，長度變成原來的 $|\\alpha|$ 倍；$\\alpha=0$ 得零向量。這是通常實座標空間的圖像，不是所有抽象向量空間的定義。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K07",
+      "sourceId": "la-31-k07",
+      "title": "正實數的特殊向量運算",
+      "difficulty": 3,
+      "markdown": "令 $V=\\mathbb R_{>0}=\\{x\\in\\mathbb R:x>0\\}$，純量體為 $\\mathbb R$，定義\n\n$$x\\oplus y=xy,\\qquad\\alpha\\odot x=x^\\alpha.$$\n\n$\\oplus$ 表示本題指定的向量加法，$\\odot$ 表示本題指定的純量乘法；等號右側使用通常數字乘法、次方。正實底數的實數次方可由 $x^\\alpha=\\exp(\\alpha\\ln x)$ 定義。\n\n### 十項公設驗證\n\n| 公設 | 驗證 |\n|---|---|\n| A1 | $x,y>0\\Rightarrow xy>0$ |\n| A2 | $x>0,\\alpha\\in\\mathbb R\\Rightarrow x^\\alpha>0$ |\n| A3 | $xy=yx$ |\n| A4 | $(xy)z=x(yz)$ |\n| A5 | 零向量 $0_V=1$，因為 $x\\oplus1=x\\cdot1=x$ |\n| A6 | $x$ 的反元素為 $1/x>0$，因為 $x\\oplus(1/x)=1=0_V$ |\n| A7 | $(xy)^\\alpha=x^\\alpha y^\\alpha=(\\alpha\\odot x)\\oplus(\\alpha\\odot y)$ |\n| A8 | $x^{\\alpha+\\beta}=x^\\alpha x^\\beta=(\\alpha\\odot x)\\oplus(\\beta\\odot x)$ |\n| A9 | $x^{\\alpha\\beta}=(x^\\beta)^\\alpha$ |\n| A10 | $1\\odot x=x^1=x$ |\n\n所以它是實向量空間。$0_F\\odot x=x^0=1=0_V$，並沒有違反零乘法性質。\n\n**提醒：**這個空間的「向量相減」為 $x\\oplus(1/y)=x/y$，不是通常的 $x-y$。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K08",
+      "sourceId": "la-31-k08",
+      "title": "非向量空間與反例寫法",
+      "difficulty": 3,
+      "markdown": "### 7.1 五種典型反例\n\n| 集合與運算 | 具體失敗證據 | 對應條件 |\n|---|---|---|\n| $\\mathbb R$，$u\\oplus v=u-v$，通常純量乘法 | $2\\oplus3=-1\\ne1=3\\oplus2$ | A3 交換律 |\n| $S=\\{(1,x):x\\in\\mathbb R\\}$，通常運算 | $(1,0)+(1,0)=(2,0)\\notin S$ | A1 封閉性 |\n| $\\mathbb R^2$，通常加法，$\\alpha\\odot(x,y)=(\\alpha x,y)$ | 取 $v=(0,1)$，$(1+1)\\odot v=(0,1)$，但 $(1\\odot v)+(1\\odot v)=(0,2)$ | A8 純量分配律 |\n| $\\mathbb R^2$，通常運算，以 $\\mathbb Z$ 當純量 | $\\mathbb Z$ 中非零元素 $2$ 沒有乘法反元素 | 純量集合不是體 |\n| $\\mathbb R$，$x\\oplus y=\\min(x,y)$，通常純量乘法 | 若有單位 $e$，取 $x=e+1$，則 $\\min(x,e)=e\\ne x$ | A5 不存在 |\n\n第三例也可用必要推論 $0_Fv=0_V$ 找矛盾，但若要求指明公設，應直接列出 A8 兩側不等。\n\n### 7.2 通常運算與特殊運算的不同策略\n\n- 通常運算的集合：先檢查是否包含通常零向量，再看加法、純量乘法是否封閉。\n- 若已知是某個向量空間的子集合且沿用運算，可用子空間判別法簡化；這是後續 3-2 的概念，本節先當補充，不當成未證定理直接取代所有公設。\n- 特殊運算：先由 $v\\oplus e=v$ 找單位元素，不可直接假設為通常零；再找反元素、檢查 $1\\odot v$ 及兩個分配律。\n- 特別代入 $0,1,-1$ 有助找反例；全部通過仍不等於證明成立。\n\n### 7.3 考卷上的反例模板\n\n「取……，則……，但……，故不滿足……公設，因此不是在指定體上的向量空間。」\n\n若是運算不封閉，務必寫清楚運算前元素屬於集合，運算後結果為何不屬於集合。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S01-K09",
+      "sourceId": "la-31-k09",
+      "title": "補充：平移運算與標準證明格式",
+      "difficulty": 5,
+      "markdown": "### 8.1 零向量唯一\n\n若 $e,f$ 都是加法單位元素，由 $e+f=f$（$e$ 的單位性）與 $e+f=e$（$f$ 的單位性），得 $e=f$。\n\n### 8.2 平移後的運算\n\n取固定 $a\\in\\mathbb R$，在 $\\mathbb R$ 定義\n\n$$u\\oplus v=u+v-a,\\qquad\\alpha\\odot u=a+\\alpha(u-a).$$\n\n其零向量為 $a$，反元素為 $2a-u$。映射 $T(u)=u-a$ 是到通常 $\\mathbb R$ 的雙射，且\n\n$$T(u\\oplus v)=T(u)+T(v),\\qquad T(\\alpha\\odot u)=\\alpha T(u).$$\n\n因此可將公設轉成通常實數空間的公設。這是「用一一對應搬運運算」的例子；若考試尚未引入同構，仍可逐項直接代入驗證。\n\n正實數例子也有 $T(x)=\\ln x$，因為 $\\ln(xy)=\\ln x+\\ln y$、$\\ln(x^\\alpha)=\\alpha\\ln x$。此觀點幫助理解，不取代教材要求的公設證明。",
+      "provenance": "補充延伸"
+    },
+    {
+      "id": "LA-CH03-S02-K01",
+      "sourceId": "la-ch03-s02-kp01",
+      "title": "子空間的定義與判別",
+      "difficulty": 1,
+      "markdown": "設 $V$ 是 $F$ 上的向量空間。若 $W\\subseteq V$，且沿用 $V$ 的加法與純量乘法後本身為向量空間，稱 $W$ 為 $V$ 的子空間。\n\n判別法：先證 $W\\ne\\varnothing$，再證加法封閉及純量乘法封閉。也可合併為\n\n$$u,v\\in W,\\ \\alpha,\\beta\\in F\\Longrightarrow\\alpha u+\\beta v\\in W.$$\n\n不需要重證十條向量空間公理，因結合律、交換律等已從母空間繼承。但運算或數域若改變，就不能直接套用此說法。\n\n為何非空加封閉可推出含零？取 $w\\in W$，由純量封閉得 $0w=0\\in W$。又 $(-1)w=-w\\in W$，所以反元素也在集合中。零子空間 $\\{0\\}$ 與 $V$ 本身都滿足條件。注意：空集合不是子空間，只有零向量則是子空間。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S02-K02",
+      "sourceId": "la-ch03-s02-kp02",
+      "title": "如何找反例",
+      "difficulty": 1,
+      "markdown": "否定子空間只需一項條件失敗，無須全部檢查。\n\n| 集合 | 判斷與理由 |\n|---|---|\n| $Ax=0$ 的解集合 | 是；$A(\\alpha u+\\beta v)=0$ |\n| $Ax=b$，$b\\ne0$ 的解集合 | 否；零向量不在內，無解時為空集合也不是 |\n| $x\\ge0$ 的半平面 | 否；負純量破壞條件 |\n| trace 為零的矩陣 | 是；trace 為對角元素總和，具線性 |\n| 對角矩陣、固定方向的上三角矩陣 | 是；指定位置為零的限制是齊次線性限制 |\n| 所有奇異方陣（階數至少 2） | 否；加法不封閉 |\n| $p(0)=0$ 的至多 $n$ 次多項式 | 是；代入值對加法與純量乘法封閉 |\n| 恰為三次的多項式 | 否；不含零多項式 |",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S02-K03",
+      "sourceId": "la-ch03-s02-kp03",
+      "title": "交集一定是子空間",
+      "difficulty": 1,
+      "markdown": "設 $W_1,W_2\\le V$。交集包含零。若 $u,v$ 同時在兩者中，線性組合也同時在兩者中，因此 $W_1\\cap W_2\\le V$。同理任意非空索引族子空間的交集仍是子空間；若討論空索引族，需約定其在母空間中的交集為 $V$。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S02-K04",
+      "sourceId": "la-ch03-s02-kp04",
+      "title": "聯集何時是子空間？",
+      "difficulty": 3,
+      "markdown": "對兩個子空間：\n\n$$U\\cup W\\le V\\iff U\\subseteq W\\ \\text{或}\\ W\\subseteq U.$$\n\n充分性：有包含關係時聯集就是較大的子空間。\n\n必要性：假設聯集是子空間，但彼此皆不包含。可取 $u\\in U\\setminus W$、$w\\in W\\setminus U$。加法封閉要求 $u+w\\in U\\cup W$。若 $u+w\\in U$，則 $w=(u+w)-u\\in U$，矛盾；若 $u+w\\in W$，則 $u=(u+w)-w\\in W$，也矛盾。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S02-K05",
+      "sourceId": "la-ch03-s02-kp05",
+      "title": "和空間與最小性",
+      "difficulty": 3,
+      "markdown": "$$U+W=\\{u+w:u\\in U,w\\in W\\}.$$\n\n這裡的加號是集合的和空間，不是聯集。因 $0=0+0$，故非空。若 $x=u_1+w_1$、$y=u_2+w_2$，則\n\n$$\\alpha x+\\beta y=(\\alpha u_1+\\beta u_2)+(\\alpha w_1+\\beta w_2)\\in U+W.$$\n\n因此和是子空間。對任意 $u\\in U$，可寫 $u=u+0$，故 $U\\subseteq U+W$，同理 $W\\subseteq U+W$。若子空間 $Z$ 包含兩者，由加法封閉必包含所有 $u+w$，故 $U+W\\subseteq Z$。這就是「包含兩者的最小子空間」。\n\n$$U+W=\\operatorname{span}(U\\cup W).$$\n\n有限多個子空間的和可類推為所有 $w_1+\\cdots+w_k$；各項可取零。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S02-K06",
+      "sourceId": "la-ch03-s02-kp06",
+      "title": "四個基本子空間",
+      "difficulty": 3,
+      "markdown": "設 $A\\in F^{m\\times n}$，也就是 $m$ 列、$n$ 欄，輸入長度 $n$、輸出長度 $m$。\n\n| 空間 | 定義 | 所在空間 | 解題意義 |\n|---|---|---|---|\n| Column space，CS | $\\{Ax:x\\in F^n\\}$ | $F^m$ | 所有可能輸出 |\n| Row space，RS | 各列向量的線性組合 | $F^n$（將列視為座標向量） | 所有列向量生成的空間 |\n| Null space，kernel | $\\{x:Ax=0\\}$ | $F^n$ | 被送到零的輸入 |\n| Left null space | $\\{y:y^TA=0\\}=\\ker A^T$ | $F^m$ | 對各欄的線性限制 |\n\n若 $A=[a_1\\ \\cdots\\ a_n]$，則 $Ax=x_1a_1+\\cdots+x_na_n$，故 CS 正是欄向量的 span。RS 可寫成 $\\{y^TA:y\\in F^m\\}$（以列向量表示）。span 對線性組合封閉，因此 CS、RS 是子空間。對 kernel，$A0=0$ 且 $A(\\alpha x+\\beta z)=\\alpha Ax+\\beta Az=0$，所以也是子空間。左核套用同樣論證於 $A^T$。\n\n重要連結：$Ax=b$ 有解當且僅當 $b\\in\\operatorname{CS}(A)$。若 $A$ 為方陣，可逆當且僅當 $\\ker A=\\{0\\}$，也當且僅當 $\\operatorname{CS}(A)=F^n$。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S02-K07",
+      "sourceId": "la-ch03-s02-kp07",
+      "title": "乘積與等價運算",
+      "difficulty": 3,
+      "markdown": "若 $A$ 是 $m\\times n$、$B$ 是 $n\\times p$，則\n\n$$\\operatorname{CS}(AB)\\subseteq\\operatorname{CS}(A),\\qquad\\operatorname{RS}(AB)\\subseteq\\operatorname{RS}(B).$$\n\n第一式：$z=ABx=A(Bx)$ 是 $A$ 的輸出。第二式：$z=y^TAB=(y^TA)B$ 是 $B$ 各列的組合。一般只得到包含，不能直接升級為相等。\n\n若 $R=PA$，$P$ 可逆（基本列運算），則 $Rx=0\\iff Ax=0$，故核相同；各列互相為線性組合，所以 RS 相同。CS 通常改變。\n\n若 $C=AQ$，$Q$ 可逆（基本行／欄運算），則 $y^TC=0\\iff y^TA=0$，故左核相同；CS 相同，RS 與 kernel 通常改變。重排欄只是其中一種情況。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S02-K08",
+      "sourceId": "la-ch03-s02-kp08",
+      "title": "額外補充：維度、直和、正交",
+      "difficulty": 5,
+      "markdown": "以下為編輯延伸，並非宣稱原圖已完整介紹。維度是基底向量的個數；基底同時滿足生成及線性獨立。設 rank 為 $r$：\n\n$$\\dim\\operatorname{CS}(A)=\\dim\\operatorname{RS}(A)=r,$$\n$$\\dim\\ker A=n-r,\\qquad\\dim\\ker A^T=m-r.$$\n\n因此已知 $\\dim\\ker A=k$，先得 $r=n-k$，再得左核維度 $m-n+k$。\n\n有限維情況下 $\\dim(U+W)=\\dim U+\\dim W-\\dim(U\\cap W)$。若交集為 $\\{0\\}$，則和中每個向量的分解唯一，稱直和 $U\\oplus W$。理由：$u_1+w_1=u_2+w_2$ 推出 $u_1-u_2=w_2-w_1\\in U\\cap W$；交集為零迫使兩部分各自相同。\n\n實數標準內積下，$\\ker A=\\operatorname{RS}(A)^\\perp$、$\\ker A^T=\\operatorname{CS}(A)^\\perp$。上標 $\\perp$ 表示與該空間所有向量垂直的集合。這裡不以轉置取代複數標準內積所需的共軛轉置。",
+      "provenance": "補充延伸"
+    },
+    {
+      "id": "LA-CH03-S03-K01",
+      "sourceId": "K01",
+      "title": "線性組合與 $Ax=b$",
+      "difficulty": 1,
+      "markdown": "給定 $v_1,\\ldots,v_k\\in V$ 與 $a_1,\\ldots,a_k\\in F$，$\\sum_{i=1}^k a_iv_i$ 是這些向量的線性組合。係數可為零，不要求正值或總和為 1。\n\n判斷指定向量 $b$ 是否可以組出：設 $a_1v_1+\\cdots+a_kv_k=b$，再求係數。對普通座標向量，令 $A=[v_1\\ \\cdots\\ v_k]$，便得到 $Ax=b$。有解表示可以生成這個 $b$；無解表示不行。這只針對指定 $b$，還不能保證生成整個空間。例題：E01。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K02",
+      "sourceId": "K02",
+      "title": "span、空集合與最小子空間",
+      "difficulty": 3,
+      "markdown": "$$\\operatorname{span}(S)=\\left\\{\\sum_{i=1}^k a_iv_i:k\\text{ 有限},\\ a_i\\in F,\\ v_i\\in S\\right\\}.$$\n\n即使 $S$ 是無限集合，每一個線性組合仍只使用有限個向量。採空和等於零的慣例，$\\operatorname{span}(\\varnothing)=\\{0\\}$；而 $\\operatorname{span}(\\{0\\})=\\{0\\}$。\n\n**子空間證明：**span 含零向量。任取 $u=\\sum_i a_iv_i$、$w=\\sum_j b_jz_j$ 與純量 $c$，則 $cu+w=\\sum_i(ca_i)v_i+\\sum_jb_jz_j$，仍是 $S$ 中向量的有限線性組合。因此對純量倍乘與加法封閉。\n\n**最小性：**若子空間 $W$ 包含 $S$，則其封閉性保證 $\\sum_i a_iv_i\\in W$，所以 $\\operatorname{span}(S)\\subseteq W$。「最小」指集合包含關係，不是向量數最少。\n\n若 $\\operatorname{span}(S)=V$，稱 $S$ 生成 $V$（spans $V$）。例題：E02。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K03",
+      "sourceId": "K03",
+      "title": "生成空間相等與移除冗餘",
+      "difficulty": 3,
+      "markdown": "要證明 $\\operatorname{span}(S_1)=\\operatorname{span}(S_2)$，可證明 $S_1\\subseteq\\operatorname{span}(S_2)$ 且 $S_2\\subseteq\\operatorname{span}(S_1)$。由 K02 最小性得到兩方向包含。\n\n若 $v_k\\in\\operatorname{span}\\{v_1,\\ldots,v_{k-1}\\}$，加入或移除 $v_k$ 都不改變 span。若不屬於舊 span，加入後生成空間嚴格擴大。反之，兩集合元素數不同也可以有相同 span。另有 $S_1\\subseteq S_2\\Rightarrow\\operatorname{span}(S_1)\\subseteq\\operatorname{span}(S_2)$。例題：E03。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K04",
+      "sourceId": "K04",
+      "title": "column space、row space 與樞紐",
+      "difficulty": 3,
+      "markdown": "對 $A\\in F^{m\\times n}$：$CS(A)\\subseteq F^m$、$RS(A)\\subseteq F^n$，且 $CS(A)=\\{Ax:x\\in F^n\\}$。所以 $Ax=b$ 有解若且唯若 $b\\in CS(A)$。\n\n基本 row 運算相當於左乘可逆矩陣 $E$，所以 $N(EA)=N(A)$，並保留 row space；但 $CS(EA)=E(CS(A))$ 通常不等於原 column space。找 $CS(A)$ 的基底時：先化簡找樞紐 column 的**位置**，再回到原矩陣取那些 column。化簡後非零 row 則能作為原 row space 的基底。例題：E04。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K05",
+      "sourceId": "K05",
+      "title": "相依與獨立的定義、齊次判準",
+      "difficulty": 1,
+      "markdown": "有限向量列 $v_1,\\ldots,v_k$ 線性獨立，指 $\\sum_i a_iv_i=0$ 蘊含所有 $a_i=0$。若存在不全為零的係數使和為零，就是相依。全零係數的解稱平凡解（trivial solution）；「不全為零」只要求至少一個係數非零。\n\n令 $A=[v_1\\cdots v_k]$，有\n$$\\text{獨立}\\iff N(A)=\\{0\\}\\iff\\operatorname{rank}(A)=k\\iff\\text{每個 column 有樞紐}.$$\n有自由變數便有非平凡齊次解，即相依。\n\n**冗餘向量等價命題：**若相依關係中 $a_j\\ne0$，移項並除以 $a_j$ 得 $v_j=-\\sum_{i\\ne j}(a_i/a_j)v_i$。反方向將這個等式移到同一側，第 $j$ 個係數為 1，即得非平凡關係。注意：相依只保證「至少一個」可由其餘表示。例題：E05。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K06",
+      "sourceId": "K06",
+      "title": "快速判斷與子集合性質",
+      "difficulty": 1,
+      "markdown": "| 情況 | 結論與理由 |\n|---|---|\n| 向量列含零向量 | 相依：零向量係數取 1，其他取 0 |\n| 單一向量 $v$ | 獨立若且唯若 $v\\ne0$ |\n| 兩個向量 | 相依若且唯若其中一個可寫成另一個的純量倍數 |\n| 獨立集合的子集合 | 仍獨立；把缺少的係數補 0 即可證明 |\n| 相依集合的超集合 | 仍相依；沿用原非平凡係數，其餘補 0 |\n| $F^n$ 中超過 $n$ 個向量 | 相依：最多有 $n$ 個樞紐 |\n| $F^n$ 中不超過 $n$ 個向量 | 未必獨立，仍需判斷 |\n| 空集合 | 獨立，但只生成零空間 |\n\n對無限集合，獨立指其每個有限子集合皆獨立。重複向量若作為有序向量列的兩個位置，立即相依；集合記法會自動去除重複元素，需區分。例題：E06。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K07",
+      "sourceId": "K07",
+      "title": "生成、獨立、基底的比較",
+      "difficulty": 3,
+      "markdown": "| 問題（$A$ 為 $m\\times n$） | 判準 |\n|---|---|\n| 指定 $b$ 是否在 span？ | $Ax=b$ 有解 |\n| columns 是否獨立？ | $Ax=0$ 只有零解；rank 為 $n$ |\n| 是否生成 $F^m$？ | 對每個 $b\\in F^m$ 皆有解；rank 為 $m$ |\n| 同時獨立且生成 $F^m$？ | columns 是基底，必有 $m=n$ 且可逆 |\n\n基底（basis）是同時獨立且生成目標空間的集合，作為後續小節銜接概念；維度（dimension）是有限基底所含向量數。若 $n<m$，不能生成 $F^m$；若 $n>m$，columns 必相依。只有方陣時，「columns 獨立」與「生成整個目標空間」才等價。例題：E07。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K08",
+      "sourceId": "K08",
+      "title": "含參數的獨立性",
+      "difficulty": 3,
+      "markdown": "方陣 $A(t)$ 的 columns 獨立若且唯若 $\\det A(t)\\ne0$；非方陣需用秩或齊次方程。計算時先找使樞紐或行列式為零的值，再代回逐一討論。除以 $t-a$ 前，必須先處理 $t=a$，不能把特殊情況丟掉。例題：E08。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K09",
+      "sourceId": "K09",
+      "title": "子空間的和、聯集與交集",
+      "difficulty": 3,
+      "markdown": "$$W_1+W_2=\\{u+v:u\\in W_1,v\\in W_2\\}.$$\n零向量可寫成 $0+0$；若 $u+v$、$u'+v'$ 在其中，則 $c(u+v)+(u'+v')=(cu+u')+(cv+v')$ 仍在其中，故是子空間。\n\n若 $W_i=\\operatorname{span}(S_i)$，把線性組合依來源拆成兩部分，便得\n$$W_1+W_2=\\operatorname{span}(S_1\\cup S_2).$$\n交集 $W_1\\cap W_2$ 也是子空間：兩邊的封閉性可同時使用。聯集通常不是子空間；**補充命題**：兩子空間的聯集為子空間若且唯若其中一者包含另一者。必要性可取 $u\\in W_1\\setminus W_2$、$v\\in W_2\\setminus W_1$，則 $u+v$ 不在任一者中。\n\n$$\\operatorname{span}(S_1\\cap S_2)\\subseteq\\operatorname{span}(S_1)\\cap\\operatorname{span}(S_2).$$\n此式不保證相等：左邊只能使用共同的原始元素；右邊允許兩組不同線性組合產生同一向量。例題：E09。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K10",
+      "sourceId": "K10",
+      "title": "矩陣與多項式作為向量",
+      "difficulty": 3,
+      "markdown": "矩陣相等要逐位置比較，多項式相等要逐次項比較。矩陣可固定次序攤平成係數向量，之後始終使用相同次序；$a+bx+cx^2$ 可表示為 $(a,b,c)^T$。這些對應保留加法與純量倍乘，因此保留線性關係。零多項式是所有係數皆零，不是只在某點取值為零。例題：E10。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K11",
+      "sourceId": "K11",
+      "title": "函數的獨立性與定義域",
+      "difficulty": 3,
+      "markdown": "$\\sum_i c_if_i(x)=0$ 必須對定義域的**每個** $x$ 成立，且 $c_i$ 是不隨 $x$ 改變的常數。證明獨立可選取適當的點，推出所有係數必為零。有限點上得到非平凡解，卻不能直接證明函數相依，因為該關係未必在其他點成立。定義域與純量域都會影響判斷。例題：E11。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S03-K12",
+      "sourceId": "K12",
+      "title": "Wronskian 充分判準與限制",
+      "difficulty": 5,
+      "markdown": "設 $f_1,\\ldots,f_n$ 在同一區間具有到 $n-1$ 階的導數，定義\n$$W(f_1,\\ldots,f_n)(x)=\\det\\begin{bmatrix}f_1(x)&\\cdots&f_n(x)\\\\f'_1(x)&\\cdots&f'_n(x)\\\\\\vdots&&\\vdots\\\\f_1^{(n-1)}(x)&\\cdots&f_n^{(n-1)}(x)\\end{bmatrix}.$$\n\n若函數相依，對恆等式逐次微分，同一組非零常數係數會使矩陣乘積為零，故 Wronskian 處處為零。取逆否命題：**存在一點 $x_0$ 使 $W(x_0)\\ne0$，即可證明獨立**。只需一點，不要求每一點皆非零。\n\n**補充限制：**對一般可微函數，Wronskian 恆零不能直接反推相依。例：在 $\\mathbb R$ 上 $f=x^2$、$g=x|x|$ 皆可微且 $W\\equiv0$；但在正半軸得到 $a+b=0$，負半軸得到 $a-b=0$，故兩函數仍獨立。若有額外解析性或同一線性常微分方程解族等條件，須先完整列出條件才使用更強結論。例題：E12。",
+      "provenance": "教材整理 · 含補充延伸"
+    },
+    {
+      "id": "LA-CH03-S03-K13",
+      "sourceId": "K13",
+      "title": "小節統整",
+      "difficulty": 3,
+      "markdown": "先辨認空間與純量域，再區分 $Ax=b$（有無解）與 $Ax=0$（是否唯一零解）。把物件轉成係數矩陣，檢查樞紐；參數例外值另算；最後寫回原問題的語言。證明題應寫「設任意係數使和為零 → 整理 → 用已知獨立性 → 得係數全零」，不要只寫「顯然」。",
+      "provenance": "教材整理 · 含補充延伸"
+    },
+    {
+      "id": "LA-CH03-S05-K01",
+      "sourceId": "LA-K0305-01",
+      "title": "子空間的和",
+      "difficulty": 1,
+      "markdown": "設 $W_1,\\ldots,W_k$ 是同一個向量空間 $V$ 的子空間。定義\n$$W_1+\\cdots+W_k=\\{w_1+\\cdots+w_k:w_i\\in W_i\\}.$$\n\n它是包含各 $W_i$ 的最小子空間。證明分三步：\n\n1. 各 $W_i$ 含零向量，所以和空間含零向量。\n2. 若 $u=\\sum u_i,v=\\sum v_i$，則對任意純量 $a,b$，$au+bv=\\sum(au_i+bv_i)$；每項仍在 $W_i$，故對線性組合封閉。\n3. 任一包含所有 $W_i$ 的子空間 $U$，因加法封閉，必包含每個 $\\sum w_i$，故包含和空間。\n\n不要把和空間與聯集混淆。聯集 $W_1\\cup W_2$ 一般不對加法封閉。\n\n例題引用：LA-E3501。手寫板塊提示：自行用「零向量＋線性組合封閉」重寫上述證明。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S05-K02",
+      "sourceId": "LA-K0305-02",
+      "title": "獨立子空間與兩兩獨立",
+      "difficulty": 3,
+      "markdown": "子空間族獨立（Independent Subspaces）指對每個 $i$，\n$$W_i\\cap\\sum_{j\\ne i}W_j=\\{0\\}.$$\n\n等價地：若 $w_i\\in W_i$ 且 $\\sum_iw_i=0$，則每個 $w_i=0$。\n\n證明：固定 $i$，由總和為零得 $w_i=-\\sum_{j\\ne i}w_j$，它同時在 $W_i$ 與其餘子空間的和中，因此只能為零。反向若 $u\\in W_i\\cap\\sum_{j\\ne i}W_j$，寫成 $u=\\sum_{j\\ne i}u_j$，則 $u-\\sum_{j\\ne i}u_j=0$；依零和判準即得 $u=0$。\n\n|概念|條件|可否保證整體分解唯一|\n|---|---|---|\n|兩兩獨立|任意 $i\\ne j$，$W_i\\cap W_j=\\{0\\}$|只有兩個子空間時可以|\n|整體獨立|$\\sum_iw_i=0\\Rightarrow$ 每項為零|可以，對和空間內的向量而言|\n\n三個以上兩兩交集為零仍可能不獨立，見 LA-E3502。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S05-K03",
+      "sourceId": "LA-K0305-03",
+      "title": "維度判準",
+      "difficulty": 3,
+      "markdown": "有限維時：\n$$\\dim(W_1+W_2)=\\dim W_1+\\dim W_2-\\dim(W_1\\cap W_2).$$\n\n證明：取交集基底 $c_1,\\ldots,c_r$，分別擴充為 $W_1$ 的基底 $(c,a)$ 與 $W_2$ 的基底 $(c,b)$。合併 $(c,a,b)$ 可生成和空間。若合併組有線性關係，把 $a$ 部分移至另一側，可知它在交集中；由 $(c,a)$ 獨立，$a$ 的係數為零，再由 $(c,b)$ 獨立，其餘係數也為零。因此合併組是基底，計數得到公式。\n\n對有限維的多個子空間：\n$$W_1,\\ldots,W_k\\text{ 獨立}\\iff \\dim\\left(\\sum_iW_i\\right)=\\sum_i\\dim W_i.$$\n\n理由：各子空間基底合併後必生成和空間。獨立子空間的零和判準保證合併組獨立；反向若生成組的數量等於維度，它就是基底，故零和判準成立。不能把三集合的容斥公式直接照搬成三子空間維度公式。\n\n例題引用：LA-E3501、LA-E3502。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S05-K04",
+      "sourceId": "LA-K0305-04",
+      "title": "直和、唯一性與補空間",
+      "difficulty": 3,
+      "markdown": "若 $V=\\sum_iW_i$ 且子空間族獨立，記為\n$$V=W_1\\oplus\\cdots\\oplus W_k.$$\n\n這等價於每個 $v\\in V$ 都能唯一寫成 $v=\\sum_iw_i$，$w_i\\in W_i$。\n\n- 存在性由和等於 $V$ 保證。\n- 唯一性：若 $\\sum_iw_i=\\sum_iu_i$，則 $\\sum_i(w_i-u_i)=0$；因每項在對應子空間，獨立性給出 $w_i=u_i$。\n- 反向：零向量已有全零分解；若有另一組零和表示，唯一性迫使各項為零。\n\n對兩個子空間，證明直和可用「和是 $V$＋交集只有零向量」。有限維時也可用「交集只有零向量＋維度和為 $\\dim V$」。\n\n補空間（Complement）：$T$ 若滿足 $V=S\\oplus T$，稱為 $S$ 的補空間。先選 $S$ 的基底，再擴充成 $V$ 的基底，新增基底向量所生成的空間就是補空間。補空間一般不唯一，也不一定與 $S$ 正交。\n\n例題引用：LA-E3503。手寫提示：用兩種方法證明例題中的直和，並再找一個不同補空間。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S05-K05",
+      "sourceId": "LA-K0305-05",
+      "title": "對稱與反對稱矩陣分解",
+      "difficulty": 3,
+      "markdown": "在 $M_n(\\mathbb R)$ 中，令 $S=\\{A:A^T=A\\}$、$K=\\{A:A^T=-A\\}$。兩者對線性組合封閉，因此是子空間。對任何 $A$，\n$$A=\\frac{A+A^T}{2}+\\frac{A-A^T}{2}.$$\n\n第一項轉置後不變，第二項轉置後變號，因此和覆蓋全空間。若 $X\\in S\\cap K$，則 $X=X^T=-X$，所以 $2X=0$，在實數域得到 $X=0$。因此 $M_n(\\mathbb R)=S\\oplus K$。\n\n【額外補充】此公式需係數域特徵不為 2；在實數域沒有問題。$S$ 的基底可取 $E_{ii}$ 與 $E_{ij}+E_{ji}$（$i<j$）；$K$ 的基底可取 $E_{ij}-E_{ji}$。$E_{ij}$ 是只有第 $(i,j)$ 項為 1 的矩陣。維度分別為 $n(n+1)/2$ 與 $n(n-1)/2$，相加為 $n^2$。\n\n例題引用：LA-E3504。",
+      "provenance": "教材整理 · 含補充延伸"
+    },
+    {
+      "id": "LA-CH03-S05-K06",
+      "sourceId": "LA-K0305-06",
+      "title": "偶函數與奇函數分解",
+      "difficulty": 3,
+      "markdown": "對所有 $\\mathbb R\\to\\mathbb R$ 的函數所成空間，令 $E,O$ 分別為偶、奇函數子空間。定義\n$$f_e(x)=\\frac{f(x)+f(-x)}2,\\qquad f_o(x)=\\frac{f(x)-f(-x)}2.$$\n\n代入 $-x$ 可得 $f_e(-x)=f_e(x)$、$f_o(-x)=-f_o(x)$，且相加為 $f$。若 $g$ 同時奇且偶，則 $g(x)=g(-x)=-g(x)$，故處處為零。於是 $V=E\\oplus O$。若改用其他定義域，需先確認對 $x\\mapsto -x$ 封閉。\n\n例題引用：LA-E3505。\n\n## 3-5 板塊配置\n\n|block_id|類型|內容／引用|\n|---|---|---|\n|LA-B3501|concept|K0305-01～03 的定義、比較與證明|\n|LA-B3502|example|LA-E3501、LA-E3502|\n|LA-B3503|split|直和唯一性證明並排空白推導區|\n|LA-B3504|example|LA-E3503|\n|LA-B3505|concept|K0305-05、06|\n|LA-B3506|example|LA-E3504、LA-E3505|\n|LA-B3507|handwriting|自行整理「存在／唯一／直和」差異，內容留白|\n|LA-B3508|summary|兩兩獨立不足；補空間不唯一；直和未必正交|\n|LA-B3509|assessment|LA-A3501|",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S06-K01",
+      "sourceId": "LA-K0306-01",
+      "title": "存在與唯一",
+      "difficulty": 1,
+      "markdown": "給定互不相同的 $t_0,\\ldots,t_n$ 與任意指定值 $b_0,\\ldots,b_n$，存在唯一 $P\\in P_n$ 使 $P(t_i)=b_i$。$P_n$ 的標準基底為 $1,x,\\ldots,x^n$，維度 $n+1$。「至多 $n$ 次」不能改為「恰好 $n$ 次」。\n\n唯一性：若 $P,Q$ 都滿足條件，$P-Q$ 次數至多 $n$，卻有 $n+1$ 個相異根。非零至多 $n$ 次多項式最多有 $n$ 個相異根，故 $P-Q=0$。根數性質來自因式定理：每個相異根都貢獻一個不同的一次因子；非零多項式的次數至少等於這些因子的數量。\n\n重複節點時，指定值不同則無解；指定值相同則只是重複條件，通常不足以保證唯一。\n\n例題引用：LA-E3601、LA-E3605。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S06-K02",
+      "sourceId": "LA-K0306-02",
+      "title": "Lagrange 基底與公式",
+      "difficulty": 3,
+      "markdown": "定義\n$$L_i(x)=\\prod_{\\substack{0\\le j\\le n\\\\j\\ne i}}\\frac{x-t_j}{t_i-t_j}.$$\n\n節點相異保證分母非零。代入 $t_i$ 時每個因子都等於 1；代入 $t_j$（$j\\ne i$）時有一個分子為零。因此 $L_i(t_j)$ 在 $i=j$ 時為 1，其餘為 0，亦寫成 Kronecker delta $\\delta_{ij}$。\n\n所以\n$$P(x)=\\sum_{i=0}^n b_iL_i(x).$$\n\n每個 $L_i$ 次數至多 $n$，故 $P\\in P_n$；代入 $t_j$ 時只有第 $j$ 項留下，正好得到 $b_j$，完成存在性證明。\n\n若 $\\sum c_iL_i=0$，依次代入所有節點即得各 $c_i=0$。因此 $L_0,\\ldots,L_n$ 是 $n+1$ 個獨立向量，構成 $P_n$ 的基底；多項式在此基底下的座標是 $(P(t_0),\\ldots,P(t_n))^T$。\n\n例題引用：LA-E3601、LA-E3602。手寫提示：不看公式，自行設計「在指定點為 1、其他節點為 0」的多項式。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S06-K03",
+      "sourceId": "LA-K0306-03",
+      "title": "四點內插例題",
+      "difficulty": 3,
+      "markdown": "前文轉錄的教材數據為 $(5,1),(-7,-23),(-6,-54),(0,-954)$；仍待原圖核對。完整計算見 LA-E3603。此處不將自行展開結果宣稱為原書答案。",
+      "provenance": "教材整理 · 原圖待核對"
+    },
+    {
+      "id": "LA-CH03-S06-K04",
+      "sourceId": "LA-K0306-04",
+      "title": "取值矩陣可逆",
+      "difficulty": 5,
+      "markdown": "設 $f_1,\\ldots,f_n$ 是 $P_{n-1}$ 的基底，$a_1,\\ldots,a_n$ 相異，令 $M_{ij}=f_j(a_i)$。列索引 $i$ 對應節點，欄索引 $j$ 對應基底函數。\n\n令 $Mc=0$，並設 $f=\\sum_jc_jf_j$。矩陣方程第 $i$ 列表示 $f(a_i)=0$。$f$ 次數至多 $n-1$，卻有 $n$ 個相異根，因此 $f=0$。再由基底獨立得 $c=0$。方陣齊次方程只有零解，故 $M$ 可逆。\n\n【額外補充】取標準基底 $1,x,\\ldots,x^{n-1}$ 即得到 Vandermonde 矩陣，其行列式為 $\\prod_{i<j}(a_j-a_i)$。一般基底的取值矩陣可寫為「Vandermonde 矩陣 × 基底係數矩陣」，兩者均可逆。這是理解內插法的另一條路，不是本節必須另背的公式。\n\n例題引用：LA-E3604。\n\n## 3-6 板塊配置\n\n|block_id|類型|內容／引用|\n|---|---|---|\n|LA-B3601|concept|K0306-01 的問題與條件|\n|LA-B3602|split|唯一性證明並排空白證明區|\n|LA-B3603|concept|K0306-02 的基底設計|\n|LA-B3604|example|LA-E3601、LA-E3602|\n|LA-B3605|handwriting|自行算三個基底多項式，內容留白|\n|LA-B3606|example|LA-E3603|\n|LA-B3607|concept|K0306-04|\n|LA-B3608|example|LA-E3604、LA-E3605|\n|LA-B3609|summary|相異節點、次數上限、零多項式、分母符號|\n|LA-B3610|assessment|LA-A3601|",
+      "provenance": "教材整理 · 含補充延伸"
     }
   ],
   "answers": {
@@ -11455,6 +14843,85 @@ window.ZILIU_CONTENT = {
     },
     "LA-CH02-S04-Q05": {
       "correctOption": 1
+    },
+    "LA-CH03-S01-Q01": {
+      "correctOption": 2
+    },
+    "LA-CH03-S01-Q02": {
+      "correctOption": 0
+    },
+    "LA-CH03-S01-Q03": {
+      "correctOption": 3
+    },
+    "LA-CH03-S01-Q04": {
+      "correctOption": 1
+    },
+    "LA-CH03-S01-Q05": {
+      "correctOption": 2
+    },
+    "LA-CH03-S02-Q01": {
+      "correctOption": 2
+    },
+    "LA-CH03-S02-Q02": {
+      "correctOption": 0
+    },
+    "LA-CH03-S02-Q03": {
+      "correctOption": 3
+    },
+    "LA-CH03-S02-Q04": {
+      "correctOption": 1
+    },
+    "LA-CH03-S02-Q05": {
+      "correctOption": 2
+    },
+    "LA-CH03-S03-Q01": {
+      "correctOption": 2
+    },
+    "LA-CH03-S03-Q02": {
+      "correctOption": 0
+    },
+    "LA-CH03-S03-Q03": {
+      "correctOption": 3
+    },
+    "LA-CH03-S03-Q04": {
+      "correctOptions": [
+        1,
+        2,
+        3
+      ]
+    },
+    "LA-CH03-S03-Q05": {
+      "correctOption": 1
+    },
+    "LA-CH03-S05-Q01": {
+      "correctOption": 2
+    },
+    "LA-CH03-S05-Q02": {
+      "correctOption": 3
+    },
+    "LA-CH03-S05-Q03": {
+      "correctOption": 0
+    },
+    "LA-CH03-S05-Q04": {
+      "correctOption": 1
+    },
+    "LA-CH03-S05-Q05": {
+      "correctOption": 2
+    },
+    "LA-CH03-S06-Q01": {
+      "correctOption": 3
+    },
+    "LA-CH03-S06-Q02": {
+      "correctOption": 0
+    },
+    "LA-CH03-S06-Q03": {
+      "correctOption": 2
+    },
+    "LA-CH03-S06-Q04": {
+      "correctOption": 1
+    },
+    "LA-CH03-S06-Q05": {
+      "correctOption": 3
     }
   },
   "solutions": {
@@ -12831,6 +16298,381 @@ window.ZILIU_CONTENT = {
     },
     "LA-CH02-S04-Q07": {
       "markdown": "**提示：** 計算 $t-1$，證明用行列式對替換行的線性性。\n\n$\\Delta=t-1$，$\\Delta_1=2t-3$，$\\Delta_2=1$。$t\\ne1$ 時 $x=(2t-3)/(t-1)$、$y=1/(t-1)$。$t=1$ 時左式相同、右端2與3不同，無解，沒有無限多解的參數值。\n\n一般證明：設 $A=[a_1\\cdots a_n]$ 且 $b=\\sum_k x_ka_k$。將第 $i$ 行替換為此線性組合，再按該行線性性展開。$k\\ne i$ 時兩行相同，該項為0；$k=i$ 時留下 $x_i\\det A$。因此 $\\Delta_i=x_i\\Delta$，不需要除以 $\\Delta$，故奇異時也成立。\n\n評分30分：三個行列式8、非奇異解6、奇異值判斷6、線性展開4、重複行論證4、不做非法除法2。自評：答對／部分正確／不會。"
+    },
+    "LA-CH03-S01-E01": {
+      "markdown": "**辨識：**題目指定純量體，先分清集合元素與允許的純量。**提示：**實純量是否包含 $i$？\n\n**方法理由：**向量由 $V$ 決定，純量由 $F$ 決定，兩者不是同一角色。\n\n**步驟：**(1) $i\\in\\mathbb C=V$，故可作向量。(2) 本題 $F=\\mathbb R$，$i\\notin\\mathbb R$，故不可作純量。(3) $\\mathbb Z$ 不是體，因 $2$ 沒有整數倒數，故不符合本節定義。\n\n**常錯：**把所有「數」都當成純量，或因元素不是實數就否定實向量空間。"
+    },
+    "LA-CH03-S01-E02": {
+      "markdown": "**辨識：**特殊純量乘法，只縮放第一座標。**提示：**第二座標在兩側各出現幾次？\n\n**方法理由：**A8 右側做一次向量加法，可讓未縮放的第二座標累加，形成反例。\n\n**步驟：**(1) $(1+1)\\odot(0,1)=(0,1)$。(2) $1\\odot(0,1)=(0,1)$，所以右側是 $(0,1)+(0,1)=(0,2)$。(3) 兩側不等，A8 失敗，不是向量空間。\n\n**常錯：**只驗證 A10 成立就斷言全部成立；或說它違反名為「$0v=0$」的公設，未區分推論與公設。"
+    },
+    "LA-CH03-S01-E03": {
+      "markdown": "**辨識：**非零純量可消去。**提示：**乘純量 $1/3$。\n\n**方法理由：**實數 $3\\ne0$ 有倒數，可用 A9 與 A10。\n\n**步驟：**(1) 兩邊乘 $1/3$，得 $(1/3)(3u)=(1/3)(3v)$。(2) A9 化為 $((1/3)3)u=((1/3)3)v$。(3) A10 得 $u=v$。(4) 若純量為零，取 $V=\\mathbb R$、$u=1,v=2$，有 $0u=0v=0$，但 $u\\ne v$，故不能一般推出。\n\n**常錯：**把零也當成可除的純量。"
+    },
+    "LA-CH03-S01-E04": {
+      "markdown": "**辨識：**固定尺寸矩陣的向量運算。**提示：**逐位置相加。\n\n**方法理由：**此處的加法、純量乘法按元素定義。\n\n**步驟：**$2B=\\begin{pmatrix}4&2\\\\8&-2\\end{pmatrix}$，故 $A+2B=\\begin{pmatrix}5&0\\\\8&1\\end{pmatrix}$。$-A=\\begin{pmatrix}-1&2\\\\0&-3\\end{pmatrix}$；$A+(-A)=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}=0_V$。\n\n**常錯：**把零向量寫成單位矩陣；或使用矩陣乘法代替純量乘法。"
+    },
+    "LA-CH03-S01-E05": {
+      "markdown": "**辨識：**「至多」與「恰好」的差異。**提示：**先乘純量零。\n\n**方法理由：**零與最高次項抵消能迅速否定「恰好」限制。\n\n**步驟：**(1) 至多二次集合是 $P_2(\\mathbb R)$；兩多項式相加係數仍為實數且不出現三次以上項，乘實數也一樣，包含零與反元素，其餘等式由通常多項式運算成立，故為向量空間。(2) 恰好二次集合含 $x^2$，但 $0\\cdot x^2=0$ 不在集合，違反 A2；亦可取 $x^2+(-x^2)=0$ 違反 A1。\n\n**常錯：**把零多項式當成二次多項式，或認為抵消會破壞「至多」限制。"
+    },
+    "LA-CH03-S01-E06": {
+      "markdown": "**辨識：**函數在某點的條件。**提示：**先看零函數。\n\n**方法理由：**逐點定義使限制可直接帶入加法與縮放。\n\n**步驟：**(1) 零函數在 $V_0$。(2) 若 $f,g\\in V_0$，則 $(f+g)(0)=0+0=0$；任意實數 $\\alpha$ 使 $(\\alpha f)(0)=\\alpha\\cdot0=0$；加法反元素 $-f$ 也滿足限制。其餘公設由函數空間逐點繼承，故 $V_0$ 成立。(3) $V_1$ 不含零函數；具體取恆等於 $1$ 的函數 $f$，則 $0f$ 是零函數，不在 $V_1$，違反 A2。\n\n**常錯：**只檢查某個函數，不用任意 $f,g$ 證明封閉；把加法反元素 $-f$ 誤寫為反函數 $f^{-1}$。此處 $(-f)(0)=-f(0)$，不是逆函數。"
+    },
+    "LA-CH03-S01-E07": {
+      "markdown": "**辨識：**位移是終點減起點。**提示：**逐座標相減。\n\n**方法理由：**位移只取決於座標差，平移起終點同一向量不改變差。\n\n**步驟：**$\\overrightarrow{PQ}=(4-1,0-(-2))=(3,2)$；$u+v=(3,4)$；$u-v=(1,-2)$。若同加位移 $a$，$(Q+a)-(P+a)=Q-P$，故代表同一自由向量。\n\n**常錯：**寫成起點減終點，或把箭頭位置當成向量本身的一部分。"
+    },
+    "LA-CH03-S01-E08": {
+      "markdown": "**辨識：**題目重新定義兩種運算。**提示：**解 $4\\oplus e=4$。\n\n**方法理由：**零與反元素由指定加法決定，不能直接套通常數字運算。\n\n**步驟：**(1) $xe=x$ 對所有正實數成立，得 $e=1$。(2) $4r=1$，得 $r=1/4$。(3) $2\\odot4=4^2=16$。(4) 向量 $2$ 的反元素是 $1/2$，所以 $4$ 減 $2$ 為 $4\\oplus(1/2)=2$。\n\n**常錯：**反元素寫成 $-4$（甚至不在集合）；純量乘法誤算為 $2\\times4=8$。"
+    },
+    "LA-CH03-S01-E09": {
+      "markdown": "**辨識：**候選加法為最小值。**提示：**對任意候選單位 $e$，找比它大的數。\n\n**方法理由：**A5 要對所有 $x$ 成立，一個反例足以否定候選單位。\n\n**步驟：**假設有實數 $e$ 為單位元素，則對每個 $x$ 要有 $\\min(x,e)=x$。取 $x=e+1$，得左側 $e$，右側 $e+1$，矛盾。故不存在單位，A5 失敗。\n\n**常錯：**只說「零不是單位」；這只能否定候選 $0$，還須排除所有可能的 $e$。"
+    },
+    "LA-CH03-S01-E10": {
+      "markdown": "**辨識：**通常運算先平移再搬回。**提示：**以 $u-2$ 當新的座標。\n\n**方法理由：**兩運算均繞同一中心 $2$ 設計；直接展開可驗證所有公設。\n\n**步驟：**封閉性由實數加乘成立。交換律由 $u+v-2=v+u-2$；結合律兩側均為 $u+v+w-4$。解 $u+e-2=u$ 得 $e=2$；解 $u+r-2=2$ 得 $r=4-u$。A7 左側為 $2+\\alpha(u+v-4)$，右側為 $[2+\\alpha(u-2)]+[2+\\alpha(v-2)]-2$，相等。A8 左側為 $2+(\\alpha+\\beta)(u-2)$，右側為 $[2+\\alpha(u-2)]+[2+\\beta(u-2)]-2$，相等。A9 兩側均為 $2+\\alpha\\beta(u-2)$。A10 為 $2+1(u-2)=u$。故十項成立。\n\n**常錯：**只改加法而讓純量乘法保持通常形式，便未必仍成立；或把本題零向量寫成 $0$。"
+    },
+    "LA-CH03-S01-Q01": {
+      "markdown": "提示：向量是空間的元素，不限定為箭頭。正解：**C**。\n\n- A 錯：矩陣、多項式、函數都可能是向量。\n- B 錯：非空不足，還要符合指定運算的公設。\n- C 對：函數空間的加法單位元素是零函數。\n- D 錯：可在複數體等其他體上定義向量空間。",
+      "optionExplanations": [
+        "錯：矩陣、多項式、函數都可能是向量。",
+        "錯：非空不足，還要符合指定運算的公設。",
+        "對：函數空間的加法單位元素是零函數。",
+        "錯：可在複數體等其他體上定義向量空間。"
+      ]
+    },
+    "LA-CH03-S01-Q02": {
+      "markdown": "提示：比較 $(\\alpha+\\beta)\\odot v$ 與 $(\\alpha\\odot v)+(\\beta\\odot v)$。正解：**A**。\n\n- A 對：同一組資料使 A8 兩側不同，足以否定。\n- B 錯：這只驗證某元素的 A10，沒有展示 A8 失敗。\n- C 錯：這只展示通常加法交換律，與所問失敗條件不同。\n- D 錯：結果仍在集合內，只顯示一例封閉，沒有分配律矛盾。",
+      "optionExplanations": [
+        "對：同一組資料使 A8 兩側不同，足以否定。",
+        "錯：這只驗證某元素的 A10，沒有展示 A8 失敗。",
+        "錯：這只展示通常加法交換律，與所問失敗條件不同。",
+        "錯：結果仍在集合內，只顯示一例封閉，沒有分配律矛盾。"
+      ]
+    },
+    "LA-CH03-S01-Q03": {
+      "markdown": "提示：把所有係數都取零。正解：**D**。\n\n- A 錯：不含零多項式；乘純量零不封閉。\n- B 錯：零多項式不滿足 $p(0)=1$。\n- C 錯：零不在集合；乘純量 $2$ 也使最高次項係數變成 $2$。\n- D 對：即 $P_3(\\mathbb R)$，含零且加法、縮放均保留形式，其餘公設繼承通常運算。",
+      "optionExplanations": [
+        "錯：不含零多項式；乘純量零不封閉。",
+        "錯：零多項式不滿足 $p(0)=1$。",
+        "錯：零不在集合；乘純量 $2$ 也使最高次項係數變成 $2$。",
+        "對：即 $P_3(\\mathbb R)$，含零且加法、縮放均保留形式，其餘公設繼承通常運算。"
+      ]
+    },
+    "LA-CH03-S01-Q04": {
+      "markdown": "提示：向量加法在此是通常乘法。正解：**B**。\n\n- A 錯：$-9$ 不在正實數集合。\n- B 對：$9\\oplus(1/9)=9(1/9)=1=0_V$。\n- C 錯：通常數字零不在此集合。\n- D 錯：$1$ 是本空間零向量，但 $9\\oplus1=9$，不是 $0_V$。",
+      "optionExplanations": [
+        "錯：$-9$ 不在正實數集合。",
+        "對：$9\\oplus(1/9)=9(1/9)=1=0_V$。",
+        "錯：通常數字零不在此集合。",
+        "錯：$1$ 是本空間零向量，但 $9\\oplus1=9$，不是 $0_V$。"
+      ]
+    },
+    "LA-CH03-S01-Q05": {
+      "markdown": "提示：分成 $\\alpha=0_F$ 與 $\\alpha\\ne0_F$ 討論。正解：**C**。\n\n- A 錯：在 $\\mathbb R$ 取 $\\alpha=1,v=0$ 即可反駁。\n- B 錯：取 $\\alpha=0,v=1$ 即可反駁。\n- C 對：非零 $\\alpha$ 有倒數，乘回可得 $v=0_V$；另一情況為純量零。\n- D 錯：前兩個反例都顯示不必同時為零。「或」是包含兩者同時為零的邏輯或。",
+      "optionExplanations": [
+        "錯：在 $\\mathbb R$ 取 $\\alpha=1,v=0$ 即可反駁。",
+        "錯：取 $\\alpha=0,v=1$ 即可反駁。",
+        "對：非零 $\\alpha$ 有倒數，乘回可得 $v=0_V$；另一情況為純量零。",
+        "錯：前兩個反例都顯示不必同時為零。「或」是包含兩者同時為零的邏輯或。"
+      ]
+    },
+    "LA-CH03-S01-Q06": {
+      "markdown": "提示：分別展開 $(0_F+0_F)v$ 與 $\\alpha(0_V+0_V)$。\n\n參考答案：由 A8，$0_Fv=(0_F+0_F)v=0_Fv+0_Fv$。將左側寫作 $0_V+0_Fv$，消去共同加項 $0_Fv$，得 $0_V=0_Fv$。由 A7，$\\alpha0_V=\\alpha(0_V+0_V)=\\alpha0_V+\\alpha0_V$；左側寫成 $0_V+\\alpha0_V$，同理消去得 $\\alpha0_V=0_V$。\n\n評分：正確使用 A8（2 分）；第一式合法消去及結論（3 分）；正確使用 A7（2 分）；第二式合法消去及結論（3 分）。不能直接用待證式證明自身。\n\n自評：答對＝兩式與理由完整；部分正確＝只有一式完整或未說明消去；不會＝直接假設零乘法結果。"
+    },
+    "LA-CH03-S01-Q07": {
+      "markdown": "提示：先找 $x\\oplus e=x$ 的 $e$，再逐條比較運算兩側。\n\n參考答案：$x,y>0$ 得 $xy>0$，任意實數 $\\alpha$ 得 $x^\\alpha>0$，故兩封閉性成立。通常乘法交換、結合給出 $\\oplus$ 的交換、結合。$x\\oplus1=x$，所以零向量是 $1$；$x\\oplus(1/x)=1$ 且 $1/x>0$，所以反元素是 $1/x$。A7：$\\alpha\\odot(x\\oplus y)=(xy)^\\alpha=x^\\alpha y^\\alpha=(\\alpha\\odot x)\\oplus(\\alpha\\odot y)$。A8：$(\\alpha+\\beta)\\odot x=x^{\\alpha+\\beta}=x^\\alpha x^\\beta=(\\alpha\\odot x)\\oplus(\\beta\\odot x)$。A9：$(\\alpha\\beta)\\odot x=x^{\\alpha\\beta}=(x^\\beta)^\\alpha=\\alpha\\odot(\\beta\\odot x)$。A10：$1\\odot x=x^1=x$。故構成實向量空間。\n\n評分：兩封閉性（2 分）；交換、結合（1 分）；零向量及反元素（2 分）；A7、A8（各 1.5 分，共 3 分）；A9、A10（各 1 分，共 2 分）。\n\n自評：答對＝全項驗證且零向量正確；部分正確＝主要結論對但少驗證；不會＝以通常運算判斷、將零寫成 $0$ 或反元素寫成 $-x$。"
+    },
+    "LA-CH03-S02-E01": {
+      "markdown": "**辨識與方法：**齊次線性限制，使用線性組合封閉。\n\n**提示：** 將任意兩向量的條件代入合成向量。\n\n**詳解（獨立答案區）：** 零向量滿足 $0+2(0)-0=0$，故非空。任取 $u,v\\in W$，則 $u_1+2u_2-u_3=0$、$v_1+2v_2-v_3=0$。$\\alpha u+\\beta v$ 的限制式等於 $\\alpha(u_1+2u_2-u_3)+\\beta(v_1+2v_2-v_3)=0$，故封閉，為子空間。\n\n**常見錯誤：** 只驗證零向量，或只驗證特定兩個向量。"
+    },
+    "LA-CH03-S02-E02": {
+      "markdown": "**辨識與方法：**非線性限制 $\\det A=0$，嘗試找加法反例；非線性外觀本身不是充分否定理由。\n\n**提示：** 找兩個分別只保留一個對角元素的矩陣。\n\n**詳解：** 取 $A=\\operatorname{diag}(1,0)$、$B=\\operatorname{diag}(0,1)$；diag 表示用括號內元素形成對角矩陣。兩者行列式皆為零，但 $A+B=I_2$ 行列式為 1，因此加法不封閉。\n\n**常見錯誤：** 誤以為「含零」或「對倍數封閉」已足夠。參數出現平方或立方也不能直接斷定；例如 $\\{(a,b^3):a,b\\in\\mathbb R\\}=\\mathbb R^2$，仍是子空間。"
+    },
+    "LA-CH03-S02-E03": {
+      "markdown": "**辨識與方法：**同時滿足兩組條件，聯立方程。\n\n**提示：** 以 $y=t$ 表示。\n\n**詳解：** 令 $y=t$，得 $x=-t,z=-t$，故 $U\\cap W=\\{t(-1,1,-1):t\\in\\mathbb R\\}=\\operatorname{span}\\{(-1,1,-1)\\}$。\n\n**常見錯誤：** 把交集改成「滿足其中一個條件」。"
+    },
+    "LA-CH03-S02-E04": {
+      "markdown": "**辨識與方法：**兩者互不包含，找分屬不同軸的向量。\n\n**提示：** 使用 $e_1=(1,0)$ 與 $e_2=(0,1)$。\n\n**詳解：** $e_1,e_2$ 在聯集中，但和 $(1,1)$ 不在任一軸，因此不是子空間。\n\n**常見錯誤：** 認為「兩個都通過原點」就足夠；或把兩個子空間的定理直接套用到任意數量、任意數域的聯集。"
+    },
+    "LA-CH03-S02-E05": {
+      "markdown": "**辨識與方法：**先寫出座標形式，再分別處理「同時屬於」與「相加」。\n\n**提示：** $U$ 是 $z=0$ 平面，$W$ 是 $x=0$ 平面。\n\n**詳解：** 同時滿足 $z=0,x=0$，故交集為 $\\operatorname{span}\\{e_2\\}$。任意 $(a,b,c)=(a,b,0)+(0,0,c)$，故和為 $\\mathbb R^3$。聯集不封閉，因 $e_1+e_3$ 不在任一平面。\n\n**常見錯誤：** 把同時屬於兩者與可分成兩部分混淆。"
+    },
+    "LA-CH03-S02-E06": {
+      "markdown": "**辨識與方法：**先檢查尺寸，再分別取欄、取列、解兩個齊次系統。\n\n**提示：** 解 $x+2y+3z=0,y+z=0$。\n\n**詳解：** 前兩欄 $(1,0)^T,(2,1)^T$ 線性獨立並生成 $\\mathbb R^2$，故 CS 為 $\\mathbb R^2$。RS 為 $\\operatorname{span}\\{(1,2,3),(0,1,1)\\}$。令 $z=t$ 得 $y=-t,x=-t$，故 $\\ker A=\\operatorname{span}\\{(-1,-1,1)^T\\}$。令 $y=(s,t)^T$，$y^TA=(s,2s+t,3s+t)=0$ 得 $s=t=0$，故左核為 $\\{0\\}$。\n\n**常見錯誤：** 寫反所在空間；把零子空間的基底寫成 $\\{0\\}$，其基底其實是空集合。"
+    },
+    "LA-CH03-S02-E07": {
+      "markdown": "**辨識與方法：**列運算保持 RS、kernel；實算 CS 作對照。\n\n**提示：** 原矩陣第一欄為 $(1,2)^T$。\n\n**詳解：** 兩者 RS 均為 $\\operatorname{span}\\{(1,2)\\}$，kernel 均為 $\\operatorname{span}\\{(-2,1)^T\\}$。但 CS 分別為 $\\operatorname{span}\\{(1,2)^T\\}$、$\\operatorname{span}\\{(1,0)^T\\}$，不相同。\n\n**常見錯誤：** 求原矩陣 CS 基底時拿 RREF 的欄。正確做法是用 RREF 找主元欄位置，再回原矩陣取欄。"
+    },
+    "LA-CH03-S02-E08": {
+      "markdown": "**辨識與方法：**用輸入維度減 nullity 求 rank。\n\n**提示：** $6=r+3$。\n\n**詳解：** $r=3$，故 CS、RS 維度皆為 3，左核維度 $4-3=1$。\n\n**常見錯誤：** 用 $m-k$ 當 rank，或以 $n-r$ 當左核維度。"
+    },
+    "LA-CH03-S02-Q01": {
+      "markdown": "**提示：** 先檢查零向量，再看齊次線性限制\n\nA：零向量不滿足。B：$(1,0)$ 乘 $-1$ 後離開集合。C：齊次線性式對線性組合封閉。D：零向量不在單位圓上。",
+      "optionExplanations": [
+        "零向量不滿足",
+        "$(1,0)$ 乘 $-1$ 後離開集合",
+        "齊次線性式對線性組合封閉",
+        "零向量不在單位圓上。"
+      ]
+    },
+    "LA-CH03-S02-Q02": {
+      "markdown": "**提示：** 區分「同時屬於」「至少屬於一個」「可分成兩部分」\n\nA：兩者均含零且交集對線性組合封閉。B：兩座標軸反例。C：兩座標軸的和含 $(1,1)$ 而聯集不含。D：取 $U=W=\\mathbb R^2$，交集不是零子空間。",
+      "optionExplanations": [
+        "兩者均含零且交集對線性組合封閉",
+        "兩座標軸反例",
+        "兩座標軸的和含 $(1,1)$ 而聯集不含",
+        "取 $U=W=\\mathbb R^2$，交集不是零子空間。"
+      ]
+    },
+    "LA-CH03-S02-Q03": {
+      "markdown": "**提示：** 先標出每列、每欄有幾個分量\n\nA：欄長度為 3，CS 在 $\\mathbb R^3$。B：輸入長度為 5，kernel 在 $\\mathbb R^5$。C：左核是 $A^T$ 的核，向量長度為 3。D：列長度為 5，正確。",
+      "optionExplanations": [
+        "欄長度為 3，CS 在 $\\mathbb R^3$",
+        "輸入長度為 5，kernel 在 $\\mathbb R^5$",
+        "左核是 $A^T$ 的核，向量長度為 3",
+        "列長度為 5，正確。"
+      ]
+    },
+    "LA-CH03-S02-Q04": {
+      "markdown": "**提示：** 用 $R=PA$ 與 $P$ 可逆\n\nA：ex07 顯示 CS 可變。B：$PAx=0\\iff Ax=0$。C：ex07 中原矩陣左核為 span$\\{(-2,1)^T\\}$，化簡後為 span$\\{(0,1)^T\\}$，可變。D：列運算會改變欄分量，ex07 即為反例。",
+      "optionExplanations": [
+        "ex07 顯示 CS 可變",
+        "$PAx=0\\iff Ax=0$",
+        "ex07 中原矩陣左核為 span$\\{(-2,1)^T\\}$，化簡後為 span$\\{(0,1)^T\\}$，可變",
+        "列運算會改變欄分量，ex07 即為反例。"
+      ]
+    },
+    "LA-CH03-S02-Q05": {
+      "markdown": "**提示：** 把 $(a,b)$ 分解為兩軸向量之和\n\nA：$(1,1)$ 不在聯集中。B：交集含零，且實際為 $\\{0\\}$。C：$(a,b)=(a,0)+(0,b)$，故正確。D：$(1,0)\\notin W$。",
+      "optionExplanations": [
+        "$(1,1)$ 不在聯集中",
+        "交集含零，且實際為 $\\{0\\}$",
+        "$(a,b)=(a,0)+(0,b)$，故正確",
+        "$(1,0)\\notin W$。"
+      ]
+    },
+    "LA-CH03-S02-Q06": {
+      "markdown": "**提示：** 假設兩者互不包含，選 $u\\in U\\setminus W$ 與 $w\\in W\\setminus U$\n\n假設彼此不包含，取 $u\\in U\\setminus W$、$w\\in W\\setminus U$（2 分）。聯集加法封閉得 $u+w\\in U\\cup W$（2 分）。若屬於 $U$，相減推出 $w\\in U$（2 分）；若屬於 $W$，相減推出 $u\\in W$（2 分）。兩者都矛盾，故必有一方向包含（2 分）。只舉座標軸反例不能證明一般定理。\n\n自評：答對＝涵蓋兩種情況且理由完整；部分正確＝知道反證但漏一種情況；不會＝只寫結論或只舉例。"
+    },
+    "LA-CH03-S02-Q07": {
+      "markdown": "**提示：** 列化簡找主元位置及齊次系統；左核解 $A^Ty=0$\n\n先作 $R_2\\leftarrow R_2-2R_1$ 並交換第二、三列，得非零列 $(1,2,1),(0,1,1)$；再 $R_1\\leftarrow R_1-2R_2$ 得 RREF 非零列 $(1,0,-1),(0,1,1)$。\n\n1. 主元在第 1、2 欄，CS 基底取原矩陣欄 $\\{(1,2,0)^T,(2,4,1)^T\\}$，在 $\\mathbb R^3$（2 分）。\n2. RS 基底可取 $\\{(1,0,-1),(0,1,1)\\}$，在 $\\mathbb R^3$（2 分）。\n3. 方程 $x-z=0,y+z=0$，令 $z=t$，得 kernel 基底 $\\{(1,-1,1)^T\\}$，在 $\\mathbb R^3$（2 分）。\n4. 左核：$s+2t=0$、$2s+4t+u=0$、$s+2t+u=0$，得 $u=0,s=-2t$，基底 $\\{(-2,1,0)^T\\}$，在 $\\mathbb R^3$（2 分）。\n5. 列化簡與所在空間標示各 1 分。等價基底皆可；若 CS 取化簡矩陣欄則該項不給分。\n\n自評：答對＝四空間與依據正確；部分正確＝至少兩空間正確但有計算或取欄錯誤；不會＝無法區分四個求法。"
+    },
+    "LA-CH03-S03-E01": {
+      "markdown": "提示：前兩座標會先決定係數，第三座標負責檢查。\n\n辨識：指定向量是否能生成，使用非齊次方程。設 $au+bv=(a,b,a+b)$。對第一個目標必有 $a=2,b=3$，第三座標等於 5，符合，故 $b=2u+3v$。第二個目標前兩座標仍迫使係數為 2、3，但第三座標只能為 5，不是 6，故無解。常錯：只比較前兩個座標就結束。"
+    },
+    "LA-CH03-S03-E02": {
+      "markdown": "提示：先寫出 span 的全部元素。\n\n辨識：最小子空間證明，需同時證子空間與包含關係。$L=\\{(a,2a):a\\in\\mathbb R\\}$。$0\\in L$；$c(a,2a)+(b,2b)=(ca+b,2(ca+b))\\in L$，故為子空間。任取包含 $(1,2)$ 的子空間 $U$，因純量倍乘封閉，所有 $a(1,2)$ 都在 $U$ 中，故 $L\\subseteq U$。常錯：只證包含 $S$，未證最小性。"
+    },
+    "LA-CH03-S03-E03": {
+      "markdown": "提示：將 $v$ 改寫成 $w-u$。\n\n辨識：兩組生成空間相等，用雙向表示。$u,w$ 均在 span$\\{u,v\\}$ 中，因 $w=u+v$；故一方向包含成立。另一方面，$u$ 本來就在新 span，且 $v=w-u$ 也在新 span，故另一方向成立。由雙向包含得相等。對三向量集合 $\\{u,v,w\\}$，移除 $w$ 不改變 span；移除 $v$ 也可保留 span，但不能一次移除兩者。常錯：將「有一個冗餘」誤認為「可任意全部刪除」。"
+    },
+    "LA-CH03-S03-E04": {
+      "markdown": "提示：基本 row 運算將第三個 row 減去第二個。\n\n辨識：尋找生成空間的獨立生成向量。化簡得 $R=\\begin{bmatrix}1&2&0\\\\0&0&1\\\\0&0&0\\end{bmatrix}$，樞紐在 columns 1、3。回原矩陣取 $(1,0,0)^T,(0,1,1)^T$，為 $CS(A)$ 基底。$R$ 的非零 rows $(1,2,0),(0,0,1)$ 為 $RS(A)$ 基底。常錯：直接取 $R$ 的第三個 column $(0,1,0)^T$ 作原 column space 基底。"
+    },
+    "LA-CH03-S03-E05": {
+      "markdown": "提示：比較第三向量與前兩者的和。\n\n辨識：能直接看出相依關係，不需硬算行列式。令三向量依序為 $v_1,v_2,v_3$，則 $v_1+v_2-v_3=0$，係數 $(1,1,-1)$ 不全為零，因此相依。另 $v_1,v_2$ 的前兩座標已足以證明它們獨立。常錯：把右側是零當作相依的理由，未指出非零係數。"
+    },
+    "LA-CH03-S03-E06": {
+      "markdown": "提示：逐一使用零向量、空集合、向量個數及子集合定理。\n\n第一組含零向量，故相依。空集合獨立。$3\\times4$ 係數矩陣最多 3 個樞紐，必有自由變數，故任意 4 個 $\\mathbb R^3$ 向量皆相依。最後一組本身獨立，任意子集合亦獨立，包含空集合。常錯：以「元素少於維度」當作充分獨立條件。"
+    },
+    "LA-CH03-S03-E07": {
+      "markdown": "提示：每個矩陣都各問兩次，不能只寫一個結論。\n\n$A$ 有兩個獨立標準向量，故 columns 獨立；但只能組出第三座標為 0 的向量，所以不生成 $\\mathbb R^3$。$B$ 已包含 $\\mathbb R^2$ 的兩個標準向量，所以生成 $\\mathbb R^2$；但第三 column 是前兩者之和，所以相依。常錯：將獨立與生成當成同義詞。"
+    },
+    "LA-CH03-S03-E08": {
+      "markdown": "提示：行列式為 $1-t^2$。\n\n辨識：兩個 $\\mathbb R^2$ 向量形成方陣，可用行列式。$\\det\\begin{bmatrix}1&t\\\\t&1\\end{bmatrix}=1-t^2=(1-t)(1+t)$。故 $t\\ne\\pm1$ 時獨立。$t=1$ 時兩向量相同；$t=-1$ 時互為負倍數，皆相依。常錯：消去時除以 $1-t$，只報告 $t\\ne1$ 而漏掉 $t=-1$。"
+    },
+    "LA-CH03-S03-E09": {
+      "markdown": "提示：$(1,1)$ 可用來測聯集是否對加法封閉。\n\n兩軸的和為 $\\mathbb R^2$；交集為 $\\{0\\}$；聯集不是子空間，因 $(1,0),(0,1)$ 在聯集中，但和不在其中。另 $S_1\\cap S_2=\\varnothing$，故其 span 是 $\\{0\\}$；然而各自 span 都是 $x$ 軸，所以兩 span 的交集是整個 $x$ 軸，嚴格大於 $\\{0\\}$。常錯：把向量元素的交集與其可生成元素的交集混同。"
+    },
+    "LA-CH03-S03-E10": {
+      "markdown": "提示：(a) 按常數、$x$、$x^2$ 排係數；(b) 逐位置讀取係數。\n\n(a) 設 $a(1+x)+b(1-x)+cx^2=0$。零多項式的同次項係數全為零，故 $a+b=0,a-b=0,c=0$。在實數域可得 $a=b=c=0$，因此獨立。任意 $r+sx+tx^2$ 可取 $a=(r+s)/2,b=(r-s)/2,c=t$，故生成整個 $P_2(\\mathbb R)$。(b) 所求為 $2E_{11}-E_{12}+0E_{21}+3E_{22}$。若其零線性組合成立，比較四個位置可得各係數零，故四個標準矩陣獨立。常錯：將多項式的取值與係數混淆；忘記純量域使 2 可除。"
+    },
+    "LA-CH03-S03-E11": {
+      "markdown": "提示：依序代入 $x=0$、$x=\\pi/2$。\n\n設 $a\\sin x+b\\cos x=0$ 對所有實數成立。代 0 得 $b=0$；代 $\\pi/2$ 得 $a=0$，因此獨立。若定義域只有 $\\{0\\}$，$\\sin x$ 是該域上的零函數，故相依。常錯：未說明恆等式對所有定義域元素成立，或允許係數隨 $x$ 改變。"
+    },
+    "LA-CH03-S03-E12": {
+      "markdown": "提示：導數矩陣是上三角矩陣。\n\n$$W(1,x,x^2)=\\det\\begin{bmatrix}1&x&x^2\\\\0&1&2x\\\\0&0&2\\end{bmatrix}=2.$$\n由三角矩陣行列式為對角元素乘積得 2；例如在 0 非零，因此三函數獨立。常錯：認為 Wronskian 必須每點非零才能使用判準，或反過來用恆零直接判相依。"
+    },
+    "LA-CH03-S03-Q01": {
+      "markdown": "**提示：** 線性組合的第二座標等於第一與第三座標之和。\n\n任意組合 $au+bv=(a,a+b,b)$，故條件為第二座標等於第一加第三。A：$5=2+3$，在 span；B：$0=1-1$，在 span；C：$2\\ne1+0$，不在 span；D：$4=0+4$，在 span。",
+      "optionExplanations": [
+        "$5=2+3$，在 span",
+        "$0=1-1$，在 span",
+        "$2\\ne1+0$，不在 span",
+        "$4=0+4$，在 span。"
+      ]
+    },
+    "LA-CH03-S03-Q02": {
+      "markdown": "**提示：** 分清楚空集合與含零向量的集合。\n\nA 正確，空集合沒有非平凡有限零線性組合，且空和為零。B 錯，零向量係數可取 1。C 錯，例如 $(1,0),(2,0)$ 皆非零但相依。D 錯，$\\{e_1,e_2,e_1+e_2\\}$ 生成 $\\mathbb R^2$ 卻相依。",
+      "optionExplanations": [
+        "正確，空集合沒有非平凡有限零線性組合，且空和為零",
+        "錯，零向量係數可取 1",
+        "錯，例如 $(1,0),(2,0)$ 皆非零但相依",
+        "錯，$\\{e_1,e_2,e_1+e_2\\}$ 生成 $\\mathbb R^2$ 卻相依。"
+      ]
+    },
+    "LA-CH03-S03-Q03": {
+      "markdown": "**提示：** 分別比較 rank 與 row 數、column 數。\n\nA 錯，rank 4 小於 6，六 columns 相依。B 錯，有 $6-4=2$ 個自由變數。C 錯，rank 等於 row 數，任何 $b\\in\\mathbb R^4$ 均有解。D 正確，分別滿足生成與相依的判準。",
+      "optionExplanations": [
+        "錯，rank 4 小於 6，六 columns 相依",
+        "錯，有 $6-4=2$ 個自由變數",
+        "錯，rank 等於 row 數，任何 $b\\in\\mathbb R^4$ 均有解",
+        "正確，分別滿足生成與相依的判準。"
+      ]
+    },
+    "LA-CH03-S03-Q04": {
+      "markdown": "**提示：** 對 A 可嘗試沒有共同元素但生成同一直線的集合。\n\nA 錯，$S=\\{e_1\\}$、$T=\\{2e_1\\}$ 的原集合交集為空，但各 span 是同一直線。B 正確，將有限線性組合按來源拆開或合併即可。C 正確，$S$ 中每個線性組合也都是 $T$ 中的線性組合。D 正確，新增元素已能由原集合表示，代換後不擴大 span。",
+      "optionExplanations": [
+        "錯，$S=\\{e_1\\}$、$T=\\{2e_1\\}$ 的原集合交集為空，但各 span 是同一直線",
+        "正確，將有限線性組合按來源拆開或合併即可",
+        "正確，$S$ 中每個線性組合也都是 $T$ 中的線性組合",
+        "正確，新增元素已能由原集合表示，代換後不擴大 span。"
+      ]
+    },
+    "LA-CH03-S03-Q05": {
+      "markdown": "**提示：** Wronskian 的一般判準是單向充分條件。\n\nA 錯，一點恰為零不足以判相依，例如 $1,x,x^3$ 獨立但在 0 的 Wronskian 為零。B 正確，使用「相依導致恆零」的逆否命題。C 錯，一般可微函數的恆零 Wronskian 不能反推相依。D 錯，同 A 的反例，獨立不保證處處非零。",
+      "optionExplanations": [
+        "錯，一點恰為零不足以判相依，例如 $1,x,x^3$ 獨立但在 0 的 Wronskian 為零",
+        "正確，使用「相依導致恆零」的逆否命題",
+        "錯，一般可微函數的恆零 Wronskian 不能反推相依",
+        "錯，同 A 的反例，獨立不保證處處非零。"
+      ]
+    },
+    "LA-CH03-S03-Q06": {
+      "markdown": "**提示：** 按 $1,x,x^2$ 寫三個係數向量，行列式為零時代回。\n\n係數矩陣為 $A=\\begin{bmatrix}1&0&1\\\\1&1&0\\\\0&1&t\\end{bmatrix}$，三 columns 依序對應三多項式。沿第一 row 展開得 $\\det A=t+1$，所以 $t\\ne-1$ 時獨立。$t=-1$ 時，$p_1-p_2=1-x^2=p_3$，故 $(1,-1,-1)$ 為非平凡關係。\n\n評分：正確轉係數矩陣 3 分；行列式與計算 3 分；參數範圍 2 分；相依關係式 2 分。自評「答對」須條件與關係式都正確；「部分正確」表示方法正確但漏掉一部分或有可定位計算錯誤；「不會」表示無法建立係數系統或無法解讀獨立性。"
+    },
+    "LA-CH03-S03-Q07": {
+      "markdown": "**提示：** 先寫 $(a,b,a+b)=c(1,1,0)$，再處理任意 $(r,s,t)$。\n\n若 $z\\in U\\cap W$，則 $z=(a,b,a+b)=c(1,1,0)$。比較座標得 $a=b=c$、$a+b=0$，所以 $2c=0$，在實數域得 $c=a=b=0$；故交集只含零。\n\n對任意 $(r,s,t)$，設 $(r,s,t)=(a,b,a+b)+(c,c,0)$。由前兩座標得 $a=r-c,b=s-c$；第三座標給 $r+s-2c=t$，故 $c=(r+s-t)/2$。如此取 $a=(r-s+t)/2$、$b=(-r+s+t)/2$ 即得到分解，因此和為整個 $\\mathbb R^3$。\n\n若 $u_1+w_1=u_2+w_2$，則 $u_1-u_2=w_2-w_1\\in U\\cap W=\\{0\\}$，所以 $u_1=u_2,w_1=w_2$，分解唯一。這也可作後續直和概念的銜接，不需事先使用直和定理。\n\n評分：交集的表示與零解 4 分；對任意目標建立分解並求係數 4 分；唯一性證明 2 分。自評「答對」須三個要求均完成；「部分正確」表示有完成交集或生成證明，但漏算、漏證其餘部分；「不會」表示未能建立空間元素的參數表示。"
+    },
+    "LA-CH03-S05-E01": {
+      "markdown": "辨識：同時問和與交集，先寫座標式，比直接套維度公式清楚。$U$ 是 $(a,b,0)$，$W$ 是 $(0,c,d)$；和可得任意 $(a,b+c,d)$，所以為 $\\mathbb R^3$。交集的第一與第三座標都必須為零，所以是 $\\operatorname{span}(e_2)$。維度為 $2,2,3,1$，驗證 $3=2+2-1$。因交集非零，不是直和。常錯：和覆蓋全空間不代表分解唯一。"
+    },
+    "LA-CH03-S05-E02": {
+      "markdown": "辨識：三個子空間，要分別檢查兩兩與整體。三條直線方向不同，兩兩交集皆為零；但 $(1,0,0)+(0,1,0)-(1,1,0)=0$，三項並非全零，所以整體不獨立。和維度是 2，維度總和是 3，也可反證。常錯：把「兩兩」條件誤當成完整獨立條件。"
+    },
+    "LA-CH03-S05-E03": {
+      "markdown": "辨識：證明直和，要同時處理存在和唯一。解 $(x,y)=a(1,0)+b(1,1)$，比較座標得 $b=y,a=x-y$，所以分解為 $(x-y,0)+(y,y)$，且係數唯一。另若 $(a,0)=(b,b)$，得 $b=0,a=0$，也完成交集檢查。另一個補空間為 $\\operatorname{span}(0,1)$。常錯：補空間不要求固定為垂直方向。"
+    },
+    "LA-CH03-S05-E04": {
+      "markdown": "辨識：轉置對稱性，使用加減轉置。$A^T=\\begin{pmatrix}1&2\\\\4&3\\end{pmatrix}$；故對稱部分 $B=\\begin{pmatrix}1&3\\\\3&3\\end{pmatrix}$，反對稱部分 $C=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$。核對 $B+C=A,B^T=B,C^T=-C$。唯一性來自兩子空間交集為零。常錯：忘記除以 2，或把反對稱矩陣對角線寫成非零。"
+    },
+    "LA-CH03-S05-E05": {
+      "markdown": "辨識：遇到任意函數的奇偶拆分，先算 $f(-x)=e^{-x}+x^2-x$。所以 $f_e=(e^x+e^{-x})/2+x^2$，$f_o=(e^x-e^{-x})/2+x$。代入負值檢查奇偶，相加還原原函數。常錯：直接把 $e^x$ 歸類為奇函數或偶函數。"
+    },
+    "LA-CH03-S05-Q01": {
+      "markdown": "**提示：** 分開想存在與唯一。\n\nA 只保證和空間內分解唯一，未保證覆蓋 $V$；B 只保證存在；C 同時保證兩者；D 沒排除交集非零，例如在 $\\mathbb R^2$ 取 $U=W=x$ 軸。",
+      "optionExplanations": [
+        "只保證和空間內分解唯一，未保證覆蓋 $V$",
+        "只保證存在",
+        "同時保證兩者",
+        "沒排除交集非零，例如在 $\\mathbb R^2$ 取 $U=W=x$ 軸。"
+      ]
+    },
+    "LA-CH03-S05-Q02": {
+      "markdown": "**提示：** 兩個空間與三個空間的條件強度不同。\n\nA、B 被三條共面直線反例否定；C 沒保證覆蓋環境空間；D 對任兩子空間，交集為零就能使其和為直和。",
+      "optionExplanations": [
+        "被三條共面直線反例否定，兩兩交集為零不足以保證整體獨立。",
+        "被三條共面直線反例否定，兩兩交集為零不足以保證整體獨立。",
+        "沒有保證覆蓋環境空間。",
+        "對任兩子空間，交集為零就能使其和為直和。"
+      ]
+    },
+    "LA-CH03-S05-Q03": {
+      "markdown": "**提示：** 相交部分在維度和中數了兩次。\n\nA 為 $3+2-1=4$；B 重複計算交集；C 超出生成組數量上限 5；D 把交集維度當成和維度。",
+      "optionExplanations": [
+        "為 $3+2-1=4$",
+        "重複計算交集",
+        "超出生成組數量上限 5",
+        "把交集維度當成和維度。"
+      ]
+    },
+    "LA-CH03-S05-Q04": {
+      "markdown": "**提示：** 將答案轉置，確認變號且能還原 $A$。\n\nA 少除以 2，雖本身反對稱卻不是指定分解的反對稱部分；B 正確；C 是對稱部分；D 一般不反對稱。",
+      "optionExplanations": [
+        "少除以 2，雖本身反對稱卻不是指定分解的反對稱部分",
+        "正確",
+        "是對稱部分",
+        "一般不反對稱。"
+      ]
+    },
+    "LA-CH03-S05-Q05": {
+      "markdown": "**提示：** 檢查斜線能否與 $x$ 軸張成平面。\n\nA 與原空間交集非零；B 加總仍只是 $x$ 軸；C 與 $x$ 軸交集為零且可張成平面；D 與 $x$ 軸交集仍為 $x$ 軸。",
+      "optionExplanations": [
+        "與原空間交集非零",
+        "加總仍只是 $x$ 軸",
+        "與 $x$ 軸交集為零且可張成平面",
+        "與 $x$ 軸交集仍為 $x$ 軸。"
+      ]
+    },
+    "LA-CH03-S05-Q06": {
+      "markdown": "**提示：** 設 $(x,y)=a(1,1)+b(1,-1)$。\n\n比較座標得 $a+b=x,a-b=y$，因此 $a=(x+y)/2,b=(x-y)/2$，對所有向量均存在且唯一。$(4,2)=3(1,1)+1(1,-1)=(3,3)+(1,-1)$。評分 10 分：正確列式 2、解一般係數 3、存在與唯一說明 3、指定向量 2。"
+    },
+    "LA-CH03-S05-Q07": {
+      "markdown": "**提示：** 先算 $f(-x)$，唯一性從交集證明。\n\n定義 $f_e=(f(x)+f(-x))/2,f_o=(f(x)-f(-x))/2$；代入負值證明奇偶，相加為 $f$。若有兩組分解，其偶部分之差等於奇部分之差，屬交集，故為零。指定例的偶部分是 $x^2+1$，奇部分是 $x^3$。評分 10 分：公式 2、奇偶驗證 2、相加還原 1、唯一性 3、例題 2。"
+    },
+    "LA-CH03-S06-E01": {
+      "markdown": "辨識：三個相異節點求至多二次，套 Lagrange 基底可直接保證條件。\n$$L_0=\\frac{(x-1)(x-2)}2,\\quad L_1=-x(x-2),\\quad L_2=\\frac{x(x-1)}2.$$\n因此 $P=L_0+2L_1+5L_2=x^2+1$。檢查 $P(0)=1,P(1)=2,P(2)=5$。唯一性由兩個候選之差有三個根且次數至多 2 推得。常錯：$L_1$ 分母為 $(1-0)(1-2)=-1$，負號不能漏。"
+    },
+    "LA-CH03-S06-E02": {
+      "markdown": "辨識：Lagrange 座標就是節點值。常數 1 在各節點值皆為 1，所以座標 $(1,1,1)^T$。$S=\\sum_iL_i$ 次數至多 2，在三個節點皆為 1；由唯一性 $S=1$。常錯：誤以為在單項式基底與 Lagrange 基底下座標相同。"
+    },
+    "LA-CH03-S06-E03": {
+      "markdown": "辨識：四個相異節點，求至多三次；先保留乘積形式以降低展開錯誤。\n$$P=\\frac{x(x+7)(x+6)}{660}+\\frac{23x(x-5)(x+6)}{84}+\\frac{9x(x-5)(x+7)}{11}+\\frac{159(x-5)(x+7)(x+6)}{35}.$$\n逐項分母原本為 $660,-84,66,-210$，再乘指定值 $1,-23,-54,-954$ 得上式。展開得到\n$$P(x)=4x^3+35x^2-84x-954.$$\n代入四節點分別得到 $1,-23,-54,-954$；這只驗證上述轉錄數據的內部一致性，不代表原圖轉錄已核實。常錯：把 $-23/(-84)$ 寫成負數，或要求答案恰好三次。"
+    },
+    "LA-CH03-S06-E04": {
+      "markdown": "辨識：矩陣每個元素都是函數取值，將未知係數組成一個多項式。通用證明見 K0306-04，依序用「齊次方程→根數上限→基底獨立→方陣可逆」。數值例的矩陣為 $\\begin{pmatrix}1&1\\\\1&3\\end{pmatrix}$，行列式為 $3-1=2\\ne0$。常錯：只有節點相異還不夠，一般函數族不保證可逆；需本題的多項式基底條件。"
+    },
+    "LA-CH03-S06-E05": {
+      "markdown": "辨識：先檢查條件是否矛盾，不急著代公式。同一輸入不能同時取 1 與 2，所以第一問無解。第二問有 $P(x)=1+cx$（$c$ 任意），不唯一。常錯：把重複條件當作兩個獨立節點條件。"
+    },
+    "LA-CH03-S06-Q01": {
+      "markdown": "**提示：** 節點數比允許的最高次數多 1。\n\nA 次數上限錯；B 結果可能低於三次；C 可加上所有節點因子的倍數而不改變取值，故不唯一；D 正是內插定理。",
+      "optionExplanations": [
+        "次數上限錯",
+        "結果可能低於三次",
+        "可加上所有節點因子的倍數而不改變取值，故不唯一",
+        "正是內插定理。"
+      ]
+    },
+    "LA-CH03-S06-Q02": {
+      "markdown": "**提示：** 基底多項式在非自己的節點應為何？\n\nA 因非自身節點而為零；B 只在自身節點為 1；C 把索引與取值混淆；D 基底性質已能決定。",
+      "optionExplanations": [
+        "因非自身節點而為零",
+        "只在自身節點為 1",
+        "把索引與取值混淆",
+        "基底性質已能決定。"
+      ]
+    },
+    "LA-CH03-S06-Q03": {
+      "markdown": "**提示：** 比較與常數 1 在各節點的值。\n\nA 在節點值不符；B 不是一般恆等式；C 與常數 1 在全部節點相同且次數上限符合；D 把每個多項式誤認為處處等於 1。",
+      "optionExplanations": [
+        "在節點值不符",
+        "不是一般恆等式",
+        "與常數 1 在全部節點相同且次數上限符合",
+        "把每個多項式誤認為處處等於 1。"
+      ]
+    },
+    "LA-CH03-S06-Q04": {
+      "markdown": "**提示：** 使用非零多項式根數上限。\n\nA 一個根不夠；B 四根超過非零三次的根數上限；C 例如 $x(x-1)(x-2)$ 非零；D 只表示次數降低，例如 $p=1$ 仍非零。",
+      "optionExplanations": [
+        "一個根不夠",
+        "四根超過非零三次的根數上限",
+        "例如 $x(x-1)(x-2)$ 非零",
+        "只表示次數降低，例如 $p=1$ 仍非零。"
+      ]
+    },
+    "LA-CH03-S06-Q05": {
+      "markdown": "**提示：** 直接填入四個矩陣元素。\n\nA 相異節點條件不能獨立於多項式空間條件使用；B 此組不構成 $P_1$ 的基底；C 行列式其實是 0；D 直接取值得到正確矩陣。",
+      "optionExplanations": [
+        "相異節點條件不能獨立於多項式空間條件使用",
+        "此組不構成 $P_1$ 的基底",
+        "行列式其實是 0",
+        "直接取值得到正確矩陣。"
+      ]
+    },
+    "LA-CH03-S06-Q06": {
+      "markdown": "**提示：** 三個基底分別只在一個節點留下。\n\n$$L_0=x(x-1)/2,\\quad L_1=1-x^2,\\quad L_2=x(x+1)/2.$$\n$$P=2L_0+L_1+4L_2=2x^2+x+1.$$\n代入 $-1,0,1$ 分別得 $2,1,4$。由唯一性知這是唯一答案。評分 10 分：基底三式 3、權重組合 2、展開 2、代值 2、次數與唯一性 1。"
+    },
+    "LA-CH03-S06-Q07": {
+      "markdown": "**提示：** 將齊次方程的係數組成一個多項式。\n\n設 $Mc=0$，令 $p=\\sum_jc_jf_j$；由各 $f_j\\in P_{n-1}$ 得 $p\\in P_{n-1}$。每列給出 $p(a_i)=0$，相異的 $n$ 個根迫使 $p=0$。基底的線性獨立性再迫使每個 $c_j=0$。因此核只有零，方陣可逆。評分 10 分：設齊次方程 1、組多項式與次數 2、轉成節點零值 2、根數結論 2、基底獨立 2、可逆結論 1。\n\n手寫題自評共通規則：答對＝核心推理完整且計算正確；部分正確＝方法方向正確但條件、證明或計算有缺；不會＝未能建立有效解題方法。評分是參考，不保存使用者實際自評或作答。"
     }
   },
   "sourceReview": {
@@ -13053,6 +16895,245 @@ window.ZILIU_CONTENT = {
       "pendingExamCount": 15,
       "pendingExamImported": false,
       "note": "未取得七張原圖；例23、例7的矩陣依文字轉述，原例號待核。原例28缺少矩陣未重建，另以自編例題練習。前文標成不可逆的矩陣已更正，其行列式為 −94，實際可逆。同份跨節稿件共用候選索引，不逐節加總為獨立考古題數；未製作大章綜合測驗。"
+    },
+    {
+      "filename": "3-1_向量空間_第一階段內容審閱稿.md",
+      "sha256": "bf0b76be9b5822319b7dfc05f5dc54e62ba3bb7243c14277444987240a2ecfed",
+      "scope": "LA-CH03-S01",
+      "contentVersion": "0.1.0",
+      "status": "draft",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "sourceGroup": "3-1_向量空間_第一階段內容審閱稿.md",
+      "note": "未取得原始五張教材圖片，考古題僅有候選摘要。候選索引不列正式題庫；跨節共用索引不重複加總。"
+    },
+    {
+      "filename": "3-2_子空間_第一階段內容審閱稿.md",
+      "sha256": "a423bc9f000a0ab8e2fcabadf54177638eeb01131bfe63c4b169b8f815775a9d",
+      "scope": "LA-CH03-S02",
+      "contentVersion": "1.0-draft",
+      "status": "draft",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "sourceGroup": "3-2_子空間_第一階段內容審閱稿.md",
+      "note": "未取得原始十張教材圖片，八道教學例題皆為自編，十五筆考古題只有摘要。候選索引不列正式題庫；跨節共用索引不重複加總。"
+    },
+    {
+      "filename": "3-3_生成與線性獨立_第一階段內容稿.md",
+      "sha256": "615638223fce3e7c4a70e63c8e2394d02e77ec8964c2eafb1b96f715436ffeb5",
+      "scope": "LA-CH03-S03",
+      "contentVersion": "0.1.0",
+      "status": "draft",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "sourceGroup": "3-3_生成與線性獨立_第一階段內容稿.md",
+      "note": "未取得原始十四張教材照片。八道彙編轉錄另置待原卷核對閱讀區，不列正式題庫與作答統計；其餘候選只有摘要。候選索引不列正式題庫；跨節共用索引不重複加總。",
+      "readableTranscriptCount": 8
+    },
+    {
+      "filename": "3-5_3-6_直和與Lagrange內插法_第一階段審閱稿.md",
+      "sha256": "8987a01eff6e69b8179b9b0009c6c16436efd954989cbcafeac1dc1699c60773",
+      "scope": "LA-CH03-S05",
+      "contentVersion": "0.1.0",
+      "status": "draft",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "sourceGroup": "3-5_3-6_直和與Lagrange內插法_第一階段審閱稿.md",
+      "note": "未取得原始八張教材圖片；教材轉錄例題及四點內插數據待原圖核對。候選索引不列正式題庫；跨節共用索引不重複加總。"
+    },
+    {
+      "filename": "3-5_3-6_直和與Lagrange內插法_第一階段審閱稿.md",
+      "sha256": "8987a01eff6e69b8179b9b0009c6c16436efd954989cbcafeac1dc1699c60773",
+      "scope": "LA-CH03-S06",
+      "contentVersion": "0.1.0",
+      "status": "draft",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "sourceGroup": "3-5_3-6_直和與Lagrange內插法_第一階段審閱稿.md",
+      "note": "未取得原始八張教材圖片；教材轉錄例題及四點內插數據待原圖核對。候選索引不列正式題庫；跨節共用索引不重複加總。"
+    }
+  ],
+  "pendingExamTranscripts": [
+    {
+      "id": "PY-NCTU-105-02",
+      "groupId": "PY-NCTU-105-02",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 105 第2題",
+      "examSubject": "線性代數與離散數學",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K05"
+      ],
+      "text": "2. (4%) Let $\\{x_1,x_2,x_3\\}$ be linearly independent (LID) vectors in $R^n$. Determine and explain whether each of the following vector sets is LID.\n\n(a) $y_1=x_1+x_2$, $y_2=x_2+x_3$ and $y_3=x_3+x_1$.\n\n(b) $z_1=x_2-x_1$, $z_2=x_3-x_2$ and $z_3=x_3-x_1$.",
+      "editorialSolution": "(a) 獨立。設 $\\sum a_iy_i=0$，按 $x_1,x_2,x_3$ 整理得 $a_1+a_3=a_1+a_2=a_2+a_3=0$，在實數域推出全零。(b) 相依，因 $z_1+z_2-z_3=0$。評分重點：使用已知獨立性比較係數；相依需有非平凡關係。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "45",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
+    },
+    {
+      "id": "PY-NCTU-102-05",
+      "groupId": "PY-NCTU-102-05",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 102 第5題",
+      "examSubject": "離散數學與線性代數",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K05",
+        "LA-CH03-S03-K07"
+      ],
+      "text": "5. (5%) The $a_1,a_2,\\ldots,a_n$ be $n$ columns vectors in $R^n$ and let $A=[a_1\\ a_2\\ \\cdots\\ a_n]$.\n\n(a) The vectors $a_1,a_2,\\ldots,a_n$ will be linearly independent if and only if $A$ is singular.\n\n(b) The vectors $a_1,a_2,\\ldots,a_n$ will be linearly independent if and only if $Ax=0$ has only the trivial solution $x=[0\\ 0\\ \\cdots\\ 0]^T$.\n\n(c) The rank if $A$ plus the nullity of $A$ equals $n$.\n\n(d) The rank of $A$ equals the rank of $A^T$.\n\n(e) All of the above are true.",
+      "editorialSolution": "正確為 (b)(c)(d)。(a) 把 nonsingular 寫成 singular，故錯；(b) 是定義的矩陣形式；(c) rank-nullity 定理的欄數為 $n$；(d) row rank 等於 column rank；(e) 因 (a) 錯而錯。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "32",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
+    },
+    {
+      "id": "PY-NCTU-101-05",
+      "groupId": "PY-NCTU-101-05",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 101 第5題",
+      "examSubject": "卷名待核對",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K06",
+        "LA-CH03-S03-K07"
+      ],
+      "text": "5. (5%) In a vector space $V$, we have two sets $S=\\{u_1,\\ldots,u_n\\}$ and $Q=\\{v_1,\\ldots,v_m\\}$. Which of these statements can be true?\n\n(a) $S$ is linearly independent, $Q$ spans $V$, and $n>m$.\n\n(b) $V$ has dimension $n$, $Q$ spans $V$, and $m\\ge n$.\n\n(c) $S$ and $Q$ are bases for $V$, and $n=m$.\n\n(d) $S$ is linearly independent, $Q$ is a subset of $S$ and $Q$ is linearly dependent.\n\n(e) $S$ is linearly dependent, $Q$ is a subset of $S$ and $Q$ is linearly independent.",
+      "editorialSolution": "可成立者為 (b)(c)(e)。(a) 獨立集大小不得大於有限生成集大小，正確不等式為 $n\\le m$，來源解答寫成嚴格不等式並不精確。(b) 生成集可含冗餘元素；(c) 基底大小一致；(d) 獨立集子集不會相依；(e) 相依集合可含獨立子集，例如 $\\{e_1,2e_1\\}$ 含 $\\{e_1\\}$。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "26",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
+    },
+    {
+      "id": "PY-NCTU-100-06",
+      "groupId": "PY-NCTU-100-06",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 100 第6題",
+      "examSubject": "卷名待核對",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K04"
+      ],
+      "text": "6. (5%) Let $A$, $B$ and $C$ be three matrices, and $AB=C$. Which of the followings are true?\n\n(a) The row space of $C$ is a subspace of the row space of $A$.\n\n(b) The column space of $C$ is a subspace of the column space of $A$.\n\n(c) The row space of $C$ is a subspace of the row space of $B$.\n\n(d) If the column vectors of $A$ are linearly dependent, then the column vectors of $C$ are linearly dependent.\n\n(e) If the row vectors of $A$ are linearly dependent, then the row vectors of $C$ are linearly dependent.\n\n編輯狀態：首句與選項已對照來源頁面，原文沒有指定矩陣尺寸。row／column 空間若所在維度不同，也會使 (a) 的普遍敘述不成立。",
+      "editorialSolution": "(b)(c)(e) 正確。(a) 一般只保證 $RS(AB)\\subseteq RS(B)$，不是 $RS(A)$。(b) $AB$ 的每個 column 都是 $A$ 的 columns 的線性組合。(c) 每個乘積 row 都是 $B$ 的 rows 的線性組合。(d) 反例取 $A=\\begin{bmatrix}1&0&0\\\\0&1&0\\end{bmatrix}$、$B=(1,0,0)^T$，$A$ columns 相依但 $AB=(1,0)^T$ 單向量獨立。(e) 若非零 row 係數 $z^T$ 使 $z^TA=0$，則 $z^TAB=0$，保留相依。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "19",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
+    },
+    {
+      "id": "PY-NCTU-102-08",
+      "groupId": "PY-NCTU-102-08",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 102 第8題",
+      "examSubject": "離散數學與線性代數",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K03",
+        "LA-CH03-S03-K04"
+      ],
+      "text": "8. (5%) Given a matrix $A=\\begin{bmatrix}2&3&1&5\\\\2&3&0&4\\\\0&0&1&1\\end{bmatrix}$, which of the following statements are TRUE?\n\n(a) $A$ has a column space of dimension 3.\n\n(b) The column space of $A$ is identical to the column space of matrix $\\begin{bmatrix}1&1&5\\\\1&0&4\\\\0&1&1\\end{bmatrix}$.\n\n(c) The left nullspace of $A$ is a line in $R^3$.\n\n(d) $A^TA$ is invertible.\n\n(e) If the two system $Ax=b$ and $Ax=c$ have the same shortest (minimal 2-norm) least-squares solution, then the projections of $b$ and $c$ onto the column space of $A$ must be identical.",
+      "editorialSolution": "(b)(c)(e) 正確。令 $a=(1,1,0)^T$、$b=(1,0,1)^T$，原矩陣 columns 為 $2a,3a,b,4a+b$，故 column space 維度為 2，(a) 錯。比較矩陣 columns 為 $a,b,4a+b$，span 相同，(b) 對。(c) 左零空間維度 $3-2=1$，對。(d) 四 columns 相依，故 $A^TA$ 奇異。(e) 同一最小平方解 $x$ 給出相同 $Ax$，亦即兩者在 column space 的投影相同。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "34",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
+    },
+    {
+      "id": "PY-NCTU-103-04",
+      "groupId": "PY-NCTU-103-04",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 103 第4題",
+      "examSubject": "線性代數與離散數學",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K04",
+        "LA-CH03-S03-K07"
+      ],
+      "text": "4. Consider the matrix $A=\\begin{bmatrix}1&2&1&2\\\\1&2&2&5\\\\0&0&1&3\\end{bmatrix}$.\n\n(a) (2%) Compute the dimensions of the column space $C(A)$ and the null-space $N(A)$.\n\n(b) (2%) Give and orthogonal basis for $C(A)$ and $N(A)$, respectively.\n\n(c) (2%) Find a projection matrix that projects any vector $b\\in R^3$ onto the column space $C(A)$.\n\n(d) (4%) Find the least-squares solutions to the problem $Ax=(-1,3,1)^T$.\n\n(e) (5%) Find the minimum-length, least-squares solutions to the problem $Ax=(-1,3,1)^T$.",
+      "editorialSolution": "(a) rank=2，nullity=2。(b) column space 可取正交基底 $(1,1,0)^T,(-1,1,2)^T$；null space 可取 $(-2,1,0,0)^T,(1/5,2/5,-3,1)^T$。前者由原矩陣 columns 1、3 做正交化；後者由化簡方程 $x_1+2x_2-x_4=0,x_3+3x_4=0$ 求出後正交化。(c) 投影矩陣 $P=\\frac16\\begin{bmatrix}4&2&-2\\\\2&4&2\\\\-2&2&4\\end{bmatrix}$，可用兩正交基底各自外積除以長度平方相加求得。(d) 先算 $P(-1,3,1)^T=(0,2,2)^T$，解 $Ax=(0,2,2)^T$ 得 $x=(-2-2s+t,s,2-3t,t)^T$。(e) 使此解與零空間正交：$5s-2t+4=0$、$2s-11t+8=0$，解得 $s=-28/51,t=32/51$，故最短解為 $(-14,-28,6,32)^T/51$。本題 (c)～(e) 屬後續內積與最小平方內容，初學本節先做 (a)，(b) 先找任意基底即可，勿冒稱已完成原題的正交要求。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "38–39",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
+    },
+    {
+      "id": "PY-NCTU-104-05",
+      "groupId": "PY-NCTU-104-05",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 104 第5題",
+      "examSubject": "線性代數與離散數學",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K07"
+      ],
+      "text": "5. (10%) Let $A$ be an $m\\times n$ matrix, $x\\in R^n$ denote a vector, and $L(x)=Ax$ be a linear transformation. row($A$), col($A$), and $N(A)$ respectively represent the row space, the column space, and the null space of $A$, rank($A$) and nullity($A$) respectively represent the rank and nullity of $A$. kernel($L$) and range($L$) respectively represent the kernel and the range of $L$. If $V$ is a vector space/subspace, dim($V$) denotes the dimension of $V$. Consider the following statements:\n\n(A) row($A$)$=R^n$.\n(B) col($A$)$=R^m$.\n(C) dim(col($A$))$<m$.\n(D) $Ax=0$ has infinite solutions.\n(E) $Ax=0$ has exactly one solution.\n(F) $Ax=0$ has no solutions.\n(G) $Ax=0$ is an inconsistent system.\n(H) $Ax=0$ is a consistent system.\n(I) $N(A)=\\varnothing$.\n(J) rank($A$)$=m$.\n(K) nullity($A$)$=m$.\n(L) kernel($L$)$=R^n$.\n(M) Range($L$)$=R^m$.\n(N) $AA^T$ is not symmetric.\n\n(a) (2%) which statements are always false?\n(b) (2%) which statements are always true?\n(c) (2%) Which statements are equivalent to the statement (B)?\n(d) (2%) What does the statement (L) imply about $L$?",
+      "editorialSolution": "(a) F、G、I、N 永遠錯：齊次方程有零解，零空間非空，$AA^T$ 對稱。(b) H 永遠對。(c) J、M 與 B 等價。(d) 應回答 $L$ 為零映射，因所有 $x$ 均在 kernel 中。來源只寫 D、H 未直接回答題目；若 $n\\ge1$，零映射確實有無限多齊次解。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "41",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
+    },
+    {
+      "id": "PY-NCTU-106-08",
+      "groupId": "PY-NCTU-106-08",
+      "subjectId": "linear-algebra",
+      "sectionId": "LA-CH03-S03",
+      "title": "交大資工 106 第8題",
+      "examSubject": "線性代數與離散數學",
+      "knowledgePointIds": [
+        "LA-CH03-S03-K05",
+        "LA-CH03-S03-K07"
+      ],
+      "text": "8. (10%)\n\n(a) (5%) Suppose $A$ is a 4 by 5 matrix and $B$ is a 5 by 7 matrix and $AB=0$. If rank($B$)=2, what is the maximum possible rank($A$)? and why?\n\n(b) (5%) Let $u,v$ and $w$ be vectors in $R^n$. Suppose $A$ is the sum of three matrices: $A=uv^T+vw^T+wu^T$. If $x_1u+x_2v+x_3w=0$ has a nonzero solution $(x_1,x_2,x_3)$, what is the maximum possible rank($A$)? And why?",
+      "editorialSolution": "(a) $CS(B)\\subseteq N(A)$，故 $2\\le5-\\operatorname{rank}(A)$，上界 3 可達：$A=[I_3\\ 0]$，$B$ 取只有第 4、5 rows 非零且互相獨立的矩陣。(b) 所有 $Ax=u(v^Tx)+v(w^Tx)+w(u^Tx)$ 都在 span$\\{u,v,w\\}$ 中，而已知三向量相依，故 rank 不超過 2，也不超過 $n$。$n\\ge2$ 時取 $u=e_1,v=e_2,w=e_1$，在前兩維得到 $\\begin{bmatrix}1&1\\\\1&0\\end{bmatrix}$，行列式為 -1，rank=2；$n=1$ 時最大為 1。因此一般答案為 $\\min(n,2)$（$n$ 為正整數）。來源推導不足以作正式詳解，已更正。",
+      "status": "pending_original",
+      "source": {
+        "kind": "unverified_compilation",
+        "title": "102～106年各校線代解答.zip／102-106線代題庫解答.pdf",
+        "pages": "50",
+        "pageConvention": "PDF 頁序，非頁尾頁碼",
+        "note": "使用者稿件提供的補教彙編轉錄，尚未取得官方原卷，未於本次重新核對來源。",
+        "filename": "3-3_生成與線性獨立_第一階段內容稿.md"
+      }
     }
   ]
 };
