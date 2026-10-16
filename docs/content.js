@@ -2095,7 +2095,1623 @@ window.ZILIU_CONTENT = {
       "name": "資料結構",
       "en": "DATA STRUCTURES",
       "icon": "tree",
-      "chapters": []
+      "chapters": [
+        {
+          "id": "DS-CH01",
+          "title": "第 1 章",
+          "titleStatus": "正式章名與教材完整性待核對",
+          "curriculumComplete": false,
+          "sections": [
+            {
+              "id": "DS-CH01-S01",
+              "title": "1-1 系統生命週期",
+              "sourceSectionId": "DS-C01-S01",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依前次六張講義整理文字重編，原圖、原例題與章節切分仍待確認。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S01-K01",
+                "DS-CH01-S01-K02",
+                "DS-CH01-S01-K03"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S01-B001",
+                  "type": "concept",
+                  "title": "五個階段",
+                  "provenance": "教材整理",
+                  "markdown": "系統生命週期（System Life Cycle）描述從需求到驗證的開發過程，不能把「程式能執行」視為完成全部工作。\n\n| 階段 | 要回答的問題 | 產出例子 |\n|---|---|---|\n| 需求 Requirements | 要做什麼、輸入輸出及限制是什麼？ | 搜尋資料須排序；找不到回傳 -1 |\n| 分析 Analysis | 問題如何分解？ | 讀入、檢查、搜尋、輸出 |\n| 設計 Design | 資料如何表示、操作如何進行？ | 排序陣列＋二元搜尋 |\n| 實作與修正 Refinement and Coding | 如何轉為可執行程式？ | 完成函式並逐步修正 |\n| 驗證 Verification | 對合法輸入是否符合規格？ | 正確性論證、測試、除錯 |",
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K01"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S01-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S01-E01",
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K01"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S01-B003",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K01"
+                  ],
+                  "prompt": "用自己的話為一個「查詢學生成績」程式寫輸入、輸出、合法輸入限制。"
+                },
+                {
+                  "id": "DS-CH01-S01-B004",
+                  "type": "concept",
+                  "title": "分析與設計",
+                  "provenance": "教材整理",
+                  "markdown": "由上而下（top-down）：先看整體，再拆成子問題。由下而上（bottom-up）：先建立可用的基本元件，再組合系統。兩者可以交互使用。\n\n資料物件（data objects）的表示法與操作演算法須一起考慮。陣列支援以索引直接取值；已排序陣列適合二元搜尋。若資料未排序，不能直接根據中間值排除一半。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K02"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S01-B005",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S01-E02",
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K02"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S01-B006",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K02"
+                  ],
+                  "prompt": "畫出「排序服務」的由上而下拆解，再列出可由下而上重用的函式。"
+                },
+                {
+                  "id": "DS-CH01-S01-B007",
+                  "type": "concept",
+                  "title": "驗證",
+                  "provenance": "教材整理 · 含自編補充",
+                  "markdown": "正確性證明（correctness proof）要說明演算法在指定前提下對所有合法輸入成立；測試（testing）只檢查選定案例；除錯（debugging）定位並修正發現的問題。測試全部通過不等於已證明所有情況正確。\n\n自編補充：測試可含空資料、單一資料、邊界、重複值、找不到的目標。這些屬測試策略延伸，並非已確認原講義的完整清單。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K03"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S01-B008",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S01-E03",
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K03"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S01-B009",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K03"
+                  ],
+                  "prompt": "各寫一個正常案例與邊界案例，說明它們能發現什麼問題。"
+                },
+                {
+                  "id": "DS-CH01-S01-B010",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "需求 → 分析 → 設計 → 實作與修正 → 驗證。\n\n資料表示與操作須一起設計；由上而下與由下而上可交互使用。正確性證明、測試與除錯各有不同目的，有限測試不能取代對所有合法輸入的論證。"
+                },
+                {
+                  "id": "DS-CH01-S01-B011",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S01-AS01"
+                },
+                {
+                  "id": "DS-CH01-S01-B012",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S01-K01",
+                    "DS-CH01-S01-K02",
+                    "DS-CH01-S01-K03"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S01-AS01",
+                "scope": "section",
+                "title": "1-1 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S01-Q01",
+                  "DS-CH01-S01-Q02",
+                  "DS-CH01-S01-Q03",
+                  "DS-CH01-S01-Q04",
+                  "DS-CH01-S01-Q05",
+                  "DS-CH01-S01-W01",
+                  "DS-CH01-S01-W02"
+                ],
+                "totalPoints": 40,
+                "scoringNote": "選擇題各 4 分，手寫題各 10 分，共 40 分。",
+                "sourceId": "DS-AS01"
+              }
+            },
+            {
+              "id": "DS-CH01-S02",
+              "title": "1-2 演算法規格與遞迴",
+              "sourceSectionId": "DS-C01-S02",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依前次六張講義整理文字重編，原圖、原例題與章節切分仍待確認。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。自訂 A(n,m) 僅供暫定定義下的條件式練習，不當作原教材定義。",
+              "knowledgePointIds": [
+                "DS-CH01-S02-K04",
+                "DS-CH01-S02-K05",
+                "DS-CH01-S02-K06",
+                "DS-CH01-S02-K07",
+                "DS-CH01-S02-K08",
+                "DS-CH01-S02-K09",
+                "DS-CH01-S02-K10",
+                "DS-CH01-S02-K11",
+                "DS-CH01-S02-K12",
+                "DS-CH01-S02-K13"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S02-B001",
+                  "type": "concept",
+                  "title": "演算法及五項性質",
+                  "provenance": "教材整理",
+                  "markdown": "演算法（algorithm）是完成特定工作的有限步驟；程式（program）是以特定語言實作。相同演算法可以有不同語言實作。\n\n| 性質 | 意義 | 常見誤解 |\n|---|---|---|\n| 輸入 Input | 零個或多個輸入 | 不一定至少一個 |\n| 輸出 Output | 至少一項結果 | 回傳值、輸出資料等須符合規格 |\n| 明確性 Definiteness | 指令清楚且無歧義 | 「夠好時停止」未定義夠好 |\n| 有限性 Finiteness | 對合法輸入於有限步驟終止 | 有基底不代表一定到得了 |\n| 有效性 Effectiveness | 每一步足夠基本且可實際完成 | 不是要求時間複雜度一定很低 |",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K04"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E04",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K04"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B003",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K04"
+                  ],
+                  "prompt": "自行寫一個缺乏明確性的指令，再改成可執行條件。"
+                },
+                {
+                  "id": "DS-CH01-S02-B004",
+                  "type": "concept",
+                  "title": "選擇排序（Selection Sort）",
+                  "provenance": "教材整理 · 含自編補充",
+                  "markdown": "令 n 為元素個數，索引為 0 至 n−1。第 i 輪從索引 i 至 n−1 找最小值，放到位置 i。`min_index` 儲存索引，`a[min_index]` 才是值。\n\n```text\nselection_sort(a, n):\n    for i = 0 to n-2:\n        min_index = i\n        for j = i+1 to n-1:\n            if a[j] < a[min_index]: min_index = j\n        if min_index != i: swap(a[i], a[min_index])\n```\n\n正確性：開始時已排序前綴為空；每輪把剩餘最小元素放到其最終位置，前綴維持有序且不大於後綴；n−1 輪後最後元素也在正確位置。\n\n比較數：第一輪 n−1 次、第二輪 n−2 次，直到 1 次。\n\n$$C(n)=\\sum_{k=1}^{n-1}k=\\frac{n(n-1)}2.$$\n\nΣ（sigma）表示把指定範圍各項相加；k 是求和索引。比較成本在最佳、平均與最差皆為 $\\Theta(n^2)$；額外空間 $\\Theta(1)$。Θ 表示上下界同階，O 只表示漸近上界。\n\n自編延伸：此交換版通常不穩定（stable），例如 `[2a,2b,1]` 第一輪變 `[1,2b,2a]`，兩個值為 2 的元素相對順序改變。交換最多 n−1 次；是否計入與自身交換須看程式。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K05"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B005",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E05",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K05"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B006",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K05"
+                  ],
+                  "prompt": "逐輪追蹤 DS-E05 的 i、min_index、陣列，另寫出比較數。"
+                },
+                {
+                  "id": "DS-CH01-S02-B007",
+                  "type": "concept",
+                  "title": "二元搜尋（Binary Search）",
+                  "provenance": "教材整理",
+                  "markdown": "前提：資料依同一比較規則遞增排序，且此處採閉區間 `[left,right]`。每次取中點，比較後排除不可能的半部。\n\n```text\nbinary_search(a, n, x):\n    left = 0; right = n-1\n    while left <= right:\n        mid = left + (right-left)//2\n        if a[mid] == x: return mid\n        if x < a[mid]: right = mid-1\n        else: left = mid+1\n    return -1\n```\n\n`//` 為非負整數整除。閉區間剩一個元素時仍須檢查，所以條件用 `<=`。更新用 mid±1 排除已檢查元素，確保規模縮小。中點形式可避免直接計算 left+right 所造成的部分整數溢位問題。\n\n不變量：若目標存在，尚未排除的可能位置在當前區間內。區間為空時，目標不存在。最佳時間 $\\Theta(1)$；最差 $\\Theta(\\log n)$。迭代額外空間 $\\Theta(1)$；一般遞迴版最差堆疊 $\\Theta(\\log n)$。基本版本只找任一相符位置，未保證第一或最後一個。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K06"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B008",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E06",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K06"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B009",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K06"
+                  ],
+                  "prompt": "逐列記錄 left、right、mid、a[mid]，在每列寫出排除理由。"
+                },
+                {
+                  "id": "DS-CH01-S02-B010",
+                  "type": "concept",
+                  "title": "遞迴設計（Recursion）",
+                  "provenance": "教材整理",
+                  "markdown": "直接遞迴：A 呼叫 A。間接遞迴：A 呼叫 B，B 經呼叫鏈回到 A。兩者都須有基底情況（base case）、遞迴關係（recursive case）與能朝基底前進的規模量。\n\n呼叫堆疊（call stack）保存各次呼叫的參數、區域狀態與返回位置。總呼叫數影響時間，最大同時未返回的呼叫數影響堆疊空間；兩者不同。若未指定編譯器最佳化，不假設尾端呼叫自動消除。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K07"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B011",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E07",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K07"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B012",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K07"
+                  ],
+                  "prompt": "畫出 DS-E07 的呼叫展開及返回順序，並各寫總呼叫數與深度。"
+                },
+                {
+                  "id": "DS-CH01-S02-B013",
+                  "type": "concept",
+                  "title": "階乘（Factorial）",
+                  "provenance": "教材整理",
+                  "markdown": "$$0!=1,\\qquad n!=n(n-1)!\\quad(n\\geq1).$$\n\nn 為非負整數。每次 n 減一，終止於 0。單位成本模型下時間 $\\Theta(n)$，一般遞迴堆疊 $\\Theta(n)$；迭代只需常數額外空間。負數須拒絕；固定寬度整數可能溢位。大整數乘法成本另計，不能把此模型無條件套用任意大 n。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K08"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B014",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E08",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K08"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B015",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K08"
+                  ],
+                  "prompt": "分開寫「向下呼叫」與「向上回傳」，不要只寫最後答案。"
+                },
+                {
+                  "id": "DS-CH01-S02-B016",
+                  "type": "concept",
+                  "title": "費波那契數列（Fibonacci Sequence）",
+                  "provenance": "教材整理 · 含自編補充",
+                  "markdown": "$$F_0=0,\\quad F_1=1,\\quad F_n=F_{n-1}+F_{n-2}\\ (n\\geq2).$$\n\n下標 n 是項目編號，不是乘法。直接遞迴重複求解相同子問題。若 C(n) 計所有函式進入次數（包含初始呼叫），則\n\n$$C(0)=C(1)=1,\\quad C(n)=1+C(n-1)+C(n-2)=2F_{n+1}-1.$$\n\n最後等式可由歸納法驗證：基底各為 1；代入前兩項公式後得到 $2(F_n+F_{n-1})-1=2F_{n+1}-1$。直接遞迴時間 $\\Theta(\\varphi^n)$，$\\varphi=(1+\\sqrt5)/2$；$O(2^n)$ 也是合法較寬上界，堆疊 $\\Theta(n)$。\n\n自編延伸：記憶化（memoization）保存已求結果，單位成本模型下時間 $\\Theta(n)$、快取 $\\Theta(n)$；命中快取仍算一次函式進入。迭代只保留最近兩項，時間 $\\Theta(n)$、額外空間 $\\Theta(1)$。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K09"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B017",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E09",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K09"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B018",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K09"
+                  ],
+                  "prompt": "畫 Fib(4) 呼叫樹，用不同記號圈出重複的子問題。"
+                },
+                {
+                  "id": "DS-CH01-S02-B019",
+                  "type": "concept",
+                  "title": "自訂二維遞迴：待原圖確認",
+                  "provenance": "條件式自編 · 定義待原圖確認",
+                  "markdown": "前次整理先稱此題為二項式係數，後又指出原講義邊界不同。為避免沿用錯誤，本稿不把它命名為二項式係數。暫依前次整理末段所述，以以下定義作「條件式自編練習」，原講義正式內容待核對：\n\n$$A(n,0)=n+1,\\quad A(0,m)=1,\\quad A(n,m)=A(n-1,m)+A(n,m-1)\\ (n,m\\geq1).$$\n\nn、m 為非負整數，交點 A(0,0)=1 一致。此定義允許 m>n，不可套用一般二項式係數的定義域限制。可逐列填表，不必展開大量重複遞迴。\n\n自編延伸：此暫定函式其實滿足 $A(n,m)=\\binom{n+m+1}{n}$，但不等於 $\\binom nm$；由邊界及帕斯卡恆等式可驗證。正式教材不依此推測反向重建原題。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K10"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B020",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E10",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K10"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B021",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K10"
+                  ],
+                  "prompt": "畫 n=0～2、m=0～3 的表格，先填邊界再填內格。"
+                },
+                {
+                  "id": "DS-CH01-S02-B022",
+                  "type": "concept",
+                  "title": "最大公因數（Greatest Common Divisor）",
+                  "provenance": "教材整理",
+                  "markdown": "歐幾里得演算法（Euclidean Algorithm）：$\\gcd(a,b)=\\gcd(b,a\\bmod b)$，其中 mod 表示除法餘數。對 a≥0、b>0，餘數在 0 至 b−1，規模嚴格縮小。\n\n```text\ngcd(a,b):\n    a = abs(a); b = abs(b)\n    if b == 0: return a\n    return gcd(b, a mod b)\n```\n\n先判斷 b=0 再取餘數，避免除以零。數學上 gcd(0,0) 依採用慣例另訂；此程式回傳 0 是程式規格選擇。單位成本下餘數步驟數為對數級；真實位元運算成本另計。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K11"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B023",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E11",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K11"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B024",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K11"
+                  ],
+                  "prompt": "逐行寫除法式，最後用公因數驗算結果。"
+                },
+                {
+                  "id": "DS-CH01-S02-B025",
+                  "type": "concept",
+                  "title": "排列（Permutations）與回溯（Backtracking）",
+                  "provenance": "教材整理",
+                  "markdown": "n 個互異元素有 n! 種排列。固定位置 i 的候選元素，再處理後面位置；每個遞迴分支返回後交換回來，恢復下一個分支需要的狀態。\n\n```text\npermute(a, i, n):\n    if i == n:\n        output(a)\n        return\n    for j = i to n-1:\n        swap(a[i], a[j])\n        permute(a, i+1, n)\n        swap(a[i], a[j])\n```\n\n若每個完整排列列印 n 個元素，總時間 $\\Theta(n\\cdot n!)$；一般遞迴額外空間 $\\Theta(n)$，不含存下全部輸出的空間。重複元素可能產生重複排列。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K12"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B026",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E12",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K12"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B027",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K12"
+                  ],
+                  "prompt": "選一個分支寫出交換前、遞迴後、交換復原後三個狀態。"
+                },
+                {
+                  "id": "DS-CH01-S02-B028",
+                  "type": "concept",
+                  "title": "河內塔（Towers of Hanoi）",
+                  "provenance": "教材整理",
+                  "markdown": "三根柱子中，把 n 個盤從 A 搬到 C、以 B 輔助，一次一盤且大盤不能放小盤上。先把 n−1 盤由 A 搬到 B，再搬最大盤 A→C，再把 n−1 盤 B→C。\n\n$$T(0)=0,\\qquad T(n)=2T(n-1)+1.$$\n\n展開 k 層得 $T(n)=2^kT(n-k)+(2^k-1)$。令 k=n，因 T(0)=0，得到 $T(n)=2^n-1$。此處 T 是移動次數；它也給出逐步輸出移動的時間 $\\Theta(2^n)$，遞迴堆疊 $\\Theta(n)$。\n\n最少性理由：最大盤移動前，n−1 個小盤必須離開來源並聚於另一柱；移動後還要搬到目標，兩段各至少需要 T(n−1) 次，另加最大盤一次。上述演算法剛好達到此界。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K13"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B029",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S02-E13",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K13"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S02-B030",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K13"
+                  ],
+                  "prompt": "列出 3 盤七步，逐步確認沒有大盤壓小盤。"
+                },
+                {
+                  "id": "DS-CH01-S02-B031",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "| 方法 | 核心條件／辨識 | 單位成本時間 | 額外空間 |\n|---|---|---|---|\n| 選擇排序 | 每輪剩餘最小值 | $\\Theta(n^2)$ | $\\Theta(1)$ |\n| 迭代二元搜尋 | 已排序、規模減半 | 最佳$\\Theta(1)$，最差$\\Theta(\\log n)$ | $\\Theta(1)$ |\n| 遞迴階乘 | 非負整數、減一 | $\\Theta(n)$ | $\\Theta(n)$ |\n| 直接遞迴Fib | 兩分支且重疊 | $\\Theta(\\varphi^n)$ | $\\Theta(n)$ |\n| 迭代Fib | 保存最近兩項 | $\\Theta(n)$ | $\\Theta(1)$ |\n| 列印全排列 | n!個長n輸出 | $\\Theta(n\\cdot n!)$ | $\\Theta(n)$，不含輸出 |\n| 河內塔 | 搬小盤、搬最大、搬小盤 | $\\Theta(2^n)$ | $\\Theta(n)$ |\n\n最重要的檢查：①輸入是否合法；②基底是否先於非法操作；③規模是否縮小；④索引端點是否一致；⑤計算的是值、次數還是深度；⑥題目採哪一種成本模型。A(n,m) 定義待確認，不列成正式必背公式。"
+                },
+                {
+                  "id": "DS-CH01-S02-B032",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S02-AS01"
+                },
+                {
+                  "id": "DS-CH01-S02-B033",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S02-K04",
+                    "DS-CH01-S02-K05",
+                    "DS-CH01-S02-K06",
+                    "DS-CH01-S02-K07",
+                    "DS-CH01-S02-K08",
+                    "DS-CH01-S02-K09",
+                    "DS-CH01-S02-K10",
+                    "DS-CH01-S02-K11",
+                    "DS-CH01-S02-K12",
+                    "DS-CH01-S02-K13"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S02-AS01",
+                "scope": "section",
+                "title": "1-2 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S02-Q06",
+                  "DS-CH01-S02-Q07",
+                  "DS-CH01-S02-Q08",
+                  "DS-CH01-S02-Q09",
+                  "DS-CH01-S02-Q10",
+                  "DS-CH01-S02-W03",
+                  "DS-CH01-S02-W04"
+                ],
+                "totalPoints": 40,
+                "scoringNote": "選擇題各 4 分，手寫題各 10 分，共 40 分。",
+                "sourceId": "DS-AS02"
+              }
+            },
+            {
+              "id": "DS-CH01-S03",
+              "title": "1-3 資料抽象",
+              "sourceSectionId": "ds-01-03",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依先前教材整理重編，原始五張圖片、英文定義、完整程式及計費表格仍待核對。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S03-K1301",
+                "DS-CH01-S03-K1302",
+                "DS-CH01-S03-K1303"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S03-B001",
+                  "type": "concept",
+                  "title": "資料型態",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "資料型態（Data Type）由一組資料物件，以及可作用在這些物件上的運算構成。\n\n$$\\text{資料型態}=\\text{物件集合}+\\text{運算集合}$$\n\n例如整數型態包含整數值，以及加法、減法、比較等操作。實際程式語言的整數通常有表示範圍；數學整數則沒有固定上限。描述型態時必須說明採用哪個模型。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1301"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S03-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S03-E1301",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1301"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S03-B003",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1301"
+                  ],
+                  "prompt": "用自己的話比較「規格」「表示方式」「效能」；為一個 Queue 設計三項操作。"
+                },
+                {
+                  "id": "DS-CH01-S03-B004",
+                  "type": "concept",
+                  "title": "抽象資料型態",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "抽象資料型態（Abstract Data Type, ADT）描述資料及操作的對外行為，將規格與內部表示、程式實作分開。使用者依操作契約使用 ADT，無須依賴內部一定採用陣列或鏈結串列。\n\n| 層面 | 堆疊範例 |\n|---|---|\n| 資料物件 | 元素的有限序列 |\n| 行為規格 | push 加入頂端；pop 取出頂端，遵守後進先出（LIFO） |\n| 實作選擇 | 陣列、鏈結串列等 |\n| 成本 | 取決於實作及容量策略，不能僅從 ADT 名稱推定 |\n\n類別（class）可用來實作 ADT，但特定類別程式碼不等於抽象規格。相同 ADT 的不同實作可以有相同行為、不同效能。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1302"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S03-B005",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S03-E1302",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1302"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S03-B006",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S03-E14",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1302"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S03-B007",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1302"
+                  ],
+                  "prompt": "用自己的話比較「規格」「表示方式」「效能」；為一個 Queue 設計三項操作。"
+                },
+                {
+                  "id": "DS-CH01-S03-B008",
+                  "type": "concept",
+                  "title": "運算規格與角色",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "先前教材整理列出的運算規格項目為函式名稱（Function name）、引數型態（Argument type）與結果型態（Result type）。\n\n【延伸補充】要消除行為歧義，可再列前置條件、後置條件、狀態變化及錯誤情況。例如 pop 的結果可包含「被取出的元素」與「更新後堆疊」；可變物件實作則可能修改原物件。不得自行假定空堆疊 pop 必定回傳某個值。\n\n| 角色 | 意義 | 例子 |\n|---|---|---|\n| Creator／Constructor | 建立型態實例 | 建立空堆疊 |\n| Transformer | 改變狀態，或產生變換後實例 | push、pop |\n| Observer／Reporter | 查詢資訊 | size、isEmpty、top |\n\n判斷依據是操作效果。pop 常同時回報元素並改變狀態，因此不能因為它有回傳值就只列為 Observer。上述 Transformer 用語需與原圖定義再核對。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1303"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S03-B009",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S03-E1303",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1303"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S03-B010",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1303"
+                  ],
+                  "prompt": "用自己的話比較「規格」「表示方式」「效能」；為一個 Queue 設計三項操作。"
+                },
+                {
+                  "id": "DS-CH01-S03-B011",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "| 必記項目 | 一句話 |\n|---|---|\n| ADT | 定義資料與操作行為，內部表示可以更換 |\n| 運算規格 | 名稱、輸入型態、結果型態；完整契約再補條件與效果 |"
+                },
+                {
+                  "id": "DS-CH01-S03-B012",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S03-AS01"
+                },
+                {
+                  "id": "DS-CH01-S03-B013",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S03-K1301",
+                    "DS-CH01-S03-K1302",
+                    "DS-CH01-S03-K1303"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S03-AS01",
+                "scope": "section",
+                "title": "1-3 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S03-Q1301",
+                  "DS-CH01-S03-Q1302",
+                  "DS-CH01-S03-Q1303",
+                  "DS-CH01-S03-Q1304",
+                  "DS-CH01-S03-Q1305",
+                  "DS-CH01-S03-Q1306",
+                  "DS-CH01-S03-Q1307"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "ds-a1301"
+              }
+            },
+            {
+              "id": "DS-CH01-S04",
+              "title": "1-4 效能分析",
+              "sourceSectionId": "ds-01-04",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依先前教材整理重編，原始五張圖片、英文定義、完整程式及計費表格仍待核對。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S04-K1401",
+                "DS-CH01-S04-K1402",
+                "DS-CH01-S04-K1403",
+                "DS-CH01-S04-K1404",
+                "DS-CH01-S04-K1405",
+                "DS-CH01-S04-K1406"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S04-B001",
+                  "type": "concept",
+                  "title": "效能分析",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "時間需求衡量工作量；空間需求衡量同時需要的儲存量。理論分析先訂輸入規模及成本模型，推導成長；實測在指定硬體、語言、編譯器及資料上取得執行結果。實測時間與理論複雜度不是相同量。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1401"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S04-E1401",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1401"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B003",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1401"
+                  ],
+                  "prompt": "自行列出 n=0、1、3 的迴圈控制次數；畫出 rsum 呼叫堆疊最深的瞬間；註明是否計入輸入與輸出。"
+                },
+                {
+                  "id": "DS-CH01-S04-B004",
+                  "type": "concept",
+                  "title": "空間需求",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "$$S(P)=C+S_P(I)$$\n\nP 表示程式，I 表示輸入實例，C 是不隨輸入改變的固定空間，$S_P(I)$ 是依輸入變動的空間。分析漸近需求時，常再用 n 代表輸入規模。\n\n| 情況 | 在固定字長、每個元素固定大小的模型下 |\n|---|---|\n| 固定個數的參數、變數與暫存值 | $\\Theta(1)$ |\n| 新建 n 個元素的陣列 | $\\Theta(n)$ |\n| 新建 n×n 矩陣 | $\\Theta(n^2)$ |\n| 額外空間／輔助空間 | 不包含原有輸入；輸出是否計入須說明 |\n\n常數階不表示只占 1 byte。C/C++ 的陣列參數一般不複製整個陣列；不能因函式接收 list[] 就推定每次遞迴都配置一份 n 元素陣列。\n\n教材固定運算式範例：\n\n```c\nfloat abc(float a, float b, float c) {\n    return a+b+c*(a+b-c)/(a+b)+4;\n}\n```\n\n只有固定數量參數與暫存值，空間為常數階。這項成本結論不保證所有輸入都具有有效的數學結果；分母 a+b 的條件屬程式正確性問題。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1402"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B005",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S04-E1402",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1402"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B006",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1402"
+                  ],
+                  "prompt": "自行列出 n=0、1、3 的迴圈控制次數；畫出 rsum 呼叫堆疊最深的瞬間；註明是否計入輸入與輸出。"
+                },
+                {
+                  "id": "DS-CH01-S04-B007",
+                  "type": "concept",
+                  "title": "迴圈與遞迴加總",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "```c\nfloat sum(float list[], int n) {\n    float tempsum = 0;\n    for (int i = 0; i < n; i++)\n        tempsum += list[i];\n    return tempsum;\n}\n```\n\n前提 $n\\ge 0$，list 有至少 n 個可讀元素。迴圈讀取 n 個元素，時間 $\\Theta(n)$（n 趨大時），輔助空間 $\\Theta(1)$；若包含輸入陣列，總空間為 $\\Theta(n)$。\n\n先前轉述的教材遞迴版本為：\n\n```c\nfloat rsum(float list[], int n) {\n    if (n)\n        return rsum(list, n-1) + list[n-1];\n    return list[0];\n}\n```\n\n【待原圖核對的勘誤】若 n 表示元素個數，此版本在 n=0 時讀 list[0]；非空加總會多加一次 list[0]。例如 n=2 時得到 $2list[0]+list[1]$。這是對轉述程式的分析，尚不能斷言原書確實如此印刷。\n\n【編者修正版】\n\n```c\nfloat rsum(float list[], int n) {\n    if (n == 0) return 0;\n    return rsum(list, n-1) + list[n-1];\n}\n```\n\n每次把 n 減一，直到 0，共 $n+1$ 次呼叫。若每層非遞迴工作為常數：\n\n$$T(n)=T(n-1)+\\Theta(1),\\quad T(0)=\\Theta(1)$$\n\n展開 n 次得到 $T(n)=T(0)+n\\Theta(1)=\\Theta(n)$。一般未消除遞迴的執行模型中，最深同時有 $n+1$ 層，每層固定空間，所以輔助空間 $\\Theta(n)$。此函式返回前仍要進行加法，不是直接回傳遞迴結果的尾遞迴形式。\n\n空間看最大同時存在的框架，不看整段程式累積呼叫次數；同時深度與總呼叫數必須分開計算。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1403"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B008",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S04-E1403",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1403"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B009",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1403"
+                  ],
+                  "prompt": "自行列出 n=0、1、3 的迴圈控制次數；畫出 rsum 呼叫堆疊最深的瞬間；註明是否計入輸入與輸出。"
+                },
+                {
+                  "id": "DS-CH01-S04-B010",
+                  "type": "concept",
+                  "title": "步數、S/E 與頻率",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "S/E（Steps per Execution）表示敘述每次執行的計費步數；Frequency 表示執行次數。\n\n$$\\text{總步數}=\\sum_{i=1}^{m}s_i f_i$$\n\nΣ 是加總符號：i 從 1 到 m，把每列的 $s_i f_i$ 相加；m 是被計費的列數，$s_i$ 是該列每次步數，$f_i$ 是該列頻率。\n\n依先前表格採用的簡化計費約定：\n\n| sum 的計費項目 | S/E | 頻率 | 貢獻 |\n|---|---:|---:|---:|\n| tempsum 初始化 | 1 | 1 | 1 |\n| 迴圈控制列 | 1 | $n+1$ | $n+1$ |\n| 累加敘述 | 1 | n | n |\n| return | 1 | 1 | 1 |\n\n所以 $T(n)=1+(n+1)+n+1=2n+3$。這是表格的抽象計費方式，未把 i 初始化、i++ 等拆開另計；若題目要求每個基本操作逐項計費，就必須重新列式。不能把此數字當成通用 CPU 指令數。\n\n迴圈本體執行 n 次，但檢查 $n+1$ 次，因為最後還要一次失敗檢查。以 n=0 檢查邊界可知本體不執行、控制仍計一次。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1404"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B011",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S04-E1404",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1404"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B012",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1404"
+                  ],
+                  "prompt": "自行列出 n=0、1、3 的迴圈控制次數；畫出 rsum 呼叫堆疊最深的瞬間；註明是否計入輸入與輸出。"
+                },
+                {
+                  "id": "DS-CH01-S04-B013",
+                  "type": "concept",
+                  "title": "矩陣加法",
+                  "provenance": "教材整理 · 原圖待核對",
+                  "markdown": "```c\nfor (i = 0; i < rows; i++)\n    for (j = 0; j < cols; j++)\n        c[i][j] = a[i][j] + b[i][j];\n```\n\n令 r=rows、c=cols；此段數學中的 c 為欄數，程式 c[i][j] 則是輸出矩陣，兩者意義不同。r、c 為非負整數且矩陣容量足夠。\n\n| 計費列 | 頻率 |\n|---|---:|\n| 外層控制 | r+1 |\n| 內層控制 | r(c+1) |\n| 元素相加及指定 | rc |\n\n按每列一次算一步：\n\n$$T(r,c)=(r+1)+r(c+1)+rc=2rc+2r+1.$$\n\n因為每一列重新啟動內層迴圈，所以每列都有 c+1 次內層控制。對 $r,c\\ge 1$，時間為 $\\Theta(rc)$；若包含零維度情形，保留 $\\Theta(rc+r+1)$ 才完整。$r=c=n\\ge 1$ 時為 $\\Theta(n^2)$。\n\n【待核對】先前整理指出原表總數可能與列項不合；本稿只確認上述三項相加的代數結果，原表是否誤印須看原圖。\n\n若輸出矩陣新配置，輸出空間為 $\\Theta(rc)$；若排除輸入輸出、只算迴圈索引等工作空間，輔助空間為 $\\Theta(1)$。判斷時先交代空間口徑。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1405"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B014",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S04-E1405",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1405"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B015",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1405"
+                  ],
+                  "prompt": "自行列出 n=0、1、3 的迴圈控制次數；畫出 rsum 呼叫堆疊最深的瞬間；註明是否計入輸入與輸出。"
+                },
+                {
+                  "id": "DS-CH01-S04-B016",
+                  "type": "concept",
+                  "title": "漸近記號【延伸補充】",
+                  "provenance": "補充延伸",
+                  "markdown": "$f(n)=O(g(n))$ 表示存在正常數 C 與門檻 $n_0$，使所有 $n\\ge n_0$ 都滿足 $0\\le f(n)\\le Cg(n)$；Ω 是相應下界，Θ 同時要求上下界。這裡 C 是界的常數，與前文空間式的 C 屬不同使用情境。\n\n$2n+3=\\Theta(n)$，也屬 $O(n)$；它同時屬 $O(n^2)$，但後者較不緊。精確步數、漸近上界、緊確階不能混稱。定義沒有提到最佳或最壞案例，所以 O 不自動等於最壞情況；先選案例再分析函數。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1406"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B017",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S04-E1406",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1406"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S04-B018",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1406"
+                  ],
+                  "prompt": "自行列出 n=0、1、3 的迴圈控制次數；畫出 rsum 呼叫堆疊最深的瞬間；註明是否計入輸入與輸出。"
+                },
+                {
+                  "id": "DS-CH01-S04-B019",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "| 必記項目 | 一句話 |\n|---|---|\n| 時間分析 | 先定規模、成本模型與案例，再數頻率 |\n| 空間分析 | 先說是否計入輸入、輸出，再列同時配置 |\n| 精確步數 | 取決於一步的定義；不是通用指令數 |\n| 迴圈檢查 | n 次本體通常有 $n+1$ 次條件檢查 |\n| 遞迴空間 | 最大同時深度 × 每層額外空間 |\n| 矩陣加法 | 三列模型 $2rc+2r+1$；正維度為 $\\Theta(rc)$ |"
+                },
+                {
+                  "id": "DS-CH01-S04-B020",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S04-AS01"
+                },
+                {
+                  "id": "DS-CH01-S04-B021",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S04-K1401",
+                    "DS-CH01-S04-K1402",
+                    "DS-CH01-S04-K1403",
+                    "DS-CH01-S04-K1404",
+                    "DS-CH01-S04-K1405",
+                    "DS-CH01-S04-K1406"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S04-AS01",
+                "scope": "section",
+                "title": "1-4 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S04-Q1401",
+                  "DS-CH01-S04-Q1402",
+                  "DS-CH01-S04-Q1403",
+                  "DS-CH01-S04-Q1404",
+                  "DS-CH01-S04-Q1405",
+                  "DS-CH01-S04-Q1406",
+                  "DS-CH01-S04-Q1407"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "ds-a1401"
+              }
+            },
+            {
+              "id": "DS-CH01-S05",
+              "title": "1-5 漸近符號",
+              "sourceSectionId": "ds-s15",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S05-K15A",
+                "DS-CH01-S05-K15B",
+                "DS-CH01-S05-K15C"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S05-B-INTRO",
+                  "type": "concept",
+                  "title": "分析前，先讀符號與成本模型",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "$n$ 為輸入規模；$T(n)$ 為成本函數；$c,c_1,c_2$ 是不依賴 $n$ 的正常數；$n_0$ 是開始成立的門檻；$\\sum_{i=1}^n a_i$ 表示依序將 $a_1$ 到 $a_n$ 相加；$\\lfloor x\\rfloor$ 是不大於 $x$ 的最大整數；$\\Theta$ 為緊界，$O$ 為上界，$\\Omega$ 為下界。"
+                },
+                {
+                  "id": "DS-CH01-S05-B001",
+                  "type": "concept",
+                  "title": "上界、下界、緊界",
+                  "provenance": "教材整理",
+                  "markdown": "以下假設函數最終非負，$g(n)$ 最終為正。大 O（Big-O）描述漸近上界：存在 $c>0,n_0$，使所有 $n\\ge n_0$ 滿足 $0\\le f(n)\\le cg(n)$。大 Omega 描述漸近下界，將後一不等式改為 $cg(n)\\le f(n)$。Theta 描述緊界：存在 $c_1,c_2>0,n_0$，使 $c_1g(n)\\le f(n)\\le c_2g(n)$。因此 $f=\\Theta(g)$ 當且僅當同時 $f=O(g)$ 與 $f=\\Omega(g)$。記號中的等號是慣用寫法，並非一般代數等式。\n\n| 記號 | 要證明什麼 | 常見錯誤 |\n|---|---|---|\n| $O(g)$ | 最終不超過某常數倍 $g$ | 誤認一定是最緊上界 |\n| $\\Omega(g)$ | 最終不小於某正常數倍 $g$ | 誤認必定是最好情況 |\n| $\\Theta(g)$ | 同時有上界與下界 | 只證明其中一邊 |",
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S05-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S05-Q15E1",
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S05-B003",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15A"
+                  ],
+                  "prompt": "用定義寫出 $100n+6\\le101n$ 的成立門檻，並自行選另一組常數。"
+                },
+                {
+                  "id": "DS-CH01-S05-B004",
+                  "type": "concept",
+                  "title": "多項式與成長順序",
+                  "provenance": "教材整理",
+                  "markdown": "固定次數 $m\\ge0$ 的多項式，若最高次係數為正，則最終為 $\\Theta(n^m)$；負低次項須以不等式控制，不能對所有小 $n$ 直接忽略。固定常數倍與較低次項不改變漸近階。\n\n$$1\\prec\\log n\\prec n\\prec n\\log n\\prec n^2\\prec2^n\\prec n!.$$\n\n此處 $\\prec$ 表示比值趨近 0 的嚴格漸近較慢，並非每個固定輸入都較小。例如 $n=O(n^2)$ 成立，但 $n^2=O(n)$ 不成立。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S05-B005",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S05-Q15E2",
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S05-B006",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15B"
+                  ],
+                  "prompt": "用定義寫出 $100n+6\\le101n$ 的成立門檻，並自行選另一組常數。"
+                },
+                {
+                  "id": "DS-CH01-S05-B007",
+                  "type": "concept",
+                  "title": "情況分析與嚴格界",
+                  "provenance": "補充延伸",
+                  "markdown": "最好、平均、最壞情況先決定要研究哪個成本函數，再描述該函數的 $O,\\Omega,\\Theta$，兩者不是同一分類。小 o（little-o）定義：對每個 $c>0$，都存在門檻使 $f(n)\\le cg(n)$；在上述正性條件下等價於 $f(n)/g(n)\\to0$。小 omega 則表示比值趨近無窮。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15C"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S05-B008",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S05-Q15E3",
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15C"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S05-B009",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15C"
+                  ],
+                  "prompt": "用定義寫出 $100n+6\\le101n$ 的成立門檻，並自行選另一組常數。"
+                },
+                {
+                  "id": "DS-CH01-S05-B010",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "緊界證兩邊；上界可不緊；常數不隨 $n$ 改變；不要將 $O$ 等同最壞情況。"
+                },
+                {
+                  "id": "DS-CH01-S05-B011",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S05-AS01"
+                },
+                {
+                  "id": "DS-CH01-S05-B012",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S05-K15A",
+                    "DS-CH01-S05-K15B",
+                    "DS-CH01-S05-K15C"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S05-AS01",
+                "scope": "section",
+                "title": "1-5 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S05-Q15M1",
+                  "DS-CH01-S05-Q15M2",
+                  "DS-CH01-S05-Q15M3",
+                  "DS-CH01-S05-Q15M4",
+                  "DS-CH01-S05-Q15M5",
+                  "DS-CH01-S05-Q15W1",
+                  "DS-CH01-S05-Q15W2"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "ds-a15"
+              }
+            },
+            {
+              "id": "DS-CH01-S06",
+              "title": "1-6 程式與遞迴時間複雜度",
+              "sourceSectionId": "ds-s16",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S06-K16A",
+                "DS-CH01-S06-K16B",
+                "DS-CH01-S06-K16C"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S06-B-INTRO",
+                  "type": "concept",
+                  "title": "分析前，先讀符號與成本模型",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "$n$ 為輸入規模；$T(n)$ 為成本函數；$c,c_1,c_2$ 是不依賴 $n$ 的正常數；$n_0$ 是開始成立的門檻；$\\sum_{i=1}^n a_i$ 表示依序將 $a_1$ 到 $a_n$ 相加；$\\lfloor x\\rfloor$ 是不大於 $x$ 的最大整數；$\\Theta$ 為緊界，$O$ 為上界，$\\Omega$ 為下界。"
+                },
+                {
+                  "id": "DS-CH01-S06-B001",
+                  "type": "concept",
+                  "title": "迴圈轉求和",
+                  "provenance": "教材整理",
+                  "markdown": "先指定關鍵操作，再確認每層實際範圍。獨立的兩個 $n$ 次迴圈共有 $n^2$ 次操作；若第二層依第一層變動，必須求和：\n\n$$\\sum_{i=1}^n\\sum_{j=1}^i1=\\sum_{i=1}^ni=\\frac{n(n+1)}2=\\Theta(n^2).$$\n\n\n\n固定外層 $k$，若 $1\\le i,j\\le k$ 且只計 $i\\ne j$，有序對共 $k^2-k$ 個；累加得 $\\sum_{k=1}^n(k^2-k)=n(n+1)(n-1)/3=\\Theta(n^3)$。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S06-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S06-Q16E1",
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S06-B003",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16A"
+                  ],
+                  "prompt": "畫出兩種「兩個子呼叫」的遞迴樹，比較 $n/2$ 與 $n-1$ 的深度。"
+                },
+                {
+                  "id": "DS-CH01-S06-B004",
+                  "type": "concept",
+                  "title": "倍增、減半與開根號",
+                  "provenance": "教材整理",
+                  "markdown": "$i$ 從 1 開始反覆乘固定 $b>1$，達到 $n$ 約需 $\\log_b n$ 輪；$i=n$ 開始取 $\\lfloor i/2\\rfloor$，到 0 前共有 $\\lfloor\\log_2n\\rfloor+1$ 輪（每次正值時先執行本體）。若停止條件改成 $i>1$，精確次數會不同。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S06-B005",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S06-Q16E2",
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S06-B006",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16B"
+                  ],
+                  "prompt": "畫出兩種「兩個子呼叫」的遞迴樹，比較 $n/2$ 與 $n-1$ 的深度。"
+                },
+                {
+                  "id": "DS-CH01-S06-B007",
+                  "type": "concept",
+                  "title": "常見遞迴與成本",
+                  "provenance": "教材整理",
+                  "markdown": "以下小規模成本為正常數，除非另述，非遞迴工作是所列的緊確量級：\n\n| 遞迴式 | 思路 | 緊界 |\n|---|---|---|\n| $T(n)=T(n/2)+1$ | 一條路徑約 $\\log_2n$ 層 | $\\Theta(\\log n)$ |\n| $T(n)=2T(n/2)+1$ | 滿二元遞迴樹，$n$ 為 2 的冪時約 $2n-1$ 個節點 | $\\Theta(n)$ |\n| $T(n)=T(n-1)+n$ | $n+(n-1)+\\cdots+1$ | $\\Theta(n^2)$ |\n| $T(n)=2T(n-1)+1$ | 每層節點倍增、深度線性 | $\\Theta(2^n)$ |\n\n\n\n補充：單位成本模型假設基本算術操作成本固定；大整數計算不能未說明就採同一模型。遞迴時間與最大同時存在的呼叫堆疊不同；樸素 Fibonacci 時間 $\\Theta(\\varphi^n)$，堆疊深度 $\\Theta(n)$，其中 $\\varphi=(1+\\sqrt5)/2$。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16C"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S06-B008",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S06-Q16E3",
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16C"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S06-B009",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16C"
+                  ],
+                  "prompt": "畫出兩種「兩個子呼叫」的遞迴樹，比較 $n/2$ 與 $n-1$ 的深度。"
+                },
+                {
+                  "id": "DS-CH01-S06-B010",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "先數操作、再寫和式；節點總數不等於堆疊深度。"
+                },
+                {
+                  "id": "DS-CH01-S06-B011",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S06-AS01"
+                },
+                {
+                  "id": "DS-CH01-S06-B012",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S06-K16A",
+                    "DS-CH01-S06-K16B",
+                    "DS-CH01-S06-K16C"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S06-AS01",
+                "scope": "section",
+                "title": "1-6 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S06-Q16M1",
+                  "DS-CH01-S06-Q16M2",
+                  "DS-CH01-S06-Q16M3",
+                  "DS-CH01-S06-Q16M4",
+                  "DS-CH01-S06-Q16M5",
+                  "DS-CH01-S06-Q16W1",
+                  "DS-CH01-S06-Q16W2"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "ds-a16"
+              }
+            },
+            {
+              "id": "DS-CH01-S07",
+              "title": "1-7 主定理",
+              "sourceSectionId": "ds-s17",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S07-K17A",
+                "DS-CH01-S07-K17B"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S07-B-INTRO",
+                  "type": "concept",
+                  "title": "分析前，先讀符號與成本模型",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "$n$ 為輸入規模；$T(n)$ 為成本函數；$c,c_1,c_2$ 是不依賴 $n$ 的正常數；$n_0$ 是開始成立的門檻；$\\sum_{i=1}^n a_i$ 表示依序將 $a_1$ 到 $a_n$ 相加；$\\lfloor x\\rfloor$ 是不大於 $x$ 的最大整數；$\\Theta$ 為緊界，$O$ 為上界，$\\Omega$ 為下界。"
+                },
+                {
+                  "id": "DS-CH01-S07-B001",
+                  "type": "concept",
+                  "title": "形式與適用條件",
+                  "provenance": "教材整理",
+                  "markdown": "$$T(n)=aT(n/b)+f(n),\\qquad d=\\log_ba.$$\n\n$a\\ge1,b>1$ 必須是固定常數；$f(n)$ 最終非負，小規模成本為正常數。實際整數問題要處理取整，常見良性情況可維持階數，但不能完全略去遞迴的定義。\n\n| 情況 | 條件 | 結論 |\n|---|---|---|\n| 1：本層多項式級較小 | 存在 $\\varepsilon>0$，$f(n)=O(n^{d-\\varepsilon})$ | $\\Theta(n^d)$ |\n| 2：同級含對數因子 | $f(n)=\\Theta(n^d\\log^k n)$，本稿採 $k\\ge0$ 版本 | $\\Theta(n^d\\log^{k+1}n)$ |\n| 3：本層多項式級較大 | $f(n)=\\Omega(n^{d+\\varepsilon})$，且 $af(n/b)\\le cf(n)$ 對某 $c<1$ 最終成立 | $\\Theta(f(n))$ |\n\n第二列為常用擴充版；不能將 $k=-1$ 自動代入此表。第三列的額外條件稱正則性（regularity）。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S07-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S07-Q17E1",
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S07-B003",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S07-Q17E2",
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S07-B004",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S07-Q17E3",
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S07-B005",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17A"
+                  ],
+                  "prompt": "自己列出 $a,b,d,f$，寫清楚適用情況與正則性。"
+                },
+                {
+                  "id": "DS-CH01-S07-B006",
+                  "type": "concept",
+                  "title": "快查與不能套用的情況",
+                  "provenance": "教材整理",
+                  "markdown": "| 遞迴式 | 緊界／限制 |\n|---|---|\n| $2T(n/2)+n$ | $\\Theta(n\\log n)$ |\n| $2T(n/2)+n\\log n$ | $\\Theta(n\\log^2n)$ |\n| $16T(n/4)+n^2$ | $\\Theta(n^2\\log n)$ |\n| $7T(n/2)+n^2$ | $\\Theta(n^{\\log_2 7})$ |\n| $2T(n/4)+\\sqrt n$ | $\\Theta(\\sqrt n\\log n)$ |\n| $nT(n/2)+1$ | $a=n$ 不是常數，不能套此表 |\n| $T(n-1)+n$ | 規模不是固定比例縮小，不能套此表 |",
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S07-B007",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S07-Q17E4",
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S07-B008",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17B"
+                  ],
+                  "prompt": "自己列出 $a,b,d,f$，寫清楚適用情況與正則性。"
+                },
+                {
+                  "id": "DS-CH01-S07-B009",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "先檢查形式；再算臨界項；最後驗證條件。"
+                },
+                {
+                  "id": "DS-CH01-S07-B010",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S07-AS01"
+                },
+                {
+                  "id": "DS-CH01-S07-B011",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S07-K17A",
+                    "DS-CH01-S07-K17B"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S07-AS01",
+                "scope": "section",
+                "title": "1-7 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S07-Q17M1",
+                  "DS-CH01-S07-Q17M2",
+                  "DS-CH01-S07-Q17M3",
+                  "DS-CH01-S07-Q17M4",
+                  "DS-CH01-S07-Q17M5",
+                  "DS-CH01-S07-Q17W1",
+                  "DS-CH01-S07-Q17W2"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "ds-a17"
+              }
+            },
+            {
+              "id": "DS-CH01-S08",
+              "title": "1-8 對數公式與函數排序",
+              "sourceSectionId": "ds-s18",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S08-K18A",
+                "DS-CH01-S08-K18B",
+                "DS-CH01-S08-K18C"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S08-B-INTRO",
+                  "type": "concept",
+                  "title": "分析前，先讀符號與成本模型",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "$n$ 為輸入規模；$T(n)$ 為成本函數；$c,c_1,c_2$ 是不依賴 $n$ 的正常數；$n_0$ 是開始成立的門檻；$\\sum_{i=1}^n a_i$ 表示依序將 $a_1$ 到 $a_n$ 相加；$\\lfloor x\\rfloor$ 是不大於 $x$ 的最大整數；$\\Theta$ 為緊界，$O$ 為上界，$\\Omega$ 為下界。"
+                },
+                {
+                  "id": "DS-CH01-S08-B001",
+                  "type": "concept",
+                  "title": "對數規則",
+                  "provenance": "教材整理",
+                  "markdown": "對數（logarithm）的底數 $b>0,b\\ne1$，真數為正；成長比較採固定 $b>1$。\n\n$$\\log_b1=0,\\quad\\log_bb=1,\\quad\\log_b(xy)=\\log_bx+\\log_by,\\quad\\log_b(x^r)=r\\log_bx.$$\n$$\\log_bx=\\frac{\\log_cx}{\\log_cb},\\quad b^{\\log_bx}=x,\\quad\\log_bb^r=r.$$\n\n換底時 $c>0,c\\ne1$。固定且大於 1 的底數之間只差正常數倍，因此不改變漸近階；精確計算仍要明寫底數。$\\log^kn=(\\log n)^k$，$\\log\\log n=\\log(\\log n)$。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S08-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S08-Q18E1",
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S08-B003",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18A"
+                  ],
+                  "prompt": "先整理相同底數，再比較對數；寫出每個轉換的定義域。"
+                },
+                {
+                  "id": "DS-CH01-S08-B004",
+                  "type": "concept",
+                  "title": "有限級數",
+                  "provenance": "教材整理",
+                  "markdown": "$$\\sum_{k=0}^m x^k=\\frac{x^{m+1}-1}{x-1}\\quad(x\\ne1),\\qquad\\sum_{k=0}^m k2^k=(m-1)2^{m+1}+2.$$\n\n第一式在 $x=1$ 時應直接用和式得 $m+1$。第二式可對第一式對 $x$ 微分，再乘 $x$ 並代入 2。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S08-B005",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S08-Q18E2",
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S08-B006",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18B"
+                  ],
+                  "prompt": "先整理相同底數，再比較對數；寫出每個轉換的定義域。"
+                },
+                {
+                  "id": "DS-CH01-S08-B007",
+                  "type": "concept",
+                  "title": "複雜函數比較",
+                  "provenance": "教材整理",
+                  "markdown": "$$a^{\\log_bn}=n^{\\log_ba},\\quad (\\log_2n)^{\\log_2n}=n^{\\log_2\\log_2n}.$$\n\n固定 $k,c>0$，有 $\\log^kn=o(n^c)$。Stirling 公式 $n!\\sim\\sqrt{2\\pi n}(n/e)^n$，其中 $\\sim$ 表示兩者比值趨近 1。因而固定 $a>1$ 時，$a^n\\prec n!\\prec n^n$。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18C"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S08-B008",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S08-Q18E3",
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18C"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S08-B009",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18C"
+                  ],
+                  "prompt": "先整理相同底數，再比較對數；寫出每個轉換的定義域。"
+                },
+                {
+                  "id": "DS-CH01-S08-B010",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "$\\log^2n$ 與 $\\log\\log n$ 不同；精確和式先處理整數上限。"
+                },
+                {
+                  "id": "DS-CH01-S08-B011",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S08-AS01"
+                },
+                {
+                  "id": "DS-CH01-S08-B012",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S08-K18A",
+                    "DS-CH01-S08-K18B",
+                    "DS-CH01-S08-K18C"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S08-AS01",
+                "scope": "section",
+                "title": "1-8 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S08-Q18M1",
+                  "DS-CH01-S08-Q18M2",
+                  "DS-CH01-S08-Q18M3",
+                  "DS-CH01-S08-Q18M4",
+                  "DS-CH01-S08-Q18M5",
+                  "DS-CH01-S08-Q18W1",
+                  "DS-CH01-S08-Q18W2"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "ds-a18"
+              }
+            },
+            {
+              "id": "DS-CH01-S09",
+              "title": "1-9 猜測法與漸近關係",
+              "sourceSectionId": "ds-s19",
+              "contentVersion": "0.1-review",
+              "reviewStatus": "draft",
+              "notice": "第一階段審閱稿：依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。自編例題、補充與勘誤另行標示；未核實考古題不列入正式題庫。",
+              "knowledgePointIds": [
+                "DS-CH01-S09-K19A",
+                "DS-CH01-S09-K19B"
+              ],
+              "blocks": [
+                {
+                  "id": "DS-CH01-S09-B-INTRO",
+                  "type": "concept",
+                  "title": "分析前，先讀符號與成本模型",
+                  "provenance": "前置說明",
+                  "knowledgePointIds": [],
+                  "markdown": "$n$ 為輸入規模；$T(n)$ 為成本函數；$c,c_1,c_2$ 是不依賴 $n$ 的正常數；$n_0$ 是開始成立的門檻；$\\sum_{i=1}^n a_i$ 表示依序將 $a_1$ 到 $a_n$ 相加；$\\lfloor x\\rfloor$ 是不大於 $x$ 的最大整數；$\\Theta$ 為緊界，$O$ 為上界，$\\Omega$ 為下界。"
+                },
+                {
+                  "id": "DS-CH01-S09-B001",
+                  "type": "concept",
+                  "title": "代入法／猜測加歸納",
+                  "provenance": "教材整理",
+                  "markdown": "猜測法（substitution method）：先由展開或遞迴樹猜階數，再用強歸納證明。要證明 $\\Theta$ 必須給上界與下界。歸納假設套用在更小規模，不能直接假設目前欲證的命題。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S09-B002",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S09-Q19E1",
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S09-B003",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S09-Q19E2",
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19A"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S09-B004",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19A"
+                  ],
+                  "prompt": "自行寫基底、歸納假設、代入與結論四步。"
+                },
+                {
+                  "id": "DS-CH01-S09-B005",
+                  "type": "concept",
+                  "title": "關係性質",
+                  "provenance": "教材整理",
+                  "markdown": "| 性質 | 敘述 |\n|---|---|\n| 遞移性 | $f=\\Theta(g),g=\\Theta(h)\\Rightarrow f=\\Theta(h)$；$O,\\Omega$ 也有遞移性 |\n| 反身性 | $f=\\Theta(f)$，也有 $f=O(f),f=\\Omega(f)$ |\n| 對稱性 | $f=\\Theta(g)\\iff g=\\Theta(f)$ |\n| 轉置對稱性 | $f=O(g)\\iff g=\\Omega(f)$ |",
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S09-B006",
+                  "type": "example",
+                  "exampleId": "DS-CH01-S09-Q19E3",
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19B"
+                  ]
+                },
+                {
+                  "id": "DS-CH01-S09-B007",
+                  "type": "note",
+                  "title": "停一下，寫成自己的理解",
+                  "layout": "split",
+                  "height": 230,
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19B"
+                  ],
+                  "prompt": "自行寫基底、歸納假設、代入與結論四步。"
+                },
+                {
+                  "id": "DS-CH01-S09-B008",
+                  "type": "summary",
+                  "title": "考前摘要與條件檢查",
+                  "markdown": "猜測不是證明；先處理基底；取整問題另驗；大 O 不具一般對稱性。"
+                },
+                {
+                  "id": "DS-CH01-S09-B009",
+                  "type": "assessment",
+                  "assessmentId": "DS-CH01-S09-AS01"
+                },
+                {
+                  "id": "DS-CH01-S09-B010",
+                  "type": "note",
+                  "title": "測驗後訂正與重點回想",
+                  "layout": "inline",
+                  "height": 250,
+                  "prompt": "記錄錯題、卡點與正確辨識線索，再遮住解答重做。原作答與訂正分開保留。",
+                  "knowledgePointIds": [
+                    "DS-CH01-S09-K19A",
+                    "DS-CH01-S09-K19B"
+                  ]
+                }
+              ],
+              "assessment": {
+                "id": "DS-CH01-S09-AS01",
+                "scope": "section",
+                "title": "1-9 小節測驗",
+                "questionIds": [
+                  "DS-CH01-S09-Q19M1",
+                  "DS-CH01-S09-Q19M2",
+                  "DS-CH01-S09-Q19M3",
+                  "DS-CH01-S09-Q19M4",
+                  "DS-CH01-S09-Q19M5",
+                  "DS-CH01-S09-Q19W1",
+                  "DS-CH01-S09-Q19W2"
+                ],
+                "totalPoints": null,
+                "scoringNote": "原稿未指定選擇題配分；僅呈現答對題數。兩題手寫各 10 分，由本人對照詳解自評。",
+                "sourceId": "ds-a19"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "algorithms",
@@ -3236,6 +4852,1682 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 自編模擬題"
       }
+    },
+    {
+      "id": "DS-CH01-S01-Q01",
+      "sourceId": "DS-Q01",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S01",
+      "title": "資料結構 1-1 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "訂出「找不到回傳 -1」主要屬於？",
+      "options": [
+        "需求",
+        "除錯",
+        "編碼",
+        "計時"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K01"
+      ],
+      "tags": [
+        "五個階段"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-Q02",
+      "sourceId": "DS-Q02",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S01",
+      "title": "資料結構 1-1 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "先把整體工作拆成讀入、處理、輸出，屬於？",
+      "options": [
+        "測試",
+        "由上而下",
+        "由下而上",
+        "除錯"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K02"
+      ],
+      "tags": [
+        "分析與設計"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-Q03",
+      "sourceId": "DS-Q03",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S01",
+      "title": "資料結構 1-1 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "測試全通過，能合理推出？",
+      "options": [
+        "所有輸入正確",
+        "不需要規格",
+        "已測案例未發現錯誤",
+        "不存在邊界錯誤"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K03"
+      ],
+      "tags": [
+        "驗證"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-Q04",
+      "sourceId": "DS-Q04",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S01",
+      "title": "資料結構 1-1 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "依中間值排除一半，必要前提為？",
+      "options": [
+        "資料互異",
+        "元素個數為偶數",
+        "已用鏈結串列",
+        "依相同比較規則排序"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K02"
+      ],
+      "tags": [
+        "分析與設計"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-Q05",
+      "sourceId": "DS-Q05",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S01",
+      "title": "資料結構 1-1 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "定位造成錯誤輸出的程式行並修正，屬於？",
+      "options": [
+        "除錯",
+        "需求",
+        "資料抽象",
+        "輸入設計"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K03"
+      ],
+      "tags": [
+        "驗證"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-W01",
+      "sourceId": "DS-W01",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S01",
+      "title": "資料結構 1-1 小節測驗 · 第 6 題",
+      "type": "手寫問答題",
+      "text": "為查詢已排序成績陣列設計服務，寫出五階段工作，並訂重複值與查無資料的規格。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K01",
+        "DS-CH01-S01-K02"
+      ],
+      "tags": [
+        "五個階段",
+        "分析與設計"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-W02",
+      "sourceId": "DS-W02",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S01",
+      "title": "資料結構 1-1 小節測驗 · 第 7 題",
+      "type": "手寫問答題",
+      "text": "寫三種搜尋邊界測試並說明目的，再說明測試與正確性證明的差別。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K03"
+      ],
+      "tags": [
+        "驗證"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-Q06",
+      "sourceId": "DS-Q06",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S02",
+      "title": "資料結構 1-2 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "下列何者正確？",
+      "options": [
+        "演算法必須有輸入",
+        "明確性等於速度快",
+        "可有零個輸入但須有輸出",
+        "有效性要求線性時間"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K04"
+      ],
+      "tags": [
+        "演算法及五項性質"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-Q07",
+      "sourceId": "DS-Q07",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S02",
+      "title": "資料結構 1-2 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "5 個互異元素以本稿選擇排序處理，元素比較幾次？",
+      "options": [
+        "4",
+        "10",
+        "20",
+        "依初始順序決定"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K05"
+      ],
+      "tags": [
+        "選擇排序（Selection Sort）"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-Q08",
+      "sourceId": "DS-Q08",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S02",
+      "title": "資料結構 1-2 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "閉區間搜尋中 x<a[mid] 應如何更新？",
+      "options": [
+        "left=mid",
+        "right=mid",
+        "left=mid+1",
+        "right=mid−1"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K06"
+      ],
+      "tags": [
+        "二元搜尋（Binary Search）"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-Q09",
+      "sourceId": "DS-Q09",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S02",
+      "title": "資料結構 1-2 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "本稿直接遞迴 Fib(3)，含初始呼叫共有？",
+      "options": [
+        "5",
+        "3",
+        "4",
+        "7"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K09"
+      ],
+      "tags": [
+        "費波那契數列（Fibonacci Sequence）"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-Q10",
+      "sourceId": "DS-Q10",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S02",
+      "title": "資料結構 1-2 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "下列何者正確？",
+      "options": [
+        "回溯不需復原",
+        "河內塔只需 n 次",
+        "列印互異元素全排列需 $\\Theta(n\\cdot n!)$ 時間",
+        "河內塔堆疊為 $\\Theta(2^n)$"
+      ],
+      "points": 4,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K12",
+        "DS-CH01-S02-K13"
+      ],
+      "tags": [
+        "排列（Permutations）與回溯（Backtracking）",
+        "河內塔（Towers of Hanoi）"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-W03",
+      "sourceId": "DS-W03",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S02",
+      "title": "資料結構 1-2 小節測驗 · 第 6 題",
+      "type": "手寫問答題",
+      "text": "寫非負整數階乘及非負整數 GCD 的遞迴虛擬碼；說明基底、規模下降與除零防護。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K07",
+        "DS-CH01-S02-K08",
+        "DS-CH01-S02-K11"
+      ],
+      "tags": [
+        "遞迴設計（Recursion）",
+        "階乘（Factorial）",
+        "最大公因數（Greatest Common Divisor）"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-W04",
+      "sourceId": "DS-W04",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S02",
+      "title": "資料結構 1-2 小節測驗 · 第 7 題",
+      "type": "手寫計算題",
+      "text": "分別建立 Fibonacci 總呼叫數與河內塔移動數的遞迴式；在 K10 暫定定義下求 A(2,2)，並說明為何不可直接套 C(2,2)。\n\n**條件式自編練習：以下暫定定義待原圖確認，僅在此定義成立下作答。**\n\n$$A(n,0)=n+1,\\quad A(0,m)=1,\\quad A(n,m)=A(n-1,m)+A(n,m-1)\\ (n,m\\geq1).$$\n\n$n,m$ 為非負整數。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K09",
+        "DS-CH01-S02-K10",
+        "DS-CH01-S02-K13"
+      ],
+      "tags": [
+        "費波那契數列（Fibonacci Sequence）",
+        "自訂二維遞迴：待原圖確認",
+        "河內塔（Towers of Hanoi）"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-Q1301",
+      "sourceId": "ds-q1301",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S03",
+      "title": "資料結構 1-3 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "資料型態的描述至少包括？",
+      "options": [
+        "只有大小",
+        "物件與運算",
+        "只有記憶體位址",
+        "只有函式名稱。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1301"
+      ],
+      "tags": [
+        "資料型態"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-Q1302",
+      "sourceId": "ds-q1302",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S03",
+      "title": "資料結構 1-3 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "何者屬實作選擇？",
+      "options": [
+        "Stack 後進先出",
+        "pop 移除頂端",
+        "空堆疊處理契約",
+        "Stack 使用鏈結串列儲存。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1302"
+      ],
+      "tags": [
+        "抽象資料型態"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-Q1303",
+      "sourceId": "ds-q1303",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S03",
+      "title": "資料結構 1-3 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "哪個操作主要是 Observer？",
+      "options": [
+        "size()",
+        "push(x)",
+        "建立空堆疊",
+        "清除全部元素。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1303"
+      ],
+      "tags": [
+        "運算規格與角色"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-Q1304",
+      "sourceId": "ds-q1304",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S03",
+      "title": "資料結構 1-3 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "關於空 Stack 的 pop，何者正確？",
+      "options": [
+        "必回傳 0",
+        "必忽略",
+        "應由操作規格定義",
+        "所有實作必當機。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1302",
+        "DS-CH01-S03-K1303"
+      ],
+      "tags": [
+        "抽象資料型態",
+        "運算規格與角色"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-Q1305",
+      "sourceId": "ds-q1305",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S03",
+      "title": "資料結構 1-3 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "相同 ADT 的兩種實作，何者可能不同？",
+      "options": [
+        "規格要求的元素順序",
+        "操作的時間成本",
+        "指定 pop 的抽象效果",
+        "規格要求的錯誤行為。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1302"
+      ],
+      "tags": [
+        "抽象資料型態"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-Q1306",
+      "sourceId": "ds-q1306",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S03",
+      "title": "資料結構 1-3 小節測驗 · 第 6 題",
+      "type": "手寫問答題",
+      "text": "自行規定 Queue 的 create、enqueue、dequeue、front、isEmpty；寫出資料物件、操作角色及空 Queue 限制。不要求程式實作。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1302",
+        "DS-CH01-S03-K1303"
+      ],
+      "tags": [
+        "抽象資料型態",
+        "運算規格與角色"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-Q1307",
+      "sourceId": "ds-q1307",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S03",
+      "title": "資料結構 1-3 小節測驗 · 第 7 題",
+      "type": "手寫計算題",
+      "text": "Stack 初始為空，依序 push(3)、push(8)、pop()、push(5)、top()。寫出狀態與回傳值，並說明以陣列或鏈結串列實作是否改變抽象結果。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1302"
+      ],
+      "tags": [
+        "抽象資料型態"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-Q1401",
+      "sourceId": "ds-q1401",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S04",
+      "title": "資料結構 1-4 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "$n\\ge 0$，for(i=0;i<n;i++) 的條件檢查次數為？",
+      "options": [
+        "n−1",
+        "n",
+        "2n",
+        "$n+1$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1404"
+      ],
+      "tags": [
+        "步數、S/E 與頻率"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-Q1402",
+      "sourceId": "ds-q1402",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S04",
+      "title": "資料結構 1-4 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "輸入 n 個元素，用固定變數迴圈加總，輔助空間為？採固定字長模型。",
+      "options": [
+        "$\\Theta(n)$",
+        "$\\Theta(1)$",
+        "$\\Theta(n^2)$",
+        "由加總數值大小直接決定。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1402"
+      ],
+      "tags": [
+        "空間需求"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-Q1403",
+      "sourceId": "ds-q1403",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S04",
+      "title": "資料結構 1-4 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "一般未消除遞迴的執行模型下，每層固定空間，遞迴深度 $n+1$，輔助空間為？",
+      "options": [
+        "$\\Theta(1)$",
+        "$\\Theta(\\log n)$",
+        "$\\Theta(n)$",
+        "$\\Theta(n^2)$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1403"
+      ],
+      "tags": [
+        "迴圈與遞迴加總"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-Q1404",
+      "sourceId": "ds-q1404",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S04",
+      "title": "資料結構 1-4 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$r,c\\ge 1$，依本稿矩陣加法三列計費規則，總步數為？",
+      "options": [
+        "$2rc+2r+1$",
+        "rc",
+        "2rc+r+1",
+        "r+c。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1405"
+      ],
+      "tags": [
+        "矩陣加法"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-Q1405",
+      "sourceId": "ds-q1405",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S04",
+      "title": "資料結構 1-4 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "何者正確？",
+      "options": [
+        "$O(1)$ 表示 1 byte",
+        "$O(n)$ 就是精確 n 步",
+        "一次實測可決定漸近階",
+        "$2n+3$ 屬 $\\Theta(n)$。"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1401",
+        "DS-CH01-S04-K1406"
+      ],
+      "tags": [
+        "效能分析",
+        "漸近記號【延伸補充】"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-Q1406",
+      "sourceId": "ds-q1406",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S04",
+      "title": "資料結構 1-4 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "對本稿轉述的錯誤版 rsum，以 [4,6]、n=2 展開，指出缺陷、修正程式，並分析修正後時間與輔助空間。\n\n以下是待原圖核對的轉述版本；此處 $n$ 表示元素個數：\n\n```c\nfloat rsum(float list[], int n) {\n    if (n)\n        return rsum(list, n-1) + list[n-1];\n    return list[0];\n}\n```",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1403"
+      ],
+      "tags": [
+        "迴圈與遞迴加總"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-Q1407",
+      "sourceId": "ds-q1407",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S04",
+      "title": "資料結構 1-4 小節測驗 · 第 7 題",
+      "type": "手寫計算題",
+      "text": "以下程式採三列計費：外層控制、內層控制、元素相加及指定，每列每次執行均算一步。\n\n```c\nfor (i = 0; i < rows; i++)\n    for (j = 0; j < cols; j++)\n        c[i][j] = a[i][j] + b[i][j];\n```\n\n依本稿三列計費規則，推導 r×c 矩陣加法步數，計算 r=3,c=2 的結果，分別分析「計入新輸出」與「不計輸入輸出」的空間，再處理 c=0 的時間。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1404",
+        "DS-CH01-S04-K1405"
+      ],
+      "tags": [
+        "步數、S/E 與頻率",
+        "矩陣加法"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15M1",
+      "sourceId": "ds-q15m1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S05",
+      "title": "資料結構 1-5 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "$f(n)=O(g(n))$ 的量詞順序何者正確？",
+      "options": [
+        "每個 $c>0$ 都對所有 $n\\ge1$ 成立",
+        "存在 $c>0,n_0$，對所有 $n\\ge n_0$ 成立",
+        "每個 $n$ 可任選不同 $c_n$",
+        "存在一個 $n$ 成立即可"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15A"
+      ],
+      "tags": [
+        "上界、下界、緊界"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15M2",
+      "sourceId": "ds-q15m2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S05",
+      "title": "資料結構 1-5 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "哪個敘述錯誤？",
+      "options": [
+        "$n=O(n^2)$",
+        "$n^2=\\Omega(n)$",
+        "$n^2=O(n)$",
+        "$3n+1=\\Theta(n)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15A"
+      ],
+      "tags": [
+        "上界、下界、緊界"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15M3",
+      "sourceId": "ds-q15m3",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S05",
+      "title": "資料結構 1-5 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "$100n+6\\le101n$ 對整數 $n$ 從何值起恆成立？",
+      "options": [
+        "1",
+        "2",
+        "5",
+        "6"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15B"
+      ],
+      "tags": [
+        "多項式與成長順序"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15M4",
+      "sourceId": "ds-q15m4",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S05",
+      "title": "資料結構 1-5 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "已知 $f/g\\to0$ 且兩者最終正，何者必成立？",
+      "options": [
+        "$f=o(g)$",
+        "$f=\\Theta(g)$",
+        "$g=O(f)$",
+        "$f=\\Omega(g)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15C"
+      ],
+      "tags": [
+        "情況分析與嚴格界"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15M5",
+      "sourceId": "ds-q15m5",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S05",
+      "title": "資料結構 1-5 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "「最壞情況」與大 O 的關係何者正確？",
+      "options": [
+        "兩者同義",
+        "大 O 只可用於最壞情況",
+        "先決定成本函數，再描述其漸近界",
+        "Omega 只可描述最好情況"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15C"
+      ],
+      "tags": [
+        "情況分析與嚴格界"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15W1",
+      "sourceId": "ds-q15w1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S05",
+      "title": "資料結構 1-5 小節測驗 · 第 6 題",
+      "type": "證明題",
+      "text": "用定義證明 $5n^2+2n+8=\\Theta(n^2)$。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15A"
+      ],
+      "tags": [
+        "上界、下界、緊界"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15W2",
+      "sourceId": "ds-q15w2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S05",
+      "title": "資料結構 1-5 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "令 $g(n)=n$；偶數時 $f(n)=n$、奇數時 $f(n)=1$。判斷 $f=O(g)$、$f=\\Omega(g)$、$f=o(g)$，並說明。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15C"
+      ],
+      "tags": [
+        "情況分析與嚴格界"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16M1",
+      "sourceId": "ds-q16m1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S06",
+      "title": "資料結構 1-6 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "$\\sum_{i=1}^n\\sum_{j=1}^i1$ 的值為何？",
+      "options": [
+        "$n^2$",
+        "$n(n+1)/2$",
+        "$n(n-1)/2$",
+        "$2^n$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16A"
+      ],
+      "tags": [
+        "迴圈轉求和"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16M2",
+      "sourceId": "ds-q16m2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S06",
+      "title": "資料結構 1-6 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "本題採 $n$ 為正整數。\n\n$i=n$；當 $i>0$ 時先操作再令 $i=\\lfloor i/2\\rfloor$。操作幾次？",
+      "options": [
+        "$\\lfloor\\log_2n\\rfloor+1$",
+        "$n$",
+        "$\\log_2\\log_2n$",
+        "$2^n$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16B"
+      ],
+      "tags": [
+        "倍增、減半與開根號"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16M3",
+      "sourceId": "ds-q16m3",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S06",
+      "title": "資料結構 1-6 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "$T(n)=2T(n-1)+1,T(1)=1$ 的緊界？",
+      "options": [
+        "$\\Theta(n)$",
+        "$\\Theta(n\\log n)$",
+        "$\\Theta(n^2)$",
+        "$\\Theta(2^n)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16C"
+      ],
+      "tags": [
+        "常見遞迴與成本"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16M4",
+      "sourceId": "ds-q16m4",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S06",
+      "title": "資料結構 1-6 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$T(n)=T(\\sqrt n)+1$、$n\\le2$ 時停止，緊界為何？",
+      "options": [
+        "$\\Theta(\\sqrt n)$",
+        "$\\Theta(\\log n)$",
+        "$\\Theta(\\log\\log n)$",
+        "$\\Theta(1)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16B"
+      ],
+      "tags": [
+        "倍增、減半與開根號"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16M5",
+      "sourceId": "ds-q16m5",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S06",
+      "title": "資料結構 1-6 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "固定 $k$，$1\\le i,j\\le k$ 且 $i\\ne j$，有序對個數？",
+      "options": [
+        "$k^2$",
+        "$k^2-k$",
+        "$k(k-1)/2$",
+        "$2k$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16A"
+      ],
+      "tags": [
+        "迴圈轉求和"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16W1",
+      "sourceId": "ds-q16w1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S06",
+      "title": "資料結構 1-6 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "令 i 從 1 到 n、j 從 0 到 i²−1、z 從 0 到 j−1，每次 z 迴圈執行一個固定成本操作。列出總次數及緊界。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16A"
+      ],
+      "tags": [
+        "迴圈轉求和"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16W2",
+      "sourceId": "ds-q16w2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S06",
+      "title": "資料結構 1-6 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "$T(n)=T(n-1)+n,T(1)=1$，求精確式並證明緊界。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16C"
+      ],
+      "tags": [
+        "常見遞迴與成本"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17M1",
+      "sourceId": "ds-q17m1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S07",
+      "title": "資料結構 1-7 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "何式不能直接套本稿主定理？",
+      "options": [
+        "$2T(n/2)+n$",
+        "$4T(n/2)+1$",
+        "$nT(n/2)+1$",
+        "$3T(n/4)+n^2$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "tags": [
+        "形式與適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17M2",
+      "sourceId": "ds-q17m2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S07",
+      "title": "資料結構 1-7 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "$T(n)=2T(n/4)+\\sqrt n$ 的緊界？",
+      "options": [
+        "$\\Theta(\\sqrt n\\log n)$",
+        "$\\Theta(\\sqrt n)$",
+        "$\\Theta(n)$",
+        "$\\Theta(n\\log n)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "tags": [
+        "形式與適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17M3",
+      "sourceId": "ds-q17m3",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S07",
+      "title": "資料結構 1-7 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "$T(n)=8T(n/2)+n^2$ 的緊界？",
+      "options": [
+        "$\\Theta(n^2)$",
+        "$\\Theta(n^2\\log n)$",
+        "$\\Theta(n^3\\log n)$",
+        "$\\Theta(n^3)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "tags": [
+        "形式與適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17M4",
+      "sourceId": "ds-q17m4",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S07",
+      "title": "資料結構 1-7 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$3T(n/2)+n^2$ 的正則性比值 $3f(n/2)/f(n)$？",
+      "options": [
+        "3",
+        "3/4",
+        "1",
+        "4/3"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "tags": [
+        "形式與適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17M5",
+      "sourceId": "ds-q17m5",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S07",
+      "title": "資料結構 1-7 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "$27T(n/3)+n^3/\\log n$ 不能直接套本稿三情況的原因？",
+      "options": [
+        "a 不是常數",
+        "b 不大於 1",
+        "與臨界項無多項式差距，且不符本稿 k≥0 的同級條件",
+        "遞迴樹也無法分析"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17B"
+      ],
+      "tags": [
+        "快查與不能套用的情況"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17W1",
+      "sourceId": "ds-q17w1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S07",
+      "title": "資料結構 1-7 小節測驗 · 第 6 題",
+      "type": "手寫計算題",
+      "text": "解 $T(n)=3T(n/4)+n\\log n$，並檢查第三種情況條件。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "tags": [
+        "形式與適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17W2",
+      "sourceId": "ds-q17w2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S07",
+      "title": "資料結構 1-7 小節測驗 · 第 7 題",
+      "type": "手寫計算題",
+      "text": "解 $T(n)=4T(n/2)+n^2\\log n$，再解釋每層成本。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "tags": [
+        "形式與適用條件"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18M1",
+      "sourceId": "ds-q18m1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S08",
+      "title": "資料結構 1-8 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "$\\log^2n$ 代表何者？",
+      "options": [
+        "$\\log(\\log n)$",
+        "$\\log(n^2)$",
+        "$2\\log n$",
+        "$(\\log n)^2$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18A"
+      ],
+      "tags": [
+        "對數規則"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18M2",
+      "sourceId": "ds-q18m2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S08",
+      "title": "資料結構 1-8 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "$4^{\\log_2n}$ 等於？",
+      "options": [
+        "$n^2$",
+        "$4n$",
+        "$n^4$",
+        "$\\log_2(n^4)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18A"
+      ],
+      "tags": [
+        "對數規則"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18M3",
+      "sourceId": "ds-q18m3",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S08",
+      "title": "資料結構 1-8 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "$\\sum_{k=0}^{m}k2^k$ 等於？",
+      "options": [
+        "$m2^m$",
+        "$2^{m+1}-1$",
+        "$(m-1)2^{m+1}+2$",
+        "$m(m+1)/2$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18B"
+      ],
+      "tags": [
+        "有限級數"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18M4",
+      "sourceId": "ds-q18m4",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S08",
+      "title": "資料結構 1-8 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "哪個由慢到快的順序正確？",
+      "options": [
+        "$n!\\prec2^n\\prec n^n$",
+        "$2^n\\prec n!\\prec n^n$",
+        "$n^n\\prec n!\\prec2^n$",
+        "$n!\\prec n^n\\prec2^n$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18C"
+      ],
+      "tags": [
+        "複雜函數比較"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18M5",
+      "sourceId": "ds-q18m5",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S08",
+      "title": "資料結構 1-8 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "$n>1$ 時 $n^{1/\\log_2n}$ 等於？",
+      "options": [
+        "1",
+        "$n$",
+        "$\\log_2n$",
+        "2"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18A"
+      ],
+      "tags": [
+        "對數規則"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18W1",
+      "sourceId": "ds-q18w1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S08",
+      "title": "資料結構 1-8 小節測驗 · 第 6 題",
+      "type": "證明題",
+      "text": "由有限等比和推導 $\\sum_{k=0}^m k2^k$。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18B"
+      ],
+      "tags": [
+        "有限級數"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18W2",
+      "sourceId": "ds-q18w2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S08",
+      "title": "資料結構 1-8 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "將 $\\log\\log n,\\sqrt{\\log n},\\log^2n,\\sqrt n$ 由慢到快排序，說明兩個關鍵比較。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18C"
+      ],
+      "tags": [
+        "複雜函數比較"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19M1",
+      "sourceId": "ds-q19m1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S09",
+      "title": "資料結構 1-9 小節測驗 · 第 1 題",
+      "type": "選擇題",
+      "text": "猜到遞迴階數後，下一步應做何事？",
+      "options": [
+        "直接當成證明",
+        "只驗一個很大的 n",
+        "處理基底並用歸納或其他方法證明界限",
+        "只跑幾個測資"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19A"
+      ],
+      "tags": [
+        "代入法／猜測加歸納"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19M2",
+      "sourceId": "ds-q19m2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S09",
+      "title": "資料結構 1-9 小節測驗 · 第 2 題",
+      "type": "選擇題",
+      "text": "$T(1)>0$ 時，$T(n)\\le cn\\log_2n$ 若從 $n=1$ 起證明，有什麼問題？",
+      "options": [
+        "右邊在 n=1 為 0，涵蓋不了正基底",
+        "c 一定要等於 1",
+        "log 不能用於遞迴",
+        "所有遞迴都不能歸納"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19A"
+      ],
+      "tags": [
+        "代入法／猜測加歸納"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19M3",
+      "sourceId": "ds-q19m3",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S09",
+      "title": "資料結構 1-9 小節測驗 · 第 3 題",
+      "type": "選擇題",
+      "text": "$f=O(g)$ 等價於？",
+      "options": [
+        "$g=O(f)$",
+        "$g=\\Omega(f)$",
+        "$f=\\Theta(g)$",
+        "$f=o(g)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19B"
+      ],
+      "tags": [
+        "關係性質"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19M4",
+      "sourceId": "ds-q19m4",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S09",
+      "title": "資料結構 1-9 小節測驗 · 第 4 題",
+      "type": "選擇題",
+      "text": "$f=O(g),g=O(h)$ 時可推出？",
+      "options": [
+        "$h=O(f)$",
+        "$f=\\Theta(h)$",
+        "$f=o(h)$",
+        "$f=O(h)$"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19B"
+      ],
+      "tags": [
+        "關係性質"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19M5",
+      "sourceId": "ds-q19m5",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S09",
+      "title": "資料結構 1-9 小節測驗 · 第 5 題",
+      "type": "選擇題",
+      "text": "$T(n)=2T(\\lfloor n/2\\rfloor)+n$ 的取整應如何處理？",
+      "options": [
+        "每層總成本一定恰為 n",
+        "可省略所有基底",
+        "上界用 floor≤n/2；下界另外控制各層取整損失",
+        "答案必變成線性"
+      ],
+      "points": null,
+      "scoringStatus": "unspecified",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19A"
+      ],
+      "tags": [
+        "代入法／猜測加歸納"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19W1",
+      "sourceId": "ds-q19w1",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S09",
+      "title": "資料結構 1-9 小節測驗 · 第 6 題",
+      "type": "證明題",
+      "text": "$T(n)=2T(n/2)+n$、$n=2^k,T(1)=t>0$，用歸納證明精確解。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19A"
+      ],
+      "tags": [
+        "代入法／猜測加歸納"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19W2",
+      "sourceId": "ds-q19w2",
+      "subjectId": "data-structures",
+      "chapterId": "DS-CH01",
+      "sectionId": "DS-CH01-S09",
+      "title": "資料結構 1-9 小節測驗 · 第 7 題",
+      "type": "證明題",
+      "text": "用大 O 定義證明遞移性，並給出大 O 不對稱的例子。",
+      "points": 10,
+      "scoringStatus": "specified",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19B"
+      ],
+      "tags": [
+        "關係性質"
+      ],
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬題"
+      }
     }
   ],
   "examples": [
@@ -4031,6 +7323,552 @@ window.ZILIU_CONTENT = {
         "kind": "simulation",
         "title": "使用者提供審閱稿 · 編寫例題，非原教材題"
       }
+    },
+    {
+      "id": "DS-CH01-S01-E01",
+      "sourceId": "DS-E01",
+      "title": "例題 01",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K01"
+      ],
+      "text": "設計整數搜尋服務，列出需求、分析、設計、實作、驗證各一項工作。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-E02",
+      "sourceId": "DS-E02",
+      "title": "例題 02",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K02"
+      ],
+      "text": "要在大量已排序整數中查值，說明如何由上而下拆解，並指出可重用的底層元件。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S01-E03",
+      "sourceId": "DS-E03",
+      "title": "例題 03",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "DS-CH01-S01-K03"
+      ],
+      "text": "搜尋程式已通過三個案例，是否已證明正確？提出尚應測試的案例與理由。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E04",
+      "sourceId": "DS-E04",
+      "title": "例題 04",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K04"
+      ],
+      "text": "「一直增加 x，直到感覺夠大」違反哪些性質？若改為整數 x 從 0 增至 10，問題如何改善？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E05",
+      "sourceId": "DS-E05",
+      "title": "例題 05",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K05"
+      ],
+      "text": "用本稿選擇排序將 [7,3,9,2] 遞增排序，列出每輪結果、總比較數與實際交換數。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E06",
+      "sourceId": "DS-E06",
+      "title": "例題 06",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K06"
+      ],
+      "text": "以本稿二元搜尋在 [2,5,8,11,16,20,24] 找 16，列出每次區間與中點。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E07",
+      "sourceId": "DS-E07",
+      "title": "例題 07",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K07"
+      ],
+      "text": "f(0)=0，n>0 時 f(n)=1+f(n−1)。求 f(3)、總呼叫數與最深同時呼叫數。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E08",
+      "sourceId": "DS-E08",
+      "title": "例題 08",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K08"
+      ],
+      "text": "展開 Fac(4)，以 Fac(0)=1 為基底，計算結果與總呼叫數。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E09",
+      "sourceId": "DS-E09",
+      "title": "例題 09",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K09"
+      ],
+      "text": "以本稿直接遞迴定義求 Fib(4)，分別計算回傳值、總呼叫數及最大呼叫層數。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E10",
+      "sourceId": "DS-E10",
+      "title": "例題 10",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K10"
+      ],
+      "text": "**條件式自編練習 · 定義待原圖確認**\n\n在 DS-K10 暫定定義成立下，求 A(2,2)、A(1,2)、A(2,3)。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E11",
+      "sourceId": "DS-E11",
+      "title": "例題 11",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K11"
+      ],
+      "text": "逐步計算 gcd(48,18)，並說明 gcd(48,0) 如何處理。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E12",
+      "sourceId": "DS-E12",
+      "title": "例題 12",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K12"
+      ],
+      "text": "以交換回溯法列出 [a,b,c] 的輸出順序，說明復原的用途。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S02-E13",
+      "sourceId": "DS-E13",
+      "title": "例題 13",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S02-K13"
+      ],
+      "text": "求 3 盤河內塔最少步數，列出 A→C、B 輔助的移動序列。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-E1301",
+      "sourceId": "ds-e1301",
+      "title": "例題 1301",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1301"
+      ],
+      "text": "若規格只寫「儲存一串數字」，能否完整描述資料型態？請補出兩種操作。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-E1302",
+      "sourceId": "ds-e1302",
+      "title": "例題 1302",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1302"
+      ],
+      "text": "甲用陣列實作 Stack，乙用鏈結串列實作 Stack。兩者對相同有效操作序列都有相同抽象結果，是否可實作同一 ADT？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-E1303",
+      "sourceId": "ds-e1303",
+      "title": "例題 1303",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1303"
+      ],
+      "text": "為 pop 撰寫規格並分類；已知空堆疊不允許 pop，非空時移除且回傳頂端元素。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S03-E14",
+      "sourceId": "DS-E14",
+      "title": "例題 14",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S03-K1302"
+      ],
+      "text": "**補充延伸例題**\n\n堆疊改由陣列換成鏈結串列後，哪些操作語意應保留？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-E1401",
+      "sourceId": "ds-e1401",
+      "title": "例題 1401",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1401"
+      ],
+      "text": "A 在某電腦跑得比 B 快，能否據此認定 A 的漸近階較低？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-E1402",
+      "sourceId": "ds-e1402",
+      "title": "例題 1402",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1402"
+      ],
+      "text": "掃描輸入陣列求最大值，只用索引與 max 兩變數，求輔助及含輸入的空間。假設 $n\\ge 1$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-E1403",
+      "sourceId": "ds-e1403",
+      "title": "例題 1403",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1403"
+      ],
+      "text": "修正版 rsum 對 [2,5,7]、n=3 的回傳值、呼叫次數、最深框架數為何？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-E1404",
+      "sourceId": "ds-e1404",
+      "title": "例題 1404",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1404"
+      ],
+      "text": "依本稿計費模型，sum 在 n=4 時各項頻率及總步數為何？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-E1405",
+      "sourceId": "ds-e1405",
+      "title": "例題 1405",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1405"
+      ],
+      "text": "2×3 矩陣相加時，三項頻率及總步數為何？輸出空間如何計？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S04-E1406",
+      "sourceId": "ds-e1406",
+      "title": "例題 1406",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "DS-CH01-S04-K1406"
+      ],
+      "text": "證明 $2n+3$ 屬 $\\Theta(n)$，並說明為何也屬 $O(n^2)$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15E1",
+      "sourceId": "ds-q15e1",
+      "title": "例題 15e1",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15A"
+      ],
+      "text": "證明 $7n^2+3n+5=\\Theta(n^2)$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15E2",
+      "sourceId": "ds-q15e2",
+      "title": "例題 15e2",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15B"
+      ],
+      "text": "證明 $4n^3-2n+1=\\Theta(n^3)$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S05-Q15E3",
+      "sourceId": "ds-q15e3",
+      "title": "例題 15e3",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S05-K15C"
+      ],
+      "text": "$n=o(n^2)$ 嗎？",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16E1",
+      "sourceId": "ds-q16e1",
+      "title": "例題 16e1",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16A"
+      ],
+      "text": "`for i=1..n; for j=1..i; for k=1..j: x++`，計算 `x++` 次數。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16E2",
+      "sourceId": "ds-q16e2",
+      "title": "例題 16e2",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16B"
+      ],
+      "text": "$T(n)=T(\\sqrt n)+1$，當 $n\\le2$ 時為正常數，求緊界。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S06-Q16E3",
+      "sourceId": "ds-q16e3",
+      "title": "例題 16e3",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S06-K16C"
+      ],
+      "text": "$T(n)=2T(n-1)+1$，若 $T(1)=1$，求精確解。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17E1",
+      "sourceId": "ds-q17e1",
+      "title": "例題 17e1",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "text": "$T(n)=4T(n/2)+n$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17E2",
+      "sourceId": "ds-q17e2",
+      "title": "例題 17e2",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "text": "$T(n)=2T(n/2)+n\\log^2n$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17E3",
+      "sourceId": "ds-q17e3",
+      "title": "例題 17e3",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17A"
+      ],
+      "text": "$T(n)=3T(n/2)+n^2$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S07-Q17E4",
+      "sourceId": "ds-q17e4",
+      "title": "例題 17e4",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S07-K17B"
+      ],
+      "text": "**補充延伸例題**\n\n$T(n)=27T(n/3)+n^3/\\log_3n$，$n=3^L$，$n\\le3$ 為正常數。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18E1",
+      "sourceId": "ds-q18e1",
+      "title": "例題 18e1",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18A"
+      ],
+      "text": "化簡 $4^{\\log_2n}$、$n^{1/\\log_2n}$，$n>1$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18E2",
+      "sourceId": "ds-q18e2",
+      "title": "例題 18e2",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18B"
+      ],
+      "text": "$n=2^m$，求 $\\sum_{k=0}^{\\log_2n}k2^k$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S08-Q18E3",
+      "sourceId": "ds-q18e3",
+      "title": "例題 18e3",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S08-K18C"
+      ],
+      "text": "排序 $n^2,(\\log_2n)^{\\log_2n},2^n$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19E1",
+      "sourceId": "ds-q19e1",
+      "title": "例題 19e1",
+      "type": "手寫計算題",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19A"
+      ],
+      "text": "$T(n)=2T(n/2)+n$，$n=2^k,T(1)=t>0$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19E2",
+      "sourceId": "ds-q19e2",
+      "title": "例題 19e2",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19A"
+      ],
+      "text": "**補充延伸例題**\n\n一般整數 $n\\ge2$，$T(n)=2T(\\lfloor n/2\\rfloor)+n$、$T(1)=t>0$，證明同樣緊界。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
+    },
+    {
+      "id": "DS-CH01-S09-Q19E3",
+      "sourceId": "ds-q19e3",
+      "title": "例題 19e3",
+      "type": "證明題",
+      "knowledgePointIds": [
+        "DS-CH01-S09-K19B"
+      ],
+      "text": "已知 $f\\le c_1g$、$g\\le c_2h$ 最終成立，證明 $f=O(h)$。",
+      "source": {
+        "kind": "simulation",
+        "title": "使用者提供審閱稿 · 自編模擬例題"
+      }
     }
   ],
   "knowledgePoints": [
@@ -4457,6 +8295,286 @@ window.ZILIU_CONTENT = {
       "difficulty": 5,
       "provenance": "補充延伸",
       "markdown": "允許 row、column 兩種操作時，可找到可逆 $P$、$Q$，使\n\n$$PAQ=\\begin{bmatrix}I_r&0\\\\0&0\\end{bmatrix},\\qquad r=\\operatorname{rank}(A).$$\n\n這稱矩陣等價的秩標準形，不是相似對角化。全 1 矩陣 $J$：先 $R_2\\leftarrow R_2-R_1$、$R_3\\leftarrow R_3-R_1$，剩第一 row 為 $(1,1,1)$；再 $C_2\\leftarrow C_2-C_1$、$C_3\\leftarrow C_3-C_1$，才得到 $\\operatorname{diag}(1,0,0)$。"
+    },
+    {
+      "id": "DS-CH01-S01-K01",
+      "sourceId": "DS-K01",
+      "title": "五個階段",
+      "difficulty": 1,
+      "provenance": "教材整理",
+      "markdown": "系統生命週期（System Life Cycle）描述從需求到驗證的開發過程，不能把「程式能執行」視為完成全部工作。\n\n| 階段 | 要回答的問題 | 產出例子 |\n|---|---|---|\n| 需求 Requirements | 要做什麼、輸入輸出及限制是什麼？ | 搜尋資料須排序；找不到回傳 -1 |\n| 分析 Analysis | 問題如何分解？ | 讀入、檢查、搜尋、輸出 |\n| 設計 Design | 資料如何表示、操作如何進行？ | 排序陣列＋二元搜尋 |\n| 實作與修正 Refinement and Coding | 如何轉為可執行程式？ | 完成函式並逐步修正 |\n| 驗證 Verification | 對合法輸入是否符合規格？ | 正確性論證、測試、除錯 |"
+    },
+    {
+      "id": "DS-CH01-S01-K02",
+      "sourceId": "DS-K02",
+      "title": "分析與設計",
+      "difficulty": 1,
+      "provenance": "教材整理",
+      "markdown": "由上而下（top-down）：先看整體，再拆成子問題。由下而上（bottom-up）：先建立可用的基本元件，再組合系統。兩者可以交互使用。\n\n資料物件（data objects）的表示法與操作演算法須一起考慮。陣列支援以索引直接取值；已排序陣列適合二元搜尋。若資料未排序，不能直接根據中間值排除一半。"
+    },
+    {
+      "id": "DS-CH01-S01-K03",
+      "sourceId": "DS-K03",
+      "title": "驗證",
+      "difficulty": 3,
+      "provenance": "教材整理 · 含自編補充",
+      "markdown": "正確性證明（correctness proof）要說明演算法在指定前提下對所有合法輸入成立；測試（testing）只檢查選定案例；除錯（debugging）定位並修正發現的問題。測試全部通過不等於已證明所有情況正確。\n\n自編補充：測試可含空資料、單一資料、邊界、重複值、找不到的目標。這些屬測試策略延伸，並非已確認原講義的完整清單。"
+    },
+    {
+      "id": "DS-CH01-S02-K04",
+      "sourceId": "DS-K04",
+      "title": "演算法及五項性質",
+      "difficulty": 1,
+      "provenance": "教材整理",
+      "markdown": "演算法（algorithm）是完成特定工作的有限步驟；程式（program）是以特定語言實作。相同演算法可以有不同語言實作。\n\n| 性質 | 意義 | 常見誤解 |\n|---|---|---|\n| 輸入 Input | 零個或多個輸入 | 不一定至少一個 |\n| 輸出 Output | 至少一項結果 | 回傳值、輸出資料等須符合規格 |\n| 明確性 Definiteness | 指令清楚且無歧義 | 「夠好時停止」未定義夠好 |\n| 有限性 Finiteness | 對合法輸入於有限步驟終止 | 有基底不代表一定到得了 |\n| 有效性 Effectiveness | 每一步足夠基本且可實際完成 | 不是要求時間複雜度一定很低 |"
+    },
+    {
+      "id": "DS-CH01-S02-K05",
+      "sourceId": "DS-K05",
+      "title": "選擇排序（Selection Sort）",
+      "difficulty": 3,
+      "provenance": "教材整理 · 含自編補充",
+      "markdown": "令 n 為元素個數，索引為 0 至 n−1。第 i 輪從索引 i 至 n−1 找最小值，放到位置 i。`min_index` 儲存索引，`a[min_index]` 才是值。\n\n```text\nselection_sort(a, n):\n    for i = 0 to n-2:\n        min_index = i\n        for j = i+1 to n-1:\n            if a[j] < a[min_index]: min_index = j\n        if min_index != i: swap(a[i], a[min_index])\n```\n\n正確性：開始時已排序前綴為空；每輪把剩餘最小元素放到其最終位置，前綴維持有序且不大於後綴；n−1 輪後最後元素也在正確位置。\n\n比較數：第一輪 n−1 次、第二輪 n−2 次，直到 1 次。\n\n$$C(n)=\\sum_{k=1}^{n-1}k=\\frac{n(n-1)}2.$$\n\nΣ（sigma）表示把指定範圍各項相加；k 是求和索引。比較成本在最佳、平均與最差皆為 $\\Theta(n^2)$；額外空間 $\\Theta(1)$。Θ 表示上下界同階，O 只表示漸近上界。\n\n自編延伸：此交換版通常不穩定（stable），例如 `[2a,2b,1]` 第一輪變 `[1,2b,2a]`，兩個值為 2 的元素相對順序改變。交換最多 n−1 次；是否計入與自身交換須看程式。"
+    },
+    {
+      "id": "DS-CH01-S02-K06",
+      "sourceId": "DS-K06",
+      "title": "二元搜尋（Binary Search）",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "前提：資料依同一比較規則遞增排序，且此處採閉區間 `[left,right]`。每次取中點，比較後排除不可能的半部。\n\n```text\nbinary_search(a, n, x):\n    left = 0; right = n-1\n    while left <= right:\n        mid = left + (right-left)//2\n        if a[mid] == x: return mid\n        if x < a[mid]: right = mid-1\n        else: left = mid+1\n    return -1\n```\n\n`//` 為非負整數整除。閉區間剩一個元素時仍須檢查，所以條件用 `<=`。更新用 mid±1 排除已檢查元素，確保規模縮小。中點形式可避免直接計算 left+right 所造成的部分整數溢位問題。\n\n不變量：若目標存在，尚未排除的可能位置在當前區間內。區間為空時，目標不存在。最佳時間 $\\Theta(1)$；最差 $\\Theta(\\log n)$。迭代額外空間 $\\Theta(1)$；一般遞迴版最差堆疊 $\\Theta(\\log n)$。基本版本只找任一相符位置，未保證第一或最後一個。"
+    },
+    {
+      "id": "DS-CH01-S02-K07",
+      "sourceId": "DS-K07",
+      "title": "遞迴設計（Recursion）",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "直接遞迴：A 呼叫 A。間接遞迴：A 呼叫 B，B 經呼叫鏈回到 A。兩者都須有基底情況（base case）、遞迴關係（recursive case）與能朝基底前進的規模量。\n\n呼叫堆疊（call stack）保存各次呼叫的參數、區域狀態與返回位置。總呼叫數影響時間，最大同時未返回的呼叫數影響堆疊空間；兩者不同。若未指定編譯器最佳化，不假設尾端呼叫自動消除。"
+    },
+    {
+      "id": "DS-CH01-S02-K08",
+      "sourceId": "DS-K08",
+      "title": "階乘（Factorial）",
+      "difficulty": 1,
+      "provenance": "教材整理",
+      "markdown": "$$0!=1,\\qquad n!=n(n-1)!\\quad(n\\geq1).$$\n\nn 為非負整數。每次 n 減一，終止於 0。單位成本模型下時間 $\\Theta(n)$，一般遞迴堆疊 $\\Theta(n)$；迭代只需常數額外空間。負數須拒絕；固定寬度整數可能溢位。大整數乘法成本另計，不能把此模型無條件套用任意大 n。"
+    },
+    {
+      "id": "DS-CH01-S02-K09",
+      "sourceId": "DS-K09",
+      "title": "費波那契數列（Fibonacci Sequence）",
+      "difficulty": 3,
+      "provenance": "教材整理 · 含自編補充",
+      "markdown": "$$F_0=0,\\quad F_1=1,\\quad F_n=F_{n-1}+F_{n-2}\\ (n\\geq2).$$\n\n下標 n 是項目編號，不是乘法。直接遞迴重複求解相同子問題。若 C(n) 計所有函式進入次數（包含初始呼叫），則\n\n$$C(0)=C(1)=1,\\quad C(n)=1+C(n-1)+C(n-2)=2F_{n+1}-1.$$\n\n最後等式可由歸納法驗證：基底各為 1；代入前兩項公式後得到 $2(F_n+F_{n-1})-1=2F_{n+1}-1$。直接遞迴時間 $\\Theta(\\varphi^n)$，$\\varphi=(1+\\sqrt5)/2$；$O(2^n)$ 也是合法較寬上界，堆疊 $\\Theta(n)$。\n\n自編延伸：記憶化（memoization）保存已求結果，單位成本模型下時間 $\\Theta(n)$、快取 $\\Theta(n)$；命中快取仍算一次函式進入。迭代只保留最近兩項，時間 $\\Theta(n)$、額外空間 $\\Theta(1)$。"
+    },
+    {
+      "id": "DS-CH01-S02-K10",
+      "sourceId": "DS-K10",
+      "title": "自訂二維遞迴：待原圖確認",
+      "difficulty": 3,
+      "provenance": "條件式自編 · 定義待原圖確認",
+      "markdown": "前次整理先稱此題為二項式係數，後又指出原講義邊界不同。為避免沿用錯誤，本稿不把它命名為二項式係數。暫依前次整理末段所述，以以下定義作「條件式自編練習」，原講義正式內容待核對：\n\n$$A(n,0)=n+1,\\quad A(0,m)=1,\\quad A(n,m)=A(n-1,m)+A(n,m-1)\\ (n,m\\geq1).$$\n\nn、m 為非負整數，交點 A(0,0)=1 一致。此定義允許 m>n，不可套用一般二項式係數的定義域限制。可逐列填表，不必展開大量重複遞迴。\n\n自編延伸：此暫定函式其實滿足 $A(n,m)=\\binom{n+m+1}{n}$，但不等於 $\\binom nm$；由邊界及帕斯卡恆等式可驗證。正式教材不依此推測反向重建原題。"
+    },
+    {
+      "id": "DS-CH01-S02-K11",
+      "sourceId": "DS-K11",
+      "title": "最大公因數（Greatest Common Divisor）",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "歐幾里得演算法（Euclidean Algorithm）：$\\gcd(a,b)=\\gcd(b,a\\bmod b)$，其中 mod 表示除法餘數。對 a≥0、b>0，餘數在 0 至 b−1，規模嚴格縮小。\n\n```text\ngcd(a,b):\n    a = abs(a); b = abs(b)\n    if b == 0: return a\n    return gcd(b, a mod b)\n```\n\n先判斷 b=0 再取餘數，避免除以零。數學上 gcd(0,0) 依採用慣例另訂；此程式回傳 0 是程式規格選擇。單位成本下餘數步驟數為對數級；真實位元運算成本另計。"
+    },
+    {
+      "id": "DS-CH01-S02-K12",
+      "sourceId": "DS-K12",
+      "title": "排列（Permutations）與回溯（Backtracking）",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "n 個互異元素有 n! 種排列。固定位置 i 的候選元素，再處理後面位置；每個遞迴分支返回後交換回來，恢復下一個分支需要的狀態。\n\n```text\npermute(a, i, n):\n    if i == n:\n        output(a)\n        return\n    for j = i to n-1:\n        swap(a[i], a[j])\n        permute(a, i+1, n)\n        swap(a[i], a[j])\n```\n\n若每個完整排列列印 n 個元素，總時間 $\\Theta(n\\cdot n!)$；一般遞迴額外空間 $\\Theta(n)$，不含存下全部輸出的空間。重複元素可能產生重複排列。"
+    },
+    {
+      "id": "DS-CH01-S02-K13",
+      "sourceId": "DS-K13",
+      "title": "河內塔（Towers of Hanoi）",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "三根柱子中，把 n 個盤從 A 搬到 C、以 B 輔助，一次一盤且大盤不能放小盤上。先把 n−1 盤由 A 搬到 B，再搬最大盤 A→C，再把 n−1 盤 B→C。\n\n$$T(0)=0,\\qquad T(n)=2T(n-1)+1.$$\n\n展開 k 層得 $T(n)=2^kT(n-k)+(2^k-1)$。令 k=n，因 T(0)=0，得到 $T(n)=2^n-1$。此處 T 是移動次數；它也給出逐步輸出移動的時間 $\\Theta(2^n)$，遞迴堆疊 $\\Theta(n)$。\n\n最少性理由：最大盤移動前，n−1 個小盤必須離開來源並聚於另一柱；移動後還要搬到目標，兩段各至少需要 T(n−1) 次，另加最大盤一次。上述演算法剛好達到此界。"
+    },
+    {
+      "id": "DS-CH01-S03-K1301",
+      "sourceId": "ds-k1301",
+      "title": "資料型態",
+      "difficulty": 1,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "資料型態（Data Type）由一組資料物件，以及可作用在這些物件上的運算構成。\n\n$$\\text{資料型態}=\\text{物件集合}+\\text{運算集合}$$\n\n例如整數型態包含整數值，以及加法、減法、比較等操作。實際程式語言的整數通常有表示範圍；數學整數則沒有固定上限。描述型態時必須說明採用哪個模型。"
+    },
+    {
+      "id": "DS-CH01-S03-K1302",
+      "sourceId": "ds-k1302",
+      "title": "抽象資料型態",
+      "difficulty": 1,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "抽象資料型態（Abstract Data Type, ADT）描述資料及操作的對外行為，將規格與內部表示、程式實作分開。使用者依操作契約使用 ADT，無須依賴內部一定採用陣列或鏈結串列。\n\n| 層面 | 堆疊範例 |\n|---|---|\n| 資料物件 | 元素的有限序列 |\n| 行為規格 | push 加入頂端；pop 取出頂端，遵守後進先出（LIFO） |\n| 實作選擇 | 陣列、鏈結串列等 |\n| 成本 | 取決於實作及容量策略，不能僅從 ADT 名稱推定 |\n\n類別（class）可用來實作 ADT，但特定類別程式碼不等於抽象規格。相同 ADT 的不同實作可以有相同行為、不同效能。"
+    },
+    {
+      "id": "DS-CH01-S03-K1303",
+      "sourceId": "ds-k1303",
+      "title": "運算規格與角色",
+      "difficulty": 3,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "先前教材整理列出的運算規格項目為函式名稱（Function name）、引數型態（Argument type）與結果型態（Result type）。\n\n【延伸補充】要消除行為歧義，可再列前置條件、後置條件、狀態變化及錯誤情況。例如 pop 的結果可包含「被取出的元素」與「更新後堆疊」；可變物件實作則可能修改原物件。不得自行假定空堆疊 pop 必定回傳某個值。\n\n| 角色 | 意義 | 例子 |\n|---|---|---|\n| Creator／Constructor | 建立型態實例 | 建立空堆疊 |\n| Transformer | 改變狀態，或產生變換後實例 | push、pop |\n| Observer／Reporter | 查詢資訊 | size、isEmpty、top |\n\n判斷依據是操作效果。pop 常同時回報元素並改變狀態，因此不能因為它有回傳值就只列為 Observer。上述 Transformer 用語需與原圖定義再核對。"
+    },
+    {
+      "id": "DS-CH01-S04-K1401",
+      "sourceId": "ds-k1401",
+      "title": "效能分析",
+      "difficulty": 1,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "時間需求衡量工作量；空間需求衡量同時需要的儲存量。理論分析先訂輸入規模及成本模型，推導成長；實測在指定硬體、語言、編譯器及資料上取得執行結果。實測時間與理論複雜度不是相同量。"
+    },
+    {
+      "id": "DS-CH01-S04-K1402",
+      "sourceId": "ds-k1402",
+      "title": "空間需求",
+      "difficulty": 1,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "$$S(P)=C+S_P(I)$$\n\nP 表示程式，I 表示輸入實例，C 是不隨輸入改變的固定空間，$S_P(I)$ 是依輸入變動的空間。分析漸近需求時，常再用 n 代表輸入規模。\n\n| 情況 | 在固定字長、每個元素固定大小的模型下 |\n|---|---|\n| 固定個數的參數、變數與暫存值 | $\\Theta(1)$ |\n| 新建 n 個元素的陣列 | $\\Theta(n)$ |\n| 新建 n×n 矩陣 | $\\Theta(n^2)$ |\n| 額外空間／輔助空間 | 不包含原有輸入；輸出是否計入須說明 |\n\n常數階不表示只占 1 byte。C/C++ 的陣列參數一般不複製整個陣列；不能因函式接收 list[] 就推定每次遞迴都配置一份 n 元素陣列。\n\n教材固定運算式範例：\n\n```c\nfloat abc(float a, float b, float c) {\n    return a+b+c*(a+b-c)/(a+b)+4;\n}\n```\n\n只有固定數量參數與暫存值，空間為常數階。這項成本結論不保證所有輸入都具有有效的數學結果；分母 a+b 的條件屬程式正確性問題。"
+    },
+    {
+      "id": "DS-CH01-S04-K1403",
+      "sourceId": "ds-k1403",
+      "title": "迴圈與遞迴加總",
+      "difficulty": 3,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "```c\nfloat sum(float list[], int n) {\n    float tempsum = 0;\n    for (int i = 0; i < n; i++)\n        tempsum += list[i];\n    return tempsum;\n}\n```\n\n前提 $n\\ge 0$，list 有至少 n 個可讀元素。迴圈讀取 n 個元素，時間 $\\Theta(n)$（n 趨大時），輔助空間 $\\Theta(1)$；若包含輸入陣列，總空間為 $\\Theta(n)$。\n\n先前轉述的教材遞迴版本為：\n\n```c\nfloat rsum(float list[], int n) {\n    if (n)\n        return rsum(list, n-1) + list[n-1];\n    return list[0];\n}\n```\n\n【待原圖核對的勘誤】若 n 表示元素個數，此版本在 n=0 時讀 list[0]；非空加總會多加一次 list[0]。例如 n=2 時得到 $2list[0]+list[1]$。這是對轉述程式的分析，尚不能斷言原書確實如此印刷。\n\n【編者修正版】\n\n```c\nfloat rsum(float list[], int n) {\n    if (n == 0) return 0;\n    return rsum(list, n-1) + list[n-1];\n}\n```\n\n每次把 n 減一，直到 0，共 $n+1$ 次呼叫。若每層非遞迴工作為常數：\n\n$$T(n)=T(n-1)+\\Theta(1),\\quad T(0)=\\Theta(1)$$\n\n展開 n 次得到 $T(n)=T(0)+n\\Theta(1)=\\Theta(n)$。一般未消除遞迴的執行模型中，最深同時有 $n+1$ 層，每層固定空間，所以輔助空間 $\\Theta(n)$。此函式返回前仍要進行加法，不是直接回傳遞迴結果的尾遞迴形式。\n\n空間看最大同時存在的框架，不看整段程式累積呼叫次數；同時深度與總呼叫數必須分開計算。"
+    },
+    {
+      "id": "DS-CH01-S04-K1404",
+      "sourceId": "ds-k1404",
+      "title": "步數、S/E 與頻率",
+      "difficulty": 3,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "S/E（Steps per Execution）表示敘述每次執行的計費步數；Frequency 表示執行次數。\n\n$$\\text{總步數}=\\sum_{i=1}^{m}s_i f_i$$\n\nΣ 是加總符號：i 從 1 到 m，把每列的 $s_i f_i$ 相加；m 是被計費的列數，$s_i$ 是該列每次步數，$f_i$ 是該列頻率。\n\n依先前表格採用的簡化計費約定：\n\n| sum 的計費項目 | S/E | 頻率 | 貢獻 |\n|---|---:|---:|---:|\n| tempsum 初始化 | 1 | 1 | 1 |\n| 迴圈控制列 | 1 | $n+1$ | $n+1$ |\n| 累加敘述 | 1 | n | n |\n| return | 1 | 1 | 1 |\n\n所以 $T(n)=1+(n+1)+n+1=2n+3$。這是表格的抽象計費方式，未把 i 初始化、i++ 等拆開另計；若題目要求每個基本操作逐項計費，就必須重新列式。不能把此數字當成通用 CPU 指令數。\n\n迴圈本體執行 n 次，但檢查 $n+1$ 次，因為最後還要一次失敗檢查。以 n=0 檢查邊界可知本體不執行、控制仍計一次。"
+    },
+    {
+      "id": "DS-CH01-S04-K1405",
+      "sourceId": "ds-k1405",
+      "title": "矩陣加法",
+      "difficulty": 3,
+      "provenance": "教材整理 · 原圖待核對",
+      "markdown": "```c\nfor (i = 0; i < rows; i++)\n    for (j = 0; j < cols; j++)\n        c[i][j] = a[i][j] + b[i][j];\n```\n\n令 r=rows、c=cols；此段數學中的 c 為欄數，程式 c[i][j] 則是輸出矩陣，兩者意義不同。r、c 為非負整數且矩陣容量足夠。\n\n| 計費列 | 頻率 |\n|---|---:|\n| 外層控制 | r+1 |\n| 內層控制 | r(c+1) |\n| 元素相加及指定 | rc |\n\n按每列一次算一步：\n\n$$T(r,c)=(r+1)+r(c+1)+rc=2rc+2r+1.$$\n\n因為每一列重新啟動內層迴圈，所以每列都有 c+1 次內層控制。對 $r,c\\ge 1$，時間為 $\\Theta(rc)$；若包含零維度情形，保留 $\\Theta(rc+r+1)$ 才完整。$r=c=n\\ge 1$ 時為 $\\Theta(n^2)$。\n\n【待核對】先前整理指出原表總數可能與列項不合；本稿只確認上述三項相加的代數結果，原表是否誤印須看原圖。\n\n若輸出矩陣新配置，輸出空間為 $\\Theta(rc)$；若排除輸入輸出、只算迴圈索引等工作空間，輔助空間為 $\\Theta(1)$。判斷時先交代空間口徑。"
+    },
+    {
+      "id": "DS-CH01-S04-K1406",
+      "sourceId": "ds-k1406",
+      "title": "漸近記號【延伸補充】",
+      "difficulty": 3,
+      "provenance": "補充延伸",
+      "markdown": "$f(n)=O(g(n))$ 表示存在正常數 C 與門檻 $n_0$，使所有 $n\\ge n_0$ 都滿足 $0\\le f(n)\\le Cg(n)$；Ω 是相應下界，Θ 同時要求上下界。這裡 C 是界的常數，與前文空間式的 C 屬不同使用情境。\n\n$2n+3=\\Theta(n)$，也屬 $O(n)$；它同時屬 $O(n^2)$，但後者較不緊。精確步數、漸近上界、緊確階不能混稱。定義沒有提到最佳或最壞案例，所以 O 不自動等於最壞情況；先選案例再分析函數。"
+    },
+    {
+      "id": "DS-CH01-S05-K15A",
+      "sourceId": "ds-k15a",
+      "title": "上界、下界、緊界",
+      "difficulty": 1,
+      "provenance": "教材整理",
+      "markdown": "以下假設函數最終非負，$g(n)$ 最終為正。大 O（Big-O）描述漸近上界：存在 $c>0,n_0$，使所有 $n\\ge n_0$ 滿足 $0\\le f(n)\\le cg(n)$。大 Omega 描述漸近下界，將後一不等式改為 $cg(n)\\le f(n)$。Theta 描述緊界：存在 $c_1,c_2>0,n_0$，使 $c_1g(n)\\le f(n)\\le c_2g(n)$。因此 $f=\\Theta(g)$ 當且僅當同時 $f=O(g)$ 與 $f=\\Omega(g)$。記號中的等號是慣用寫法，並非一般代數等式。\n\n| 記號 | 要證明什麼 | 常見錯誤 |\n|---|---|---|\n| $O(g)$ | 最終不超過某常數倍 $g$ | 誤認一定是最緊上界 |\n| $\\Omega(g)$ | 最終不小於某正常數倍 $g$ | 誤認必定是最好情況 |\n| $\\Theta(g)$ | 同時有上界與下界 | 只證明其中一邊 |"
+    },
+    {
+      "id": "DS-CH01-S05-K15B",
+      "sourceId": "ds-k15b",
+      "title": "多項式與成長順序",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "固定次數 $m\\ge0$ 的多項式，若最高次係數為正，則最終為 $\\Theta(n^m)$；負低次項須以不等式控制，不能對所有小 $n$ 直接忽略。固定常數倍與較低次項不改變漸近階。\n\n$$1\\prec\\log n\\prec n\\prec n\\log n\\prec n^2\\prec2^n\\prec n!.$$\n\n此處 $\\prec$ 表示比值趨近 0 的嚴格漸近較慢，並非每個固定輸入都較小。例如 $n=O(n^2)$ 成立，但 $n^2=O(n)$ 不成立。"
+    },
+    {
+      "id": "DS-CH01-S05-K15C",
+      "sourceId": "ds-k15c",
+      "title": "情況分析與嚴格界",
+      "difficulty": 5,
+      "provenance": "補充延伸",
+      "markdown": "最好、平均、最壞情況先決定要研究哪個成本函數，再描述該函數的 $O,\\Omega,\\Theta$，兩者不是同一分類。小 o（little-o）定義：對每個 $c>0$，都存在門檻使 $f(n)\\le cg(n)$；在上述正性條件下等價於 $f(n)/g(n)\\to0$。小 omega 則表示比值趨近無窮。"
+    },
+    {
+      "id": "DS-CH01-S06-K16A",
+      "sourceId": "ds-k16a",
+      "title": "迴圈轉求和",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "先指定關鍵操作，再確認每層實際範圍。獨立的兩個 $n$ 次迴圈共有 $n^2$ 次操作；若第二層依第一層變動，必須求和：\n\n$$\\sum_{i=1}^n\\sum_{j=1}^i1=\\sum_{i=1}^ni=\\frac{n(n+1)}2=\\Theta(n^2).$$\n\n\n\n固定外層 $k$，若 $1\\le i,j\\le k$ 且只計 $i\\ne j$，有序對共 $k^2-k$ 個；累加得 $\\sum_{k=1}^n(k^2-k)=n(n+1)(n-1)/3=\\Theta(n^3)$。"
+    },
+    {
+      "id": "DS-CH01-S06-K16B",
+      "sourceId": "ds-k16b",
+      "title": "倍增、減半與開根號",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "$i$ 從 1 開始反覆乘固定 $b>1$，達到 $n$ 約需 $\\log_b n$ 輪；$i=n$ 開始取 $\\lfloor i/2\\rfloor$，到 0 前共有 $\\lfloor\\log_2n\\rfloor+1$ 輪（每次正值時先執行本體）。若停止條件改成 $i>1$，精確次數會不同。"
+    },
+    {
+      "id": "DS-CH01-S06-K16C",
+      "sourceId": "ds-k16c",
+      "title": "常見遞迴與成本",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "以下小規模成本為正常數，除非另述，非遞迴工作是所列的緊確量級：\n\n| 遞迴式 | 思路 | 緊界 |\n|---|---|---|\n| $T(n)=T(n/2)+1$ | 一條路徑約 $\\log_2n$ 層 | $\\Theta(\\log n)$ |\n| $T(n)=2T(n/2)+1$ | 滿二元遞迴樹，$n$ 為 2 的冪時約 $2n-1$ 個節點 | $\\Theta(n)$ |\n| $T(n)=T(n-1)+n$ | $n+(n-1)+\\cdots+1$ | $\\Theta(n^2)$ |\n| $T(n)=2T(n-1)+1$ | 每層節點倍增、深度線性 | $\\Theta(2^n)$ |\n\n\n\n補充：單位成本模型假設基本算術操作成本固定；大整數計算不能未說明就採同一模型。遞迴時間與最大同時存在的呼叫堆疊不同；樸素 Fibonacci 時間 $\\Theta(\\varphi^n)$，堆疊深度 $\\Theta(n)$，其中 $\\varphi=(1+\\sqrt5)/2$。"
+    },
+    {
+      "id": "DS-CH01-S07-K17A",
+      "sourceId": "ds-k17a",
+      "title": "形式與適用條件",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "$$T(n)=aT(n/b)+f(n),\\qquad d=\\log_ba.$$\n\n$a\\ge1,b>1$ 必須是固定常數；$f(n)$ 最終非負，小規模成本為正常數。實際整數問題要處理取整，常見良性情況可維持階數，但不能完全略去遞迴的定義。\n\n| 情況 | 條件 | 結論 |\n|---|---|---|\n| 1：本層多項式級較小 | 存在 $\\varepsilon>0$，$f(n)=O(n^{d-\\varepsilon})$ | $\\Theta(n^d)$ |\n| 2：同級含對數因子 | $f(n)=\\Theta(n^d\\log^k n)$，本稿採 $k\\ge0$ 版本 | $\\Theta(n^d\\log^{k+1}n)$ |\n| 3：本層多項式級較大 | $f(n)=\\Omega(n^{d+\\varepsilon})$，且 $af(n/b)\\le cf(n)$ 對某 $c<1$ 最終成立 | $\\Theta(f(n))$ |\n\n第二列為常用擴充版；不能將 $k=-1$ 自動代入此表。第三列的額外條件稱正則性（regularity）。"
+    },
+    {
+      "id": "DS-CH01-S07-K17B",
+      "sourceId": "ds-k17b",
+      "title": "快查與不能套用的情況",
+      "difficulty": 5,
+      "provenance": "教材整理",
+      "markdown": "| 遞迴式 | 緊界／限制 |\n|---|---|\n| $2T(n/2)+n$ | $\\Theta(n\\log n)$ |\n| $2T(n/2)+n\\log n$ | $\\Theta(n\\log^2n)$ |\n| $16T(n/4)+n^2$ | $\\Theta(n^2\\log n)$ |\n| $7T(n/2)+n^2$ | $\\Theta(n^{\\log_2 7})$ |\n| $2T(n/4)+\\sqrt n$ | $\\Theta(\\sqrt n\\log n)$ |\n| $nT(n/2)+1$ | $a=n$ 不是常數，不能套此表 |\n| $T(n-1)+n$ | 規模不是固定比例縮小，不能套此表 |"
+    },
+    {
+      "id": "DS-CH01-S08-K18A",
+      "sourceId": "ds-k18a",
+      "title": "對數規則",
+      "difficulty": 1,
+      "provenance": "教材整理",
+      "markdown": "對數（logarithm）的底數 $b>0,b\\ne1$，真數為正；成長比較採固定 $b>1$。\n\n$$\\log_b1=0,\\quad\\log_bb=1,\\quad\\log_b(xy)=\\log_bx+\\log_by,\\quad\\log_b(x^r)=r\\log_bx.$$\n$$\\log_bx=\\frac{\\log_cx}{\\log_cb},\\quad b^{\\log_bx}=x,\\quad\\log_bb^r=r.$$\n\n換底時 $c>0,c\\ne1$。固定且大於 1 的底數之間只差正常數倍，因此不改變漸近階；精確計算仍要明寫底數。$\\log^kn=(\\log n)^k$，$\\log\\log n=\\log(\\log n)$。"
+    },
+    {
+      "id": "DS-CH01-S08-K18B",
+      "sourceId": "ds-k18b",
+      "title": "有限級數",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "$$\\sum_{k=0}^m x^k=\\frac{x^{m+1}-1}{x-1}\\quad(x\\ne1),\\qquad\\sum_{k=0}^m k2^k=(m-1)2^{m+1}+2.$$\n\n第一式在 $x=1$ 時應直接用和式得 $m+1$。第二式可對第一式對 $x$ 微分，再乘 $x$ 並代入 2。"
+    },
+    {
+      "id": "DS-CH01-S08-K18C",
+      "sourceId": "ds-k18c",
+      "title": "複雜函數比較",
+      "difficulty": 5,
+      "provenance": "教材整理",
+      "markdown": "$$a^{\\log_bn}=n^{\\log_ba},\\quad (\\log_2n)^{\\log_2n}=n^{\\log_2\\log_2n}.$$\n\n固定 $k,c>0$，有 $\\log^kn=o(n^c)$。Stirling 公式 $n!\\sim\\sqrt{2\\pi n}(n/e)^n$，其中 $\\sim$ 表示兩者比值趨近 1。因而固定 $a>1$ 時，$a^n\\prec n!\\prec n^n$。"
+    },
+    {
+      "id": "DS-CH01-S09-K19A",
+      "sourceId": "ds-k19a",
+      "title": "代入法／猜測加歸納",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "猜測法（substitution method）：先由展開或遞迴樹猜階數，再用強歸納證明。要證明 $\\Theta$ 必須給上界與下界。歸納假設套用在更小規模，不能直接假設目前欲證的命題。"
+    },
+    {
+      "id": "DS-CH01-S09-K19B",
+      "sourceId": "ds-k19b",
+      "title": "關係性質",
+      "difficulty": 3,
+      "provenance": "教材整理",
+      "markdown": "| 性質 | 敘述 |\n|---|---|\n| 遞移性 | $f=\\Theta(g),g=\\Theta(h)\\Rightarrow f=\\Theta(h)$；$O,\\Omega$ 也有遞移性 |\n| 反身性 | $f=\\Theta(f)$，也有 $f=O(f),f=\\Omega(f)$ |\n| 對稱性 | $f=\\Theta(g)\\iff g=\\Theta(f)$ |\n| 轉置對稱性 | $f=O(g)\\iff g=\\Omega(f)$ |"
     }
   ],
   "answers": {
@@ -4548,6 +8666,141 @@ window.ZILIU_CONTENT = {
       "correctOption": 1
     },
     "LA-CH01-S07-Q05": {
+      "correctOption": 2
+    },
+    "DS-CH01-S01-Q01": {
+      "correctOption": 0
+    },
+    "DS-CH01-S01-Q02": {
+      "correctOption": 1
+    },
+    "DS-CH01-S01-Q03": {
+      "correctOption": 2
+    },
+    "DS-CH01-S01-Q04": {
+      "correctOption": 3
+    },
+    "DS-CH01-S01-Q05": {
+      "correctOption": 0
+    },
+    "DS-CH01-S02-Q06": {
+      "correctOption": 2
+    },
+    "DS-CH01-S02-Q07": {
+      "correctOption": 1
+    },
+    "DS-CH01-S02-Q08": {
+      "correctOption": 3
+    },
+    "DS-CH01-S02-Q09": {
+      "correctOption": 0
+    },
+    "DS-CH01-S02-Q10": {
+      "correctOption": 2
+    },
+    "DS-CH01-S03-Q1301": {
+      "correctOption": 1
+    },
+    "DS-CH01-S03-Q1302": {
+      "correctOption": 3
+    },
+    "DS-CH01-S03-Q1303": {
+      "correctOption": 0
+    },
+    "DS-CH01-S03-Q1304": {
+      "correctOption": 2
+    },
+    "DS-CH01-S03-Q1305": {
+      "correctOption": 1
+    },
+    "DS-CH01-S04-Q1401": {
+      "correctOption": 3
+    },
+    "DS-CH01-S04-Q1402": {
+      "correctOption": 1
+    },
+    "DS-CH01-S04-Q1403": {
+      "correctOption": 2
+    },
+    "DS-CH01-S04-Q1404": {
+      "correctOption": 0
+    },
+    "DS-CH01-S04-Q1405": {
+      "correctOption": 3
+    },
+    "DS-CH01-S05-Q15M1": {
+      "correctOption": 1
+    },
+    "DS-CH01-S05-Q15M2": {
+      "correctOption": 2
+    },
+    "DS-CH01-S05-Q15M3": {
+      "correctOption": 3
+    },
+    "DS-CH01-S05-Q15M4": {
+      "correctOption": 0
+    },
+    "DS-CH01-S05-Q15M5": {
+      "correctOption": 2
+    },
+    "DS-CH01-S06-Q16M1": {
+      "correctOption": 1
+    },
+    "DS-CH01-S06-Q16M2": {
+      "correctOption": 0
+    },
+    "DS-CH01-S06-Q16M3": {
+      "correctOption": 3
+    },
+    "DS-CH01-S06-Q16M4": {
+      "correctOption": 2
+    },
+    "DS-CH01-S06-Q16M5": {
+      "correctOption": 1
+    },
+    "DS-CH01-S07-Q17M1": {
+      "correctOption": 2
+    },
+    "DS-CH01-S07-Q17M2": {
+      "correctOption": 0
+    },
+    "DS-CH01-S07-Q17M3": {
+      "correctOption": 3
+    },
+    "DS-CH01-S07-Q17M4": {
+      "correctOption": 1
+    },
+    "DS-CH01-S07-Q17M5": {
+      "correctOption": 2
+    },
+    "DS-CH01-S08-Q18M1": {
+      "correctOption": 3
+    },
+    "DS-CH01-S08-Q18M2": {
+      "correctOption": 0
+    },
+    "DS-CH01-S08-Q18M3": {
+      "correctOption": 2
+    },
+    "DS-CH01-S08-Q18M4": {
+      "correctOption": 1
+    },
+    "DS-CH01-S08-Q18M5": {
+      "correctOption": 3
+    },
+    "DS-CH01-S09-Q19M1": {
+      "correctOption": 2
+    },
+    "DS-CH01-S09-Q19M2": {
+      "correctOption": 0
+    },
+    "DS-CH01-S09-Q19M3": {
+      "correctOption": 1
+    },
+    "DS-CH01-S09-Q19M4": {
+      "correctOption": 3
+    },
+    "DS-CH01-S09-Q19M5": {
       "correctOption": 2
     }
   },
@@ -5040,6 +9293,582 @@ window.ZILIU_CONTENT = {
     },
     "LA-CH01-S07-Q07": {
       "markdown": "**提示：** 先用 column space，再用 rank-nullity（秩與零度定理）。\n\n$Ax=b$ 無解表示 $b\\notin \\operatorname{col}(A)$，故 $\\operatorname{col}(A)\\ne F^n$，$\\operatorname{rank}(A)<n$。由 $\\operatorname{nullity}(A)=n-\\operatorname{rank}(A)$，得 $\\operatorname{nullity}(A)>0$。非方陣不成立：$A=(1,0)^T$ 是 $2\\times 1$，$b=(0,1)^T$ 無解，但 $Ax=0$ 只有 $x=0$，所以 $\\operatorname{nullity}=0$。\n\n評分：連到 column space 2 分；$\\operatorname{rank}<n$ 2 分；rank-nullity 推論 2 分；非方陣反例與驗證 4 分。自評：證明與反例完整為答對；僅完成方陣證明為部分正確；把無解直接當非零齊次解而無推論為不會。"
+    },
+    "DS-CH01-S01-E01": {
+      "markdown": "辨識：題目問開發流程。方法：把每階段對應具體產出。步驟：①需求訂已排序陣列、目標、回傳任一索引或 -1；②分析拆輸入、搜尋、輸出；③設計閉區間二元搜尋；④實作端點更新；⑤以不變量論證並測空陣列、端點與缺值。常錯：把測試當設計，把需求只寫「找資料」。"
+    },
+    "DS-CH01-S01-E02": {
+      "markdown": "辨識：同時要求分解與組合。方法：用 top-down 拆功能，再由 bottom-up 建元件。步驟：①查值服務拆成讀入、檢核、搜尋、呈現；②底層建比較函式、輸入轉換、搜尋函式；③資料已排序，採二元搜尋。常錯：忽略排序前提或認為兩種設計法互斥。"
+    },
+    "DS-CH01-S01-E03": {
+      "markdown": "辨識：有限測試與普遍命題的差別。方法：找規格尚未覆蓋的情況。步驟：①不能由三例推論所有合法輸入；②測空陣列檢查 right=-1；③測端點檢查邊界；④測不存在值檢查終止。常錯：認為測更多就等於形式證明。"
+    },
+    "DS-CH01-S01-Q01": {
+      "markdown": "**提示：** 先區分「要做什麼」與「怎麼做」。\n\n**A：** 正確：定義輸出規格\n\n**B：** 錯：尚非修錯\n\n**C：** 錯：尚非程式實作\n\n**D：** 錯：非效能量測",
+      "optionExplanations": [
+        "正確：定義輸出規格",
+        "錯：尚非修錯",
+        "錯：尚非程式實作",
+        "錯：非效能量測"
+      ]
+    },
+    "DS-CH01-S01-Q02": {
+      "markdown": "**提示：** 看拆解方向。\n\n**A：** 錯：未執行案例\n\n**B：** 正確：整體往子功能拆解\n\n**C：** 錯：方向相反\n\n**D：** 錯：沒有定位錯誤",
+      "optionExplanations": [
+        "錯：未執行案例",
+        "正確：整體往子功能拆解",
+        "錯：方向相反",
+        "錯：沒有定位錯誤"
+      ]
+    },
+    "DS-CH01-S01-Q03": {
+      "markdown": "**提示：** 區分有限例子與所有輸入。\n\n**A：** 錯：不能普遍推論\n\n**B：** 錯：測試仍需規格\n\n**C：** 正確：限於已測案例\n\n**D：** 錯：可能漏測",
+      "optionExplanations": [
+        "錯：不能普遍推論",
+        "錯：測試仍需規格",
+        "正確：限於已測案例",
+        "錯：可能漏測"
+      ]
+    },
+    "DS-CH01-S01-Q04": {
+      "markdown": "**提示：** 思考為何右半部可以排除。\n\n**A：** 錯：允許重複值\n\n**B：** 錯：奇數也可搜尋\n\n**C：** 錯：不是此法必要條件\n\n**D：** 正確：排序支撐排除推論",
+      "optionExplanations": [
+        "錯：允許重複值",
+        "錯：奇數也可搜尋",
+        "錯：不是此法必要條件",
+        "正確：排序支撐排除推論"
+      ]
+    },
+    "DS-CH01-S01-Q05": {
+      "markdown": "**提示：** 問題已發生後如何找原因。\n\n**A：** 正確：定位修正錯誤\n\n**B：** 錯：需求訂目標\n\n**C：** 錯：非操作語意定義\n\n**D：** 錯：非輸入規格設計",
+      "optionExplanations": [
+        "正確：定位修正錯誤",
+        "錯：需求訂目標",
+        "錯：非操作語意定義",
+        "錯：非輸入規格設計"
+      ]
+    },
+    "DS-CH01-S01-W01": {
+      "markdown": "**提示：** 依五階段逐項落地。\n\n需求：整數遞增陣列、目標，重複時回傳任一索引，無值回傳 -1（2 分）。分析：拆輸入、查詢、輸出（2 分）。設計：二元搜尋且閉區間（2 分）。實作：完成端點更新（2 分）。驗證：測試並論證搜尋不變量（2 分）。若選不同但一致的重複值規格亦可，須讓演算法符合該規格。"
+    },
+    "DS-CH01-S01-W02": {
+      "markdown": "**提示：** 考慮空陣列、端點及缺值。\n\n空陣列：不存取任何元素即回傳 -1（2 分）；單元素命中或端點命中：確認 left=right 仍可查（2 分）；非空且目標缺值：確認區間縮空並終止（2 分）。測試檢查指定實例，證明需對合法輸入建立普遍論證（4 分）。三種測試需功能不同，不能只換數字。"
+    },
+    "DS-CH01-S02-E04": {
+      "markdown": "辨識：模糊指令與終止。方法：分別檢查明確性、有限性。步驟：①「感覺夠大」未定義，缺明確性；②沒有可保證的停止條件，有限性未建立；③從整數 0 每次加 1 到 10，有明確判斷且十次後終止。常錯：把有效性解釋成「一定很快」。"
+    },
+    "DS-CH01-S02-E05": {
+      "markdown": "辨識：每輪找剩餘最小值。方法：記錄最小值索引後才交換。步驟：①[2,3,9,7]；②[2,3,9,7]；③[2,3,7,9]。比較 3+2+1=6；本稿排除自身交換，所以實際交換 2 次。常錯：看到更小值就立刻換、把 min_index 當最小值。"
+    },
+    "DS-CH01-S02-E06": {
+      "markdown": "辨識：已排序陣列查值。方法：每輪縮小閉區間。步驟：①(0,6,3)，值 11，left=4；②(4,6,5)，值 20，right=4；③(4,4,4)，值 16，回傳 4。常錯：回傳數值 16 而非索引 4；把 mid 留在下次區間導致卡住。"
+    },
+    "DS-CH01-S02-E07": {
+      "markdown": "辨識：單分支、規模減一。方法：展開再返回。步驟：f(3)→f(2)→f(1)→f(0)，返回 0→1→2→3。回傳 3；含初始呼叫共 4 次，最深同時 4 層。常錯：把層數與三條呼叫邊混為一談。"
+    },
+    "DS-CH01-S02-E08": {
+      "markdown": "辨識：階乘乘上較小階乘。方法：依基底展開。步驟：Fac(4)=4·Fac(3)=4·3·Fac(2)=4·3·2·Fac(1)=4·3·2·1·Fac(0)=24。共 5 次呼叫。常錯：設 0!=0 或漏算基底呼叫。"
+    },
+    "DS-CH01-S02-E09": {
+      "markdown": "辨識：雙分支且重疊子問題。方法：分別算 F、C 與深度。步驟：F4=3；C0=C1=1，C2=3、C3=5、C4=9；最長路徑 4→3→2→1（或 0），最大 4 層。常錯：把回傳 3 當呼叫數，或把呼叫樹總節點數當深度。"
+    },
+    "DS-CH01-S02-E10": {
+      "markdown": "辨識：非標準邊界的二維遞迴。方法：先填邊界，再填表。步驟：n=0 列為 1,1,1,1；n=1 列為 2,3,4,5；n=2 列為 3,6,10,15。故 A(2,2)=10、A(1,2)=4、A(2,3)=15。常錯：套成 C(2,2)=1，或誤認 m>n 無定義。限制：此答案以暫定定義為前提，待原圖確認。"
+    },
+    "DS-CH01-S02-E11": {
+      "markdown": "辨識：最大公因數。方法：餘數遞迴。步驟：48=2·18+12；18=1·12+6；12=2·6+0，故 gcd=6。gcd(48,0) 直接回傳 48，不取餘數。常錯：先做 a%b 才檢查 b=0。"
+    },
+    "DS-CH01-S02-E12": {
+      "markdown": "辨識：列舉所有排列。方法：逐位置選候選、遞迴、復原。步驟：i=0 選 a 得 abc、acb；選 b 得 bac、bca；選 c 時陣列由 abc 交換首尾為 cba，得到 cba、cab。順序為 abc、acb、bac、bca、cba、cab。常錯：將字典順序誤當此程式輸出順序，或忘記復原。"
+    },
+    "DS-CH01-S02-E13": {
+      "markdown": "辨識：三柱、每次一盤。方法：先搬上方兩盤，再移最大，再搬兩盤。步驟：2³−1=7；移動序列 A→C、A→B、C→B、A→C、B→A、B→C、A→C。常錯：把輔助柱固定在同一參數位置，遞迴時未交換角色。"
+    },
+    "DS-CH01-S02-Q06": {
+      "markdown": "**提示：** 回想五性質的精確定義。\n\n**A：** 錯：可無輸入\n\n**B：** 錯：是無歧義\n\n**C：** 正確：符合輸入輸出性質\n\n**D：** 錯：有效性不是此速度限制",
+      "optionExplanations": [
+        "錯：可無輸入",
+        "錯：是無歧義",
+        "正確：符合輸入輸出性質",
+        "錯：有效性不是此速度限制"
+      ]
+    },
+    "DS-CH01-S02-Q07": {
+      "markdown": "**提示：** 列 4+3+2+1。\n\n**A：** 錯：是輪數\n\n**B：** 正確：4+3+2+1=10\n\n**C：** 錯：重複計數\n\n**D：** 錯：此版比較數固定",
+      "optionExplanations": [
+        "錯：是輪數",
+        "正確：4+3+2+1=10",
+        "錯：重複計數",
+        "錯：此版比較數固定"
+      ]
+    },
+    "DS-CH01-S02-Q08": {
+      "markdown": "**提示：** 排除已檢查過的 mid。\n\n**A：** 錯：未排除中點且方向錯\n\n**B：** 錯：保留已否定中點\n\n**C：** 錯：方向相反\n\n**D：** 正確：查左半部且排除中點",
+      "optionExplanations": [
+        "錯：未排除中點且方向錯",
+        "錯：保留已否定中點",
+        "錯：方向相反",
+        "正確：查左半部且排除中點"
+      ]
+    },
+    "DS-CH01-S02-Q09": {
+      "markdown": "**提示：** 把每個函式節點算一次。\n\n**A：** 正確：C3=1+3+1=5\n\n**B：** 錯：不是只看深度\n\n**C：** 錯：漏計節點\n\n**D：** 錯：樹並非滿二元樹",
+      "optionExplanations": [
+        "正確：C3=1+3+1=5",
+        "錯：不是只看深度",
+        "錯：漏計節點",
+        "錯：樹並非滿二元樹"
+      ]
+    },
+    "DS-CH01-S02-Q10": {
+      "markdown": "**提示：** 分開看輸出量、時間、深度。\n\n**A：** 錯：應恢復分支狀態\n\n**B：** 錯：需 2ⁿ−1\n\n**C：** 正確：n! 輸出各長 n\n\n**D：** 錯：深度為線性",
+      "optionExplanations": [
+        "錯：應恢復分支狀態",
+        "錯：需 2ⁿ−1",
+        "正確：n! 輸出各長 n",
+        "錯：深度為線性"
+      ]
+    },
+    "DS-CH01-S02-W03": {
+      "markdown": "**提示：** 先處理會令下一步非法的輸入。\n\n```text\nfac(n):\n    require n >= 0 and integer\n    if n == 0: return 1\n    return n * fac(n-1)\ngcd(a,b):\n    require a >= 0 and b >= 0 and integer\n    if b == 0: return a\n    return gcd(b, a mod b)\n```\n\n階乘基底與公式 3 分；GCD 基底及先防除零 3 分；說明 n 減一、餘數小於正整數 b 3 分；說明 gcd(0,0) 是規格選擇且此程式回傳 0，1 分。"
+    },
+    "DS-CH01-S02-W04": {
+      "markdown": "**提示：** 先說清楚每個遞迴式在計算什麼。\n\n①C0=C1=1，Cn=1+C(n−1)+C(n−2)，此處 C 計函式進入次數（3 分）；②T0=0，Tn=2T(n−1)+1，Tn=2ⁿ−1，此處 T 計移動（3 分）；③A(1,1)=3、A(1,2)=4、A(2,1)=6，A(2,2)=4+6=10（2 分）；④A(n,0)=$n+1$ 不是一般 C(n,0)=1，故不能直接當 C(n,m)（2 分）。最後兩項以 K10 暫定定義成立為條件。"
+    },
+    "DS-CH01-S03-E1301": {
+      "markdown": "辨識線索是「只有資料，沒有操作」。依型態定義，還要補運算，例如 append(x) 加入數字、length() 查詢數量；再說明輸入輸出與行為。常見錯誤是把資料型態僅當作儲存格式。"
+    },
+    "DS-CH01-S03-E1302": {
+      "markdown": "辨識線索是「行為相同、表示不同」。ADT 以抽象行為為準，因此可以。步驟：先確認兩者處理的是相同抽象物件，再確認操作契約、錯誤條件一致；最後才比較時間空間成本。常見錯誤是認為陣列與鏈結串列必定代表不同 ADT。"
+    },
+    "DS-CH01-S03-E1303": {
+      "markdown": "pop(S) 接收 Stack；前置條件 S 非空；回傳元素型態 E；後置條件為原頂端被移除且回傳該元素，其餘元素次序不變。因為改變抽象狀態，具有 Transformer 角色。常見錯誤是遺漏空集合條件，或只寫函式名稱卻未定義效果。"
+    },
+    "DS-CH01-S03-E14": {
+      "markdown": "辨識：介面語意與內部表示。方法：先訂抽象操作，再比較實作。步驟：push 把資料加入頂端、pop 移除頂端、top 查看頂端、保持 LIFO；容量管理與節點指標可以改變。常錯：把 ADT 直接等同某一種儲存結構。本題為延伸練習。"
+    },
+    "DS-CH01-S03-Q1301": {
+      "markdown": "**提示：** 同時描述資料與行為\n\n**A：** 大小不足\n\n**B：** 包含兩要素\n\n**C：** 位址是表示細節\n\n**D：** 缺物件與行為",
+      "optionExplanations": [
+        "大小不足",
+        "包含兩要素",
+        "位址是表示細節",
+        "缺物件與行為"
+      ]
+    },
+    "DS-CH01-S03-Q1302": {
+      "markdown": "**提示：** 找內部表示\n\n**A：** 是抽象行為\n\n**B：** 是操作效果\n\n**C：** 是契約\n\n**D：** 是儲存表示",
+      "optionExplanations": [
+        "是抽象行為",
+        "是操作效果",
+        "是契約",
+        "是儲存表示"
+      ]
+    },
+    "DS-CH01-S03-Q1303": {
+      "markdown": "**提示：** 是否改變狀態\n\n**A：** 只查數量\n\n**B：** 改變狀態\n\n**C：** 建立實例\n\n**D：** 改變狀態",
+      "optionExplanations": [
+        "只查數量",
+        "改變狀態",
+        "建立實例",
+        "改變狀態"
+      ]
+    },
+    "DS-CH01-S03-Q1304": {
+      "markdown": "**提示：** 未定義時不要猜\n\n**A：** 未必回傳 0\n\n**B：** 未必忽略\n\n**C：** 應訂明限制或錯誤行為\n\n**D：** 非必然當機",
+      "optionExplanations": [
+        "未必回傳 0",
+        "未必忽略",
+        "應訂明限制或錯誤行為",
+        "非必然當機"
+      ]
+    },
+    "DS-CH01-S03-Q1305": {
+      "markdown": "**提示：** 行為與成本分開\n\n**A：** 同規格應一致\n\n**B：** 可因實作改變\n\n**C：** 同契約應一致\n\n**D：** 同契約應一致",
+      "optionExplanations": [
+        "同規格應一致",
+        "可因實作改變",
+        "同契約應一致",
+        "同契約應一致"
+      ]
+    },
+    "DS-CH01-S03-Q1306": {
+      "markdown": "提示：先用有限序列表示 Queue，定義前端與尾端。\n\n參考規格：物件為有限序列 $(x_1,\\ldots,x_k)$；create() 建立空序列，是 Creator；enqueue(Q,x) 把 x 加到尾端，是 Transformer；dequeue(Q) 在 k>0 時移除並回傳 x₁，是 Transformer；front(Q) 在 k>0 時回傳 x₁ 而不修改，是 Observer；isEmpty(Q) 回傳 k=0 的真假值，是 Observer。空 Queue 的 dequeue/front 以前置條件排除，亦可另訂錯誤回傳契約，但不可含糊。\n\n評分：資料物件 2 分、FIFO 操作效果 3 分、角色分類 3 分、空佇列限制 2 分。不同一致且完整的契約可接受。常見錯誤為把 front 寫成移除元素。"
+    },
+    "DS-CH01-S03-Q1307": {
+      "markdown": "提示：用由底到頂的序列逐步追蹤。\n\n狀態：[] → [3] → [3,8] → [3] → [3,5] → [3,5]；pop 回傳 8，top 回傳 5。此處 push 的回傳值未指定，不自行假定。陣列與鏈結串列若遵守相同契約，就維持相同抽象結果；成本與儲存配置可不同。\n\n評分：狀態 4 分、兩個回傳值 2 分、top 不修改 2 分、規格與實作區分 2 分。"
+    },
+    "DS-CH01-S04-E1401": {
+      "markdown": "辨識為實測與漸近分析比較。單一實測無法排除機器、常數、資料及 n 的影響；須定義相同問題與成本模型，再比較 n 增長的需求。錯誤是把一次比較推成所有規模的結論。"
+    },
+    "DS-CH01-S04-E1402": {
+      "markdown": "辨識為空間口徑題。先列新增變數，兩個固定大小變數給 $\\Theta(1)$；再加原有 n 元素輸入，得 $\\Theta(n)$。方法是分開輸入與輔助空間。錯誤是把迴圈執行 n 次當成配置 n 個變數。"
+    },
+    "DS-CH01-S04-E1403": {
+      "markdown": "依序呼叫 n=3、2、1、0，返回 0、2、7、14。共四次呼叫，最深四層；一般 n 得 $n+1$ 層。方法是展開至基底，並在返回時加對應元素。錯誤是漏算基底或把原錯誤版的 list[0] 套進修正版。"
+    },
+    "DS-CH01-S04-E1404": {
+      "markdown": "初始化 1、控制 5、累加 4、return 1，合計 11。由 $2n+3$ 得同樣結果。方法是區分本體與終止檢查；不要自行額外拆計 i++ 卻仍沿用原公式。"
+    },
+    "DS-CH01-S04-E1405": {
+      "markdown": "外層 3；內層 2(3+1)=8；元素加法 6，合計 17。新配置輸出存 6 個元素；一般為 $\\Theta(rc)$。排除輸出時只需固定索引。錯誤是內層只算 c+1 次，沒有乘列數。"
+    },
+    "DS-CH01-S04-E1406": {
+      "markdown": "$n\\ge 1$ 時，$2n\\le2n+3\\le5n$，上下常數分別取 2、5，因此 $\\Theta(n)$；又因 n≤n²，得 $2n+3\\le5n^2$，故 $O(n^2)$。辨識為界的證明，使用常數與門檻；錯誤是說 O 只能寫最緊上界。"
+    },
+    "DS-CH01-S04-Q1401": {
+      "markdown": "**提示：** 加上失敗檢查\n\n**A：** 少算\n\n**B：** 只等於本體次數\n\n**C：** 一般不等於 2n\n\n**D：** n 次成功加一次失敗",
+      "optionExplanations": [
+        "少算",
+        "只等於本體次數",
+        "一般不等於 2n",
+        "n 次成功加一次失敗"
+      ]
+    },
+    "DS-CH01-S04-Q1402": {
+      "markdown": "**提示：** 列額外配置\n\n**A：** 含輸入才是此階\n\n**B：** 只用固定變數\n\n**C：** 沒有平方配置\n\n**D：** 固定字長模型下不以數值決定",
+      "optionExplanations": [
+        "含輸入才是此階",
+        "只用固定變數",
+        "沒有平方配置",
+        "固定字長模型下不以數值決定"
+      ]
+    },
+    "DS-CH01-S04-Q1403": {
+      "markdown": "**提示：** 深度乘每層空間\n\n**A：** 忽略堆疊\n\n**B：** 深度未減半\n\n**C：** ($n+1$) 個固定框架\n\n**D：** 沒有每層線性配置",
+      "optionExplanations": [
+        "忽略堆疊",
+        "深度未減半",
+        "($n+1$) 個固定框架",
+        "沒有每層線性配置"
+      ]
+    },
+    "DS-CH01-S04-Q1404": {
+      "markdown": "**提示：** 三列逐項相加\n\n**A：** 正確展開\n\n**B：** 只算元素敘述\n\n**C：** 少算 r\n\n**D：** 忽略乘積項",
+      "optionExplanations": [
+        "正確展開",
+        "只算元素敘述",
+        "少算 r",
+        "忽略乘積項"
+      ]
+    },
+    "DS-CH01-S04-Q1405": {
+      "markdown": "**提示：** 區分精確值與階\n\n**A：** 常數階不等於 1 byte\n\n**B：** 上界不是精確步數\n\n**C：** 單次實測不夠\n\n**D：** 有線性上下界",
+      "optionExplanations": [
+        "常數階不等於 1 byte",
+        "上界不是精確步數",
+        "單次實測不夠",
+        "有線性上下界"
+      ]
+    },
+    "DS-CH01-S04-Q1406": {
+      "markdown": "提示：一路展開至 n=0，再從基底返回。\n\n原版回傳 rsum(list,2)=rsum(list,1)+6=rsum(list,0)+4+6=4+4+6=14；正確加總應為 10。基底讀 list[0] 造成多計，空輸入時亦可能無效讀取。修正為 if(n==0) return 0; 否則回傳 rsum(list,n-1)+list[n-1]。假設 $n\\ge 0$、輸入容量足夠；$T(n)=T(n-1)+\\Theta(1)$，故 $\\Theta(n)$；一般模型最深 $n+1$ 層，輔助空間 $\\Theta(n)$。\n\n評分：展開與 14 結果 2 分、指出兩種缺陷 2 分、修正 2 分、時間推導 2 分、空間理由 2 分。"
+    },
+    "DS-CH01-S04-Q1407": {
+      "markdown": "提示：每一列都重新執行內層，連最後失敗檢查也算。\n\n外層 r+1，內層 r(c+1)，本體 rc，總和 $2rc+2r+1$。r=3,c=2 時為 19；逐項 4+9+6=19。$r,c\\ge 1$ 時時間 $\\Theta(rc)$；新輸出占 $\\Theta(rc)$，不計輸入輸出的工作空間 $\\Theta(1)$。c=0 時本體不執行，但外層及每列內層檢查仍有成本，總步數 2r+1，時間 $\\Theta(r+1)$，不能寫成 $\\Theta(rc)$=$\\Theta(0)$。\n\n評分：頻率 3 分、公式及數值 2 分、兩種空間口徑 3 分、零欄邊界 2 分。"
+    },
+    "DS-CH01-S05-Q15E1": {
+      "markdown": "辨識：要求緊界，須夾住上下兩側。方法：對 $n\\ge1$，用 $n\\le n^2$、$1\\le n^2$。\n\n$$7n^2\\le7n^2+3n+5\\le(7+3+5)n^2=15n^2.$$\n\n取 $c_1=7,c_2=15,n_0=1$ 即符合定義。常見錯誤：只刪低次項而未寫可用常數。"
+    },
+    "DS-CH01-S05-Q15E2": {
+      "markdown": "辨識：多項式帶負項，需要合法下界。當 $n\\ge1$，$2n\\le2n^3$，故 $4n^3-2n+1\\ge2n^3$；上界 $4n^3-2n+1\\le4n^3+1\\le5n^3$。取常數 2、5 與門檻 1。錯誤：用負項建立方向顛倒的不等式。"
+    },
+    "DS-CH01-S05-Q15E3": {
+      "markdown": "辨識：嚴格較慢，用比值。$n/n^2=1/n\\to0$，所以成立。方法理由：有限比值可判上界，比值趨 0 才能判小 o。錯誤：把「不是下界」直接當作小 o，振盪函數可能反例。"
+    },
+    "DS-CH01-S05-Q15M1": {
+      "markdown": "提示：先回顧 ds-k15a 的定義或計算方法。\n\n正解：B。\n\n- A：這是過強條件，並非大 O 定義。\n- B：正常數和統一門檻均固定，正是定義。\n- C：常數不能隨輸入規模改變。\n- D：必須在門檻後全部成立。",
+      "optionExplanations": [
+        "這是過強條件，並非大 O 定義。",
+        "正常數和統一門檻均固定，正是定義。",
+        "常數不能隨輸入規模改變。",
+        "必須在門檻後全部成立。"
+      ]
+    },
+    "DS-CH01-S05-Q15M2": {
+      "markdown": "提示：先回顧 ds-k15a 的定義或計算方法。\n\n正解：C。\n\n- A：比值 1/n 最終有界。\n- B：n²/n=n 最終有正下界。\n- C：n²/n=n 無界，故錯誤。\n- D：$n\\ge 1$ 時介於 3n 與 4n。",
+      "optionExplanations": [
+        "比值 1/n 最終有界。",
+        "n²/n=n 最終有正下界。",
+        "n²/n=n 無界，故錯誤。",
+        "$n\\ge 1$ 時介於 3n 與 4n。"
+      ]
+    },
+    "DS-CH01-S05-Q15M3": {
+      "markdown": "提示：先回顧 ds-k15b 的定義或計算方法。\n\n正解：D。\n\n- A：n=1 時不成立。\n- B：n=2 時不成立。\n- C：n=5 時不成立。\n- D：移項得 6≤n。",
+      "optionExplanations": [
+        "n=1 時不成立。",
+        "n=2 時不成立。",
+        "n=5 時不成立。",
+        "移項得 6≤n。"
+      ]
+    },
+    "DS-CH01-S05-Q15M4": {
+      "markdown": "提示：先回顧 ds-k15c 的定義或計算方法。\n\n正解：A。\n\n- A：比值趨 0 即嚴格較慢。\n- B：無正常數下界。\n- C：反比無界。\n- D：無正常數下界。",
+      "optionExplanations": [
+        "比值趨 0 即嚴格較慢。",
+        "無正常數下界。",
+        "反比無界。",
+        "無正常數下界。"
+      ]
+    },
+    "DS-CH01-S05-Q15M5": {
+      "markdown": "提示：先回顧 ds-k15c 的定義或計算方法。\n\n正解：C。\n\n- A：情況分類與界限不同。\n- B：任何指定情況的成本函數都可討論上界。\n- C：正確，先定函數再定界。\n- D：下界不限定最好情況。",
+      "optionExplanations": [
+        "情況分類與界限不同。",
+        "任何指定情況的成本函數都可討論上界。",
+        "正確，先定函數再定界。",
+        "下界不限定最好情況。"
+      ]
+    },
+    "DS-CH01-S05-Q15W1": {
+      "markdown": "提示：找上下兩個正常數。\n\n參考解：對 $n\\ge1$，$5n^2\\le5n^2+2n+8\\le15n^2$。取 $c_1=5,c_2=15,n_0=1$。\n\n評分：下界 3 分、上界 4 分、常數與門檻及結論 3 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S05-Q15W2": {
+      "markdown": "提示：分別看奇數與偶數子序列。\n\n參考解：$f/g$ 在偶數為 1、奇數為 $1/n$。比值不超過 1，故為 O；奇數子序列趨 0，沒有統一正常數下界，故不是 Omega；偶數子序列為 1，整體不趨 0，故不是小 o。\n\n評分：O 判斷 2 分、Omega 3 分、小 o 3 分、子序列論證 2 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S06-Q16E1": {
+      "markdown": "辨識：三層範圍相依，不能直接相乘。先固定 $i,j$，內層做 $j$ 次；再加總 $j$：$\\sum_{j=1}^ij=i(i+1)/2$。最後\n$$\\sum_{i=1}^n\\frac{i(i+1)}2=\\frac12\\left[\\frac{n(n+1)(2n+1)}6+\\frac{n(n+1)}2\\right]=\\frac{n(n+1)(n+2)}6.$$\n緊界 $\\Theta(n^3)$。錯誤：求和上下限與程式不一致。"
+    },
+    "DS-CH01-S06-Q16E2": {
+      "markdown": "辨識：規模反覆開根號。做 $k$ 次後為 $n^{1/2^k}$；停在 2 以下，等價於 $(\\log_2n)/2^k\\le1$。所以 $k=\\lceil\\log_2\\log_2n\\rceil$（對 $n>2$），總成本 $\\Theta(\\log\\log n)$。錯誤：把開根號當成除以 2。對實數規模採這一停止門檻，避免永遠到不了 1。"
+    },
+    "DS-CH01-S06-Q16E3": {
+      "markdown": "辨識：每次只減 1，先展開。$T(n)=2^kT(n-k)+(2^k-1)$。令 $k=n-1$ 得 $T(n)=2^n-1$。為何如此：每次展開的常數工作形成等比級數。錯誤：把兩個子問題誤認成規模減半。"
+    },
+    "DS-CH01-S06-Q16M1": {
+      "markdown": "提示：先回顧 ds-k16a 的定義或計算方法。\n\n正解：B。\n\n- A：這是方形範圍的計數。\n- B：各 i 有 i 次，加總得此值。\n- C：本題含對角線，不能少 n。\n- D：本題不是倍增結構。",
+      "optionExplanations": [
+        "這是方形範圍的計數。",
+        "各 i 有 i 次，加總得此值。",
+        "本題含對角線，不能少 n。",
+        "本題不是倍增結構。"
+      ]
+    },
+    "DS-CH01-S06-Q16M2": {
+      "markdown": "提示：先回顧 ds-k16b 的定義或計算方法。\n\n正解：A。\n\n- A：正整數 n 反覆減半到 0 的精確次數。\n- B：每輪不是減 1。\n- C：這對應反覆開根號的量級。\n- D：不是分支遞迴。",
+      "optionExplanations": [
+        "正整數 n 反覆減半到 0 的精確次數。",
+        "每輪不是減 1。",
+        "這對應反覆開根號的量級。",
+        "不是分支遞迴。"
+      ]
+    },
+    "DS-CH01-S06-Q16M3": {
+      "markdown": "提示：先回顧 ds-k16c 的定義或計算方法。\n\n正解：D。\n\n- A：忽略分支倍增。\n- B：沒有規模減半。\n- C：成本形成等比而非平方級。\n- D：精確式為 2^n−1。",
+      "optionExplanations": [
+        "忽略分支倍增。",
+        "沒有規模減半。",
+        "成本形成等比而非平方級。",
+        "精確式為 2^n−1。"
+      ]
+    },
+    "DS-CH01-S06-Q16M4": {
+      "markdown": "提示：先回顧 ds-k16b 的定義或計算方法。\n\n正解：C。\n\n- A：單次縮小規模不等於總成本。\n- B：規模不是減半。\n- C：取 log 後每次減半。\n- D：深度仍隨 n 增長。",
+      "optionExplanations": [
+        "單次縮小規模不等於總成本。",
+        "規模不是減半。",
+        "取 log 後每次減半。",
+        "深度仍隨 n 增長。"
+      ]
+    },
+    "DS-CH01-S06-Q16M5": {
+      "markdown": "提示：先回顧 ds-k16a 的定義或計算方法。\n\n正解：B。\n\n- A：需扣掉 i=j 的 k 個。\n- B：總共 k²，扣 k。\n- C：此為不分順序配對。\n- D：並非兩條線性列表相加。",
+      "optionExplanations": [
+        "需扣掉 i=j 的 k 個。",
+        "總共 k²，扣 k。",
+        "此為不分順序配對。",
+        "並非兩條線性列表相加。"
+      ]
+    },
+    "DS-CH01-S06-Q16W1": {
+      "markdown": "提示：先固定 i，求 j 的總和。\n\n參考解：內層執行 j 次，總數為 $\\sum_{i=1}^n\\sum_{j=0}^{i^2-1}j=\\frac12\\sum_{i=1}^n(i^4-i^2)=\\Theta(n^5)$。上界用 n 個至多 n⁴ 的項；下界取後半約 n/2 個 i，每項為常數倍 n⁴。\n\n評分：和式 4 分、化簡 2 分、上下界或冪次求和說明 4 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S06-Q16W2": {
+      "markdown": "提示：每層加上目前規模。\n\n參考解：展開到基底得 $1+2+\\cdots+n=n(n+1)/2$。對 $n\\ge1$ 介於 $n^2/2$ 與 $n^2$，因此為 $\\Theta(n^2)$。\n\n評分：展開及基底 3 分、公式 3 分、緊界理由 4 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S07-Q17E1": {
+      "markdown": "辨識：固定比例分治。$a=4,b=2,d=2$，$n=O(n^{2-1})$，適用情況 1，答案 $\\Theta(n^2)$。遞迴樹第 $i$ 層成本 $4^i(n/2^i)=n2^i$；深度 $\\log_2n$，葉與逐層和同為二次量級。錯誤：只看每個節點成本而漏掉節點數。"
+    },
+    "DS-CH01-S07-Q17E2": {
+      "markdown": "$d=1$，$f(n)=n^d\\log^2n$，以情況 2 的 $k=2$ 得 $\\Theta(n\\log^3n)$。辨識重點是多項式次數相同；錯誤是將 $\\log^2n$ 視為多項式級差距。"
+    },
+    "DS-CH01-S07-Q17E3": {
+      "markdown": "$d=\\log_2 3<2$，選 $\\varepsilon=2-d>0$。再驗 $3f(n/2)=3n^2/4$，可取 $c=3/4$；情況 3 得 $\\Theta(n^2)$。常見錯誤：只比較次方而漏正則性。"
+    },
+    "DS-CH01-S07-Q17E4": {
+      "markdown": "$d=3$，$f=n^3/\\log_3n$ 比 $n^3$ 小，卻無多項式差距，本稿三情況不能直接套。第 $i$ 層成本為 $n^3/(L-i)$，非基底層加總為 $n^3\\sum_{j=2}^{L}1/j=\\Theta(n^3\\log L)$；基底總成本 $\\Theta(n^3)$。因此 $\\Theta(n^3\\log\\log n)$。選遞迴樹是因為各層會形成調和級數。錯誤：硬套情況 1 或把 $k=-1$ 代入情況 2。"
+    },
+    "DS-CH01-S07-Q17M1": {
+      "markdown": "提示：先回顧 ds-k17a 的定義或計算方法。\n\n正解：C。\n\n- A：a、b 固定。\n- B：a、b 固定。\n- C：a=n 隨規模變動。\n- D：a、b 固定。",
+      "optionExplanations": [
+        "a、b 固定。",
+        "a、b 固定。",
+        "a=n 隨規模變動。",
+        "a、b 固定。"
+      ]
+    },
+    "DS-CH01-S07-Q17M2": {
+      "markdown": "提示：先回顧 ds-k17a 的定義或計算方法。\n\n正解：A。\n\n- A：臨界項 n^(log_4 2)=√n，情況 2。\n- B：漏掉同級累積的 log。\n- C：誤算臨界指數。\n- D：誤算臨界指數。",
+      "optionExplanations": [
+        "臨界項 n^(log_4 2)=√n，情況 2。",
+        "漏掉同級累積的 log。",
+        "誤算臨界指數。",
+        "誤算臨界指數。"
+      ]
+    },
+    "DS-CH01-S07-Q17M3": {
+      "markdown": "提示：先回顧 ds-k17a 的定義或計算方法。\n\n正解：D。\n\n- A：葉層成本更大。\n- B：本層非臨界同級。\n- C：只有同級情況才加 log。\n- D：臨界 n³，本層有多項式差距。",
+      "optionExplanations": [
+        "葉層成本更大。",
+        "本層非臨界同級。",
+        "只有同級情況才加 log。",
+        "臨界 n³，本層有多項式差距。"
+      ]
+    },
+    "DS-CH01-S07-Q17M4": {
+      "markdown": "提示：先回顧 ds-k17a 的定義或計算方法。\n\n正解：B。\n\n- A：未除以 2 的平方。\n- B：3(n/2)²/n²=3/4。\n- C：分支數不是 4。\n- D：將比值顛倒。",
+      "optionExplanations": [
+        "未除以 2 的平方。",
+        "3(n/2)²/n²=3/4。",
+        "分支數不是 4。",
+        "將比值顛倒。"
+      ]
+    },
+    "DS-CH01-S07-Q17M5": {
+      "markdown": "提示：先回顧 ds-k17b 的定義或計算方法。\n\n正解：C。\n\n- A：a=27 是常數。\n- B：b=3>1。\n- C：臨界項 n³，差一個 log 不是多項式差距。\n- D：遞迴樹可形成調和和式。",
+      "optionExplanations": [
+        "a=27 是常數。",
+        "b=3>1。",
+        "臨界項 n³，差一個 log 不是多項式差距。",
+        "遞迴樹可形成調和和式。"
+      ]
+    },
+    "DS-CH01-S07-Q17W1": {
+      "markdown": "提示：先算臨界次方，再算正則性比值。\n\n參考解：$d=\\log_4 3<1$；取 $\\varepsilon=(1-d)/2>0$，$n\\log n=\\Omega(n^{d+\\varepsilon})$。比值 $3f(n/4)/f(n)=\\frac34(1-\\log4/\\log n)\\le3/4$ 對充分大 n 成立。因此 $T(n)=\\Theta(n\\log n)$。\n\n評分：d 與差距 4 分、正則性 4 分、結論 2 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S07-Q17W2": {
+      "markdown": "提示：同級帶一個 log。\n\n參考解：$d=2,k=1$，故 $\\Theta(n^2\\log^2n)$。若 $n=2^L$，第 i 層成本為 $n^2(L-i)$（log 取 2），非基底層和 $n^2\\sum_{j=1}^Lj=\\Theta(n^2L^2)$，葉成本 $\\Theta(n^2)$。\n\n評分：主定理條件 3 分、層成本 3 分、總和與結論 4 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S08-Q18E1": {
+      "markdown": "先將 $4=2^2$，得 $(2^{\\log_2n})^2=n^2$。另令 $n=2^t$，其中 $t=\\log_2n>0$，得 $(2^t)^{1/t}=2$。方法理由：改成相同底數便能抵消指數。錯誤：忽略 $n=1$ 時分母為 0。"
+    },
+    "DS-CH01-S08-Q18E2": {
+      "markdown": "辨識：等比項乘線性項，引用有限和公式。代入 $m=\\log_2n$，$2^m=n$，得 $2n\\log_2n-2n+2=\\Theta(n\\log n)$。一般 $n$ 若指定上限 $\\lfloor\\log_2n\\rfloor$，要用此整數值代回公式；精確式不再直接等於前述表達式，但階數不變。錯誤：未取整便以非整數當有限和上限。"
+    },
+    "DS-CH01-S08-Q18E3": {
+      "markdown": "中項為 $n^{\\log_2\\log_2n}$，其指數最終超過任何固定常數，故比 $n^2$ 快。比較它與 $2^n$，取自然對數後，中項為 $\\Theta(\\log n\\log\\log n)=o(n)$，而後者為 $n\\ln2$，故中項仍較慢。答案依題目列出順序由慢至快。錯誤：看到變動指數就當作固定底數指數成長。"
+    },
+    "DS-CH01-S08-Q18M1": {
+      "markdown": "提示：先回顧 ds-k18a 的定義或計算方法。\n\n正解：D。\n\n- A：此為雙重對數。\n- B：此為真數平方後取 log。\n- C：此等於 log(n²)。\n- D：上標作用在整個對數值。",
+      "optionExplanations": [
+        "此為雙重對數。",
+        "此為真數平方後取 log。",
+        "此等於 log(n²)。",
+        "上標作用在整個對數值。"
+      ]
+    },
+    "DS-CH01-S08-Q18M2": {
+      "markdown": "提示：先回顧 ds-k18a 的定義或計算方法。\n\n正解：A。\n\n- A：4=2²，交換指數可得 n²。\n- B：指數不可改成乘法。\n- C：底數 4 的指數相對 2 是 2。\n- D：並非取對數的式子。",
+      "optionExplanations": [
+        "4=2²，交換指數可得 n²。",
+        "指數不可改成乘法。",
+        "底數 4 的指數相對 2 是 2。",
+        "並非取對數的式子。"
+      ]
+    },
+    "DS-CH01-S08-Q18M3": {
+      "markdown": "提示：先回顧 ds-k18b 的定義或計算方法。\n\n正解：C。\n\n- A：僅保留最後一項並非精確和。\n- B：此為沒有 k 的等比和。\n- C：有限等比和微分再乘 x 得此式。\n- D：此為 k 的和。",
+      "optionExplanations": [
+        "僅保留最後一項並非精確和。",
+        "此為沒有 k 的等比和。",
+        "有限等比和微分再乘 x 得此式。",
+        "此為 k 的和。"
+      ]
+    },
+    "DS-CH01-S08-Q18M4": {
+      "markdown": "提示：先回顧 ds-k18c 的定義或計算方法。\n\n正解：B。\n\n- A：階乘最終快於固定底數指數。\n- B：由 Stirling 公式成立。\n- C：將最大與最小顛倒。\n- D：n^n 比固定底數指數快。",
+      "optionExplanations": [
+        "階乘最終快於固定底數指數。",
+        "由 Stirling 公式成立。",
+        "將最大與最小顛倒。",
+        "n^n 比固定底數指數快。"
+      ]
+    },
+    "DS-CH01-S08-Q18M5": {
+      "markdown": "提示：先回顧 ds-k18a 的定義或計算方法。\n\n正解：D。\n\n- A：令 n=2^t 後結果不是 1。\n- B：指數不是 1。\n- C：指數抵消後不含 n。\n- D：(2^t)^(1/t)=2。",
+      "optionExplanations": [
+        "令 n=2^t 後結果不是 1。",
+        "指數不是 1。",
+        "指數抵消後不含 n。",
+        "(2^t)^(1/t)=2。"
+      ]
+    },
+    "DS-CH01-S08-Q18W1": {
+      "markdown": "提示：先微分，再乘 x。\n\n參考解：令 $F(x)=\\sum_{k=0}^mx^k=(x^{m+1}-1)/(x-1)$。有限項可逐項微分，$xF\\prime(x)=\\sum_{k=0}^mkx^k$。商數法則得 $F\\prime(x)=[(m+1)x^m(x-1)-(x^{m+1}-1)]/(x-1)^2$。代 x=2 再乘 2，得 $(m-1)2^{m+1}+2$。\n\n評分：等比和 2 分、微分 4 分、乘 x 與代值 4 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S08-Q18W2": {
+      "markdown": "提示：對數可先換成新變數。\n\n參考解：依列出順序即由慢到快。令 $t=\\log n$，則 $\\log t=o(\\sqrt t)$；固定對數次方慢於任意正次多項式，故 $\\log^2n=o(\\sqrt n)$。中間 $\\sqrt{\\log n}=o(\\log^2n)$ 可直接看比值。\n\n評分：完整排序 4 分、兩項理由各 3 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S09-Q19E1": {
+      "markdown": "每一非基底層總成本均為 $n$，有 $k=\\log_2n$ 層；葉節點共 $n$ 個，故猜 $T(n)=n\\log_2n+tn$。基底 $n=1$ 右側為 $t$。歸納：假設較小規模公式成立，代入\n$$2[(n/2)\\log_2(n/2)+t(n/2)]+n=n\\log_2n+tn.$$\n所以精確式成立，也立刻有 $\\Theta(n\\log n)$。錯誤：上界只猜 $cn\\log_2n$ 卻要求它在 $n=1$ 涵蓋正成本。"
+    },
+    "DS-CH01-S09-Q19E2": {
+      "markdown": "上界用強歸納。令 $m=\\lfloor n/2\\rfloor\\le n/2$，猜 $T(n)\\le cn\\log_2n+dn$，取 $c\\ge1,d\\ge t$。因 $x\\log_2x$ 對 $x\\ge1$ 遞增，\n$$T(n)\\le2cm\\log_2m+2dm+n\\le cn\\log_2(n/2)+dn+n\\le cn\\log_2n+dn.$$\n基底成立。下界用遞迴樹：深度 $i$ 的子問題大小為 $\\lfloor n/2^i\\rfloor$，共 $2^i$ 個；若 $2^i\\le n/2$，該層成本至少 $n-2^i\\ge n/2$，且規模至少 2。這樣的非基底層有 $\\Theta(\\log n)$ 層，因此成本至少 $\\Omega(n\\log n)$。合得緊界。錯誤：直接聲稱每層恰為 $n$，忽略奇數的取整損失。"
+    },
+    "DS-CH01-S09-Q19E3": {
+      "markdown": "辨識：兩個上界串接。取兩個門檻的最大值，在該門檻後 $f\\le c_1c_2h$。因 $c_1c_2$ 仍為正常數，符合大 O 定義。錯誤：未統一門檻，或將大 O 錯當作對稱關係。"
+    },
+    "DS-CH01-S09-Q19M1": {
+      "markdown": "提示：先回顧 ds-k19a 的定義或計算方法。\n\n正解：C。\n\n- A：猜測並未保證全部規模成立。\n- B：有限驗證不能證明漸近命題。\n- C：正確，需建立普遍論證。\n- D：實驗可幫猜測，不能取代證明。",
+      "optionExplanations": [
+        "猜測並未保證全部規模成立。",
+        "有限驗證不能證明漸近命題。",
+        "正確，需建立普遍論證。",
+        "實驗可幫猜測，不能取代證明。"
+      ]
+    },
+    "DS-CH01-S09-Q19M2": {
+      "markdown": "提示：先回顧 ds-k19a 的定義或計算方法。\n\n正解：A。\n\n- A：需另選基底或補 dn。\n- B：c 可選足夠大的常數，但乘 0 仍為 0。\n- C：log 常見於遞迴分析。\n- D：許多遞迴可用歸納。",
+      "optionExplanations": [
+        "需另選基底或補 dn。",
+        "c 可選足夠大的常數，但乘 0 仍為 0。",
+        "log 常見於遞迴分析。",
+        "許多遞迴可用歸納。"
+      ]
+    },
+    "DS-CH01-S09-Q19M3": {
+      "markdown": "提示：先回顧 ds-k19b 的定義或計算方法。\n\n正解：B。\n\n- A：大 O 不對稱。\n- B：交換上下界即得到此式。\n- C：緊界需要額外下界。\n- D：小 o 是更強條件。",
+      "optionExplanations": [
+        "大 O 不對稱。",
+        "交換上下界即得到此式。",
+        "緊界需要額外下界。",
+        "小 o 是更強條件。"
+      ]
+    },
+    "DS-CH01-S09-Q19M4": {
+      "markdown": "提示：先回顧 ds-k19b 的定義或計算方法。\n\n正解：D。\n\n- A：方向相反。\n- B：未提供下界。\n- C：比值不一定趨 0。\n- D：相乘常數並取門檻最大值。",
+      "optionExplanations": [
+        "方向相反。",
+        "未提供下界。",
+        "比值不一定趨 0。",
+        "相乘常數並取門檻最大值。"
+      ]
+    },
+    "DS-CH01-S09-Q19M5": {
+      "markdown": "提示：先回顧 ds-k19a 的定義或計算方法。\n\n正解：C。\n\n- A：奇數會造成損失。\n- B：仍須驗基底。\n- C：此法可嚴格證明 n log n 緊界。\n- D：取整不會在此式把階數改成線性。",
+      "optionExplanations": [
+        "奇數會造成損失。",
+        "仍須驗基底。",
+        "此法可嚴格證明 n log n 緊界。",
+        "取整不會在此式把階數改成線性。"
+      ]
+    },
+    "DS-CH01-S09-Q19W1": {
+      "markdown": "提示：先寫包含基底的線性項。\n\n參考解：猜 $T(n)=n\\log_2n+tn$。基底 n=1 得 t；假設 n/2 成立，代入 $2[(n/2)(\\log_2n-1)+tn/2]+n=n\\log_2n+tn$。由歸納得精確式與 $\\Theta(n\\log n)$。\n\n評分：基底 2 分、假設 2 分、代入 4 分、結論 2 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
+    },
+    "DS-CH01-S09-Q19W2": {
+      "markdown": "提示：常數相乘，門檻取最大。\n\n參考解：若門檻後 $f\\le c_1g$、$g\\le c_2h$，則取兩門檻最大值，有 $f\\le c_1c_2h$，故 $f=O(h)$。例 $n=O(n^2)$，但 $n^2/n=n$ 無界，所以 $n^2\\ne O(n)$。\n\n評分：定義與門檻 3 分、串接 3 分、例子及反方向理由 4 分。\n\n常見錯誤：未交代適用條件、只寫最後階數或省略推導。自評：答對（結論與主要推導正確）／部分正確（方法可用但有缺步或計算錯）／不會（尚不能選擇方法）。"
     }
   },
   "sourceReview": {
@@ -5112,6 +9941,112 @@ window.ZILIU_CONTENT = {
       "pendingExamCount": 15,
       "pendingExamImported": false,
       "note": "三張原圖未提供；原教材用語、題幹及教材歸屬待核對。編寫例題與模擬題清楚標示，前文更正保留。15 筆未核實考古候選不進正式題庫，未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-1至1-2_第一階段審閱稿.md",
+      "sha256": "a2fa1f4a01eb600aaf5f11bbb32152478a082e4d7a38d0e635206f991aa7330e",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S01",
+      "sourceGroup": "資料結構_1-1至1-2_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依前次六張講義整理文字重編，原圖、原例題與章節切分仍待確認。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-1至1-2_第一階段審閱稿.md",
+      "sha256": "a2fa1f4a01eb600aaf5f11bbb32152478a082e4d7a38d0e635206f991aa7330e",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S02",
+      "sourceGroup": "資料結構_1-1至1-2_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依前次六張講義整理文字重編，原圖、原例題與章節切分仍待確認。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-3與1-4_第一階段審閱稿.md",
+      "sha256": "ad4d81d19933d6df6af6c8ee9ea668f184f3c70184f29f57abd520144e451a48",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S03",
+      "sourceGroup": "資料結構_1-3與1-4_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依先前教材整理重編，原始五張圖片、英文定義、完整程式及計費表格仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。",
+      "additionalSources": [
+        {
+          "filename": "資料結構_1-1至1-2_第一階段審閱稿.md",
+          "sha256": "a2fa1f4a01eb600aaf5f11bbb32152478a082e4d7a38d0e635206f991aa7330e",
+          "note": "原 1-3 開頭併入完整 1-3；保留 DS-E14 自編例題，不重複建立 DS-K14。"
+        }
+      ]
+    },
+    {
+      "filename": "資料結構_1-3與1-4_第一階段審閱稿.md",
+      "sha256": "ad4d81d19933d6df6af6c8ee9ea668f184f3c70184f29f57abd520144e451a48",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S04",
+      "sourceGroup": "資料結構_1-3與1-4_第一階段審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依先前教材整理重編，原始五張圖片、英文定義、完整程式及計費表格仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "sha256": "24803beeda468968a396e18129f3ce6b1112620e7f1f065214ed0ab3da7a045e",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S05",
+      "sourceGroup": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "sha256": "24803beeda468968a396e18129f3ce6b1112620e7f1f065214ed0ab3da7a045e",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S06",
+      "sourceGroup": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "sha256": "24803beeda468968a396e18129f3ce6b1112620e7f1f065214ed0ab3da7a045e",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S07",
+      "sourceGroup": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "sha256": "24803beeda468968a396e18129f3ce6b1112620e7f1f065214ed0ab3da7a045e",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S08",
+      "sourceGroup": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
+    },
+    {
+      "filename": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "sha256": "24803beeda468968a396e18129f3ce6b1112620e7f1f065214ed0ab3da7a045e",
+      "status": "draft",
+      "contentVersion": "0.1-review",
+      "scope": "DS-CH01-S09",
+      "sourceGroup": "資料結構_1-5至1-9_課程內容審閱稿.md",
+      "pendingExamCount": 15,
+      "pendingExamImported": false,
+      "note": "依先前整理文字與填空答案重編，原始圖片、完整填空講義及目錄仍待核對。同份稿件的 15 筆考古候選由多節共用，不視為獨立題數，皆未入正式題庫。未製作大章綜合測驗。"
     }
   ]
 };

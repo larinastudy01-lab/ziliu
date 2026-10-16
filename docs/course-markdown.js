@@ -1,8 +1,11 @@
 'use strict';
 // 僅支援教材需要的 Markdown 子集；不執行或信任原文中的 HTML。
 function courseMarkdown(markdown) {
-  const formulas = [];
-  let source = String(markdown || '').replace(/\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$/g, (match, display, inline) => {
+  const formulas = [], codeBlocks = [];
+  let source = String(markdown || '').replace(/^```([a-zA-Z0-9_-]*)[^\n]*\n([\s\S]*?)^```[ \t]*$/gm, (_, language, code) => {
+    codeBlocks.push({ language, code: code.replace(/\n$/, '') });
+    return '\uE100' + (codeBlocks.length - 1) + '\uE101';
+  }).replace(/\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$/g, (match, display, inline) => {
     const index = formulas.length;
     formulas.push({ tex: (display ?? inline).trim(), display: display !== undefined });
     return '\uE000' + index + '\uE001';
@@ -14,7 +17,10 @@ function courseMarkdown(markdown) {
   for (let index = 0; index < lines.length;) {
     const line = lines[index].trim();
     if (!line) { index++; continue; }
-    if (line.startsWith('|') && /^\|[ :|-]+\|$/.test((lines[index + 1] || '').trim())) {
+    if (/^\uE100\d+\uE101$/.test(line)) {
+      const block = codeBlocks[Number(line.slice(1, -1))];
+      output.push('<div class="code-block"><div class="code-caption">' + escape(block.language === 'text' || !block.language ? '虛擬碼' : block.language.toUpperCase()) + '</div><pre tabindex="0" aria-label="程式碼"><code>' + escape(block.code) + '</code></pre></div>'); index++;
+    } else if (line.startsWith('|') && /^\|[ :|-]+\|$/.test((lines[index + 1] || '').trim())) {
       const row = text => text.trim().replace(/^\||\|$/g, '').split('|').map(cell => cell.trim());
       const headers = row(line); index += 2; const rows = [];
       while (index < lines.length && lines[index].trim().startsWith('|')) rows.push(row(lines[index++]));
@@ -28,7 +34,7 @@ function courseMarkdown(markdown) {
       const tag = ordered ? 'ol' : 'ul'; output.push('<' + tag + '>' + items.map(item => '<li>' + inline(item) + '</li>').join('') + '</' + tag + '>');
     } else {
       const paragraph = [line]; index++;
-      while (index < lines.length && lines[index].trim() && !lines[index].trim().startsWith('|') && !/^(?:#{1,4} |[-*] |\d+\. )/.test(lines[index].trim())) paragraph.push(lines[index++].trim());
+      while (index < lines.length && lines[index].trim() && !lines[index].trim().startsWith('|') && !/^(?:#{1,4} |[-*] |\d+\. |\uE100)/.test(lines[index].trim())) paragraph.push(lines[index++].trim());
       output.push('<div class="course-paragraph">' + paragraph.map(inline).join('<br>') + '</div>');
     }
   }

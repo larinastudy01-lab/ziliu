@@ -3,9 +3,11 @@ import vm from 'node:vm';
 export function readCatalog() { const context = { window: {} }; vm.runInNewContext(readFileSync('docs/content.js', 'utf8'), context); return context.window.ZILIU_CONTENT; }
 export function upsertSection(catalog, payload) {
   const { section, questions, examples, knowledgePoints, answers, solutions, sourceReview } = payload;
-  const subject = catalog.subjects.find(item => item.id === 'linear-algebra');
-  let chapter = subject.chapters.find(item => item.id === 'LA-CH01');
-  if (!chapter) { chapter = { id: 'LA-CH01', title: '第 1 章', titleStatus: '待確認正式章名', curriculumComplete: false, sections: [] }; subject.chapters.push(chapter); }
+  const subject = catalog.subjects.find(item => item.id === (payload.subjectId || 'linear-algebra'));
+  if (!subject) throw Error('Unknown subject: ' + payload.subjectId);
+  const chapterId = payload.chapter?.id || section.id.split('-S')[0];
+  let chapter = subject.chapters.find(item => item.id === chapterId);
+  if (!chapter) { chapter = { id: chapterId, title: '第 1 章', titleStatus: '待確認正式章名', ...payload.chapter, curriculumComplete: false, sections: [] }; subject.chapters.push(chapter); }
   chapter.curriculumComplete = false;
   chapter.sections = [...chapter.sections.filter(item => item.id !== section.id), section].sort((a, b) => Number(a.title.match(/^1-(\d+)/)?.[1]) - Number(b.title.match(/^1-(\d+)/)?.[1]));
   const belongs = id => id.startsWith(section.id + '-');
